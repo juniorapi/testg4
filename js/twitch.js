@@ -1,6 +1,6 @@
 /**
- * Скрипт для перевірки статусу Twitch-стримерів
- * Автоматично отримує дані про стримерів та оновлює їх статус на сторінці
+ * Оновлений скрипт для перевірки статусу Twitch-стримерів
+ * Додані візуальні вдосконалення для статусу стримерів
  */
 
 function checkStreamStatus() {
@@ -149,6 +149,13 @@ function checkStreamStatus() {
             const statusText = streamerCard.querySelector('.streamer-status span');
             const streamerDescription = streamerCard.querySelector('.streamer-description');
             const twitchButton = streamerCard.querySelector('.twitch-button');
+            const streamerImg = streamerCard.querySelector('.streamer-img');
+            
+            // Видаляємо попередні додаткові елементи, якщо вони є
+            const existingPlatformIcon = streamerCard.querySelector('.platform-icon');
+            if (existingPlatformIcon) {
+                existingPlatformIcon.remove();
+            }
             
             // Перевіряємо, чи стример онлайн
             if (liveChannels[channel.id.toLowerCase()]) {
@@ -160,10 +167,18 @@ function checkStreamStatus() {
                 
                 // Додаємо інформацію про стрім
                 const streamInfo = liveChannels[channel.id.toLowerCase()];
+                
+                // Створюємо іконку платформи, що мигає
+                const platformIcon = document.createElement('div');
+                platformIcon.className = 'platform-icon';
+                platformIcon.innerHTML = `<i class="fab fa-twitch"></i> LIVE`;
+                streamerImg.appendChild(platformIcon);
+                
+                // Додаємо інформацію про стрім з кількістю глядачів
                 streamerDescription.innerHTML = `
                     <strong>${streamInfo.title}</strong>
                     <div class="viewer-count">
-                        <i class="fas fa-user"></i> Глядачів: ${streamInfo.viewers}
+                        <i class="fas fa-user"></i> ${streamInfo.viewers} глядачів
                     </div>
                     <div class="game-info">
                         <i class="fas fa-gamepad"></i> Гра: ${streamInfo.game || 'World of Tanks'}
@@ -172,7 +187,7 @@ function checkStreamStatus() {
                 
                 // Змінюємо текст кнопки та стилі
                 if (twitchButton) {
-                    twitchButton.textContent = 'Дивитись';
+                    twitchButton.textContent = 'Дивитись зараз';
                     twitchButton.classList.add('streaming');
                     // Оновлюємо посилання для перегляду
                     twitchButton.href = `https://twitch.tv/${channel.id}`;
@@ -186,7 +201,7 @@ function checkStreamStatus() {
                 
                 // Відображаємо опис стримера коли він офлайн
                 if (streamerDescription) {
-                    streamerDescription.innerHTML = `<strong>Стример зараз не в ефірі</strong><p>${channel.description}</p>`;
+                    streamerDescription.innerHTML = `<p>${channel.description}</p>`;
                 }
                 
                 // Змінюємо текст кнопки
