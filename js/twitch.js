@@ -1,18 +1,28 @@
+/**
+ * Скрипт для перевірки статусу Twitch-стримерів
+ * Автоматично отримує дані про стримерів та оновлює їх статус на сторінці
+ */
+
 function checkStreamStatus() {
-    // Налаштування API
+    // Налаштування API Twitch
+    // Ці значення потрібно замінити на справжні, отримані через Twitch Developer Portal
     const clientId = 'gp762nuuoqcoxypju8c569th9wz7q5';
     const accessToken = 'dxbgwq1vwbuhb1078n72hs9ohygj4i';
     
     // Масив каналів Twitch, які потрібно перевірити
+    // Для кожного стримера вказуємо:
+    // - id: ім'я користувача Twitch (маленькими літерами)
+    // - element: id елемента на сторінці
     const twitchChannels = [
-        { id: 'tankmaster_ua', element: 'streamer-1' },
-        { id: 'artypro', element: 'streamer-2' },
-        { id: 'lighttank_girl', element: 'streamer-3' }
+        { id: 'sh0kerix', element: 'streamer-1' },
+        { id: 'ceh9', element: 'streamer-2' },
+        { id: 'juniortv_gaming', element: 'streamer-3' }
     ];
     
-    // Формуємо параметри запиту для кількох каналів
+    // Формуємо параметри запиту для кількох каналів одночасно
     const queryParams = twitchChannels.map(channel => `user_login=${channel.id}`).join('&');
     
+    // Виконуємо запит до Twitch API
     fetch(`https://api.twitch.tv/helix/streams?${queryParams}`, {
         headers: {
             'Client-ID': clientId,
@@ -20,6 +30,7 @@ function checkStreamStatus() {
         }
     })
     .then(response => {
+        // Перевіряємо успішність відповіді
         if (!response.ok) {
             throw new Error(`API error: ${response.status}`);
         }
@@ -34,7 +45,8 @@ function checkStreamStatus() {
             data.data.forEach(stream => {
                 liveChannels[stream.user_login.toLowerCase()] = {
                     title: stream.title,
-                    viewers: stream.viewer_count
+                    viewers: stream.viewer_count,
+                    game: stream.game_name
                 };
             });
         }
@@ -64,40 +76,10 @@ function checkStreamStatus() {
                     <div class="viewer-count">
                         <i class="fas fa-user"></i> Глядачів: ${streamInfo.viewers}
                     </div>
+                    <div class="game-info">
+                        <i class="fas fa-gamepad"></i> Гра: ${streamInfo.game || 'World of Tanks'}
+                    </div>
                 `;
                 
                 // Змінюємо текст кнопки
                 if (twitchButton) {
-                    twitchButton.textContent = 'Дивитись';
-                    twitchButton.classList.add('streaming');
-                }
-            } else {
-                // Стример офлайн
-                streamerCard.classList.remove('streaming');
-                statusIndicator.classList.remove('online');
-                statusIndicator.classList.add('offline');
-                statusText.textContent = 'Офлайн';
-                
-                // Залишаємо стандартний опис
-                if (streamerDescription) {
-                    streamerDescription.innerHTML = '<strong>Стример зараз не в ефірі</strong>';
-                }
-                
-                // Змінюємо текст кнопки
-                if (twitchButton) {
-                    twitchButton.textContent = 'Слідкувати';
-                    twitchButton.classList.remove('streaming');
-                }
-            }
-        });
-    })
-    .catch(error => {
-        console.error('Помилка отримання даних Twitch API:', error);
-    });
-}
-
-// Перевіряємо статус при завантаженні сторінки
-document.addEventListener('DOMContentLoaded', checkStreamStatus);
-
-// Оновлюємо статус кожну хвилину
-setInterval(checkStreamStatus, 60000);
