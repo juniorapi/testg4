@@ -19,9 +19,9 @@ function checkStreamStatus() {
             description: 'Стример і професійний гравець G1_UA. Експерт по важких танках.'
         },
         { 
-            id: 'ceh9', 
+            id: 'posty', 
             element: 'streamer-2',
-            displayName: 'posty',
+            displayName: 'Posty',
             avatarUrl: 'https://i.ytimg.com/vi/jnF0PIPJKrM/maxresdefault.jpg',
             description: 'Відомий стример і коментатор. Командир G2_UA. Спеціалізація на тактиці.'
         },
