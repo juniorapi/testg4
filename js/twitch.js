@@ -22,17 +22,54 @@ function checkStreamStatus() {
     // Формуємо параметри запиту для кількох каналів одночасно
     const queryParams = twitchChannels.map(channel => `user_login=${channel.id}`).join('&');
     
-    // Виконуємо запит до Twitch API
-    fetch(`https://api.twitch.tv/helix/streams?${queryParams}`, {
+    // Спочатку отримаємо інформацію про користувачів (аватари, описи)
+    fetch(`https://api.twitch.tv/helix/users?${queryParams}`, {
         headers: {
             'Client-ID': clientId,
             'Authorization': `Bearer ${accessToken}`
         }
     })
     .then(response => {
+        if (!response.ok) {
+            throw new Error(`API error (users): ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(userData => {
+        // Зберігаємо дані користувачів
+        const userInfo = {};
+        
+        if (userData.data && userData.data.length > 0) {
+            userData.data.forEach(user => {
+                userInfo[user.login.toLowerCase()] = {
+                    avatar: user.profile_image_url,
+                    description: user.description,
+                    display_name: user.display_name
+                };
+                
+                // Оновлюємо аватар стримера, якщо знайдено
+                const streamerCard = document.getElementById(twitchChannels.find(c => c.id === user.login.toLowerCase())?.element);
+                if (streamerCard) {
+                    const avatarImg = streamerCard.querySelector('.streamer-img img');
+                    if (avatarImg && user.profile_image_url) {
+                        avatarImg.src = user.profile_image_url;
+                    }
+                }
+            });
+        }
+        
+        // Тепер перевіряємо статус стримів
+        return fetch(`https://api.twitch.tv/helix/streams?${queryParams}`, {
+            headers: {
+                'Client-ID': clientId,
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+    })
+    .then(response => {
         // Перевіряємо успішність відповіді
         if (!response.ok) {
-            throw new Error(`API error: ${response.status}`);
+            throw new Error(`API error (streams): ${response.status}`);
         }
         return response.json();
     })
@@ -81,5 +118,38 @@ function checkStreamStatus() {
                     </div>
                 `;
                 
+                // Змінюємо текст кнопки та стилі
+                if (twitchButton) {
+                    twitchButton.textContent = 'Дивитись';
+                    twitchButton.classList.add('streaming');
+                }
+            } else {
+                // Стример офлайн
+                streamerCard.classList.remove('streaming');
+                statusIndicator.classList.remove('online');
+                statusIndicator.classList.add('offline');
+                statusText.textContent = 'Офлайн';
+                
+                // Залишаємо стандартний опис
+                if (streamerDescription) {
+                    streamerDescription.innerHTML = '<strong>Стример зараз не в ефірі</strong>';
+                }
+                
                 // Змінюємо текст кнопки
                 if (twitchButton) {
+                    twitchButton.textContent = 'Слідкувати';
+                    twitchButton.classList.remove('streaming');
+                }
+            }
+        });
+    })
+    .catch(error => {
+        console.error('Помилка отримання даних Twitch API:', error);
+    });
+}
+
+// Перевіряємо статус при завантаженні сторінки
+document.addEventListener('DOMContentLoaded', checkStreamStatus);
+
+// Оновлюємо статус кожну хвилину
+setInterval(checkStreamStatus, 60000);
