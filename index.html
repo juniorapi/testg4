@@ -1,266 +1,232 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Альянс G_UA - Українська спільнота World of Tanks</title>
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Font Awesome для іконок -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Скрипт для перевірки статусу стримерів -->
-    <script src="js/twitch.js"></script>
-</head>
-<body>
-    <header>
-        <div class="container nav-container">
-            <a href="#" class="logo">Альянс <span>G_UA</span></a>
-            <nav>
-                <ul>
-                    <li><a href="#about">Про нас</a></li>
-                    <li><a href="#clans">Клани</a></li>
-                    <li><a href="#streamers">Стримери</a></li>
-                    <li><a href="#contact">Контакти</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+/**
+ * Скрипт для перевірки статусу Twitch-стримерів
+ * Автоматично отримує дані про стримерів та оновлює їх статус на сторінці
+ */
 
-    <div class="hero">
-        <div class="hero-content">
-            <h1>Український Альянс <span style="color: var(--primary-color);">G_UA</span></h1>
-            <p>Об'єднання найкращих українських кланів у грі World of Tanks. Приєднуйтесь до нашої спільноти!</p>
-            <a href="#contact" class="btn">Зв'язатися з нами</a>
-        </div>
-    </div>
-
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">Про <span>Альянс</span></h2>
-            <div class="about-content">
-                <p>
-                    Альянс G_UA об'єднує найкращі українські клани у грі World of Tanks. Наша мета — розвивати українську спільноту гравців, 
-                    брати участь у турнірах та змаганнях, а також створити дружнє середовище для всіх, хто розділяє нашу 
-                    любов до танкових баталій.
-                </p>
-                <p>
-                    В наш альянс входять шість потужних кланів: G1_UA, G2_UA, G3_UA, G4_UA, G5_UA та G6_UA. Кожен клан має 
-                    свою спеціалізацію та особливості, але всі ми працюємо разом для досягнення спільних цілей.
-                </p>
-                <p>
-                    Ми регулярно проводимо спільні тренування, внутрішні турніри та допомагаємо один одному стати кращими у грі. 
-                    Наші стримери діляться своїм досвідом та навчають новачків, а досвідчені гравці завжди готові допомогти 
-                    з порадами щодо боїв, техніки та стратегій.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section id="clans">
-        <div class="container">
-            <h2 class="section-title">Наші <span>Клани</span></h2>
-            <div class="clans-grid">
-                <div class="clan-card">
-                    <div class="clan-img">G1_UA</div>
-                    <div class="clan-info">
-                        <h3>G1_UA</h3>
-                        <p>Головний клан альянсу. Участь у клановим війнах на Глобальній карті.</p>
-                        <a href="https://eu.wargaming.net/clans/wot/500226787/" class="btn">Сторінка клану</a>
-                    </div>
-                </div>
-                <div class="clan-card">
-                    <div class="clan-img">G2_UA</div>
-                    <div class="clan-info">
-                        <h3>G2_UA</h3>
-                        <p>Турнірний клан. Спеціалізація на турнірах та змаганнях.</p>
-                        <a href="https://eu.wargaming.net/clans/wot/500226788/" class="btn">Сторінка клану</a>
-                    </div>
-                </div>
-                <div class="clan-card">
-                    <div class="clan-img">G3_UA</div>
-                    <div class="clan-info">
-                        <h3>G3_UA</h3>
-                        <p>Клан для досвідчених гравців. Фарм та розвиток аккаунтів.</p>
-                        <a href="https://eu.wargaming.net/clans/wot/500226789/" class="btn">Сторінка клану</a>
-                    </div>
-                </div>
-                <div class="clan-card">
-                    <div class="clan-img">G4_UA</div>
-                    <div class="clan-info">
-                        <h3>G4_UA</h3>
-                        <p>Ghost's4_UA - клан з фокусом на командні бої та стратегії.</p>
-                        <a href="https://eu.wargaming.net/clans/wot/500226790/" class="btn">Сторінка клану</a>
-                    </div>
-                </div>
-                <div class="clan-card">
-                    <div class="clan-img">G5_UA</div>
-                    <div class="clan-info">
-                        <h3>G5_UA</h3>
-                        <p>Клан для активних гравців. Спільні бої та розвиток.</p>
-                        <a href="https://eu.wargaming.net/clans/wot/500226791/" class="btn">Сторінка клану</a>
-                    </div>
-                </div>
-                <div class="clan-card">
-                    <div class="clan-img">G6_UA</div>
-                    <div class="clan-info">
-                        <h3>G6_UA</h3>
-                        <p>Тренувальний клан для новачків. Навчання та допомога.</p>
-                        <a href="https://eu.wargaming.net/clans/wot/500226792/" class="btn">Сторінка клану</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="streamers">
-        <div class="container">
-            <h2 class="section-title">Наші <span>Стримери</span></h2>
-            <div class="streamers-grid">
-                <div id="streamer-1" class="streamer-card">
-                    <div class="streamer-img">
-                        <img src="/api/placeholder/300/200" alt="TankMaster_UA">
-                    </div>
-                    <div class="streamer-info">
-                        <h3>TankMaster_UA</h3>
-                        <div class="streamer-status">
-                            <div class="status-indicator offline"></div>
-                            <span>Завантаження...</span>
-                        </div>
-                        <div class="streamer-description">
-                            <p>Досвідчений гравець G1_UA. Стримить щодня увечері. Спеціалізація на важких танках.</p>
-                        </div>
-                        <div class="streamer-links">
-                            <a href="https://twitch.tv/tankmaster_ua" class="twitch-button" target="_blank">Twitch</a>
-                            <a href="https://youtube.com/@tankmaster_ua" target="_blank">YouTube</a>
-                            <a href="https://t.me/tankmaster_ua" target="_blank">Telegram</a>
-                        </div>
-                    </div>
-                </div>
+function checkStreamStatus() {
+    // Налаштування API Twitch
+    // Ці значення потрібно замінити на справжні, отримані через Twitch Developer Portal
+    const clientId = 'gp762nuuoqcoxypju8c569th9wz7q5';
+    const accessToken = '0b09xd33shszp6496w5m8f03yalc8p';
+    
+    // Масив каналів Twitch з даними для відображення
+    const twitchChannels = [
+        { 
+            id: 'sh0kerix', 
+            element: 'streamer-1',
+            displayName: 'Sh0kerix',
+            avatarUrl: 'https://yt3.googleusercontent.com/ytc/AIf8zZReJRPCiWh2-Vc7hVaIkSaPT5LRiwnC4hfLJnmJEw=s900-c-k-c0x00ffffff-no-rj',
+            description: 'Стример і професійний гравець G1_UA. Експерт по важких танках.'
+        },
+        { 
+            id: 'ceh9', 
+            element: 'streamer-2',
+            displayName: 'Ceh9',
+            avatarUrl: 'https://i.ytimg.com/vi/jnF0PIPJKrM/maxresdefault.jpg',
+            description: 'Відомий стример і коментатор. Командир G2_UA. Спеціалізація на тактиці.'
+        },
+        { 
+            id: 'juniortv_gaming', 
+            element: 'streamer-3',
+            displayName: 'JuniorTV Gaming',
+            avatarUrl: 'https://static-cdn.jtvnw.net/jtv_user_pictures/a88fe91c-d626-470e-b63b-e69af4de1ef2-profile_image-300x300.png',
+            description: 'Учасник G4_UA. Стримить регулярно з фокусом на командну гру та навчання новачків.'
+        }
+    ];
+    
+    // Спочатку встановлюємо базову інформацію для всіх стримерів
+    twitchChannels.forEach(channel => {
+        const streamerCard = document.getElementById(channel.element);
+        if (!streamerCard) return; // Якщо елемент не знайдено, пропускаємо
+        
+        // Оновлюємо заголовок з іменем стримера
+        const nameElement = streamerCard.querySelector('h3');
+        if (nameElement) {
+            nameElement.textContent = channel.displayName;
+        }
+        
+        // Оновлюємо зображення стримера
+        const avatarImg = streamerCard.querySelector('.streamer-img img');
+        if (avatarImg && channel.avatarUrl) {
+            avatarImg.src = channel.avatarUrl;
+            avatarImg.alt = channel.displayName;
+        }
+        
+        // Встановлюємо базовий опис
+        const descriptionElement = streamerCard.querySelector('.streamer-description');
+        if (descriptionElement) {
+            descriptionElement.innerHTML = `<p>${channel.description}</p>`;
+        }
+    });
+    
+    // Формуємо параметри запиту для кількох каналів одночасно
+    const queryParams = twitchChannels.map(channel => `user_login=${channel.id}`).join('&');
+    
+    // Отримуємо дані про користувачів Twitch для оновлення інформації
+    fetch(`https://api.twitch.tv/helix/users?${queryParams}`, {
+        headers: {
+            'Client-ID': clientId,
+            'Authorization': `Bearer ${accessToken}`
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`API error (users): ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(userData => {
+        // Оновлюємо дані користувачів з Twitch
+        if (userData.data && userData.data.length > 0) {
+            userData.data.forEach(user => {
+                // Знаходимо відповідний канал в нашому масиві
+                const channel = twitchChannels.find(c => c.id === user.login.toLowerCase());
+                if (!channel) return;
                 
-                <div id="streamer-2" class="streamer-card">
-                    <div class="streamer-img">
-                        <img src="/api/placeholder/300/200" alt="ArtyPro">
-                    </div>
-                    <div class="streamer-info">
-                        <h3>ArtyPro</h3>
-                        <div class="streamer-status">
-                            <div class="status-indicator offline"></div>
-                            <span>Завантаження...</span>
-                        </div>
-                        <div class="streamer-description">
-                            <p>Командир G2_UA. Стримить по вихідних. Спеціалізація на артилерії та тактиці.</p>
-                        </div>
-                        <div class="streamer-links">
-                            <a href="https://twitch.tv/artypro" class="twitch-button" target="_blank">Twitch</a>
-                            <a href="https://youtube.com/@artypro" target="_blank">YouTube</a>
-                            <a href="https://t.me/artypro" target="_blank">Telegram</a>
-                        </div>
-                    </div>
-                </div>
+                // Оновлюємо дані про стримера, якщо вони є
+                channel.displayName = user.display_name || channel.displayName;
                 
-                <div id="streamer-3" class="streamer-card">
-                    <div class="streamer-img">
-                        <img src="/api/placeholder/300/200" alt="LightTank_Girl">
+                // Якщо є аватар з Twitch, оновлюємо його
+                if (user.profile_image_url) {
+                    channel.avatarUrl = user.profile_image_url;
+                }
+                
+                // Оновлюємо інформацію на сторінці
+                const streamerCard = document.getElementById(channel.element);
+                if (!streamerCard) return;
+                
+                // Оновлюємо ім'я
+                const nameElement = streamerCard.querySelector('h3');
+                if (nameElement) {
+                    nameElement.textContent = channel.displayName;
+                }
+                
+                // Оновлюємо аватар
+                const avatarImg = streamerCard.querySelector('.streamer-img img');
+                if (avatarImg && channel.avatarUrl) {
+                    avatarImg.src = channel.avatarUrl;
+                    avatarImg.alt = channel.displayName;
+                }
+            });
+        }
+        
+        // Тепер перевіряємо статус стримів
+        return fetch(`https://api.twitch.tv/helix/streams?${queryParams}`, {
+            headers: {
+                'Client-ID': clientId,
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+    })
+    .then(response => {
+        // Перевіряємо успішність відповіді
+        if (!response.ok) {
+            throw new Error(`API error (streams): ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Створюємо мапу для швидкого пошуку каналів, які зараз в ефірі
+        const liveChannels = {};
+        
+        // Заповнюємо мапу каналами, які зараз онлайн
+        if (data.data && data.data.length > 0) {
+            data.data.forEach(stream => {
+                liveChannels[stream.user_login.toLowerCase()] = {
+                    title: stream.title,
+                    viewers: stream.viewer_count,
+                    game: stream.game_name
+                };
+            });
+        }
+        
+        // Оновлюємо статус для кожного стримера на сторінці
+        twitchChannels.forEach(channel => {
+            const streamerCard = document.getElementById(channel.element);
+            if (!streamerCard) return; // Якщо елемент не знайдено, пропускаємо
+            
+            const statusIndicator = streamerCard.querySelector('.status-indicator');
+            const statusText = streamerCard.querySelector('.streamer-status span');
+            const streamerDescription = streamerCard.querySelector('.streamer-description');
+            const twitchButton = streamerCard.querySelector('.twitch-button');
+            
+            // Перевіряємо, чи стример онлайн
+            if (liveChannels[channel.id.toLowerCase()]) {
+                // Стример онлайн
+                streamerCard.classList.add('streaming');
+                statusIndicator.classList.add('online');
+                statusIndicator.classList.remove('offline');
+                statusText.textContent = 'Онлайн';
+                
+                // Додаємо інформацію про стрім
+                const streamInfo = liveChannels[channel.id.toLowerCase()];
+                streamerDescription.innerHTML = `
+                    <strong>${streamInfo.title}</strong>
+                    <div class="viewer-count">
+                        <i class="fas fa-user"></i> Глядачів: ${streamInfo.viewers}
                     </div>
-                    <div class="streamer-info">
-                        <h3>LightTank_Girl</h3>
-                        <div class="streamer-status">
-                            <div class="status-indicator offline"></div>
-                            <span>Завантаження...</span>
-                        </div>
-                        <div class="streamer-description">
-                            <p>Учасниця G4_UA. Стримить 3 рази на тиждень. Спеціалізація на легких танках та розвідці.</p>
-                        </div>
-                        <div class="streamer-links">
-                            <a href="https://twitch.tv/lighttank_girl" class="twitch-button" target="_blank">Twitch</a>
-                            <a href="https://youtube.com/@lighttank_girl" target="_blank">YouTube</a>
-                            <a href="https://t.me/lighttank_girl" target="_blank">Telegram</a>
-                        </div>
+                    <div class="game-info">
+                        <i class="fas fa-gamepad"></i> Гра: ${streamInfo.game || 'World of Tanks'}
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                `;
+                
+                // Змінюємо текст кнопки та стилі
+                if (twitchButton) {
+                    twitchButton.textContent = 'Дивитись';
+                    twitchButton.classList.add('streaming');
+                    // Оновлюємо посилання для перегляду
+                    twitchButton.href = `https://twitch.tv/${channel.id}`;
+                }
+            } else {
+                // Стример офлайн
+                streamerCard.classList.remove('streaming');
+                statusIndicator.classList.remove('online');
+                statusIndicator.classList.add('offline');
+                statusText.textContent = 'Офлайн';
+                
+                // Відображаємо опис стримера коли він офлайн
+                if (streamerDescription) {
+                    streamerDescription.innerHTML = `<strong>Стример зараз не в ефірі</strong><p>${channel.description}</p>`;
+                }
+                
+                // Змінюємо текст кнопки
+                if (twitchButton) {
+                    twitchButton.textContent = 'Слідкувати';
+                    twitchButton.classList.remove('streaming');
+                    // Оновлюємо посилання на канал
+                    twitchButton.href = `https://twitch.tv/${channel.id}`;
+                }
+            }
+        });
+    })
+    .catch(error => {
+        console.error('Помилка отримання даних Twitch API:', error);
+        
+        // Встановлюємо дані вручну, якщо сталася помилка API
+        twitchChannels.forEach(channel => {
+            const streamerCard = document.getElementById(channel.element);
+            if (!streamerCard) return;
+            
+            // Встановлюємо статус "Офлайн" у разі помилки
+            const statusIndicator = streamerCard.querySelector('.status-indicator');
+            const statusText = streamerCard.querySelector('.streamer-status span');
+            if (statusIndicator && statusText) {
+                statusIndicator.classList.remove('online');
+                statusIndicator.classList.add('offline');
+                statusText.textContent = 'Офлайн';
+            }
+            
+            // Показуємо базову інформацію про стримера
+            const streamerDescription = streamerCard.querySelector('.streamer-description');
+            if (streamerDescription) {
+                streamerDescription.innerHTML = `<p>${channel.description}</p>`;
+            }
+        });
+    });
+}
 
-    <section id="contact">
-        <div class="container">
-            <h2 class="section-title">Наші <span>Контакти</span></h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Зв'яжіться з нами</h3>
-                    <p><strong>Discord:</strong> discord.gg/g_ua_alliance</p>
-                    <p><strong>Telegram канал:</strong> t.me/g_ua_alliance</p>
-                    <p><strong>Email:</strong> contact@g-ua-alliance.com</p>
-                    <p>
-                        Якщо ви бажаєте приєднатися до нашого альянсу, залиште заявку через форму або зв'яжіться з нами через Discord чи Telegram.
-                    </p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-discord"></i></a>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <h3>Зворотній зв'язок</h3>
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Ім'я</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="nickname">Нік у грі</label>
-                            <input type="text" id="nickname" name="nickname" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Повідомлення</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-submit">Надіслати</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+// Перевіряємо статус при завантаженні сторінки
+document.addEventListener('DOMContentLoaded', checkStreamStatus);
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Альянс G_UA</h3>
-                    <ul>
-                        <li><a href="#about">Про нас</a></li>
-                        <li><a href="#clans">Наші клани</a></li>
-                        <li><a href="#streamers">Стримери</a></li>
-                        <li><a href="#contact">Контакти</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Сервіси</h3>
-                    <ul>
-                        <li><a href="#">Буст аккаунтів</a></li>
-                        <li><a href="#">Тренування</a></li>
-                        <li><a href="#">Участь у турнірах</a></li>
-                        <li><a href="#">Клановим війни</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Корисні посилання</h3>
-                    <ul>
-                        <li><a href="https://worldoftanks.eu" target="_blank">World of Tanks EU</a></li>
-                        <li><a href="https://wargaming.net" target="_blank">Wargaming.net</a></li>
-                        <li><a href="#">Турніри та події</a></li>
-                        <li><a href="#">Правила альянсу</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Альянс G_UA. Всі права захищені.</p>
-            </div>
-        </div>
-    </footer>
-</body>
-</html>
+// Оновлюємо статус кожну хвилину
+setInterval(checkStreamStatus, 60000);
