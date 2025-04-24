@@ -21,7 +21,7 @@ function checkStreamStatus() {
         { 
             id: 'ceh9', 
             element: 'streamer-2',
-            displayName: 'Ceh9',
+            displayName: 'posty',
             avatarUrl: 'https://i.ytimg.com/vi/jnF0PIPJKrM/maxresdefault.jpg',
             description: 'Відомий стример і коментатор. Командир G2_UA. Спеціалізація на тактиці.'
         },
