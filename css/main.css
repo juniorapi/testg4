@@ -16,7 +16,7 @@ html, body {
     position: fixed;
     width: 100%;
     height: 100%;
-    background-image: url('https://poliroid.me/gunmarks/img/sparkles.png');
+    background-image: url('img/sparkles.png');
     background-repeat: repeat;
     z-index: -2;
     top: 0;
