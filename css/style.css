@@ -409,3 +409,94 @@
                 flex-direction: column;
             }
         }
+/* Додаткові стилі для стримерів */
+.streamer-card {
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.streamer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.streamer-card.streaming {
+    box-shadow: 0 0 15px var(--primary-color);
+}
+
+.streamer-img {
+    height: 200px;
+    background-color: #333;
+    position: relative;
+    overflow: hidden;
+}
+
+.streamer-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.streamer-info {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.online {
+    background-color: #4CAF50;
+    box-shadow: 0 0 8px #4CAF50;
+}
+
+.offline {
+    background-color: #F44336;
+}
+
+.streamer-status {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.streamer-status span {
+    font-weight: bold;
+}
+
+.streaming .streamer-status span {
+    color: #4CAF50;
+}
+
+.streamer-description {
+    margin: 15px 0;
+    flex-grow: 1;
+}
+
+.viewer-count {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.streamer-links a.twitch-button {
+    background-color: #6441a5;
+}
+
+.streamer-links a.twitch-button.streaming {
+    background-color: #9147ff;
+}
+
+.streamer-links a.twitch-button.streaming:hover {
+    background-color: #7b31f1;
+}
