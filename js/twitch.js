@@ -7,22 +7,62 @@ function checkStreamStatus() {
     // Налаштування API Twitch
     // Ці значення потрібно замінити на справжні, отримані через Twitch Developer Portal
     const clientId = 'gp762nuuoqcoxypju8c569th9wz7q5';
-    const accessToken = 'mmruqi078wx5l48l7nxpv5oy979yir';
+    const accessToken = '0b09xd33shszp6496w5m8f03yalc8p';
     
-    // Масив каналів Twitch, які потрібно перевірити
-    // Для кожного стримера вказуємо:
-    // - id: ім'я користувача Twitch (маленькими літерами)
-    // - element: id елемента на сторінці
+    // Масив каналів Twitch з даними для відображення
     const twitchChannels = [
-        { id: 'sh0kerix', element: 'streamer-1' },
-        { id: 'ceh9', element: 'streamer-2' },
-        { id: 'juniortv_gaming', element: 'streamer-3' }
+        { 
+            id: 'sh0kerix', 
+            element: 'streamer-1',
+            displayName: 'Sh0kerix',
+            avatarUrl: 'https://yt3.googleusercontent.com/ytc/AIf8zZReJRPCiWh2-Vc7hVaIkSaPT5LRiwnC4hfLJnmJEw=s900-c-k-c0x00ffffff-no-rj',
+            description: 'Стример і професійний гравець G1_UA. Експерт по важких танках.'
+        },
+        { 
+            id: 'ceh9', 
+            element: 'streamer-2',
+            displayName: 'Ceh9',
+            avatarUrl: 'https://i.ytimg.com/vi/jnF0PIPJKrM/maxresdefault.jpg',
+            description: 'Відомий стример і коментатор. Командир G2_UA. Спеціалізація на тактиці.'
+        },
+        { 
+            id: 'juniortv_gaming', 
+            element: 'streamer-3',
+            displayName: 'JuniorTV Gaming',
+            avatarUrl: 'https://static-cdn.jtvnw.net/jtv_user_pictures/a88fe91c-d626-470e-b63b-e69af4de1ef2-profile_image-300x300.png',
+            description: 'Учасник G4_UA. Стримить регулярно з фокусом на командну гру та навчання новачків.'
+        }
     ];
+    
+    // Спочатку встановлюємо базову інформацію для всіх стримерів
+    twitchChannels.forEach(channel => {
+        const streamerCard = document.getElementById(channel.element);
+        if (!streamerCard) return; // Якщо елемент не знайдено, пропускаємо
+        
+        // Оновлюємо заголовок з іменем стримера
+        const nameElement = streamerCard.querySelector('h3');
+        if (nameElement) {
+            nameElement.textContent = channel.displayName;
+        }
+        
+        // Оновлюємо зображення стримера
+        const avatarImg = streamerCard.querySelector('.streamer-img img');
+        if (avatarImg && channel.avatarUrl) {
+            avatarImg.src = channel.avatarUrl;
+            avatarImg.alt = channel.displayName;
+        }
+        
+        // Встановлюємо базовий опис
+        const descriptionElement = streamerCard.querySelector('.streamer-description');
+        if (descriptionElement) {
+            descriptionElement.innerHTML = `<p>${channel.description}</p>`;
+        }
+    });
     
     // Формуємо параметри запиту для кількох каналів одночасно
     const queryParams = twitchChannels.map(channel => `user_login=${channel.id}`).join('&');
     
-    // Спочатку отримаємо інформацію про користувачів (аватари, описи)
+    // Отримуємо дані про користувачів Twitch для оновлення інформації
     fetch(`https://api.twitch.tv/helix/users?${queryParams}`, {
         headers: {
             'Client-ID': clientId,
@@ -36,24 +76,36 @@ function checkStreamStatus() {
         return response.json();
     })
     .then(userData => {
-        // Зберігаємо дані користувачів
-        const userInfo = {};
-        
+        // Оновлюємо дані користувачів з Twitch
         if (userData.data && userData.data.length > 0) {
             userData.data.forEach(user => {
-                userInfo[user.login.toLowerCase()] = {
-                    avatar: user.profile_image_url,
-                    description: user.description,
-                    display_name: user.display_name
-                };
+                // Знаходимо відповідний канал в нашому масиві
+                const channel = twitchChannels.find(c => c.id === user.login.toLowerCase());
+                if (!channel) return;
                 
-                // Оновлюємо аватар стримера, якщо знайдено
-                const streamerCard = document.getElementById(twitchChannels.find(c => c.id === user.login.toLowerCase())?.element);
-                if (streamerCard) {
-                    const avatarImg = streamerCard.querySelector('.streamer-img img');
-                    if (avatarImg && user.profile_image_url) {
-                        avatarImg.src = user.profile_image_url;
-                    }
+                // Оновлюємо дані про стримера, якщо вони є
+                channel.displayName = user.display_name || channel.displayName;
+                
+                // Якщо є аватар з Twitch, оновлюємо його
+                if (user.profile_image_url) {
+                    channel.avatarUrl = user.profile_image_url;
+                }
+                
+                // Оновлюємо інформацію на сторінці
+                const streamerCard = document.getElementById(channel.element);
+                if (!streamerCard) return;
+                
+                // Оновлюємо ім'я
+                const nameElement = streamerCard.querySelector('h3');
+                if (nameElement) {
+                    nameElement.textContent = channel.displayName;
+                }
+                
+                // Оновлюємо аватар
+                const avatarImg = streamerCard.querySelector('.streamer-img img');
+                if (avatarImg && channel.avatarUrl) {
+                    avatarImg.src = channel.avatarUrl;
+                    avatarImg.alt = channel.displayName;
                 }
             });
         }
@@ -74,7 +126,7 @@ function checkStreamStatus() {
         return response.json();
     })
     .then(data => {
-        // Створюємо мапу для швидкого пошуку каналів
+        // Створюємо мапу для швидкого пошуку каналів, які зараз в ефірі
         const liveChannels = {};
         
         // Заповнюємо мапу каналами, які зараз онлайн
@@ -88,7 +140,7 @@ function checkStreamStatus() {
             });
         }
         
-        // Оновлюємо стан для кожного стримера на сторінці
+        // Оновлюємо статус для кожного стримера на сторінці
         twitchChannels.forEach(channel => {
             const streamerCard = document.getElementById(channel.element);
             if (!streamerCard) return; // Якщо елемент не знайдено, пропускаємо
@@ -122,6 +174,8 @@ function checkStreamStatus() {
                 if (twitchButton) {
                     twitchButton.textContent = 'Дивитись';
                     twitchButton.classList.add('streaming');
+                    // Оновлюємо посилання для перегляду
+                    twitchButton.href = `https://twitch.tv/${channel.id}`;
                 }
             } else {
                 // Стример офлайн
@@ -130,21 +184,44 @@ function checkStreamStatus() {
                 statusIndicator.classList.add('offline');
                 statusText.textContent = 'Офлайн';
                 
-                // Залишаємо стандартний опис
+                // Відображаємо опис стримера коли він офлайн
                 if (streamerDescription) {
-                    streamerDescription.innerHTML = '<strong>Стример зараз не в ефірі</strong>';
+                    streamerDescription.innerHTML = `<strong>Стример зараз не в ефірі</strong><p>${channel.description}</p>`;
                 }
                 
                 // Змінюємо текст кнопки
                 if (twitchButton) {
                     twitchButton.textContent = 'Слідкувати';
                     twitchButton.classList.remove('streaming');
+                    // Оновлюємо посилання на канал
+                    twitchButton.href = `https://twitch.tv/${channel.id}`;
                 }
             }
         });
     })
     .catch(error => {
         console.error('Помилка отримання даних Twitch API:', error);
+        
+        // Встановлюємо дані вручну, якщо сталася помилка API
+        twitchChannels.forEach(channel => {
+            const streamerCard = document.getElementById(channel.element);
+            if (!streamerCard) return;
+            
+            // Встановлюємо статус "Офлайн" у разі помилки
+            const statusIndicator = streamerCard.querySelector('.status-indicator');
+            const statusText = streamerCard.querySelector('.streamer-status span');
+            if (statusIndicator && statusText) {
+                statusIndicator.classList.remove('online');
+                statusIndicator.classList.add('offline');
+                statusText.textContent = 'Офлайн';
+            }
+            
+            // Показуємо базову інформацію про стримера
+            const streamerDescription = streamerCard.querySelector('.streamer-description');
+            if (streamerDescription) {
+                streamerDescription.innerHTML = `<p>${channel.description}</p>`;
+            }
+        });
     });
 }
 
