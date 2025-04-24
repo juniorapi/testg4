@@ -1,0 +1,358 @@
+/* Стилі для сторінки стримерів */
+
+.streamers-section {
+    padding-top: 30px;
+}
+
+.streamers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+/* Повідомлення про відсутність стримерів онлайн */
+.no-streamers-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    font-style: italic;
+    color: #999;
+}
+
+/* Картка стримера */
+.streamer-card {
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #333;
+}
+
+.streamer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Стилі для стримера, який в ефірі */
+.streamer-card.live {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(227, 41, 39, 0.4);
+}
+
+/* Шапка картки з аватаром та інформацією */
+.streamer-header {
+    display: flex;
+    padding: 15px;
+    position: relative;
+}
+
+/* Аватар стримера */
+.streamer-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #444;
+    flex-shrink: 0;
+    margin-right: 15px;
+}
+
+.streamer-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.live .streamer-avatar {
+    border-color: var(--primary-color);
+}
+
+/* Основна інформація про стримера */
+.streamer-info {
+    flex-grow: 1;
+}
+
+.streamer-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Індикатор статусу */
+.streamer-status {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.status-dot.online {
+    background-color: var(--success-color);
+    box-shadow: 0 0 5px var(--success-color);
+    animation: pulse 1.5s infinite;
+}
+
+.status-dot.offline {
+    background-color: var(--error-color);
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(76, 175, 80, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+    }
+}
+
+/* Позначки платформ */
+.platform-tags {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    gap: 8px;
+}
+
+.platform {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.platform i {
+    margin-right: 5px;
+}
+
+.platform.twitch {
+    background-color: var(--twitch-color);
+    color: white;
+}
+
+.platform.twitch.live {
+    background-color: var(--twitch-active);
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.8; }
+    100% { opacity: 1; }
+}
+
+/* Інформація про стрім (для стримерів в ефірі) */
+.stream-info {
+    padding: 0 15px 15px;
+}
+
+.stream-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.viewer-count {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--primary-color);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-right: 10px;
+}
+
+.viewer-count i {
+    margin-right: 5px;
+}
+
+/* Опис стримера */
+.streamer-description {
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-top: 1px solid #333;
+    flex-grow: 1;
+}
+
+.streamer-description p {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* Мета-інформація про стримера */
+.streamer-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.clan-tag, .game-tag {
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.clan-tag {
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.game-tag i {
+    margin-right: 5px;
+    color: var(--accent-color);
+}
+
+/* Посилання на соціальні мережі */
+.streamer-links {
+    display: flex;
+    border-top: 1px solid #333;
+}
+
+.streamer-links a {
+    flex: 1;
+    padding: 12px 0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.streamer-links a:hover {
+    filter: brightness(1.2);
+}
+
+.btn-twitch {
+    background-color: var(--twitch-color);
+}
+
+.live .btn-twitch {
+    background-color: var(--twitch-active);
+    position: relative;
+    overflow: hidden;
+}
+
+.live .btn-twitch::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shine 2s infinite;
+}
+
+@keyframes shine {
+    to {
+        left: 100%;
+    }
+}
+
+.btn-youtube {
+    background-color: var(--youtube-color);
+}
+
+.btn-telegram {
+    background-color: var(--telegram-color);
+}
+
+/* Індикатор LIVE у верхньому правому кутку (для стримерів онлайн) */
+.live-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    animation: blink 1s infinite;
+    z-index: 1;
+}
+
+/* Таблиця з розкладом */
+.schedule-table-container {
+    overflow-x: auto;
+    margin-bottom: 15px;
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.schedule-table th,
+.schedule-table td {
+    padding: 12px;
+    border: 1px solid #444;
+}
+
+.schedule-table th {
+    background-color: var(--secondary-color);
+    font-weight: bold;
+}
+
+.schedule-table tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.schedule-note {
+    font-size: 14px;
+    color: #999;
+    font-style: italic;
+    text-align: center;
+}
+
+/* Секція подачі заявки */
+.apply-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/api/placeholder/1200/400") center/cover;
+    padding: 60px 0;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.apply-content h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.apply-content p {
+    max-width: 700px;
+    margin: 0 auto 30px;
+    font-size: 16px;
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+    .streamers-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .schedule-table th,
+    .schedule-table td {
+        padding: 8px 5px;
+        font-size: 14px;
+    }
+}
