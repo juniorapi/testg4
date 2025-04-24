@@ -7,7 +7,7 @@ function checkStreamStatus() {
     // Налаштування API Twitch
     // Ці значення потрібно замінити на справжні, отримані через Twitch Developer Portal
     const clientId = 'gp762nuuoqcoxypju8c569th9wz7q5';
-    const accessToken = '0b09xd33shszp6496w5m8f03yalc8p';
+    const accessToken = 'mmruqi078wx5l48l7nxpv5oy979yir';
     
     // Масив каналів Twitch, які потрібно перевірити
     // Для кожного стримера вказуємо:
