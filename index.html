@@ -4,22 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Альянс G_UA - Українська спільнота World of Tanks</title>
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Font Awesome для іконок -->
+    <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Скрипт для перевірки статусу стримерів -->
-    <script src="js/twitch.js"></script>
 </head>
 <body>
     <header>
         <div class="container nav-container">
-            <a href="#" class="logo">Альянс <span>G_UA</span></a>
+            <a href="index.html" class="logo">Альянс <span>G_UA</span></a>
             <nav>
                 <ul>
-                    <li><a href="#about">Про нас</a></li>
-                    <li><a href="#clans">Клани</a></li>
-                    <li><a href="#streamers">Стримери</a></li>
-                    <li><a href="#contact">Контакти</a></li>
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="pages/about.html">Про нас</a></li>
+                    <li><a href="pages/clans.html">Клани</a></li>
+                    <li><a href="pages/streamers.html">Стримери</a></li>
+                    <li><a href="pages/contact.html">Контакти</a></li>
                 </ul>
             </nav>
         </div>
@@ -27,44 +25,89 @@
 
     <div class="hero">
         <div class="hero-content">
-            <h1>Український Альянс <span style="color: var(--primary-color);">G_UA</span></h1>
+            <h1>Український Альянс <span>G_UA</span></h1>
             <p>Об'єднання найкращих українських кланів у грі World of Tanks. Приєднуйтесь до нашої спільноти!</p>
-            <a href="#contact" class="btn">Зв'язатися з нами</a>
+            <div class="hero-buttons">
+                <a href="pages/clans.html" class="btn">Наші клани</a>
+                <a href="pages/contact.html" class="btn btn-outline">Зв'язатися з нами</a>
+            </div>
         </div>
     </div>
 
-    <section id="about">
+    <section class="highlights">
         <div class="container">
-            <h2 class="section-title">Про <span>Альянс</span></h2>
-            <div class="about-content">
-                <p>
-                    Альянс G_UA об'єднує найкращі українські клани у грі World of Tanks. Наша мета — розвивати українську спільноту гравців, 
-                    брати участь у турнірах та змаганнях, а також створити дружнє середовище для всіх, хто розділяє нашу 
-                    любов до танкових баталій.
-                </p>
-                <p>
-                    В наш альянс входять шість потужних кланів: G1_UA, G2_UA, G3_UA, G4_UA, G5_UA та G6_UA. Кожен клан має 
-                    свою спеціалізацію та особливості, але всі ми працюємо разом для досягнення спільних цілей.
-                </p>
-                <p>
-                    Ми регулярно проводимо спільні тренування, внутрішні турніри та допомагаємо один одному стати кращими у грі. 
-                    Наші стримери діляться своїм досвідом та навчають новачків, а досвідчені гравці завжди готові допомогти 
-                    з порадами щодо боїв, техніки та стратегій.
-                </p>
+            <div class="highlights-grid">
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>6 Кланів</h3>
+                    <p>Шість потужних українських кланів різних напрямків та рівнів гри</p>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Турніри</h3>
+                    <p>Регулярна участь у турнірах та чемпіонатах з World of Tanks</p>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Стримери</h3>
+                    <p>Власні стримери, які регулярно діляться контентом та навчають</p>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Навчання</h3>
+                    <p>Допомога новим гравцям та тренування для постійного розвитку</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="clans">
+    <section class="about-preview">
         <div class="container">
-            <h2 class="section-title">Наші <span>Клани</span></h2>
-            <div class="clans-grid">
+            <div class="section-header">
+                <h2>Про <span>Альянс</span></h2>
+                <p>Познайомтеся з нашою спільнотою українських гравців World of Tanks</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Альянс G_UA об'єднує найкращі українські клани у грі World of Tanks. Наша мета — розвивати українську спільноту гравців, 
+                        брати участь у турнірах та змаганнях, а також створити дружнє середовище для всіх, хто розділяє нашу 
+                        любов до танкових баталій.
+                    </p>
+                    <p>
+                        В наш альянс входять шість потужних кланів: G1_UA, G2_UA, G3_UA, G4_UA, G5_UA та G6_UA. Кожен клан має 
+                        свою спеціалізацію та особливості, але всі ми працюємо разом для досягнення спільних цілей.
+                    </p>
+                    <a href="pages/about.html" class="btn">Дізнатися більше</a>
+                </div>
+                <div class="about-image">
+                    <img src="/api/placeholder/500/300" alt="Альянс G_UA">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="clans-preview">
+        <div class="container">
+            <div class="section-header">
+                <h2>Наші <span>Клани</span></h2>
+                <p>Приєднуйтесь до одного з наших кланів відповідно до ваших цілей та досвіду</p>
+            </div>
+            <div class="clans-preview-grid">
                 <div class="clan-card">
                     <div class="clan-img">G1_UA</div>
                     <div class="clan-info">
                         <h3>G1_UA</h3>
                         <p>Головний клан альянсу. Участь у клановим війнах на Глобальній карті.</p>
-                        <a href="https://eu.wargaming.net/clans/wot/500226787/" class="btn">Сторінка клану</a>
+                        <a href="pages/clans.html#g1_ua" class="btn">Детальніше</a>
                     </div>
                 </div>
                 <div class="clan-card">
@@ -72,7 +115,7 @@
                     <div class="clan-info">
                         <h3>G2_UA</h3>
                         <p>Турнірний клан. Спеціалізація на турнірах та змаганнях.</p>
-                        <a href="https://eu.wargaming.net/clans/wot/500226788/" class="btn">Сторінка клану</a>
+                        <a href="pages/clans.html#g2_ua" class="btn">Детальніше</a>
                     </div>
                 </div>
                 <div class="clan-card">
@@ -80,213 +123,57 @@
                     <div class="clan-info">
                         <h3>G3_UA</h3>
                         <p>Клан для досвідчених гравців. Фарм та розвиток аккаунтів.</p>
-                        <a href="https://eu.wargaming.net/clans/wot/500226789/" class="btn">Сторінка клану</a>
+                        <a href="pages/clans.html#g3_ua" class="btn">Детальніше</a>
                     </div>
                 </div>
-                <div class="clan-card">
-                    <div class="clan-img">G4_UA</div>
-                    <div class="clan-info">
-                        <h3>G4_UA</h3>
-                        <p>Ghost's4_UA - клан з фокусом на командні бої та стратегії.</p>
-                        <a href="https://eu.wargaming.net/clans/wot/500226790/" class="btn">Сторінка клану</a>
-                    </div>
-                </div>
-                <div class="clan-card">
-                    <div class="clan-img">G5_UA</div>
-                    <div class="clan-info">
-                        <h3>G5_UA</h3>
-                        <p>Клан для активних гравців. Спільні бої та розвиток.</p>
-                        <a href="https://eu.wargaming.net/clans/wot/500226791/" class="btn">Сторінка клану</a>
-                    </div>
-                </div>
-                <div class="clan-card">
-                    <div class="clan-img">G6_UA</div>
-                    <div class="clan-info">
-                        <h3>G6_UA</h3>
-                        <p>Тренувальний клан для новачків. Навчання та допомога.</p>
-                        <a href="https://eu.wargaming.net/clans/wot/500226792/" class="btn">Сторінка клану</a>
-                    </div>
-                </div>
+            </div>
+            <div class="more-link">
+                <a href="pages/clans.html" class="btn btn-large">Всі наші клани</a>
             </div>
         </div>
     </section>
 
-    <section id="streamers">
+    <section class="streamers-preview">
         <div class="container">
-            <h2 class="section-title">Наші <span>Стримери</span></h2>
-            <div class="streamers-grid">
-                <!-- Картка стримера №1 -->
-                <div id="streamer-1" class="streamer-card">
-                    <div class="streamer-header">
-                        <!-- Аватар стримера -->
-                        <div class="streamer-avatar">
-                            <img src="/api/placeholder/80/80" alt="TankMaster_UA">
-                        </div>
-                        
-                        <!-- Інформація в рядок -->
-                        <div class="streamer-row-info">
-                            <!-- Назва каналу -->
-                            <div class="streamer-name">TankMaster_UA</div>
-                            
-                            <!-- Статус (онлайн/офлайн) -->
-                            <div class="streamer-status">
-                                <div class="status-indicator offline"></div>
-                                <span>Завантаження...</span>
-                            </div>
-                            
-                            <!-- Платформи будуть додані через JavaScript -->
-                            <div class="platform-indicators"></div>
-                            
-                            <!-- Інформація про гру -->
-                            <div class="game-info">
-                                <i class="fas fa-gamepad"></i> World of Tanks
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Опис стримера - буде оновлений через JavaScript -->
-                    <div class="stream-content">
-                        <p>Завантаження інформації про стримера...</p>
-                    </div>
-                    
-                    <!-- Кнопки дій -->
-                    <div class="streamer-buttons">
-                        <a href="https://twitch.tv/tankmaster_ua" class="watch-button" target="_blank">
-                            Слідкувати
-                        </a>
-                        <a href="https://youtube.com/@tankmaster_ua" class="youtube-button" target="_blank">
-                            YouTube
-                        </a>
-                        <a href="https://t.me/tankmaster_ua" class="telegram-button" target="_blank">
-                            Telegram
-                        </a>
+            <div class="section-header">
+                <h2>Наші <span>Стримери</span></h2>
+                <p>Дивіться стріми наших гравців, вчіться та спілкуйтесь з ними в прямому ефірі</p>
+            </div>
+            <div class="streamers-preview-row">
+                <div class="streamer-preview-card">
+                    <img src="/api/placeholder/300/180" alt="Стример 1">
+                    <div class="streamer-info">
+                        <h3>TankMaster_UA</h3>
+                        <p>Стример G1_UA. Спеціалізація на важких танках.</p>
                     </div>
                 </div>
-                
-                <!-- Картка стримера №2 -->
-                <div id="streamer-2" class="streamer-card">
-                    <div class="streamer-header">
-                        <div class="streamer-avatar">
-                            <img src="/api/placeholder/80/80" alt="ArtyPro">
-                        </div>
-                        
-                        <div class="streamer-row-info">
-                            <div class="streamer-name">ArtyPro</div>
-                            
-                            <div class="streamer-status">
-                                <div class="status-indicator offline"></div>
-                                <span>Завантаження...</span>
-                            </div>
-                            
-                            <div class="platform-indicators"></div>
-                            
-                            <div class="game-info">
-                                <i class="fas fa-gamepad"></i> World of Tanks
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="stream-content">
-                        <p>Завантаження інформації про стримера...</p>
-                    </div>
-                    
-                    <div class="streamer-buttons">
-                        <a href="https://twitch.tv/artypro" class="watch-button" target="_blank">
-                            Слідкувати
-                        </a>
-                        <a href="https://youtube.com/@artypro" class="youtube-button" target="_blank">
-                            YouTube
-                        </a>
-                        <a href="https://t.me/artypro" class="telegram-button" target="_blank">
-                            Telegram
-                        </a>
+                <div class="streamer-preview-card">
+                    <img src="/api/placeholder/300/180" alt="Стример 2">
+                    <div class="streamer-info">
+                        <h3>ArtyPro</h3>
+                        <p>Командир G2_UA. Спеціалізація на артилерії.</p>
                     </div>
                 </div>
-                
-                <!-- Картка стримера №3 -->
-                <div id="streamer-3" class="streamer-card">
-                    <div class="streamer-header">
-                        <div class="streamer-avatar">
-                            <img src="/api/placeholder/80/80" alt="LightTank_Girl">
-                        </div>
-                        
-                        <div class="streamer-row-info">
-                            <div class="streamer-name">LightTank_Girl</div>
-                            
-                            <div class="streamer-status">
-                                <div class="status-indicator offline"></div>
-                                <span>Завантаження...</span>
-                            </div>
-                            
-                            <div class="platform-indicators"></div>
-                            
-                            <div class="game-info">
-                                <i class="fas fa-gamepad"></i> World of Tanks
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="stream-content">
-                        <p>Завантаження інформації про стримера...</p>
-                    </div>
-                    
-                    <div class="streamer-buttons">
-                        <a href="https://twitch.tv/lighttank_girl" class="watch-button" target="_blank">
-                            Слідкувати
-                        </a>
-                        <a href="https://youtube.com/@lighttank_girl" class="youtube-button" target="_blank">
-                            YouTube
-                        </a>
-                        <a href="https://t.me/lighttank_girl" class="telegram-button" target="_blank">
-                            Telegram
-                        </a>
+                <div class="streamer-preview-card">
+                    <img src="/api/placeholder/300/180" alt="Стример 3">
+                    <div class="streamer-info">
+                        <h3>LightTank_Girl</h3>
+                        <p>Учасниця G4_UA. Спеціалізація на легких танках.</p>
                     </div>
                 </div>
+            </div>
+            <div class="more-link">
+                <a href="pages/streamers.html" class="btn btn-large">Всі стримери</a>
             </div>
         </div>
     </section>
 
-    <section id="contact">
+    <section class="cta">
         <div class="container">
-            <h2 class="section-title">Наші <span>Контакти</span></h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Зв'яжіться з нами</h3>
-                    <p><strong>Discord:</strong> discord.gg/g_ua_alliance</p>
-                    <p><strong>Telegram канал:</strong> t.me/g_ua_alliance</p>
-                    <p><strong>Email:</strong> contact@g-ua-alliance.com</p>
-                    <p>
-                        Якщо ви бажаєте приєднатися до нашого альянсу, залиште заявку через форму або зв'яжіться з нами через Discord чи Telegram.
-                    </p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-discord"></i></a>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <h3>Зворотній зв'язок</h3>
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Ім'я</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="nickname">Нік у грі</label>
-                            <input type="text" id="nickname" name="nickname" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Повідомлення</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-submit">Надіслати</button>
-                    </form>
-                </div>
+            <div class="cta-content">
+                <h2>Приєднуйтесь до нашої спільноти!</h2>
+                <p>Станьте частиною найбільшого українського альянсу в World of Tanks</p>
+                <a href="pages/contact.html" class="btn btn-large">Зв'язатися з нами</a>
             </div>
         </div>
     </section>
@@ -297,19 +184,20 @@
                 <div class="footer-column">
                     <h3>Альянс G_UA</h3>
                     <ul>
-                        <li><a href="#about">Про нас</a></li>
-                        <li><a href="#clans">Наші клани</a></li>
-                        <li><a href="#streamers">Стримери</a></li>
-                        <li><a href="#contact">Контакти</a></li>
+                        <li><a href="index.html">Головна</a></li>
+                        <li><a href="pages/about.html">Про нас</a></li>
+                        <li><a href="pages/clans.html">Наші клани</a></li>
+                        <li><a href="pages/streamers.html">Стримери</a></li>
+                        <li><a href="pages/contact.html">Контакти</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Сервіси</h3>
                     <ul>
-                        <li><a href="#">Буст аккаунтів</a></li>
-                        <li><a href="#">Тренування</a></li>
-                        <li><a href="#">Участь у турнірах</a></li>
-                        <li><a href="#">Клановим війни</a></li>
+                        <li><a href="pages/services.html#boost">Буст аккаунтів</a></li>
+                        <li><a href="pages/services.html#training">Тренування</a></li>
+                        <li><a href="pages/services.html#tournaments">Участь у турнірах</a></li>
+                        <li><a href="pages/services.html#clanwars">Клановим війни</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -317,9 +205,22 @@
                     <ul>
                         <li><a href="https://worldoftanks.eu" target="_blank">World of Tanks EU</a></li>
                         <li><a href="https://wargaming.net" target="_blank">Wargaming.net</a></li>
-                        <li><a href="#">Турніри та події</a></li>
-                        <li><a href="#">Правила альянсу</a></li>
+                        <li><a href="pages/events.html">Турніри та події</a></li>
+                        <li><a href="pages/rules.html">Правила альянсу</a></li>
                     </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Соціальні мережі</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                    <p class="contact-info">
+                        <strong>Email:</strong> contact@g-ua-alliance.com<br>
+                        <strong>Discord:</strong> discord.gg/g_ua_alliance
+                    </p>
                 </div>
             </div>
             <div class="footer-bottom">
