@@ -225,8 +225,10 @@ section:nth-child(even) {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
+    position: relative;
 }
 
+/* Оновлений статус-індикатор */
 .status-indicator {
     width: 12px;
     height: 12px;
@@ -234,9 +236,23 @@ section:nth-child(even) {
     margin-right: 10px;
 }
 
+/* Пульсуюча анімація для статусу онлайн */
 .online {
     background-color: #4CAF50;
     box-shadow: 0 0 8px #4CAF50;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+    }
 }
 
 .offline {
@@ -251,15 +267,83 @@ section:nth-child(even) {
     color: #4CAF50;
 }
 
+/* Бейдж для стримерів онлайн */
+.streaming .streamer-img::before {
+    content: "LIVE";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    z-index: 1;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Стилі для іконки платформи */
+.platform-icon {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+}
+
+.streaming .platform-icon {
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 5px #9147ff;
+    }
+    to {
+        box-shadow: 0 0 15px #9147ff, 0 0 20px #9147ff;
+    }
+}
+
+.platform-icon i {
+    margin-right: 5px;
+    color: #9147ff;
+}
+
 .streamer-description {
     margin: 15px 0;
     flex-grow: 1;
 }
 
+/* Стилі для відображення глядачів */
 .viewer-count {
-    margin-top: 5px;
-    font-size: 14px;
-    color: #ccc;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    position: relative;
+}
+
+.streaming .viewer-count {
+    background-color: var(--primary-color);
+    font-weight: bold;
+}
+
+.viewer-count i {
+    margin-right: 5px;
 }
 
 .streamer-links {
@@ -288,8 +372,28 @@ section:nth-child(even) {
     background-color: #6441a5;
 }
 
+/* Покращені стилі для кнопок */
 .streamer-links a.twitch-button.streaming {
     background-color: #9147ff;
+    position: relative;
+    overflow: hidden;
+}
+
+.streamer-links a.twitch-button.streaming::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shine 2s infinite;
+}
+
+@keyframes shine {
+    to {
+        left: 100%;
+    }
 }
 
 .streamer-links a.twitch-button.streaming:hover {
