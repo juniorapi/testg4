@@ -37,23 +37,18 @@
 
     <section class="streamers-section">
         <div class="container">
-            <div class="streamers-online">
-                <h2 class="section-title">Зараз в ефірі</h2>
-                <div id="online-streamers" class="streamers-grid">
-                    <!-- Тут будуть автоматично додаватися стримери, які зараз в ефірі -->
-                    <div class="no-streamers-message">
-                        <p>Завантаження інформації про стримерів...</p>
-                    </div>
+            <div class="online-status-filter">
+                <h2 class="section-title">Стримери альянсу</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Всі стримери</button>
+                    <button class="filter-btn live-btn" data-filter="live">Зараз в ефірі <span class="live-count">0</span></button>
                 </div>
             </div>
-
-            <div class="streamers-offline">
-                <h2 class="section-title">Всі стримери</h2>
-                <div id="all-streamers" class="streamers-grid streamers-compact">
-                    <!-- Тут будуть динамічно додаватися всі картки стримерів через JavaScript -->
-                    <div class="no-streamers-message">
-                        <p>Завантаження списку стримерів...</p>
-                    </div>
+            
+            <div id="streamers-container" class="streamers-grid streamers-compact">
+                <!-- Тут будуть динамічно додаватися всі картки стримерів через JavaScript -->
+                <div class="no-streamers-message">
+                    <p>Завантаження списку стримерів...</p>
                 </div>
             </div>
 
