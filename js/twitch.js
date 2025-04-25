@@ -52,7 +52,7 @@ const streamers = [
         description: 'Учасник G4_UA. Спеціалізація на командній грі.',
         clan: 'G4_UA',
         telegram: 'JuniorTV_Gaming',
-        platforms: ['youtube']
+        platforms: ['youtube', 'twitch']
     },
     { 
         id: 'ceh9', 
