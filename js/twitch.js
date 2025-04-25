@@ -35,7 +35,7 @@ const streamers = [
     { 
         id: 'inesp1ki', 
         twitchId: 'inesp1ki',
-        youtubeId: null, // Цей стример використовує тільки Twitch
+        youtubeId: 'INeSp1kI', // Цей стример використовує тільки Twitch
         displayName: 'INeSp1kI',
         avatarUrl: 'img/inesp1ki.png',
         description: 'Стример G1_UA',
@@ -46,7 +46,7 @@ const streamers = [
     { 
         id: 'juniortv_gaming', 
         twitchId: 'juniortv_gaming', // Цей стример використовує тільки YouTube
-        youtubeId: 'UC5MzGUms3TJ2xylh8FfdIHA',
+        youtubeId: 'JuniorTV_Gaming',
         displayName: 'JuniorTV_Gaming',
         avatarUrl: 'img/jtv.png',
         description: 'Учасник G4_UA. Спеціалізація на командній грі.',
@@ -57,7 +57,7 @@ const streamers = [
     { 
         id: 'ceh9', 
         twitchId: 'ceh9',
-        youtubeId: 'UC3o2jtSL42bSXbVT8X3qoJw',
+        youtubeId: 'ceh9live',
         displayName: 'ceh9',
         avatarUrl: 'img/ceh9.png',
         description: 'Відомий стример і коментатор. Командир G2_UA.',
