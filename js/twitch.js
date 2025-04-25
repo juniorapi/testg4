@@ -1,6 +1,6 @@
 /**
  * Удосконалений скрипт для відстеження стримерів на Twitch і YouTube (2025)
- * Підтримує перевірку статусу на обох платформах та коректне відображення
+ * Виправлена версія з урахуванням знайдених помилок
  */
 
 // API ключі (в реальному проєкті потрібно зберігати в безпечнішому місці)
@@ -15,7 +15,7 @@ const streamers = [
         twitchId: 'roha_wot',
         youtubeId: 'UC_rV2qI2UW2JL63yaLzuKpQ', 
         displayName: 'Roha_wot',
-        avatarUrl: 'img/roha_wot.png',
+        avatarUrl: '/api/placeholder/100/100',
         description: 'Експерт з артилерії. Член G3_UA.',
         clan: 'G3_UA',
         telegram: '+cLlIBjakfuUyMzYy',
@@ -26,7 +26,7 @@ const streamers = [
         twitchId: 'vgostiua',
         youtubeId: 'UCPQAAy7rnk3G4eqMdFh2gng',
         displayName: 'vgostiua',
-        avatarUrl: 'img/vgostiua.png',
+        avatarUrl: '/api/placeholder/100/100',
         description: 'Стример G5_UA',
         clan: 'G5_UA',
         telegram: 'vgostiua',
@@ -37,7 +37,7 @@ const streamers = [
         twitchId: 'inesp1ki',
         youtubeId: null, // Цей стример використовує тільки Twitch
         displayName: 'INeSp1kI',
-        avatarUrl: 'img/inesp1ki.png',
+        avatarUrl: '/api/placeholder/100/100',
         description: 'Стример G1_UA',
         clan: 'G1_UA',
         telegram: 'INeSp1kIWOT',
@@ -48,7 +48,7 @@ const streamers = [
         twitchId: null, // Цей стример використовує тільки YouTube
         youtubeId: 'UC5MzGUms3TJ2xylh8FfdIHA',
         displayName: 'JuniorTV_Gaming',
-        avatarUrl: 'img/jtv.png',
+        avatarUrl: '/api/placeholder/100/100',
         description: 'Учасник G4_UA. Спеціалізація на командній грі.',
         clan: 'G4_UA',
         telegram: 'JuniorTV_Gaming',
@@ -59,7 +59,7 @@ const streamers = [
         twitchId: 'ceh9',
         youtubeId: 'UC3o2jtSL42bSXbVT8X3qoJw',
         displayName: 'ceh9',
-        avatarUrl: 'img/ceh9.png',
+        avatarUrl: '/api/placeholder/100/100',
         description: 'Відомий стример і коментатор. Командир G2_UA.',
         clan: 'G2_UA',
         telegram: 'ceh9forukraine',
@@ -70,7 +70,7 @@ const streamers = [
         twitchId: 'cs2_maincast',
         youtubeId: 'UCVRrQpbIjFk_IbNzmECFZaA',
         displayName: 'cs2_maincast',
-        avatarUrl: 'img/cs2_maincast.png',
+        avatarUrl: '/api/placeholder/100/100',
         description: 'Стример і професійний гравець G1_UA.',
         clan: 'G1_UA',
         telegram: 'cs2_maincast',
@@ -269,22 +269,20 @@ async function checkStreamStatus() {
     let onlineCount = 0;
     const liveChannels = {};
     
-    // Перевіряємо Twitch стріми
-    await checkTwitchStreams(liveChannels).then(count => {
-        onlineCount += count;
-    }).catch(error => {
-        console.error('Помилка Twitch API:', error);
-    });
-    
-    // Перевіряємо YouTube стріми
-    await checkYouTubeStreams(liveChannels).then(count => {
-        onlineCount += count;
-    }).catch(error => {
-        console.error('Помилка YouTube API:', error);
-    });
-    
-    // Оновлюємо UI з отриманими даними
-    updateStreamersUI(liveChannels, onlineCount);
+    try {
+        // Перевіряємо Twitch стріми
+        const twitchCount = await checkTwitchStreams(liveChannels);
+        onlineCount += twitchCount;
+        
+        // Перевіряємо YouTube стріми
+        const youtubeCount = await checkYouTubeStreams(liveChannels);
+        onlineCount += youtubeCount;
+        
+        // Оновлюємо UI з отриманими даними
+        updateStreamersUI(liveChannels, onlineCount);
+    } catch (error) {
+        console.error('Помилка при перевірці статусу стримерів:', error);
+    }
 }
 
 /**
@@ -297,40 +295,44 @@ async function checkTwitchStreams(liveChannels) {
     
     let count = 0;
     
-    // Формуємо параметри запиту для всіх Twitch-стримерів одночасно
-    const twitchQueryParams = twitchStreamers.map(s => `user_login=${s.twitchId}`).join('&');
-    
-    const response = await fetch(`https://api.twitch.tv/helix/streams?${twitchQueryParams}`, {
-        headers: {
-            'Client-ID': TWITCH_CLIENT_ID,
-            'Authorization': `Bearer ${TWITCH_ACCESS_TOKEN}`
-        }
-    });
-    
-    if (!response.ok) {
-        throw new Error(`Twitch API error: ${response.status}`);
-    }
-    
-    const data = await response.json();
-    
-    if (data.data && data.data.length > 0) {
-        data.data.forEach(stream => {
-            // Знаходимо стримера за ідентифікатором Twitch
-            const streamer = streamers.find(s => 
-                s.twitchId && s.twitchId.toLowerCase() === stream.user_login.toLowerCase()
-            );
-            
-            if (streamer) {
-                liveChannels[streamer.id] = {
-                    title: stream.title,
-                    viewers: stream.viewer_count,
-                    category: stream.game_name || 'Unknown',
-                    platform: 'twitch',
-                    streamerId: streamer.id
-                };
-                count++;
+    try {
+        // Формуємо параметри запиту для всіх Twitch-стримерів одночасно
+        const twitchQueryParams = twitchStreamers.map(s => `user_login=${s.twitchId}`).join('&');
+        
+        const response = await fetch(`https://api.twitch.tv/helix/streams?${twitchQueryParams}`, {
+            headers: {
+                'Client-ID': TWITCH_CLIENT_ID,
+                'Authorization': `Bearer ${TWITCH_ACCESS_TOKEN}`
             }
         });
+        
+        if (!response.ok) {
+            throw new Error(`Twitch API error: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        if (data.data && data.data.length > 0) {
+            data.data.forEach(stream => {
+                // Знаходимо стримера за ідентифікатором Twitch
+                const streamer = streamers.find(s => 
+                    s.twitchId && s.twitchId.toLowerCase() === stream.user_login.toLowerCase()
+                );
+                
+                if (streamer) {
+                    liveChannels[streamer.id] = {
+                        title: stream.title,
+                        viewers: stream.viewer_count,
+                        category: stream.game_name || 'Unknown',
+                        platform: 'twitch',
+                        streamerId: streamer.id
+                    };
+                    count++;
+                }
+            });
+        }
+    } catch (error) {
+        console.error('Помилка Twitch API:', error);
     }
     
     return count;
@@ -364,7 +366,6 @@ async function checkYouTubeStreams(liveChannels) {
                 const stream = data.items[0];
                 
                 // Додаємо інформацію про стрім у загальний об'єкт
-                // YouTube API не дає інформації про кількість глядачів у безкоштовній версії
                 liveChannels[streamer.id] = {
                     title: stream.snippet.title,
                     viewers: 'N/A', // Недоступно через базовий API
@@ -532,7 +533,7 @@ function updateStreamerCard(streamer, isLive, streamData) {
 }
 
 /**
- * Сортування картоок стримерів (онлайн спочатку)
+ * Сортування карток стримерів (онлайн спочатку)
  */
 function sortStreamers() {
     const streamersContainer = document.getElementById('streamers-container');
