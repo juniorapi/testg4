@@ -49,7 +49,7 @@ const streamers = [
         id: 'roha_wot', 
         twitchId: 'roha_wot',
         displayName: 'Roha_wot',
-        avatarUrl: 'img/roha_wot',
+        avatarUrl: 'img/roha_wot.png',
         description: 'Експерт з артилерії. Член G3_UA.',
         clan: 'G3_UA',
         youtube: 'UC_rV2qI2UW2JL63yaLzuKpQ',
