@@ -45,9 +45,9 @@ const streamers = [
         avatarUrl: 'img/inesp1ki.png',
         description: 'Стример і гравець G1_UA.',
         clan: 'G1_UA',
-        youtube: 'inesp1k1',
+        youtube: 'INeSp1kI',
         youtubeType: 'user',
-        telegram: 'inesp1k1'
+        telegram: 'INeSp1kIWOT'
     },
     { 
         id: 'roha_wot', 
