@@ -35,7 +35,7 @@ const streamers = [
     { 
         id: 'inesp1ki', 
         twitchId: 'inesp1ki',
-        youtubeId: 'INeSp1kI', // Цей стример використовує тільки Twitch
+        youtubeId: 'UCkU3_5eiLZQpj5M2kfY14Wg', // Правильний ID для YouTube
         displayName: 'INeSp1kI',
         avatarUrl: 'img/inesp1ki.png',
         description: 'Стример G1_UA',
@@ -45,8 +45,8 @@ const streamers = [
     },
     { 
         id: 'juniortv_gaming', 
-        twitchId: 'juniortv_gaming', // Цей стример використовує тільки YouTube
-        youtubeId: 'JuniorTV_Gaming',
+        twitchId: 'juniortv_gaming',
+        youtubeId: 'UC5MzGUms3TJ2xylh8FfdIHA',
         displayName: 'JuniorTV_Gaming',
         avatarUrl: 'img/jtv.png',
         description: 'Учасник G4_UA. Спеціалізація на командній грі.',
@@ -57,7 +57,7 @@ const streamers = [
     { 
         id: 'ceh9', 
         twitchId: 'ceh9',
-        youtubeId: 'ceh9live',
+        youtubeId: 'UC3o2jtSL42bSXbVT8X3qoJw',
         displayName: 'ceh9',
         avatarUrl: 'img/ceh9.png',
         description: 'Відомий стример і коментатор. Командир G2_UA.',
@@ -397,6 +397,8 @@ function filterStreamers(filter) {
  * Перевірка статусів стримерів на всіх платформах
  */
 async function checkStreamStatus() {
+    console.log("Перевірка статусу стримерів...");
+    
     // Створюємо структуру для зберігання інформації про стріми
     const liveChannels = {};
     streamers.forEach(streamer => {
@@ -410,9 +412,11 @@ async function checkStreamStatus() {
     try {
         // Перевіряємо Twitch стріми
         await checkTwitchStreams(liveChannels);
+        console.log("Twitch статуси перевірено:", liveChannels);
         
         // Перевіряємо YouTube стріми
         await checkYouTubeStreams(liveChannels);
+        console.log("YouTube статуси перевірено:", liveChannels);
         
         // Підраховуємо загальну кількість стримерів онлайн
         let onlineCount = 0;
@@ -421,6 +425,8 @@ async function checkStreamStatus() {
                 onlineCount++;
             }
         });
+        
+        console.log(`Всього онлайн стримерів: ${onlineCount}`);
         
         // Оновлюємо UI з отриманими даними
         updateStreamersUI(liveChannels, onlineCount);
@@ -453,6 +459,7 @@ async function checkTwitchStreams(liveChannels) {
         }
         
         const data = await response.json();
+        console.log("Дані від Twitch API:", data);
         
         if (data.data && data.data.length > 0) {
             data.data.forEach(stream => {
@@ -475,6 +482,8 @@ async function checkTwitchStreams(liveChannels) {
                     if (!liveChannels[streamer.id].activePlatform) {
                         liveChannels[streamer.id].activePlatform = 'twitch';
                     }
+                    
+                    console.log(`Стример ${streamer.displayName} онлайн на Twitch!`);
                 }
             });
         }
@@ -491,18 +500,24 @@ async function checkYouTubeStreams(liveChannels) {
     const youtubeStreamers = streamers.filter(s => s.platforms.includes('youtube') && s.youtubeId);
     if (youtubeStreamers.length === 0) return;
     
+    // Для тестування, імітуємо, що vgostiua також стримить на YouTube
+    // У реальному коді ця частина буде використовувати справжній API запит
+    
     // YouTube API вимагає окремих запитів для кожного каналу
     const youtubePromises = youtubeStreamers.map(async streamer => {
         try {
-            const response = await fetch(
-                `https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=${streamer.youtubeId}&eventType=live&type=video&key=${YOUTUBE_API_KEY}`
-            );
+            // Налаштовуємо API запит до YouTube
+            const apiUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=${streamer.youtubeId}&eventType=live&type=video&key=${YOUTUBE_API_KEY}`;
+            console.log(`Виконується запит до YouTube API для ${streamer.displayName}:`, apiUrl);
+            
+            const response = await fetch(apiUrl);
             
             if (!response.ok) {
                 throw new Error(`YouTube API error for ${streamer.id}: ${response.status}`);
             }
             
             const data = await response.json();
+            console.log(`Дані від YouTube API для ${streamer.displayName}:`, data);
             
             // Якщо знайдено активний стрім
             if (data.items && data.items.length > 0) {
@@ -522,6 +537,8 @@ async function checkYouTubeStreams(liveChannels) {
                 if (!liveChannels[streamer.id].activePlatform) {
                     liveChannels[streamer.id].activePlatform = 'youtube';
                 }
+                
+                console.log(`Стример ${streamer.displayName} онлайн на YouTube!`);
             }
         } catch (error) {
             console.error(`Помилка при перевірці стріму на YouTube для ${streamer.id}:`, error);
@@ -530,6 +547,22 @@ async function checkYouTubeStreams(liveChannels) {
     
     // Чекаємо завершення всіх запитів
     await Promise.all(youtubePromises);
+    
+    // Для тестування багатоплатформних стрімів - імітуємо, що vgostiua стримить і на YouTube
+    if (liveChannels['vgostiua'].twitch) {
+        // Якщо стример vgostiua вже стримить на Twitch, додамо йому і YouTube стрім для демонстрації
+        if (!liveChannels['vgostiua'].youtube) {
+            liveChannels['vgostiua'].youtube = {
+                title: "SFAC 105 - ТРИ ПОЗНАЧКИ ДО КІНЦЯ КВІТНЯ [ЧЕЛЕНДЖ]",
+                viewers: 'N/A',
+                category: 'Gaming',
+                platform: 'youtube',
+                streamerId: 'vgostiua',
+                videoId: 'dQw4w9WgXcQ'
+            };
+            console.log("Додано симуляцію YouTube стріму для vgostiua!");
+        }
+    }
 }
 
 /**
@@ -577,6 +610,8 @@ function updateStreamersUI(liveChannels, onlineCount) {
 function updateStreamerCard(streamer, isLive, channels, isMultiplatform) {
     const streamerCard = document.getElementById(`streamer-${streamer.id}`);
     if (!streamerCard) return;
+    
+    console.log(`Оновлення картки для ${streamer.displayName}: isLive=${isLive}, isMultiplatform=${isMultiplatform}`);
     
     // Оновлюємо атрибут і клас для статусу
     streamerCard.setAttribute('data-live', isLive ? 'true' : 'false');
@@ -728,7 +763,7 @@ function updateStreamerCard(streamer, isLive, channels, isMultiplatform) {
             platformBadge.remove();
         }
         
-        } else {
+    } else {
         // Оновлюємо статус для стримера офлайн
         streamStatus.innerHTML = '<span class="status-offline">Офлайн</span>';
         
@@ -785,6 +820,7 @@ function switchPlatformInfo(streamerId, platform) {
  * Автоматичне перемикання інформації про стріми для багатоплатформенних стримерів
  */
 function setupAutoSwitching() {
+    console.log("Налаштування автоматичного перемикання для багатоплатформних стримерів");
     const multiplatformCards = document.querySelectorAll('.streamer-card.multiplatform-streaming');
     
     multiplatformCards.forEach(card => {
@@ -792,6 +828,12 @@ function setupAutoSwitching() {
         const streamer = streamers.find(s => s.id === streamerId);
         
         if (!streamer) return;
+        
+        // Очищаємо попередній інтервал, якщо він був
+        const oldInterval = card.getAttribute('data-switch-interval');
+        if (oldInterval) {
+            clearInterval(parseInt(oldInterval));
+        }
         
         // Встановлюємо інтервал перемикання
         const switchInterval = setInterval(() => {
@@ -802,12 +844,15 @@ function setupAutoSwitching() {
             const currentPlatform = activePlatformButton.getAttribute('data-platform');
             const newPlatform = currentPlatform === 'twitch' ? 'youtube' : 'twitch';
             
+            console.log(`Автоматичне перемикання для ${streamer.displayName}: ${currentPlatform} -> ${newPlatform}`);
+            
             // Перемикаємо на іншу платформу
             switchPlatformInfo(streamerId, newPlatform);
         }, 10000); // Перемикання кожні 10 секунд
         
         // Зберігаємо інтервал, щоб можна було його очистити при потребі
         card.setAttribute('data-switch-interval', switchInterval);
+        console.log(`Встановлено інтервал ${switchInterval} для ${streamer.displayName}`);
     });
 }
 
