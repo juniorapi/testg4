@@ -8,7 +8,7 @@ const streamers = [
         id: 'sh0kerix', 
         twitchId: 'sh0kerix',
         displayName: 'Sh0kerix',
-        avatarUrl: 'img/sh0kerix',
+        avatarUrl: 'img/sh0kerix.png',
         description: 'Стример і професійний гравець G1_UA. Експерт по важких танках.',
         clan: 'G1_UA',
         game: 'World of Tanks',
