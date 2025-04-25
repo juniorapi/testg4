@@ -36,9 +36,9 @@ const streamers = [
         telegram: 'JuniorTV_Gaming'
     },
     { 
-        id: 'inesp1k1', 
-        twitchId: 'inesp1k1',
-        displayName: 'INeSp1k1',
+        id: 'inesp1ki', 
+        twitchId: 'inesp1ki',
+        displayName: 'INeSp1kI',
         avatarUrl: 'img/inesp1ki.png',
         description: 'Стример і гравець G1_UA.',
         clan: 'G1_UA',
