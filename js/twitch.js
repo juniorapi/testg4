@@ -69,7 +69,7 @@ const streamers = [
         clan: 'G5_UA',
         youtube: 'UCPQAAy7rnk3G4eqMdFh2gng',
         youtubeType: 'channel',
-        telegram: 'medicdoc'
+        telegram: 'vgostiua'
     }
 ];
 
