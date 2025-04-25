@@ -31,8 +31,8 @@ const streamers = [
         avatarUrl: 'img/ceh9.png',
         description: 'Відомий стример і коментатор. Командир G2_UA. Спеціалізація на тактиці.',
         clan: 'G2_UA',
-        youtube: 'https://www.youtube.com/@ceh9live',
-        telegram: 'https://t.me/ceh9forukraine',
+        youtube: 'ceh9live',
+        telegram: 'ceh9forukraine',
         schedule: {
             'Понеділок': '—',
             'Вівторок': '20:00-00:00',
@@ -50,8 +50,8 @@ const streamers = [
         avatarUrl: 'img/jtv.png',
         description: 'Учасник G4_UA. Стримить 3 рази на тиждень. Спеціалізація на легких танках та розвідці.',
         clan: 'G4_UA',
-        youtube: 'https://www.youtube.com/@JuniorTV_Gaming',
-        telegram: 'https://t.me/JuniorTV_Gaming',
+        youtube: 'JuniorTV_Gaming',
+        telegram: 'JuniorTV_Gaming',
         schedule: {
             'Понеділок': '—',
             'Вівторок': '18:00-22:00',
