@@ -97,7 +97,7 @@ function initStreamersPage() {
         }
         
         .streamer-card.live .streamer-header {
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(227, 41, 39, 0.15);
         }
         
         /* Покращений вигляд карток стримерів, які офлайн */
@@ -156,25 +156,25 @@ function createStreamerCard(streamer) {
     card.className = 'streamer-card';
     card.id = `streamer-${streamer.id}`;
     card.setAttribute('data-live', 'false');
+    card.setAttribute('data-clan', streamer.clan);
     
     // Визначаємо, чи є ім'я довгим
     const nameClass = streamer.displayName.length > 12 ? 'streamer-name long-name' : 'streamer-name';
 
-// Формуємо посилання на YouTube в залежності від типу каналу
-let youtubeUrl = '';
-if (streamer.youtubeType === 'channel') {
-    youtubeUrl = `https://youtube.com/channel/${streamer.youtube}`;
-} else if (streamer.youtubeType === 'UC') {
-    // Якщо це ID каналу, що починається з UC
-    youtubeUrl = `https://youtube.com/channel/${streamer.youtube}`;
-} else {
-    // Перевіряємо, чи ім'я користувача починається з @
-    if (streamer.youtube.startsWith('@')) {
-        youtubeUrl = `https://youtube.com/${streamer.youtube}`;
+    // Формуємо посилання на YouTube в залежності від типу каналу
+    let youtubeUrl = '';
+    if (streamer.youtubeType === 'channel') {
+        youtubeUrl = `https://youtube.com/channel/${streamer.youtube}`;
+    } else if (streamer.youtubeType === 'UC') {
+        youtubeUrl = `https://youtube.com/channel/${streamer.youtube}`;
     } else {
-        youtubeUrl = `https://youtube.com/@${streamer.youtube}`;
+        if (streamer.youtube.startsWith('@')) {
+            youtubeUrl = `https://youtube.com/${streamer.youtube}`;
+        } else {
+            youtubeUrl = `https://youtube.com/@${streamer.youtube}`;
+        }
     }
-}    
+    
     // Формуємо посилання на Telegram
     let telegramUrl = '';
     if (streamer.telegram.startsWith('+') || streamer.telegram.startsWith('https://')) {
@@ -235,13 +235,16 @@ function filterStreamers(filter) {
     
     // Показуємо повідомлення, якщо немає стримерів онлайн і вибрано фільтр 'live'
     const noStreamersMessage = document.querySelector('.no-streamers-message');
-    if (!noStreamersMessage && visibleCount === 0 && filter === 'live') {
-        const streamersContainer = document.getElementById('streamers-container');
-        const message = document.createElement('div');
-        message.className = 'no-streamers-message';
-        message.innerHTML = '<p>На жаль, зараз немає стримерів в ефірі</p>';
-        streamersContainer.appendChild(message);
-    } else if (noStreamersMessage && visibleCount > 0) {
+    
+    if (visibleCount === 0 && filter === 'live') {
+        if (!noStreamersMessage) {
+            const streamersContainer = document.getElementById('streamers-container');
+            const message = document.createElement('div');
+            message.className = 'no-streamers-message';
+            message.innerHTML = '<p>На жаль, зараз немає стримерів в ефірі</p>';
+            streamersContainer.appendChild(message);
+        }
+    } else if (noStreamersMessage) {
         noStreamersMessage.remove();
     }
 }
@@ -256,6 +259,12 @@ function checkStreamStatus() {
     
     // Формуємо параметри запиту для кількох каналів одночасно
     const queryParams = streamers.map(streamer => `user_login=${streamer.twitchId}`).join('&');
+    
+    // Видаляємо повідомлення про завантаження
+    const loadingMessage = document.querySelector('.no-streamers-message');
+    if (loadingMessage && loadingMessage.textContent.includes('Завантаження')) {
+        loadingMessage.remove();
+    }
     
     // Отримуємо дані про стріми
     fetch(`https://api.twitch.tv/helix/streams?${queryParams}`, {
@@ -310,6 +319,11 @@ function checkStreamStatus() {
             const isLive = liveChannels[streamer.twitchId.toLowerCase()] !== undefined;
             const streamData = liveChannels[streamer.twitchId.toLowerCase()];
             
+            // Якщо стример онлайн, зберігаємо час останнього онлайну
+            if (isLive) {
+                localStorage.setItem(`${streamer.id}_lastOnline`, Date.now().toString());
+            }
+            
             // Оновлюємо картку стримера
             updateStreamerCard(streamer, isLive, streamData);
         });
@@ -320,7 +334,7 @@ function checkStreamStatus() {
             filterStreamers('live');
         }
         
-        // Сортування стримерів: спочатку онлайн, потім офлайн
+        // Сортування стримерів: спочатку онлайн, потім недавно онлайн, потім інші
         sortStreamers();
     })
     .catch(error => {
@@ -370,6 +384,15 @@ function checkStreamStatus() {
         if (liveBtn) {
             liveBtn.classList.remove('has-live');
         }
+        
+        // Показуємо повідомлення про помилку
+        const streamersContainer = document.getElementById('streamers-container');
+        if (streamersContainer && !document.querySelector('.no-streamers-message')) {
+            const errorMessage = document.createElement('div');
+            errorMessage.className = 'no-streamers-message';
+            errorMessage.innerHTML = '<p>Не вдалося отримати дані про стримерів. Спробуйте пізніше.</p>';
+            streamersContainer.appendChild(errorMessage);
+        }
     });
 }
 
@@ -383,11 +406,23 @@ function updateStreamerCard(streamer, isLive, streamData) {
     // Оновлюємо атрибут data-live
     streamerCard.setAttribute('data-live', isLive ? 'true' : 'false');
     
+    // Перевіряємо, чи був стример недавно онлайн
+    const lastOnline = localStorage.getItem(`${streamer.id}_lastOnline`);
+    const wasRecentlyLive = lastOnline && (Date.now() - parseInt(lastOnline)) < 3600000; // менше години тому
+    
     // Оновлюємо клас картки
     if (isLive) {
         streamerCard.classList.add('live');
+        streamerCard.classList.remove('recent-live');
     } else {
         streamerCard.classList.remove('live');
+        
+        // Якщо стример був недавно в ефірі, додаємо клас recent-live
+        if (wasRecentlyLive) {
+            streamerCard.classList.add('recent-live');
+        } else {
+            streamerCard.classList.remove('recent-live');
+        }
     }
     
     // Оновлюємо статус стримера
@@ -397,8 +432,14 @@ function updateStreamerCard(streamer, isLive, streamData) {
             streamStatus.innerHTML = `
                 <span class="status-online">Онлайн</span>
                 <span class="viewers-count">
-                    <i class="fas fa-user"></i> ${streamData.viewers}
+                    <i class="fas fa-user"></i> ${streamData.viewers.toLocaleString('uk-UA')}
                 </span>
+            `;
+        } else if (wasRecentlyLive) {
+            const minutesAgo = Math.floor((Date.now() - parseInt(lastOnline)) / 60000);
+            streamStatus.innerHTML = `
+                <span class="status-offline">Офлайн</span>
+                <span class="status-recent">(був у мережі ${minutesAgo} хв. тому)</span>
             `;
         } else {
             streamStatus.innerHTML = '<span class="status-offline">Офлайн</span>';
@@ -462,7 +503,7 @@ function updateStreamerCard(streamer, isLive, streamData) {
 }
 
 /**
- * Сортування стримерів: спочатку онлайн, потім офлайн
+ * Сортування стримерів: спочатку онлайн, потім недавно онлайн, потім інші
  */
 function sortStreamers() {
     const streamersContainer = document.getElementById('streamers-container');
@@ -470,15 +511,54 @@ function sortStreamers() {
     
     const streamerCards = Array.from(streamersContainer.querySelectorAll('.streamer-card'));
     
-    // Сортуємо картки: спочатку онлайн, потім офлайн
+    // Сортуємо картки за пріоритетом
     streamerCards.sort((a, b) => {
         const aLive = a.getAttribute('data-live') === 'true';
         const bLive = b.getAttribute('data-live') === 'true';
         
+        // Спочатку сортуємо за онлайн статусом
         if (aLive && !bLive) return -1;
         if (!aLive && bLive) return 1;
         
-        // Якщо обидва онлайн або обидва офлайн, зберігаємо поточний порядок
+        // Якщо обидва онлайн, сортуємо за кланом (пріоритет G1_UA, потім G2_UA і т.д.)
+        if (aLive && bLive) {
+            const aClan = a.getAttribute('data-clan');
+            const bClan = b.getAttribute('data-clan');
+            
+            if (aClan && bClan) {
+                // Отримуємо номер клану
+                const aNum = parseInt(aClan.match(/G(\d+)_UA/)[1]);
+                const bNum = parseInt(bClan.match(/G(\d+)_UA/)[1]);
+                
+                return aNum - bNum;
+            }
+        }
+        
+        // Якщо обидва офлайн, перевіряємо, хто був недавно онлайн
+        const aRecent = a.classList.contains('recent-live');
+        const bRecent = b.classList.contains('recent-live');
+        
+        if (aRecent && !bRecent) return -1;
+        if (!aRecent && bRecent) return 1;
+        
+        // Якщо і це однаково, сортуємо за кланом
+        const aClan = a.getAttribute('data-clan');
+        const bClan = b.getAttribute('data-clan');
+        
+        if (aClan && bClan) {
+            // Отримуємо номер клану
+            const aMatch = aClan.match(/G(\d+)_UA/);
+            const bMatch = bClan.match(/G(\d+)_UA/);
+            
+            if (aMatch && bMatch) {
+                const aNum = parseInt(aMatch[1]);
+                const bNum = parseInt(bMatch[1]);
+                
+                return aNum - bNum;
+            }
+        }
+        
+        // Якщо все однаково, зберігаємо поточний порядок
         return 0;
     });
     
@@ -489,8 +569,56 @@ function sortStreamers() {
     });
 }
 
+/**
+ * Функція для запуску демо-режиму (імітація зміни статусу для тестування)
+ */
+function runDemoMode() {
+    // Використовується тільки для демонстрації
+    console.log('Запуск демо-режиму для тестування дизайну...');
+    
+    // Імітуємо випадковий онлайн статус для стримерів
+    streamers.forEach((streamer, index) => {
+        const streamerCard = document.getElementById(`streamer-${streamer.id}`);
+        if (!streamerCard) return;
+        
+        // Для демонстрації робимо кожного другого стримера онлайн
+        const isLive = index % 2 === 0;
+        
+        // Випадкові дані для демонстрації
+        const demoStreamData = {
+            title: `Тестовий стрім ${streamer.displayName} - World of Tanks`,
+            viewers: Math.floor(Math.random() * 1000) + 50,
+            category: 'World of Tanks'
+        };
+        
+        // Оновлюємо картку стримера з випадковими даними
+        updateStreamerCard(streamer, isLive, demoStreamData);
+    });
+    
+    // Сортуємо стримерів
+    sortStreamers();
+    
+    // Оновлюємо лічильник онлайн-стримерів
+    const liveCount = document.querySelector('.live-count');
+    if (liveCount) {
+        const onlineCount = Math.ceil(streamers.length / 2); // приблизно половина
+        liveCount.textContent = onlineCount;
+        
+        // Підсвічуємо кнопку
+        const liveBtn = document.querySelector('.live-btn');
+        if (liveBtn) {
+            liveBtn.classList.add('has-live');
+        }
+    }
+}
+
 // Ініціалізуємо сторінку при завантаженні
-document.addEventListener('DOMContentLoaded', initStreamersPage);
+document.addEventListener('DOMContentLoaded', function() {
+    initStreamersPage();
+    
+    // Для відлагодження можна використовувати:
+    // setTimeout(runDemoMode, 1000);
+});
 
 // Оновлюємо статус кожну хвилину
 setInterval(checkStreamStatus, 60000);
