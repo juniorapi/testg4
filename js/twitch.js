@@ -57,18 +57,18 @@ const streamers = [
         description: 'Експерт з артилерії. Член G3_UA.',
         clan: 'G3_UA',
         youtube: 'UC_rV2qI2UW2JL63yaLzuKpQ',
-        youtubeType: 'channel', // ID каналу YouTube
+        youtubeType: 'channel',
         telegram: '+cLlIBjakfuUyMzYy'
     },
     { 
-        id: 'medicdoc', 
-        twitchId: 'medicdoc',
-        displayName: 'MedicDoc',
-        avatarUrl: '/api/placeholder/80/80',
+        id: 'vgostiua', 
+        twitchId: 'vgostiua',
+        displayName: 'vgostiua',
+        avatarUrl: 'img/vgostiua.png',
         description: 'Стримить переважно техніку підтримки. Член G5_UA.',
         clan: 'G5_UA',
-        youtube: '_Roha_',
-        youtubeType: 'user', // Стандартний користувач, але з префіксом @
+        youtube: 'UCPQAAy7rnk3G4eqMdFh2gng',
+        youtubeType: 'channel',
         telegram: 'medicdoc'
     }
 ];
