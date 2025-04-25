@@ -29,7 +29,7 @@ const streamers = [
         id: 'juniortv_gaming', 
         twitchId: 'juniortv_gaming',
         displayName: 'JuniorTV_Gaming',
-        avatarUrl: 'img/ceh9.png',
+        avatarUrl: 'img/jtv.png',
         description: 'Учасник G4_UA. Стримить регулярно з фокусом на командну гру.',
         clan: 'G4_UA',
         youtube: 'JuniorTV_Gaming',
