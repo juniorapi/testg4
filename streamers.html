@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Стримери - Альянс G_UA</title>
+    <meta name="description" content="Офіційні стримери альянсу G_UA. Дивіться стріми наших гравців, вчіться та спілкуйтесь з ними в прямому ефірі.">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/streamers.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -16,12 +17,12 @@
     <header>
         <div class="container nav-container">
             <a href="index.html" class="logo">Альянс <span>G_UA</span></a>
-            <nav>
+            <nav aria-label="Головна навігація">
                 <ul>
                     <li><a href="index.html">Головна</a></li>
                     <li><a href="about.html">Про нас</a></li>
                     <li><a href="clans.html">Клани</a></li>
-                    <li><a href="streamers.html" class="active">Стримери</a></li>
+                    <li><a href="streamers.html" class="active" aria-current="page">Стримери</a></li>
                     <li><a href="contact.html">Контакти</a></li>
                 </ul>
             </nav>
@@ -39,13 +40,13 @@
         <div class="container">
             <div class="online-status-filter">
                 <h2 class="section-title">Стримери альянсу</h2>
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">Всі стримери</button>
-                    <button class="filter-btn live-btn" data-filter="live">Зараз в ефірі <span class="live-count">0</span></button>
+                <div class="filter-buttons" role="group" aria-label="Фільтр стримерів">
+                    <button class="filter-btn active" data-filter="all" aria-pressed="true">Всі стримери</button>
+                    <button class="filter-btn live-btn" data-filter="live" aria-pressed="false">Зараз в ефірі <span class="live-count" aria-live="polite">0</span></button>
                 </div>
             </div>
             
-            <div id="streamers-container" class="streamers-grid streamers-compact">
+            <div id="streamers-container" class="streamers-grid streamers-compact" aria-live="polite">
                 <!-- Тут будуть динамічно додаватися всі картки стримерів через JavaScript -->
                 <div class="no-streamers-message">
                     <p>Завантаження списку стримерів...</p>
@@ -89,8 +90,8 @@
                 <div class="footer-column">
                     <h3>Корисні посилання</h3>
                     <ul>
-                        <li><a href="https://worldoftanks.eu" target="_blank">World of Tanks EU</a></li>
-                        <li><a href="https://wargaming.net" target="_blank">Wargaming.net</a></li>
+                        <li><a href="https://worldoftanks.eu" target="_blank" rel="noopener">World of Tanks EU</a></li>
+                        <li><a href="https://wargaming.net" target="_blank" rel="noopener">Wargaming.net</a></li>
                         <li><a href="events.html">Турніри та події</a></li>
                         <li><a href="rules.html">Правила альянсу</a></li>
                     </ul>
@@ -98,13 +99,13 @@
                 <div class="footer-column">
                     <h3>Соціальні мережі</h3>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Discord"><i class="fab fa-discord" aria-hidden="true"></i></a>
                     </div>
                     <p class="contact-info">
-                        <strong>Email:</strong> contact@g-ua-alliance.com<br>
+                        <strong>Email:</strong> <a href="mailto:contact@g-ua-alliance.com">contact@g-ua-alliance.com</a><br>
                         <strong>Discord:</strong> discord.gg/g_ua_alliance
                     </p>
                 </div>
