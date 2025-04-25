@@ -136,6 +136,14 @@
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.streamer-name.long-name {
+    font-size: 14px;
 }
 
 /* Позначка клану */
@@ -145,7 +153,7 @@
     padding: 2px 8px;
     border-radius: 2px;
     color: var(--accent-color);
-    font-size: 12px;
+    font-size: a12px;
     font-weight: bold;
     margin-bottom: 8px;
 }
@@ -201,6 +209,13 @@
     font-weight: bold;
     margin-bottom: 8px;
     color: var(--accent-color);
+    word-break: break-word;
+}
+
+.stream-category {
+    font-size: 12px;
+    color: #ccc;
+    margin-top: 5px;
 }
 
 /* Індикатор LIVE у верхньому правому кутку (для стримерів онлайн) */
@@ -301,46 +316,6 @@
     display: none;
 }
 
-/* Таблиця з розкладом */
-.schedule-table-container {
-    overflow-x: auto;
-    margin-bottom: 15px;
-    border: 1px solid #333;
-    border-radius: 4px;
-}
-
-.schedule-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;
-}
-
-.schedule-table th,
-.schedule-table td {
-    padding: 12px;
-    border: 1px solid #333;
-}
-
-.schedule-table th {
-    background-color: rgba(0, 0, 0, 0.3);
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 13px;
-    letter-spacing: 0.5px;
-}
-
-.schedule-table tr:nth-child(even) {
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-.schedule-note {
-    font-size: 14px;
-    color: #999;
-    font-style: italic;
-    text-align: center;
-    margin-top: 10px;
-}
-
 /* Секція подачі заявки */
 .apply-section {
     background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url("/api/placeholder/1200/400") center/cover;
@@ -378,12 +353,6 @@
     .streamers-compact {
         grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     }
-    
-    .schedule-table th,
-    .schedule-table td {
-        padding: 8px 5px;
-        font-size: 13px;
-    }
 }
 
 @media (max-width: 480px) {
@@ -414,4 +383,113 @@
         flex: 1;
         text-align: center;
     }
+    /* Додаткові стилі для кращого відображення карток стримерів */
+
+/* Підсвічування кнопки "Зараз в ефірі", коли є стримери онлайн */
+.live-btn.has-live {
+    background-color: rgba(227, 41, 39, 0.5);
+    border-color: var(--primary-color);
+}
+
+/* Покращене відображення назви стріму */
+.stream-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.3;
+    min-height: 36px;
+}
+
+/* Стилі для категорії стріму */
+.stream-category {
+    background-color: rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 2px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Покращені пропорції карток на різних розширеннях екрану */
+@media (min-width: 1200px) {
+    .streamers-compact {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+}
+
+@media (max-width: 992px) and (min-width: 768px) {
+    .streamers-compact {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+/* Покращений вигляд на мобільних пристроях */
+@media (max-width: 480px) {
+    .streamers-compact {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    
+    .streamer-avatar {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .streamer-name {
+        font-size: 14px;
+    }
+    
+    .streamer-name.long-name {
+        font-size: 12px;
+    }
+    
+    .clan-tag {
+        font-size: 10px;
+        padding: 1px 5px;
+    }
+    
+    .social-icons a {
+        width: 25px;
+        height: 25px;
+        font-size: 14px;
+    }
+    
+    .live-badge {
+        font-size: 9px;
+        padding: 2px 5px;
+    }
+}
+
+/* Ефекти при наведенні на картку стримера */
+.streamer-card:hover .social-icons a {
+    opacity: 0.8;
+}
+
+.streamer-card:hover .social-icons a:hover {
+    opacity: 1;
+}
+
+/* Підкреслення клану */
+.clan-tag {
+    border-bottom: 1px solid rgba(255, 204, 0, 0.3);
+}
+
+/* Плавніші анімації */
+.streamer-card {
+    transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, border-color 0.25s ease-out;
+}
+
+.social-icons a {
+    transition: all 0.2s ease-out;
+}
+
+/* Підсвічування кількості глядачів */
+.viewers-count {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 1px 5px;
+    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+}
 }
