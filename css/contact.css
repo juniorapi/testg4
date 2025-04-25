@@ -1,0 +1,234 @@
+/* Стилі для сторінки контактів */
+
+.contact-section {
+    padding-top: 30px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+/* Блок з контактами */
+.contact-info {
+    max-width: 500px;
+    margin-bottom: 30px;
+}
+
+.contact-info > p {
+    margin-bottom: 25px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Методи зв'язку */
+.contact-methods {
+    margin-bottom: 30px;
+}
+
+.contact-method {
+    display: flex;
+    margin-bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    transition: transform 0.3s;
+}
+
+.contact-method:hover {
+    transform: translateY(-3px);
+}
+
+.contact-icon {
+    font-size: 24px;
+    color: var(--primary-color);
+    margin-right: 15px;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.contact-details h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: var(--accent-color);
+}
+
+.contact-details p {
+    margin-bottom: 5px;
+}
+
+.contact-note {
+    font-size: 13px;
+    color: #999;
+    font-style: italic;
+}
+
+/* Соціальні мережі */
+.social-media-links h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 22px;
+    transition: all 0.3s;
+    border: 1px solid #333;
+}
+
+.social-icon:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-5px);
+    color: white;
+}
+
+/* Форма контактів */
+.contact-form-container {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+
+.contact-form {
+    max-width: 600px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    font-size: 15px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.form-checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.form-checkbox input {
+    width: auto;
+    margin-right: 10px;
+}
+
+.form-checkbox label {
+    margin-bottom: 0;
+    font-size: 14px;
+}
+
+/* FAQ секція */
+.faq-mini {
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+
+.faq-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.faq-mini-item {
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+
+.faq-mini-item h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: var(--accent-color);
+}
+
+.faq-mini-item p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Адаптивність */
+@media (max-width: 992px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-info {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .social-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+    
+    .faq-mini-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-method {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .contact-icon {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+    
+    .contact-form-container {
+        padding: 20px 15px;
+    }
+}
