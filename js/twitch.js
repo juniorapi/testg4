@@ -5,15 +5,12 @@
 // Масив з даними про стримерів
 const streamers = [
     { 
-        id: 'sh0kerix', 
-        twitchId: 'sh0kerix',
-        displayName: 'Sh0kerix',
-        avatarUrl: 'img/sh0kerix.png',
+        id: 'cs2_maincast', 
+        twitchId: 'cs2_maincast',
+        displayName: 'cs2_maincast',
+        avatarUrl: 'img/cs2_maincast',
         description: 'Стример і професійний гравець G1_UA. Експерт по важких танках.',
         clan: 'G1_UA',
-        game: 'World of Tanks',
-        youtube: 'sh0kerix',
-        telegram: 'sh0kerix',
         schedule: {
             'Понеділок': '19:00-23:00',
             'Вівторок': '—',
@@ -31,9 +28,8 @@ const streamers = [
         avatarUrl: 'img/ceh9.png',
         description: 'Відомий стример і коментатор. Командир G2_UA. Спеціалізація на тактиці.',
         clan: 'G2_UA',
-        game: 'World of Tanks',
-        youtube: 'posty',
-        telegram: 'posty',
+        youtube: 'https://www.youtube.com/@ceh9live',
+        telegram: 'https://t.me/ceh9forukraine',
         schedule: {
             'Понеділок': '—',
             'Вівторок': '20:00-00:00',
@@ -51,17 +47,16 @@ const streamers = [
         avatarUrl: 'img/jtv.png',
         description: 'Учасник G4_UA. Стримить 3 рази на тиждень. Спеціалізація на легких танках та розвідці.',
         clan: 'G4_UA',
-        game: 'World of Tanks',
-        youtube: 'lighttank_girl',
-        telegram: 'lighttank_girl',
+        youtube: 'https://www.youtube.com/@JuniorTV_Gaming',
+        telegram: 'https://t.me/JuniorTV_Gaming',
         schedule: {
             'Понеділок': '—',
-            'Вівторок': '18:00-22:00',
+            'Вівторок': '—',
             'Середа': '—',
             'Четвер': '—',
-            'П\'ятниця': '18:00-22:00',
+            'П\'ятниця': '—',
             'Субота': '—',
-            'Неділя': '12:00-18:00'
+            'Неділя': '—'
         }
     }
 ];
