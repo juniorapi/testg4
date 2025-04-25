@@ -1,4 +1,4 @@
-/* Стилі для сторінки стримерів */
+/* Оновлені стилі для сторінки стримерів з мінімалістичним дизайном */
 
 .streamers-section {
     padding-top: 30px;
@@ -16,16 +16,17 @@
     grid-column: 1 / -1;
     text-align: center;
     padding: 30px;
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    border: 1px solid #333;
     font-style: italic;
     color: #999;
 }
 
 /* Картка стримера */
 .streamer-card {
-    background-color: var(--secondary-color);
-    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
     display: flex;
@@ -41,7 +42,7 @@
 /* Стилі для стримера, який в ефірі */
 .streamer-card.live {
     border-color: var(--primary-color);
-    box-shadow: 0 0 15px rgba(227, 41, 39, 0.4);
+    box-shadow: 0 0 15px rgba(227, 41, 39, 0.3);
 }
 
 /* Шапка картки з аватаром та інформацією */
@@ -57,7 +58,7 @@
     height: 70px;
     border-radius: 50%;
     overflow: hidden;
-    border: 2px solid #444;
+    border: 1px solid #444;
     flex-shrink: 0;
     margin-right: 15px;
 }
@@ -78,7 +79,7 @@
 }
 
 .streamer-name {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     margin-bottom: 5px;
 }
@@ -91,8 +92,8 @@
 }
 
 .status-dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     margin-right: 8px;
 }
@@ -112,7 +113,7 @@
         box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
     }
     70% {
-        box-shadow: 0 0 0 6px rgba(76, 175, 80, 0);
+        box-shadow: 0 0 0 4px rgba(76, 175, 80, 0);
     }
     100% {
         box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
@@ -129,12 +130,14 @@
 }
 
 .platform {
-    padding: 5px 10px;
-    border-radius: 4px;
+    padding: 4px 8px;
+    border-radius: 2px;
     font-size: 12px;
-    font-weight: bold;
+    font-weight: 500;
     display: flex;
     align-items: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .platform i {
@@ -172,9 +175,9 @@
     display: inline-flex;
     align-items: center;
     background-color: var(--primary-color);
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 13px;
+    padding: 3px 8px;
+    border-radius: 2px;
+    font-size: 12px;
     margin-right: 10px;
 }
 
@@ -185,7 +188,7 @@
 /* Опис стримера */
 .streamer-description {
     padding: 15px;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.2);
     border-top: 1px solid #333;
     flex-grow: 1;
 }
@@ -193,6 +196,7 @@
 .streamer-description p {
     font-size: 14px;
     margin-bottom: 10px;
+    line-height: 1.6;
 }
 
 /* Мета-інформація про стримера */
@@ -205,9 +209,9 @@
 .clan-tag, .game-tag {
     display: inline-flex;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.3);
     padding: 3px 8px;
-    border-radius: 4px;
+    border-radius: 2px;
     font-size: 12px;
 }
 
@@ -231,14 +235,16 @@
     flex: 1;
     padding: 12px 0;
     text-align: center;
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 13px;
+    font-weight: 500;
     color: white;
     transition: background-color 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .streamer-links a:hover {
-    filter: brightness(1.2);
+    filter: brightness(1.1);
 }
 
 .btn-twitch {
@@ -258,7 +264,7 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
     animation: shine 2s infinite;
 }
 
@@ -283,18 +289,21 @@
     right: 10px;
     background-color: var(--primary-color);
     color: white;
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 12px;
+    padding: 3px 6px;
+    border-radius: 2px;
+    font-size: 10px;
     font-weight: bold;
     animation: blink 1s infinite;
     z-index: 1;
+    letter-spacing: 1px;
 }
 
 /* Таблиця з розкладом */
 .schedule-table-container {
     overflow-x: auto;
     margin-bottom: 15px;
+    border: 1px solid #333;
+    border-radius: 4px;
 }
 
 .schedule-table {
@@ -306,12 +315,15 @@
 .schedule-table th,
 .schedule-table td {
     padding: 12px;
-    border: 1px solid #444;
+    border: 1px solid #333;
 }
 
 .schedule-table th {
-    background-color: var(--secondary-color);
+    background-color: rgba(0, 0, 0, 0.3);
     font-weight: bold;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.5px;
 }
 
 .schedule-table tr:nth-child(even) {
@@ -323,19 +335,21 @@
     color: #999;
     font-style: italic;
     text-align: center;
+    margin-top: 10px;
 }
 
 /* Секція подачі заявки */
 .apply-section {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/api/placeholder/1200/400") center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url("/api/placeholder/1200/400") center/cover;
     padding: 60px 0;
     text-align: center;
     margin-top: 40px;
 }
 
 .apply-content h2 {
-    font-size: 32px;
+    font-size: 28px;
     margin-bottom: 15px;
+    letter-spacing: 0.5px;
 }
 
 .apply-content p {
@@ -353,6 +367,34 @@
     .schedule-table th,
     .schedule-table td {
         padding: 8px 5px;
-        font-size: 14px;
+        font-size: 13px;
+    }
+    
+    .streamer-links a {
+        font-size: 12px;
+        padding: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .streamer-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .streamer-avatar {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .platform-tags {
+        position: static;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    .streamer-status {
+        justify-content: center;
     }
 }
