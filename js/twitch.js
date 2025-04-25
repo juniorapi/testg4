@@ -10,100 +10,50 @@ const streamers = [
         twitchId: 'cs2_maincast',
         displayName: 'cs2_maincast',
         avatarUrl: 'img/cs2_maincast.png',
-        description: 'Стример і професійний гравець G1_UA. Експерт по важких танках.',
+        description: 'Стример і професійний гравець G1_UA.',
         clan: 'G1_UA',
-        game: 'World of Tanks',
-        youtube: 'sh0kerix',
-        telegram: 'sh0kerix',
-        schedule: {
-            'Понеділок': '19:00-23:00',
-            'Вівторок': '—',
-            'Середа': '19:00-23:00',
-            'Четвер': '—',
-            'П\'ятниця': '19:00-23:00',
-            'Субота': '14:00-20:00',
-            'Неділя': '—'
-        }
+        youtube: 'cs2_maincast',
+        telegram: 'cs2_maincast'
     },
     { 
         id: 'ceh9', 
         twitchId: 'ceh9',
         displayName: 'ceh9',
         avatarUrl: 'img/ceh9.png',
-        description: 'Відомий стример і коментатор. Командир G2_UA. Спеціалізація на тактиці.',
+        description: 'Відомий стример і коментатор. Командир G2_UA.',
         clan: 'G2_UA',
-        game: 'World of Tanks',
         youtube: 'ceh9live',
-        telegram: 'ceh9forukraine',
-        schedule: {
-            'Понеділок': '—',
-            'Вівторок': '20:00-00:00',
-            'Середа': '—',
-            'Четвер': '20:00-00:00',
-            'П\'ятниця': '—',
-            'Субота': '16:00-00:00',
-            'Неділя': '16:00-00:00'
-        }
+        telegram: 'ceh9forukraine'
     },
     { 
         id: 'juniortv_gaming', 
         twitchId: 'juniortv_gaming',
         displayName: 'JuniorTV_Gaming',
-        avatarUrl: 'img/jtv.png',
-        description: 'Учасник G4_UA. Стримить 3 рази на тиждень. Спеціалізація на легких танках та розвідці.',
+        avatarUrl: 'img/ceh9.png',
+        description: 'Учасник G4_UA. Стримить регулярно з фокусом на командну гру.',
         clan: 'G4_UA',
-        game: 'World of Tanks',
         youtube: 'JuniorTV_Gaming',
-        telegram: 'JuniorTV_Gaming',
-        schedule: {
-            'Понеділок': '—',
-            'Вівторок': '18:00-22:00',
-            'Середа': '—',
-            'Четвер': '—',
-            'П\'ятниця': '18:00-22:00',
-            'Субота': '—',
-            'Неділя': '12:00-18:00'
-        }
+        telegram: 'JuniorTV_Gaming'
     },
-    // Додаткові стримери для прикладу
     { 
-        id: 'inesp1ki', 
-        twitchId: 'inesp1ki',
-        displayName: 'INeSp1kI',
+        id: 'inesp1k1', 
+        twitchId: 'inesp1k1',
+        displayName: 'INeSp1k1',
         avatarUrl: 'img/inesp1ki.png',
-        description: 'Ветеран WoT з 10+ років досвіду. Член G1_UA.',
+        description: 'Стример і гравець G1_UA.',
         clan: 'G1_UA',
-        game: 'World of Tanks',
-        telegram: 'INeSp1kIWOT',
-        schedule: {
-            'Понеділок': '—',
-            'Вівторок': '19:00-22:00',
-            'Середа': '—',
-            'Четвер': '19:00-22:00',
-            'П\'ятниця': '—',
-            'Субота': '15:00-20:00',
-            'Неділя': '15:00-20:00'
-        }
+        youtube: 'inesp1k1',
+        telegram: 'inesp1k1'
     },
     { 
-        id: 'artypro', 
-        twitchId: 'artypro',
-        displayName: 'ArtyPro',
-        avatarUrl: '/api/placeholder/80/80',
+        id: 'roha_wot', 
+        twitchId: 'roha_wot',
+        displayName: 'Roha_wot',
+        avatarUrl: 'img/roha_wot',
         description: 'Експерт з артилерії. Член G3_UA.',
         clan: 'G3_UA',
-        game: 'World of Tanks',
-        youtube: 'artypro',
-        telegram: 'artypro',
-        schedule: {
-            'Понеділок': '21:00-00:00',
-            'Вівторок': '—',
-            'Середа': '21:00-00:00',
-            'Четвер': '—',
-            'П\'ятниця': '21:00-00:00',
-            'Субота': '—',
-            'Неділя': '18:00-22:00'
-        }
+        youtube: 'UC_rV2qI2UW2JL63yaLzuKpQ',
+        telegram: '+cLlIBjakfuUyMzYy'
     },
     { 
         id: 'medicdoc', 
@@ -112,38 +62,8 @@ const streamers = [
         avatarUrl: '/api/placeholder/80/80',
         description: 'Стримить переважно техніку підтримки. Член G5_UA.',
         clan: 'G5_UA',
-        game: 'World of Tanks',
         youtube: 'medicdoc',
-        telegram: 'medicdoc',
-        schedule: {
-            'Понеділок': '18:00-21:00',
-            'Вівторок': '—',
-            'Середа': '18:00-21:00',
-            'Четвер': '—',
-            'П\'ятниця': '18:00-21:00',
-            'Субота': '12:00-16:00',
-            'Неділя': '—'
-        }
-    },
-    { 
-        id: 'ceh9', 
-        twitchId: 'ceh9',
-        displayName: 'Ceh9',
-        avatarUrl: '/api/placeholder/80/80',
-        description: 'Професійний кіберспортсмен та аналітик. Командир G2_UA.',
-        clan: 'G2_UA',
-        game: 'World of Tanks',
-        youtube: 'ceh9live',
-        telegram: 'ceh9forukraine',
-        schedule: {
-            'Понеділок': '20:00-00:00',
-            'Вівторок': '—',
-            'Середа': '20:00-00:00',
-            'Четвер': '—',
-            'П\'ятниця': '20:00-00:00',
-            'Субота': '18:00-00:00',
-            'Неділя': '18:00-00:00'
-        }
+        telegram: 'medicdoc'
     }
 ];
 
@@ -151,6 +71,22 @@ const streamers = [
  * Ініціалізація сторінки стримерів
  */
 function initStreamersPage() {
+    // Додавання стилів для довгих імен стримерів
+    const styleElement = document.createElement('style');
+    styleElement.textContent = `
+        .streamer-name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+        
+        .streamer-name.long-name {
+            font-size: 14px;
+        }
+    `;
+    document.head.appendChild(styleElement);
+    
     // Очищення та заповнення контейнера стримерів
     const streamersContainer = document.getElementById('streamers-container');
     if (streamersContainer) {
@@ -160,33 +96,6 @@ function initStreamersPage() {
         streamers.forEach(streamer => {
             const card = createStreamerCard(streamer);
             streamersContainer.appendChild(card);
-        });
-    }
-    
-    // Заповнення розкладу стримів
-    const scheduleBody = document.getElementById('schedule-body');
-    if (scheduleBody) {
-        scheduleBody.innerHTML = '';
-        
-        // Створення рядків розкладу для кожного стримера
-        streamers.forEach(streamer => {
-            const scheduleRow = document.createElement('tr');
-            
-            // Ім'я стримера
-            const nameCell = document.createElement('td');
-            nameCell.textContent = streamer.displayName;
-            scheduleRow.appendChild(nameCell);
-            
-            // Додавання розкладу для кожного дня тижня
-            const days = ['Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П\'ятниця', 'Субота', 'Неділя'];
-            
-            days.forEach(day => {
-                const timeCell = document.createElement('td');
-                timeCell.textContent = streamer.schedule[day] || '—';
-                scheduleRow.appendChild(timeCell);
-            });
-            
-            scheduleBody.appendChild(scheduleRow);
         });
     }
     
@@ -223,13 +132,16 @@ function createStreamerCard(streamer) {
     card.id = `streamer-${streamer.id}`;
     card.setAttribute('data-live', 'false');
     
+    // Визначаємо, чи є ім'я довгим
+    const nameClass = streamer.displayName.length > 12 ? 'streamer-name long-name' : 'streamer-name';
+    
     card.innerHTML = `
         <div class="streamer-header">
             <div class="streamer-avatar">
                 <img src="${streamer.avatarUrl}" alt="${streamer.displayName}">
             </div>
             <div class="streamer-info">
-                <h3 class="streamer-name">${streamer.displayName}</h3>
+                <h3 class="${nameClass}">${streamer.displayName}</h3>
                 <div class="clan-tag">${streamer.clan}</div>
                 <div class="stream-status">
                     <span class="status-offline">Офлайн</span>
@@ -308,7 +220,7 @@ function checkStreamStatus() {
                 liveChannels[stream.user_login.toLowerCase()] = {
                     title: stream.title,
                     viewers: stream.viewer_count,
-                    game: stream.game_name || 'World of Tanks'
+                    category: stream.game_name || 'Unknown'
                 };
                 onlineCount++;
             });
@@ -458,6 +370,7 @@ function updateStreamerCard(streamer, isLive, streamData) {
             
             streamInfo.innerHTML = `
                 <div class="stream-title">${streamData.title}</div>
+                <div class="stream-category">${streamData.category}</div>
             `;
         }
     } else if (!isLive) {
@@ -476,6 +389,7 @@ function updateStreamerCard(streamer, isLive, streamData) {
         if (streamInfo) {
             streamInfo.innerHTML = `
                 <div class="stream-title">${streamData.title}</div>
+                <div class="stream-category">${streamData.category}</div>
             `;
         }
     }
