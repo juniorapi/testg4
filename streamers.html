@@ -7,13 +7,11 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/streamers.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="js/twitch.js"></script>
 </head>
 <body>
-    <!-- Нові елементи фону -->
+    <!-- Елементи фону -->
     <div class="background-container"></div>
     <div class="overlay"></div>
-    <!-- Кінець нових елементів -->
 
     <header>
         <div class="container nav-container">
@@ -51,128 +49,10 @@
 
             <div class="streamers-offline">
                 <h2 class="section-title">Всі стримери</h2>
-                <div class="streamers-grid">
-                    <!-- Картка стримера №1 -->
-                    <div id="streamer-1" class="streamer-card">
-                        <div class="streamer-header">
-                            <div class="streamer-avatar">
-                                <img src="img/exclusivel.png" alt="MrExclusivel">
-                            </div>
-                            <div class="streamer-info">
-                                <h3 class="streamer-name">Sh0kerix</h3>
-                                <div class="streamer-status">
-                                    <span class="status-dot offline"></span>
-                                    <span class="status-text">Офлайн</span>
-                                </div>
-                            </div>
-                            <div class="platform-tags">
-                                <span class="platform twitch">
-                                    <i class="fab fa-twitch"></i> Twitch
-                                </span>
-                            </div>
-                        </div>
-                        <div class="streamer-description">
-                            <p>Стример і професійний гравець G1_UA. Експерт по важких танках.</p>
-                            <div class="streamer-meta">
-                                <span class="clan-tag">G1_UA</span>
-                                <span class="game-tag">
-                                    <i class="fas fa-gamepad"></i> World of Tanks
-                                </span>
-                            </div>
-                        </div>
-                        <div class="streamer-links">
-                            <a href="https://twitch.tv/sh0kerix" class="btn btn-twitch" target="_blank">
-                                <i class="fab fa-twitch"></i> Канал
-                            </a>
-                            <a href="https://youtube.com/@sh0kerix" class="btn btn-youtube" target="_blank">
-                                <i class="fab fa-youtube"></i> YouTube
-                            </a>
-                            <a href="https://t.me/sh0kerix" class="btn btn-telegram" target="_blank">
-                                <i class="fab fa-telegram"></i> Telegram
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Картка стримера №2 -->
-                    <div id="streamer-2" class="streamer-card">
-                        <div class="streamer-header">
-                            <div class="streamer-avatar">
-                                <img src="img/posty.png" alt="Posty">
-                            </div>
-                            <div class="streamer-info">
-                                <h3 class="streamer-name">Posty</h3>
-                                <div class="streamer-status">
-                                    <span class="status-dot offline"></span>
-                                    <span class="status-text">Офлайн</span>
-                                </div>
-                            </div>
-                            <div class="platform-tags">
-                                <span class="platform twitch">
-                                    <i class="fab fa-twitch"></i> Twitch
-                                </span>
-                            </div>
-                        </div>
-                        <div class="streamer-description">
-                            <p>Відомий стример і коментатор. Командир G2_UA. Спеціалізація на тактиці.</p>
-                            <div class="streamer-meta">
-                                <span class="clan-tag">G2_UA</span>
-                                <span class="game-tag">
-                                    <i class="fas fa-gamepad"></i> World of Tanks
-                                </span>
-                            </div>
-                        </div>
-                        <div class="streamer-links">
-                            <a href="https://twitch.tv/posty" class="btn btn-twitch" target="_blank">
-                                <i class="fab fa-twitch"></i> Канал
-                            </a>
-                            <a href="https://youtube.com/@posty" class="btn btn-youtube" target="_blank">
-                                <i class="fab fa-youtube"></i> YouTube
-                            </a>
-                            <a href="https://t.me/posty" class="btn btn-telegram" target="_blank">
-                                <i class="fab fa-telegram"></i> Telegram
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Картка стримера №3 -->
-                    <div id="streamer-3" class="streamer-card">
-                        <div class="streamer-header">
-                            <div class="streamer-avatar">
-                                <img src="/api/placeholder/80/80" alt="LightTank_Girl">
-                            </div>
-                            <div class="streamer-info">
-                                <h3 class="streamer-name">LightTank_Girl</h3>
-                                <div class="streamer-status">
-                                    <span class="status-dot offline"></span>
-                                    <span class="status-text">Офлайн</span>
-                                </div>
-                            </div>
-                            <div class="platform-tags">
-                                <span class="platform twitch">
-                                    <i class="fab fa-twitch"></i> Twitch
-                                </span>
-                            </div>
-                        </div>
-                        <div class="streamer-description">
-                            <p>Учасниця G4_UA. Стримить 3 рази на тиждень. Спеціалізація на легких танках та розвідці.</p>
-                            <div class="streamer-meta">
-                                <span class="clan-tag">G4_UA</span>
-                                <span class="game-tag">
-                                    <i class="fas fa-gamepad"></i> World of Tanks
-                                </span>
-                            </div>
-                        </div>
-                        <div class="streamer-links">
-                            <a href="https://twitch.tv/lighttank_girl" class="btn btn-twitch" target="_blank">
-                                <i class="fab fa-twitch"></i> Канал
-                            </a>
-                            <a href="https://youtube.com/@lighttank_girl" class="btn btn-youtube" target="_blank">
-                                <i class="fab fa-youtube"></i> YouTube
-                            </a>
-                            <a href="https://t.me/lighttank_girl" class="btn btn-telegram" target="_blank">
-                                <i class="fab fa-telegram"></i> Telegram
-                            </a>
-                        </div>
+                <div id="all-streamers" class="streamers-grid">
+                    <!-- Тут будуть динамічно додаватися всі картки стримерів через JavaScript -->
+                    <div class="no-streamers-message">
+                        <p>Завантаження списку стримерів...</p>
                     </div>
                 </div>
             </div>
@@ -193,37 +73,8 @@
                                 <th>Неділя</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Sh0kerix</td>
-                                <td>19:00-23:00</td>
-                                <td>—</td>
-                                <td>19:00-23:00</td>
-                                <td>—</td>
-                                <td>19:00-23:00</td>
-                                <td>14:00-20:00</td>
-                                <td>—</td>
-                            </tr>
-                            <tr>
-                                <td>Posty</td>
-                                <td>—</td>
-                                <td>20:00-00:00</td>
-                                <td>—</td>
-                                <td>20:00-00:00</td>
-                                <td>—</td>
-                                <td>16:00-00:00</td>
-                                <td>16:00-00:00</td>
-                            </tr>
-                            <tr>
-                                <td>LightTank_Girl</td>
-                                <td>—</td>
-                                <td>18:00-22:00</td>
-                                <td>—</td>
-                                <td>—</td>
-                                <td>18:00-22:00</td>
-                                <td>—</td>
-                                <td>12:00-18:00</td>
-                            </tr>
+                        <tbody id="schedule-body">
+                            <!-- Тут буде динамічно сформований розклад стрімів -->
                         </tbody>
                     </table>
                 </div>
@@ -248,7 +99,7 @@
                 <div class="footer-column">
                     <h3>Альянс G_UA</h3>
                     <ul>
-                        <li><a href="../index.html">Головна</a></li>
+                        <li><a href="index.html">Головна</a></li>
                         <li><a href="about.html">Про нас</a></li>
                         <li><a href="clans.html">Наші клани</a></li>
                         <li><a href="streamers.html">Стримери</a></li>
@@ -292,5 +143,7 @@
             </div>
         </div>
     </footer>
+
+    <script src="js/twitch.js"></script>
 </body>
 </html>
