@@ -160,19 +160,21 @@ function createStreamerCard(streamer) {
     // Визначаємо, чи є ім'я довгим
     const nameClass = streamer.displayName.length > 12 ? 'streamer-name long-name' : 'streamer-name';
 
-    // Формуємо посилання на YouTube в залежності від типу каналу
-    let youtubeUrl = '';
-    if (streamer.youtubeType === 'channel') {
-        youtubeUrl = `https://youtube.com/channel/${streamer.youtube}`;
+// Формуємо посилання на YouTube в залежності від типу каналу
+let youtubeUrl = '';
+if (streamer.youtubeType === 'channel') {
+    youtubeUrl = `https://youtube.com/channel/${streamer.youtube}`;
+} else if (streamer.youtubeType === 'UC') {
+    // Якщо це ID каналу, що починається з UC
+    youtubeUrl = `https://youtube.com/channel/${streamer.youtube}`;
+} else {
+    // Перевіряємо, чи ім'я користувача починається з @
+    if (streamer.youtube.startsWith('@')) {
+        youtubeUrl = `https://youtube.com/${streamer.youtube}`;
     } else {
-        // Перевіряємо, чи ім'я користувача починається з @
-        if (streamer.youtube.startsWith('@')) {
-            youtubeUrl = `https://youtube.com/${streamer.youtube}`;
-        } else {
-            youtubeUrl = `https://youtube.com/@${streamer.youtube}`;
-        }
+        youtubeUrl = `https://youtube.com/@${streamer.youtube}`;
     }
-    
+}    
     // Формуємо посилання на Telegram
     let telegramUrl = '';
     if (streamer.telegram.startsWith('+') || streamer.telegram.startsWith('https://')) {
