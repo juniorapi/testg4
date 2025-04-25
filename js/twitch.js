@@ -56,8 +56,8 @@ const streamers = [
         avatarUrl: 'img/roha_wot.png',
         description: 'Експерт з артилерії. Член G3_UA.',
         clan: 'G3_UA',
-        youtube: '',
-        youtubeType: 'UC_rV2qI2UW2JL63yaLzuKpQ', // ID каналу YouTube
+        youtube: 'UC_rV2qI2UW2JL63yaLzuKpQ',
+        youtubeType: 'channel', // ID каналу YouTube
         telegram: '+cLlIBjakfuUyMzYy'
     },
     { 
