@@ -8,7 +8,7 @@ const streamers = [
         id: 'cs2_maincast', 
         twitchId: 'cs2_maincast',
         displayName: 'cs2_maincast',
-        avatarUrl: 'img/cs2_maincast',
+        avatarUrl: 'img/cs2_maincast.png',
         description: 'Стример і професійний гравець G1_UA. Експерт по важких танках.',
         clan: 'G1_UA',
         schedule: {
