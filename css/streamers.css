@@ -11,6 +11,93 @@
     margin-bottom: 40px;
 }
 
+/* Компактний режим відображення стримерів */
+.streamers-compact {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.streamer-compact {
+    display: flex;
+    flex-direction: column;
+    max-width: 250px;
+    position: relative;
+}
+
+.streamer-compact .streamer-header {
+    padding: 10px;
+}
+
+.streamer-compact .streamer-avatar {
+    width: 50px;
+    height: 50px;
+}
+
+.streamer-compact .streamer-name {
+    font-size: 16px;
+    margin-bottom: 3px;
+}
+
+.streamer-compact .clan-tag {
+    font-size: 12px;
+    color: var(--accent-color);
+    margin-bottom: 5px;
+}
+
+.streamer-compact .platform-tags {
+    position: static;
+    margin-top: 5px;
+}
+
+.streamer-compact .platform {
+    font-size: 11px;
+    padding: 2px 6px;
+}
+
+.streamer-compact .social-icons {
+    display: flex;
+    gap: 8px;
+    padding: 8px 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    justify-content: center;
+    border-top: 1px solid #333;
+}
+
+.streamer-compact .social-icons a {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+    transition: all 0.2s;
+}
+
+.streamer-compact .social-icons .twitch {
+    background-color: #6441a5;
+}
+
+.streamer-compact .social-icons .twitch.live {
+    background-color: var(--twitch-active);
+    animation: pulse 1.5s infinite;
+}
+
+.streamer-compact .social-icons .youtube {
+    background-color: #ff0000;
+}
+
+.streamer-compact .social-icons .telegram {
+    background-color: #0088cc;
+}
+
+.streamer-compact .social-icons a:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
 /* Повідомлення про відсутність стримерів онлайн */
 .no-streamers-message {
     grid-column: 1 / -1;
@@ -298,6 +385,13 @@
     letter-spacing: 1px;
 }
 
+/* Для компактних карток - інша позиція індикатора */
+.streamer-compact .live-badge {
+    top: 0;
+    right: 0;
+    border-radius: 0 4px 0 4px;
+}
+
 /* Таблиця з розкладом */
 .schedule-table-container {
     overflow-x: auto;
@@ -361,7 +455,11 @@
 /* Адаптивність */
 @media (max-width: 768px) {
     .streamers-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .streamers-compact {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
     
     .schedule-table th,
@@ -396,5 +494,18 @@
     
     .streamer-status {
         justify-content: center;
+    }
+    
+    .streamer-compact {
+        max-width: 100%;
+    }
+    
+    .streamer-compact .streamer-header {
+        flex-direction: row;
+    }
+    
+    .streamer-compact .streamer-avatar {
+        margin-right: 10px;
+        margin-bottom: 0;
     }
 }
