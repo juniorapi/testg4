@@ -41,7 +41,7 @@ const streamers = [
         description: 'Стример G1_UA',
         clan: 'G1_UA',
         telegram: 'INeSp1kIWOT',
-        platforms: ['twitch']
+        platforms: ['youtube', 'twitch']
     },
     { 
         id: 'juniortv_gaming', 
@@ -68,13 +68,13 @@ const streamers = [
     { 
         id: 'cs2_maincast', 
         twitchId: 'cs2_maincast',
-        youtubeId: 'UCVRrQpbIjFk_IbNzmECFZaA',
+        youtubeId: null,
         displayName: 'cs2_maincast',
         avatarUrl: 'img/cs2_maincast.png',
         description: 'Стример і професійний гравець G1_UA.',
         clan: 'G1_UA',
         telegram: 'cs2_maincast',
-        platforms: ['youtube', 'twitch']
+        platforms: ['twitch']
     }
 ];
 
