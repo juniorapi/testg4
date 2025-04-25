@@ -13,6 +13,7 @@ const streamers = [
         description: 'Стример і професійний гравець G1_UA.',
         clan: 'G1_UA',
         youtube: 'cs2_maincast',
+        youtubeType: 'user', // Стандартний тип для @username
         telegram: 'cs2_maincast'
     },
     { 
@@ -23,6 +24,7 @@ const streamers = [
         description: 'Відомий стример і коментатор. Командир G2_UA.',
         clan: 'G2_UA',
         youtube: 'ceh9live',
+        youtubeType: 'user',
         telegram: 'ceh9forukraine'
     },
     { 
@@ -33,6 +35,7 @@ const streamers = [
         description: 'Учасник G4_UA. Стримить регулярно з фокусом на командну гру.',
         clan: 'G4_UA',
         youtube: 'JuniorTV_Gaming',
+        youtubeType: 'user',
         telegram: 'JuniorTV_Gaming'
     },
     { 
@@ -43,6 +46,7 @@ const streamers = [
         description: 'Стример і гравець G1_UA.',
         clan: 'G1_UA',
         youtube: 'inesp1k1',
+        youtubeType: 'user',
         telegram: 'inesp1k1'
     },
     { 
@@ -52,7 +56,8 @@ const streamers = [
         avatarUrl: 'img/roha_wot.png',
         description: 'Експерт з артилерії. Член G3_UA.',
         clan: 'G3_UA',
-        youtube: 'UC_rV2qI2UW2JL63yaLzuKpQ',
+        youtube: '',
+        youtubeType: 'UC_rV2qI2UW2JL63yaLzuKpQ', // ID каналу YouTube
         telegram: '+cLlIBjakfuUyMzYy'
     },
     { 
@@ -62,7 +67,8 @@ const streamers = [
         avatarUrl: '/api/placeholder/80/80',
         description: 'Стримить переважно техніку підтримки. Член G5_UA.',
         clan: 'G5_UA',
-        youtube: 'medicdoc',
+        youtube: '_Roha_',
+        youtubeType: 'user', // Стандартний користувач, але з префіксом @
         telegram: 'medicdoc'
     }
 ];
@@ -83,6 +89,25 @@ function initStreamersPage() {
         
         .streamer-name.long-name {
             font-size: 14px;
+        }
+
+        /* Покращення стилів карток стримерів */
+        .streamer-card:not(.live) .streamer-header {
+            opacity: 0.85;
+        }
+        
+        .streamer-card.live .streamer-header {
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Покращений вигляд карток стримерів, які офлайн */
+        .streamer-card:not(.live) {
+            transition: all 0.3s ease;
+        }
+        
+        .streamer-card:not(.live):hover {
+            opacity: 1;
+            transform: translateY(-5px);
         }
     `;
     document.head.appendChild(styleElement);
@@ -134,6 +159,27 @@ function createStreamerCard(streamer) {
     
     // Визначаємо, чи є ім'я довгим
     const nameClass = streamer.displayName.length > 12 ? 'streamer-name long-name' : 'streamer-name';
+
+    // Формуємо посилання на YouTube в залежності від типу каналу
+    let youtubeUrl = '';
+    if (streamer.youtubeType === 'channel') {
+        youtubeUrl = `https://youtube.com/channel/${streamer.youtube}`;
+    } else {
+        // Перевіряємо, чи ім'я користувача починається з @
+        if (streamer.youtube.startsWith('@')) {
+            youtubeUrl = `https://youtube.com/${streamer.youtube}`;
+        } else {
+            youtubeUrl = `https://youtube.com/@${streamer.youtube}`;
+        }
+    }
+    
+    // Формуємо посилання на Telegram
+    let telegramUrl = '';
+    if (streamer.telegram.startsWith('+') || streamer.telegram.startsWith('https://')) {
+        telegramUrl = `https://t.me/${streamer.telegram}`;
+    } else {
+        telegramUrl = `https://t.me/${streamer.telegram}`;
+    }
     
     card.innerHTML = `
         <div class="streamer-header">
@@ -152,10 +198,10 @@ function createStreamerCard(streamer) {
             <a href="https://twitch.tv/${streamer.twitchId}" class="twitch" target="_blank" title="Twitch канал">
                 <i class="fab fa-twitch"></i>
             </a>
-            <a href="https://youtube.com/@${streamer.youtube}" class="youtube" target="_blank" title="YouTube канал">
+            <a href="${youtubeUrl}" class="youtube" target="_blank" title="YouTube канал">
                 <i class="fab fa-youtube"></i>
             </a>
-            <a href="https://t.me/${streamer.telegram}" class="telegram" target="_blank" title="Telegram канал">
+            <a href="${telegramUrl}" class="telegram" target="_blank" title="Telegram канал">
                 <i class="fab fa-telegram"></i>
             </a>
         </div>
@@ -169,18 +215,33 @@ function createStreamerCard(streamer) {
  */
 function filterStreamers(filter) {
     const streamerCards = document.querySelectorAll('.streamer-card');
+    let visibleCount = 0;
     
     streamerCards.forEach(card => {
         if (filter === 'all') {
             card.classList.remove('hidden');
+            visibleCount++;
         } else if (filter === 'live') {
             if (card.getAttribute('data-live') === 'true') {
                 card.classList.remove('hidden');
+                visibleCount++;
             } else {
                 card.classList.add('hidden');
             }
         }
     });
+    
+    // Показуємо повідомлення, якщо немає стримерів онлайн і вибрано фільтр 'live'
+    const noStreamersMessage = document.querySelector('.no-streamers-message');
+    if (!noStreamersMessage && visibleCount === 0 && filter === 'live') {
+        const streamersContainer = document.getElementById('streamers-container');
+        const message = document.createElement('div');
+        message.className = 'no-streamers-message';
+        message.innerHTML = '<p>На жаль, зараз немає стримерів в ефірі</p>';
+        streamersContainer.appendChild(message);
+    } else if (noStreamersMessage && visibleCount > 0) {
+        noStreamersMessage.remove();
+    }
 }
 
 /**
@@ -256,6 +317,9 @@ function checkStreamStatus() {
         if (activeLiveFilter) {
             filterStreamers('live');
         }
+        
+        // Сортування стримерів: спочатку онлайн, потім офлайн
+        sortStreamers();
     })
     .catch(error => {
         console.error('Помилка отримання даних Twitch API:', error);
@@ -393,6 +457,34 @@ function updateStreamerCard(streamer, isLive, streamData) {
             `;
         }
     }
+}
+
+/**
+ * Сортування стримерів: спочатку онлайн, потім офлайн
+ */
+function sortStreamers() {
+    const streamersContainer = document.getElementById('streamers-container');
+    if (!streamersContainer) return;
+    
+    const streamerCards = Array.from(streamersContainer.querySelectorAll('.streamer-card'));
+    
+    // Сортуємо картки: спочатку онлайн, потім офлайн
+    streamerCards.sort((a, b) => {
+        const aLive = a.getAttribute('data-live') === 'true';
+        const bLive = b.getAttribute('data-live') === 'true';
+        
+        if (aLive && !bLive) return -1;
+        if (!aLive && bLive) return 1;
+        
+        // Якщо обидва онлайн або обидва офлайн, зберігаємо поточний порядок
+        return 0;
+    });
+    
+    // Очищаємо контейнер і додаємо відсортовані картки
+    streamersContainer.innerHTML = '';
+    streamerCards.forEach(card => {
+        streamersContainer.appendChild(card);
+    });
 }
 
 // Ініціалізуємо сторінку при завантаженні
