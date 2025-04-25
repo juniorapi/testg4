@@ -10,12 +10,12 @@ function checkStreamStatus() {
     // Масив каналів Twitch з даними для відображення
     const twitchChannels = [
         { 
-            id: 'sh0kerix', 
+            id: 'mrexclusivel', 
             element: 'streamer-1',
-            displayName: 'Sh0kerix',
+            displayName: 'MrExclusivel',
             avatarUrl: 'https://yt3.googleusercontent.com/ytc/AIf8zZReJRPCiWh2-Vc7hVaIkSaPT5LRiwnC4hfLJnmJEw=s900-c-k-c0x00ffffff-no-rj',
-            description: 'Стример і професійний гравець G1_UA. Експерт по важких танках.',
-            clan: 'G1_UA',
+            description: 'Стример G0_UA.',
+            clan: 'G0_UA',
             game: 'World of Tanks'
         },
         { 
