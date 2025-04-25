@@ -1,7 +1,9 @@
+/* Оновлені базові стилі для мінімалістичного дизайну */
+
 html, body {
     min-height: 100vh;
     line-height: 20px;
-    color: #b8b8a2;
+    color: #e0e0e0;
     -webkit-font-smoothing: antialiased;
     font-size: 100%;
     margin: 0;
@@ -23,12 +25,12 @@ html, body {
     left: 0;
 }
 
-/* Додатково: Затемнений шар для кращої читабельності тексту */
+/* Затемнений шар для кращої читабельності тексту */
 .overlay {
     position: fixed;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8); /* Темніший оверлей для мінімалістичного дизайну */
     z-index: -1;
     top: 0;
     left: 0;
@@ -36,11 +38,11 @@ html, body {
 
 :root {
     --primary-color: #e32927;
-    --secondary-color: #282828;
+    --secondary-color: #1a1a1a; /* Темніший для мінімалізму */
     --accent-color: #ffcc00;
     --text-color: #f5f5f5;
-    --bg-dark: #1a1a1a;
-    --bg-darker: #121212;
+    --bg-dark: #121212; /* Темніший фон */
+    --bg-darker: #0a0a0a; /* Ще темніший фон */
     --success-color: #4CAF50;
     --error-color: #F44336;
     --twitch-color: #6441a5;
@@ -69,18 +71,20 @@ body {
     padding: 0 20px;
 }
 
-/* Заголовки */
+/* Заголовки - оновлені для мінімалістичного дизайну */
 h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0.5em;
     font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 /* Параграфи */
 p {
     margin-bottom: 1em;
+    line-height: 1.7;
 }
 
-/* Посилання */
+/* Посилання - оновлені для мінімалістичного дизайну */
 a {
     color: var(--primary-color);
     text-decoration: none;
@@ -91,19 +95,22 @@ a:hover {
     color: var(--accent-color);
 }
 
-/* Кнопки */
+/* Кнопки - оновлені для мінімалістичного дизайну */
 .btn {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 12px 24px;
     background-color: var(--primary-color);
     color: white;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 2px; /* Менш скруглені кути для мінімалізму */
     font-weight: 500;
     transition: background-color 0.3s, transform 0.2s;
     border: none;
     cursor: pointer;
     text-align: center;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 14px;
 }
 
 .btn:hover {
@@ -114,7 +121,7 @@ a:hover {
 
 .btn-outline {
     background-color: transparent;
-    border: 2px solid var(--primary-color);
+    border: 1px solid var(--primary-color);
     color: var(--primary-color);
 }
 
@@ -124,18 +131,19 @@ a:hover {
 }
 
 .btn-large {
-    padding: 12px 30px;
-    font-size: 1.1em;
+    padding: 14px 32px;
+    font-size: 15px;
 }
 
-/* Шапка сайту */
+/* Шапка сайту - оновлена для мінімалістичного дизайну */
 header {
-    background-color: var(--secondary-color);
+    background-color: rgba(0, 0, 0, 0.7);
     padding: 15px 0;
-    border-bottom: 3px solid var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
     position: sticky;
     top: 0;
     z-index: 100;
+    backdrop-filter: blur(5px);
 }
 
 .nav-container {
@@ -151,6 +159,7 @@ header {
     text-decoration: none;
     font-size: 24px;
     font-weight: bold;
+    letter-spacing: 1px;
 }
 
 .logo span {
@@ -173,6 +182,8 @@ nav ul li a {
     transition: color 0.3s;
     padding: 5px 0;
     position: relative;
+    font-size: 15px;
+    letter-spacing: 0.5px;
 }
 
 nav ul li a::after {
@@ -199,9 +210,9 @@ nav ul li a.active {
     color: var(--primary-color);
 }
 
-/* Секції */
+/* Секції - оновлені для мінімалістичного дизайну */
 section {
-    padding: 60px 0;
+    padding: 70px 0;
     background-color: var(--bg-darker);
 }
 
@@ -211,18 +222,33 @@ section:nth-child(even) {
 
 .section-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 .section-header h2 {
     font-size: 32px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 15px;
+}
+
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .section-header p {
     color: #ccc;
-    max-width: 800px;
+    max-width: 700px;
     margin: 0 auto;
+    font-size: 16px;
 }
 
 .section-header h2 span,
@@ -234,7 +260,7 @@ section:nth-child(even) {
     font-size: 28px;
     margin-bottom: 30px;
     position: relative;
-    padding-bottom: 10px;
+    padding-bottom: 12px;
 }
 
 .section-title::after {
@@ -243,13 +269,13 @@ section:nth-child(even) {
     bottom: 0;
     left: 0;
     width: 50px;
-    height: 3px;
+    height: 2px;
     background-color: var(--primary-color);
 }
 
-/* Герой-секція */
+/* Герой-секція - оновлена для мінімалістичного дизайну */
 .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/api/placeholder/1200/600") center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("/api/placeholder/1200/600") center/cover;
     height: 500px;
     display: flex;
     align-items: center;
@@ -266,11 +292,15 @@ section:nth-child(even) {
     margin-bottom: 20px;
     color: var(--text-color);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
 }
 
 .hero p {
     font-size: 18px;
     margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-buttons {
@@ -279,7 +309,7 @@ section:nth-child(even) {
     justify-content: center;
 }
 
-/* Секція основних моментів */
+/* Секція основних моментів - оновлена для мінімалістичного дизайну */
 .highlights-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -287,11 +317,12 @@ section:nth-child(even) {
 }
 
 .highlight-card {
-    background-color: var(--secondary-color);
-    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
     padding: 30px 20px;
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid #333;
 }
 
 .highlight-card:hover {
@@ -310,7 +341,7 @@ section:nth-child(even) {
     margin-bottom: 15px;
 }
 
-/* Про нас превью */
+/* Про нас превью - оновлено для мінімалістичного дизайну */
 .about-content {
     display: flex;
     align-items: center;
@@ -323,8 +354,9 @@ section:nth-child(even) {
 
 .about-image {
     flex: 1;
-    border-radius: 8px;
+    border-radius: 4px;
     overflow: hidden;
+    border: 1px solid #333;
 }
 
 .about-image img {
@@ -333,7 +365,7 @@ section:nth-child(even) {
     display: block;
 }
 
-/* Превью кланів */
+/* Превью кланів - оновлено для мінімалістичного дизайну */
 .clans-preview-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -341,10 +373,11 @@ section:nth-child(even) {
 }
 
 .clan-card {
-    background-color: var(--secondary-color);
-    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid #333;
 }
 
 .clan-card:hover {
@@ -354,7 +387,7 @@ section:nth-child(even) {
 
 .clan-img {
     height: 150px;
-    background-color: #333;
+    background-color: #222;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -377,7 +410,7 @@ section:nth-child(even) {
     font-size: 14px;
 }
 
-/* Превью стримерів */
+/* Превью стримерів - оновлено для мінімалістичного дизайну */
 .streamers-preview-row {
     display: flex;
     gap: 20px;
@@ -387,10 +420,11 @@ section:nth-child(even) {
 .streamer-preview-card {
     flex: 1;
     min-width: 250px;
-    background-color: var(--secondary-color);
-    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
     overflow: hidden;
     transition: transform 0.3s;
+    border: 1px solid #333;
 }
 
 .streamer-preview-card:hover {
@@ -422,9 +456,9 @@ section:nth-child(even) {
     margin-top: 30px;
 }
 
-/* CTA секція */
+/* CTA секція - оновлена для мінімалістичного дизайну */
 .cta {
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("/api/placeholder/1200/400") center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url("/api/placeholder/1200/400") center/cover;
     padding: 80px 0;
     text-align: center;
 }
@@ -442,9 +476,9 @@ section:nth-child(even) {
     margin-right: auto;
 }
 
-/* Заголовок сторінки */
+/* Заголовок сторінки - оновлений для мінімалістичного дизайну */
 .page-header {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/api/placeholder/1200/300") center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url("/api/placeholder/1200/300") center/cover;
     padding: 80px 0;
     text-align: center;
 }
@@ -452,6 +486,7 @@ section:nth-child(even) {
 .page-header h1 {
     font-size: 42px;
     margin-bottom: 10px;
+    letter-spacing: 1px;
 }
 
 .page-header h1 span {
@@ -464,11 +499,11 @@ section:nth-child(even) {
     margin: 0 auto;
 }
 
-/* Футер */
+/* Футер - оновлений для мінімалістичного дизайну */
 footer {
-    background-color: var(--secondary-color);
+    background-color: rgba(0, 0, 0, 0.7);
     padding: 60px 0 20px;
-    border-top: 3px solid var(--primary-color);
+    border-top: 2px solid var(--primary-color);
 }
 
 .footer-content {
@@ -515,6 +550,7 @@ footer {
     color: var(--text-color);
     text-decoration: none;
     transition: color 0.3s;
+    font-size: 14px;
 }
 
 .footer-column ul li a:hover {
@@ -559,7 +595,188 @@ footer {
     color: #999;
 }
 
-/* Адаптивність */
+/* Додаткові стилі для about-секції */
+.about-content-full {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.value-card {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    padding: 25px;
+    text-align: center;
+    border: 1px solid #333;
+}
+
+.value-icon {
+    font-size: 36px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.about-media {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.about-img {
+    max-width: 100%;
+    border-radius: 4px;
+    border: 1px solid #333;
+}
+
+/* Додаткові стилі для секції команди */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.team-card {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #333;
+}
+
+.team-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 15px;
+    border: 2px solid var(--primary-color);
+}
+
+.team-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-card h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: var(--accent-color);
+}
+
+.team-role {
+    font-size: 14px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.team-desc {
+    font-size: 14px;
+}
+
+/* Стилі для таймлайну */
+.achievements-timeline {
+    max-width: 800px;
+    margin: 40px auto;
+    position: relative;
+}
+
+.achievements-timeline::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background-color: var(--primary-color);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    padding: 20px 40px;
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: var(--bg-darker);
+    border: 4px solid var(--primary-color);
+    border-radius: 50%;
+    top: 20px;
+    z-index: 1;
+}
+
+.timeline-item:nth-child(odd)::after {
+    right: -14px;
+}
+
+.timeline-item:nth-child(even)::after {
+    left: -14px;
+}
+
+.timeline-year {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.timeline-content {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    border: 1px solid #333;
+}
+
+.timeline-content h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: var(--accent-color);
+}
+
+/* Адаптивність для таймлайну */
+@media (max-width: 768px) {
+    .achievements-timeline::after {
+        left: 30px;
+    }
+    
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 20px;
+    }
+    
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        left: 0;
+    }
+    
+    .timeline-item:nth-child(odd)::after,
+    .timeline-item:nth-child(even)::after {
+        left: 20px;
+    }
+}
+
+/* Глобальна адаптивність */
 @media (max-width: 768px) {
     .nav-container {
         flex-direction: column;
@@ -608,6 +825,14 @@ footer {
     .footer-column {
         min-width: 100%;
     }
+    
+    .section-header h2 {
+        font-size: 28px;
+    }
+    
+    .section-title {
+        font-size: 24px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -616,14 +841,19 @@ footer {
     }
     
     .section-header h2 {
-        font-size: 26px;
+        font-size: 24px;
     }
     
     .section-title {
-        font-size: 24px;
+        font-size: 22px;
     }
     
     .cta-content h2 {
         font-size: 28px;
+    }
+    
+    .values-grid,
+    .team-grid {
+        grid-template-columns: 1fr;
     }
 }
