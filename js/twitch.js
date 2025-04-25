@@ -518,15 +518,14 @@ function updatePremiumStreamerCard(streamer, isLive, streamData) {
         if (isLive) {
             // Анімація зміни статусу
             streamStatus.style.opacity = 0;
-            setTimeout(() => {
-                streamStatus.innerHTML = `
-                    <span class="status-online">Онлайн</span>
-                    <span class="viewers-count">
-                        <i class="fas fa-user"></i> ${streamData.viewers.toLocaleString('uk-UA')}
-                    </span>
-                `;
-                streamStatus.style.opacity = 1;
-            }, 300);
+        setTimeout(() => {
+            streamStatus.innerHTML = `
+                <span class="viewers-count">
+                    <i class="fas fa-user"></i> ${streamData.viewers.toLocaleString('uk-UA')}
+                </span>
+            `;
+            streamStatus.style.opacity = 1;
+        }, 300);
         } else if (wasRecentlyLive) {
             const minutesAgo = Math.floor((Date.now() - parseInt(lastOnline)) / 60000);
             
