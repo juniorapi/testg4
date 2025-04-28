@@ -1,1301 +1,935 @@
-/* Premium-версія стилів для стримерів з сучасними ефектами */
-
-:root {
-  --premium-glow-online: 0 0 25px rgba(227, 41, 39, 0.6);
-  --premium-glow-hover: 0 0 30px rgba(255, 204, 0, 0.4);
-  --premium-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4), -5px -5px 15px rgba(30, 30, 30, 0.1);
-  --premium-inset-shadow: inset 3px 3px 8px rgba(0, 0, 0, 0.5), inset -3px -3px 8px rgba(60, 60, 60, 0.1);
-  --glass-bg: rgba(20, 20, 20, 0.6);
-  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-}
+/* Оновлений CSS для сторінки стримерів сайту G_UA Alliance з сучасними технологічними ефектами */
 
 .streamers-section {
-  padding-top: 30px;
-  perspective: 1000px;
+    padding-top: var(--space-3xl);
 }
 
-/* Фільтр з неоморфізмом і преміум-ефектами */
-.online-status-filter {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-  flex-wrap: wrap;
-  background: rgba(10, 10, 10, 0.7);
-  border-radius: 15px;
-  padding: 15px 20px;
-  box-shadow: var(--premium-shadow);
-  backdrop-filter: blur(10px);
-  border: var(--glass-border);
-  position: sticky;
-  top: 80px;
-  z-index: 10;
+/* Фільтр стримерів */
+.filters-panel {
+    position: sticky;
+    top: 70px;
+    z-index: 10;
+    background: rgba(15, 15, 15, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: var(--shadow-lg);
 }
 
-.filter-buttons {
-  display: flex;
-  gap: 15px;
-  padding: 5px;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
+.filters-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-lg);
 }
 
-.filter-btn {
-  padding: 10px 20px;
-  background: linear-gradient(145deg, rgba(30, 30, 30, 0.7), rgba(20, 20, 20, 0.7));
-  border: none;
-  border-radius: 10px;
-  color: white;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: var(--premium-shadow);
-  position: relative;
-  overflow: hidden;
+.filters-actions {
+    display: flex;
+    gap: var(--space-md);
 }
 
-.filter-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: all 0.6s;
+.filter-tabs {
+    display: flex;
+    gap: var(--space-sm);
+    background: rgba(10, 10, 10, 0.5);
+    padding: var(--space-xs);
+    border-radius: var(--radius-md);
 }
 
-.filter-btn:hover::before {
-  left: 100%;
+.filter-tab {
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
 }
 
-.filter-btn.active {
-  background: linear-gradient(145deg, var(--primary-color), #c81e1d);
-  box-shadow: 0 0 15px rgba(227, 41, 39, 0.4);
-  transform: translateY(-2px);
+.filter-tab.active {
+    background: var(--primary);
+    color: white;
 }
 
-.filter-btn:hover:not(.active) {
-  background: linear-gradient(145deg, rgba(40, 40, 40, 0.7), rgba(30, 30, 30, 0.7));
-  transform: translateY(-2px);
+.filter-tab:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
 }
 
-.live-btn .live-count {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 24px;
-  height: 24px;
-  background: linear-gradient(145deg, #e32927, #c81e1d);
-  color: white;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: bold;
-  margin-left: 8px;
-  box-shadow: 0 0 10px rgba(227, 41, 39, 0.3);
-  transition: all 0.3s;
+.live-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    height: 24px;
+    background: white;
+    color: var(--primary);
+    border-radius: var(--radius-full);
+    font-size: 12px;
+    font-weight: 700;
 }
 
-.live-btn.has-live .live-count {
-  animation: pulse-counter 2s infinite;
+.filter-tab.active .live-count {
+    background: white;
+    color: var(--primary);
 }
 
-@keyframes pulse-counter {
-  0% { transform: scale(1); box-shadow: 0 0 10px rgba(227, 41, 39, 0.3); }
-  50% { transform: scale(1.1); box-shadow: 0 0 15px rgba(227, 41, 39, 0.5); }
-  100% { transform: scale(1); box-shadow: 0 0 10px rgba(227, 41, 39, 0.3); }
+.filter-dropdown {
+    position: relative;
 }
 
-/* Преміум сітка стримерів з 3D-ефектами */
+.dropdown-toggle {
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-md);
+    background: rgba(26, 26, 26, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    min-width: 150px;
+}
+
+.dropdown-toggle:hover {
+    background: rgba(26, 26, 26, 0.8);
+}
+
+.dropdown-toggle i {
+    transition: transform var(--transition-normal);
+}
+
+.dropdown-toggle.active i {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transform: translateY(-10px);
+    visibility: hidden;
+    transition: all var(--transition-normal);
+    z-index: 100;
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.dropdown-item {
+    padding: var(--space-sm) var(--space-lg);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.dropdown-item.active {
+    background: rgba(227, 41, 39, 0.2);
+    color: var(--primary);
+}
+
+/* Сітка стримерів */
 .streamers-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 25px;
-  margin-bottom: 50px;
-  perspective: 1000px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
 }
 
-.streamers-compact {
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
-}
-
-/* Повідомлення про відсутність стримерів з преміум дизайном */
-.no-streamers-message {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 40px 30px;
-  background: var(--glass-bg);
-  border-radius: 15px;
-  border: var(--glass-border);
-  box-shadow: var(--glass-shadow);
-  backdrop-filter: blur(10px);
-  font-style: italic;
-  color: #bbb;
-  animation: message-fade-in 0.8s ease-out forwards;
-  transform: translateY(20px);
-  opacity: 0;
-}
-
-@keyframes message-fade-in {
-  to { transform: translateY(0); opacity: 1; }
-}
-
-/* Преміум картки стримерів з glassmorphism і неоморфізмом */
 .streamer-card {
-  background: var(--glass-bg);
-  border-radius: 15px;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  display: flex;
-  flex-direction: column;
-  border: var(--glass-border);
-  position: relative;
-  margin-bottom: 8px;
-  box-shadow: var(--premium-shadow);
-  backdrop-filter: blur(10px);
-  transform-style: preserve-3d;
-  transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1);
-  animation: card-appear 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-  opacity: 0;
-}
-
-.streamer-card:nth-child(even) {
-  animation-delay: 0.1s;
-}
-
-.streamer-card:nth-child(3n) {
-  animation-delay: 0.2s;
-}
-
-.streamer-card:nth-child(3n+1) {
-  animation-delay: 0.3s;
-}
-
-@keyframes card-appear {
-  from { opacity: 0; transform: perspective(1000px) rotateX(10deg) translateY(50px); }
-  to { opacity: 1; transform: perspective(1000px) rotateX(0deg) translateY(0); }
+    position: relative;
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all var(--transition-normal);
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
 .streamer-card:hover {
-  transform: perspective(1000px) translateY(-10px) scale(1.02);
-  box-shadow: var(--premium-shadow), var(--premium-glow-hover);
-  z-index: 1;
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
 }
 
-/* Унікальний преміум дизайн для LIVE стримерів */
 .streamer-card.live {
-  background: linear-gradient(135deg, rgba(30, 30, 30, 0.8), rgba(20, 20, 20, 0.8));
-  border: 2px solid var(--primary-color);
-  box-shadow: var(--premium-shadow), var(--premium-glow-online);
-  order: -1;
-  animation: card-live-appear 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-  opacity: 0;
-}
-
-@keyframes card-live-appear {
-  from { opacity: 0; transform: perspective(1000px) rotateY(-20deg) translateX(50px); }
-  to { opacity: 1; transform: perspective(1000px) rotateY(0deg) translateX(0); }
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 15px rgba(227, 41, 39, 0.3);
+    order: -1;
 }
 
 .streamer-card.live:hover {
-  transform: perspective(1000px) translateY(-10px) scale(1.03);
-  box-shadow: var(--premium-shadow), 0 0 35px rgba(227, 41, 39, 0.7);
+    box-shadow: 0 0 20px rgba(227, 41, 39, 0.5);
 }
 
-/* Стилі для "недавно онлайн" з м'яким градієнтним ефектом */
-.streamer-card.recent-live {
-  background: linear-gradient(135deg, rgba(25, 25, 25, 0.8), rgba(20, 20, 20, 0.8));
-  border: 1px solid;
-  border-image: linear-gradient(to right, rgba(255, 193, 7, 0.3), rgba(255, 193, 7, 0.6), rgba(255, 193, 7, 0.3)) 1;
-  box-shadow: var(--premium-shadow), 0 0 20px rgba(255, 193, 7, 0.2);
-}
-
-.streamer-card.recent-live:hover {
-  box-shadow: var(--premium-shadow), 0 0 25px rgba(255, 193, 7, 0.3);
-}
-
-/* Преміум шапка картки з 3D глибиною */
 .streamer-header {
-  display: flex;
-  padding: 20px;
-  position: relative;
-  background: rgba(15, 15, 15, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transform-style: preserve-3d;
-}
-
-.streamer-card:not(.live) .streamer-header {
-  background: rgba(20, 20, 20, 0.4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .streamer-card.live .streamer-header {
-  background: rgba(227, 41, 39, 0.08);
-  border-bottom: 1px solid rgba(227, 41, 39, 0.3);
+    background: rgba(227, 41, 39, 0.1);
+    border-bottom: 1px solid rgba(227, 41, 39, 0.2);
 }
 
-.streamer-card.recent-live .streamer-header {
-  background: rgba(255, 193, 7, 0.03);
-  border-bottom: 1px solid rgba(255, 193, 7, 0.15);
-}
-
-/* Преміум аватар з 3D ефектом та анімаціями */
 .streamer-avatar {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-right: 18px;
-  flex-shrink: 0;
-  transform-style: preserve-3d;
-  transform: translateZ(10px);
-  position: relative;
-  box-shadow: var(--premium-shadow);
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    width: 70px;
+    height: 70px;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+    transition: all var(--transition-normal);
+}
+
+.streamer-card.live .streamer-avatar {
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(227, 41, 39, 0.5);
 }
 
 .streamer-avatar::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  padding: 3px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+    z-index: 1;
 }
 
 .streamer-card.live .streamer-avatar::before {
-  background: linear-gradient(135deg, var(--primary-color), rgba(227, 41, 39, 0.5));
-  animation: rotate-gradient 3s linear infinite;
-}
-
-.streamer-card.recent-live .streamer-avatar::before {
-  background: linear-gradient(135deg, rgba(255, 193, 7, 0.7), rgba(255, 193, 7, 0.3));
+    background: linear-gradient(135deg, rgba(227, 41, 39, 0.2), transparent);
+    animation: rotate-gradient 3s linear infinite;
 }
 
 @keyframes rotate-gradient {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .streamer-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: all 0.7s;
-  filter: grayscale(20%);
-}
-
-.streamer-card:hover .streamer-avatar {
-  transform: translateZ(20px) scale(1.05);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-normal);
 }
 
 .streamer-card:hover .streamer-avatar img {
-  filter: grayscale(0%);
-  transform: scale(1.08);
+    transform: scale(1.1);
 }
 
-.live .streamer-avatar img {
-  filter: grayscale(0%);
-  animation: subtle-pulse 3s infinite alternate;
-}
-
-@keyframes subtle-pulse {
-  from { transform: scale(1); }
-  to { transform: scale(1.05); }
-}
-
-/* Преміум інформація про стримера */
-.streamer-info {
-  flex-grow: 1;
-  transform-style: preserve-3d;
-  transform: translateZ(5px);
-}
-
-/* Преміум стилі імені з тінями */
-.streamer-name {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-  transition: all 0.3s;
-  color: #fff;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  position: relative;
-  display: inline-block;
-}
-
-.streamer-name::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-  transition: width 0.3s ease;
-}
-
-.streamer-card:hover .streamer-name::after {
-  width: 100%;
-}
-
-.streamer-card.live .streamer-name {
-  color: #fff;
-  text-shadow: 0 0 10px rgba(227, 41, 39, 0.5);
-}
-
-.streamer-name.long-name {
-  font-size: 16px;
-}
-
-/* Преміум тег клану */
-.clan-tag {
-  display: inline-block;
-  background: rgba(0, 0, 0, 0.3);
-  padding: 5px 10px;
-  border-radius: 6px;
-  color: var(--accent-color);
-  font-size: 12px;
-  font-weight: 600;
-  margin-bottom: 10px;
-  letter-spacing: 0.5px;
-  box-shadow: var(--premium-inset-shadow);
-  border-left: 2px solid var(--accent-color);
-  transition: all 0.3s;
-}
-
-.streamer-card:hover .clan-tag {
-  background: rgba(255, 204, 0, 0.1);
-  transform: translateY(-2px);
-}
-
-.streamer-card.live .clan-tag {
-  background: rgba(227, 41, 39, 0.1);
-  color: #ffcc00;
-  border-left: 2px solid var(--primary-color);
-}
-
-/* Преміум статус стримера */
-.stream-status {
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
-}
-
-.status-offline, .status-online {
-  font-size: 14px;
-  transition: all 0.3s;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  display: inline-flex;
-  align-items: center;
-  padding: 4px 0;
-}
-
-.status-offline {
-  color: #888;
-}
-
-.status-offline::before {
-  content: '';
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  background-color: #888;
-  border-radius: 50%;
-  margin-right: 6px;
-}
-
-.status-online {
-  color: #4CAF50;
-  font-weight: 700;
-  text-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
-  position: relative;
-}
-
-.status-online::before {
-  content: '';
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  background-color: #4CAF50;
-  border-radius: 50%;
-  margin-right: 6px;
-  box-shadow: 0 0 10px rgba(76, 175, 80, 0.7);
-  animation: pulse-green 1.5s infinite;
+.online-indicator {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    background: var(--success);
+    border-radius: var(--radius-full);
+    border: 2px solid var(--bg-dark);
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.7);
+    animation: pulse-green 2s infinite;
 }
 
 @keyframes pulse-green {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.5); opacity: 0.7; }
-  100% { transform: scale(1); opacity: 1; }
+    0% {
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(76, 175, 80, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+    }
 }
 
-.status-recent {
-  font-size: 12px;
-  color: rgba(255, 193, 7, 0.8);
-  margin-top: 4px;
-  font-style: italic;
-  display: flex;
-  align-items: center;
+.streamer-info {
+    flex-grow: 1;
+    min-width: 0;
 }
 
-.status-recent::before {
-  content: '\f017';
-  font-family: 'Font Awesome 5 Free';
-  margin-right: 5px;
-  font-style: normal;
-  font-size: 10px;
+.streamer-name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: var(--space-xs);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Преміум лічильник глядачів */
-.viewers-count {
-  font-size: 14px;
-  color: #fff;
-  display: inline-flex;
-  align-items: center;
-  margin-top: 8px;
-  background: linear-gradient(135deg, rgba(227, 41, 39, 0.2), rgba(227, 41, 39, 0.1));
-  padding: 5px 10px;
-  border-radius: 20px;
-  box-shadow: var(--premium-inset-shadow);
-  border-left: 2px solid var(--primary-color);
-  transition: all 0.3s;
+.streamer-card.live .streamer-name {
+    color: var(--primary);
 }
 
-.viewers-count:hover {
-  transform: translateY(-2px);
-  background: linear-gradient(135deg, rgba(227, 41, 39, 0.3), rgba(227, 41, 39, 0.2));
+.clan-tag {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--accent);
+    background: rgba(255, 204, 0, 0.1);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-xs);
 }
 
-.viewers-count i {
-  margin-right: 6px;
-  color: var(--primary-color);
-  filter: drop-shadow(0 0 3px rgba(227, 41, 39, 0.5));
+.stream-status {
+    margin-top: var(--space-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
 }
 
-/* Преміум індикатор LIVE */
-.live-badge {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: linear-gradient(135deg, #e32927, #c81e1d);
-  color: white;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 700;
-  animation: pulse-badge 2s infinite;
-  z-index: 2;
-  letter-spacing: 1px;
-  box-shadow: 0 0 15px rgba(227, 41, 39, 0.6);
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  transition: all 0.3s;
-  transform: translateZ(20px);
+.status-offline, .status-online {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 14px;
 }
 
-.live-badge::before {
-  content: '';
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  background-color: white;
-  border-radius: 50%;
-  margin-right: 6px;
-  animation: pulse-white 1.5s infinite;
+.status-offline {
+    color: var(--text-muted);
+}
+
+.status-online {
+    color: var(--success);
+}
+
+.status-offline::before,
+.status-online::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-full);
+}
+
+.status-offline::before {
+    background: var(--text-muted);
+}
+
+.status-online::before {
+    background: var(--success);
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.7);
+    animation: pulse-online 2s infinite;
+}
+
+@keyframes pulse-online {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.status-time {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.live-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--primary);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    box-shadow: 0 0 15px rgba(227, 41, 39, 0.5);
+    animation: pulse-badge 2s infinite;
+    z-index: 1;
+}
+
+.live-indicator::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: white;
+    animation: pulse-online 2s infinite;
 }
 
 @keyframes pulse-badge {
-  0% { transform: translateZ(20px) scale(1); box-shadow: 0 0 15px rgba(227, 41, 39, 0.6); }
-  50% { transform: translateZ(20px) scale(1.05); box-shadow: 0 0 20px rgba(227, 41, 39, 0.8); }
-  100% { transform: translateZ(20px) scale(1); box-shadow: 0 0 15px rgba(227, 41, 39, 0.6); }
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }
 
-@keyframes pulse-white {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.2); opacity: 0.8; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-/* Преміум інформація про стрім */
 .stream-info {
-  padding: 20px;
-  border-top: 1px solid rgba(227, 41, 39, 0.2);
-  background: rgba(15, 15, 15, 0.7);
-  transition: all 0.3s;
-  position: relative;
-  overflow: hidden;
+    padding: var(--space-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.stream-info::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('/api/placeholder/500/300') center/cover;
-  opacity: 0.1;
-  filter: blur(10px);
-  z-index: -1;
-  transition: all 0.5s;
-}
-
-.streamer-card:hover .stream-info::before {
-  transform: scale(1.1);
-  filter: blur(8px);
-  opacity: 0.15;
-}
-
-.streamer-card:hover .stream-info {
-  background: rgba(20, 20, 20, 0.8);
+.streamer-card.live .stream-info {
+    border-top: 1px solid rgba(227, 41, 39, 0.2);
 }
 
 .stream-title {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 12px;
-  color: var(--accent-color);
-  word-break: break-word;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  line-height: 1.4;
-  min-height: 45px;
-  transition: all 0.3s;
-  transform: translateZ(5px);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 48px;
 }
 
-.streamer-card:hover .stream-title {
-  color: #fff;
-  text-shadow: 0 0 10px rgba(255, 204, 0, 0.6);
+.stream-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-sm);
 }
 
 .stream-category {
-  font-size: 12px;
-  color: #fff;
-  margin-top: 8px;
-  background: linear-gradient(135deg, rgba(227, 41, 39, 0.2), rgba(227, 41, 39, 0.1));
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: 20px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 600;
-  box-shadow: var(--premium-inset-shadow);
-  transition: all 0.3s;
-  transform: translateZ(5px);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    color: var(--text-secondary);
 }
 
-.streamer-card:hover .stream-category {
-  background: linear-gradient(135deg, rgba(227, 41, 39, 0.3), rgba(227, 41, 39, 0.2));
-  transform: translateZ(5px) translateY(-2px);
+.stream-category i {
+    color: var(--primary);
 }
 
-/* Преміум соціальні іконки з глибоким 3D ефектом */
-.social-icons {
-  display: flex;
-  gap: 15px;
-  padding: 15px 20px;
-  background: rgba(10, 10, 10, 0.7);
-  justify-content: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.3s;
-  position: relative;
-  transform-style: preserve-3d;
+.viewers-count {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 12px;
+    color: var(--text-secondary);
 }
 
-.streamer-card:hover .social-icons {
-  background: rgba(15, 15, 15, 0.8);
+.viewers-count i {
+    color: var(--primary);
 }
 
-.streamer-card.live .social-icons {
-  background: rgba(15, 15, 15, 0.7);
-  border-top: 1px solid rgba(227, 41, 39, 0.2);
+.stream-actions {
+    margin-top: var(--space-md);
 }
 
-.social-icons a {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: linear-gradient(145deg, rgba(30, 30, 30, 0.6), rgba(20, 20, 20, 0.6));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ddd;
-  font-size: 16px;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: var(--premium-shadow);
-  position: relative;
-  transform: translateZ(10px);
+.watch-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    padding: var(--space-sm) var(--space-lg);
+    background: var(--primary);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    transition: all var(--transition-normal);
+    border: none;
+    cursor: pointer;
 }
 
-.social-icons a::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.3s;
+.watch-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
 }
 
-.streamer-card:hover .social-icons a::after {
-  opacity: 1;
+.social-links {
+    display: flex;
+    padding: var(--space-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    gap: var(--space-md);
+    justify-content: center;
 }
 
-.streamer-card:hover .social-icons a {
-  color: #fff;
+.streamer-card.live .social-links {
+    border-top: 1px solid rgba(227, 41, 39, 0.2);
 }
 
-.streamer-card:hover .social-icons a:hover {
-  transform: translateZ(20px) translateY(-5px) scale(1.2);
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    background: rgba(26, 26, 26, 0.7);
+    color: var(--text-secondary);
+    transition: all var(--transition-normal);
 }
 
-.social-icons a.twitch:hover {
-  background: linear-gradient(145deg, #7b5dbe, #6441a5);
-  color: white;
-  box-shadow: 0 0 15px rgba(100, 65, 165, 0.6);
+.social-link:hover {
+    transform: translateY(-5px);
 }
 
-.social-icons a.youtube:hover {
-  background: linear-gradient(145deg, #ff1a1a, #e60000);
-  color: white;
-  box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+.social-link.twitch:hover {
+    background: #6441a5;
+    color: white;
+    box-shadow: 0 0 15px rgba(100, 65, 165, 0.6);
 }
 
-.social-icons a.telegram:hover {
-  background: linear-gradient(145deg, #0099e6, #0088cc);
-  color: white;
-  box-shadow: 0 0 15px rgba(0, 136, 204, 0.6);
+.social-link.youtube:hover {
+    background: #ff0000;
+    color: white;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
 }
 
-.social-icons a.twitch.live {
-  position: relative;
-  background: linear-gradient(145deg, #7b5dbe, #6441a5);
-  color: white;
-  box-shadow: 0 0 15px rgba(100, 65, 165, 0.6);
+.social-link.discord:hover {
+    background: #5865f2;
+    color: white;
+    box-shadow: 0 0 15px rgba(88, 101, 242, 0.6);
 }
 
-.social-icons a.twitch.live::before {
-  content: "";
-  width: 10px;
-  height: 10px;
-  background-color: #4CAF50;
-  border-radius: 50%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  animation: pulse-dot 1.5s infinite;
-  box-shadow: 0 0 10px rgba(76, 175, 80, 0.7);
+.social-link.telegram:hover {
+    background: #0088cc;
+    color: white;
+    box-shadow: 0 0 15px rgba(0, 136, 204, 0.6);
 }
 
-/* Преміум анімація для секції подачі заявки */
-.apply-section {
-  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url("/api/placeholder/1200/400") center/cover;
-  position: relative;
-  overflow: hidden;
-  padding: 80px 0;
-  text-align: center;
-  margin-top: 50px;
-  border-radius: 20px;
-  box-shadow: var(--premium-shadow);
+.social-link.live {
+    position: relative;
 }
 
-.apply-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, rgba(227, 41, 39, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
-  z-index: 0;
-  animation: pulse-glow 3s infinite alternate;
+.social-link.live::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-full);
+    background: var(--success);
+    border: 1px solid var(--bg-dark);
+    animation: pulse-green 2s infinite;
 }
 
-@keyframes pulse-glow {
-  from { opacity: 0.5; }
-  to { opacity: 1; }
+/* Стилі для відображення порожніх станів */
+.empty-state {
+    grid-column: 1 / -1;
+    padding: var(--space-2xl);
+    text-align: center;
+    background: rgba(26, 26, 26, 0.3);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.apply-section::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(227, 41, 39, 0.1), transparent);
-  transform: rotate(30deg);
-  animation: light-sweep 10s infinite linear;
-  z-index: 0;
+.empty-icon {
+    font-size: 48px;
+    color: var(--text-muted);
+    margin-bottom: var(--space-md);
 }
 
-@keyframes light-sweep {
-  0% { transform: translateX(-100%) rotate(30deg); }
-  100% { transform: translateX(100%) rotate(30deg); }
+.empty-title {
+    font-size: 20px;
+    margin-bottom: var(--space-sm);
 }
 
-.apply-content {
-  position: relative;
-  z-index: 1;
+.empty-message {
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0 auto var(--space-lg);
 }
 
-.apply-content h2 {
-  font-size: 32px;
-  margin-bottom: 20px;
-  letter-spacing: 1px;
-  color: white;
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-  transform: translateZ(30px);
-}
-
-.apply-content p {
-  max-width: 700px;
-  margin: 0 auto 30px;
-  font-size: 18px;
-  color: #ddd;
-  line-height: 1.6;
-  transform: translateZ(20px);
-}
-
-.apply-section .btn-large {
-  background: linear-gradient(135deg, var(--primary-color), #c81e1d);
-  padding: 14px 32px;
-  border-radius: 30px;
-  font-size: 16px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 600;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 5px 15px rgba(227, 41, 39, 0.4);
-  z-index: 1;
-  transform: translateZ(30px);
-}
-
-.apply-section .btn-large::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: all 0.6s;
-  z-index: -1;
-}
-
-.apply-section .btn-large:hover {
-  box-shadow: 0 8px 25px rgba(227, 41, 39, 0.6);
-  transform: translateZ(30px) translateY(-5px);
-}
-
-.apply-section .btn-large:hover::before {
-  left: 100%;
-}
-
-/* Приховуємо стримерів при фільтрації з преміум анімацією */
-.streamer-card.hidden {
-  animation: card-disappear 0.5s forwards;
-  pointer-events: none;
-}
-
-@keyframes card-disappear {
-  to { 
-    opacity: 0;
-    transform: scale(0.9);
-    height: 0;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-}
-
-/* Преміум стилі для фільтра у режимі Live */
-.live-btn.has-live {
-  background: linear-gradient(145deg, var(--primary-color), #c81e1d);
-  border-color: var(--primary-color);
-  color: white;
-  box-shadow: 0 0 20px rgba(227, 41, 39, 0.5);
-  animation: filter-pulse 2s infinite;
-}
-
-@keyframes filter-pulse {
-  0% { box-shadow: 0 0 15px rgba(227, 41, 39, 0.5); }
-  50% { box-shadow: 0 0 25px rgba(227, 41, 39, 0.7); }
-  100% { box-shadow: 0 0 15px rgba(227, 41, 39, 0.5); }
-}
-
-/* Преміум адаптивна верстка */
-@media (min-width: 1300px) {
-  .streamers-grid {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  }
-  
-  .streamers-compact {
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  }
-}
-
-@media (max-width: 992px) {
-  .online-status-filter {
+/* Стан завантаження */
+.loading-state {
+    grid-column: 1 / -1;
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-    padding: 15px;
-  }
-  
-  .filter-buttons {
-    width: 100%;
-    justify-content: space-between;
-  }
-  
-  .streamers-compact {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  }
-  
-  .apply-content h2 {
-    font-size: 28px;
-  }
-  
-  .apply-content p {
-    font-size: 16px;
-  }
+    align-items: center;
+    padding: var(--space-2xl);
 }
 
-@media (max-width: 768px) {
-  .streamers-grid {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 15px;
-  }
-  
-  .streamers-compact {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  }
-  
-  .streamer-header {
-    padding: 15px;
-  }
-  
-  .streamer-avatar {
-    width: 55px;
-    height: 55px;
-    margin-right: 12px;
-  }
-  
-  .streamer-name {
-    font-size: 16px;
-  }
-  
-  .streamer-name.long-name {
-    font-size: 14px;
-  }
-  
-  .clan-tag {
-    padding: 4px 8px;
-    font-size: 11px;
-  }
-  
-  .live-badge {
-    padding: 3px 8px;
-    font-size: 10px;
-    top: 10px;
-    right: 10px;
-  }
-  
-  .live-badge::before {
-    width: 6px;
-    height: 6px;
-  }
-  
-  .status-offline, .status-online {
-    font-size: 13px;
-  }
-  
-  .status-offline::before,
-  .status-online::before {
-    width: 6px;
-    height: 6px;
-    margin-right: 5px;
-  }
-  
-  .stream-title {
-    font-size: 14px;
-    min-height: 40px;
-  }
-  
-  .stream-category {
-    font-size: 11px;
-    padding: 3px 8px;
-  }
-  
-  .social-icons {
-    padding: 12px;
-    gap: 10px;
-  }
-  
-  .social-icons a {
-    width: 34px;
-    height: 34px;
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 480px) {
-  .streamer-card {
-    max-width: 100%;
-  }
-  
-  .streamer-header {
-    padding: 12px;
-  }
-  
-  .streamer-avatar {
-    width: 45px;
-    height: 45px;
-    margin-right: 10px;
-  }
-  
-  .streamers-grid {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-  
-  .streamers-compact {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 10px;
-  }
-  
-  .filter-btn {
-    font-size: 12px;
-    padding: 8px 12px;
-  }
-  
-  .streamer-name {
-    font-size: 15px;
-  }
-  
-  .streamer-name.long-name {
-    font-size: 13px;
-  }
-  
-  .clan-tag {
-    font-size: 10px;
-    padding: 2px 6px;
-    margin-bottom: 6px;
-  }
-  
-  .status-offline, .status-online {
-    font-size: 12px;
-  }
-  
-  .status-recent {
-    font-size: 10px;
-  }
-  
-  .social-icons {
-    padding: 10px;
-    gap: 8px;
-  }
-  
-  .social-icons a {
-    width: 30px;
-    height: 30px;
-    font-size: 13px;
-  }
-  
-  .stream-info {
-    padding: 15px;
-  }
-  
-  .stream-title {
-    font-size: 13px;
-    min-height: 36px;
-    margin-bottom: 8px;
-  }
-  
-  .stream-category {
-    font-size: 10px;
-    padding: 2px 6px;
-  }
-  
-  .viewers-count {
-    font-size: 11px;
-    padding: 3px 8px;
-  }
-  
-  .apply-content h2 {
-    font-size: 24px;
-  }
-  
-  .apply-content p {
-    font-size: 14px;
-  }
-  
-  .apply-section .btn-large {
-    font-size: 14px;
-    padding: 12px 24px;
-  }
-}
-
-/* Преміум доступність та фокус ефекти */
-.filter-btn:focus-visible,
-.social-icons a:focus-visible,
-.apply-section .btn-large:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px var(--primary-color), 0 0 0 5px rgba(255, 255, 255, 0.2);
-}
-
-/* Преміум додаткові візуальні ефекти */
-.streamer-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-}
-
-.streamer-card.live::after {
-  background: linear-gradient(90deg, transparent, rgba(227, 41, 39, 0.3), transparent);
-}
-
-.streamer-card.recent-live::after {
-  background: linear-gradient(90deg, transparent, rgba(255, 193, 7, 0.2), transparent);
-}
-
-/* Преміум відома анімація появи */
-.streamers-grid.loaded {
-  animation: grid-appear 0.5s ease-out forwards;
-}
-
-@keyframes grid-appear {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Преміум індикатор завантаження */
-.loading-indicator {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
-  grid-column: 1 / -1;
-}
-
-.loading-spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid rgba(227, 41, 39, 0.2);
-  border-left-color: var(--primary-color);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-full);
+    border-top-color: var(--primary);
+    animation: spin 1s infinite linear;
+    margin-bottom: var(--space-md);
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
-/* Преміум ефект "сяйва" для стримерів онлайн */
-.streamer-card.live::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(135deg, var(--primary-color), #c81e1d, #e32927, #c81e1d);
-  z-index: -1;
-  border-radius: 16px;
-  animation: gradient-border 4s ease infinite;
-  opacity: 0.4;
-  filter: blur(5px);
+.loading-message {
+    color: var(--text-secondary);
 }
 
-@keyframes gradient-border {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Ефект паралаксу при наведенні */
-.streamer-card:hover .streamer-name {
-  transform: translateZ(15px);
-}
-
-.streamer-card:hover .clan-tag {
-  transform: translateZ(10px);
-}
-
-.streamer-card:hover .stream-status {
-  transform: translateZ(12px);
-}
-
-/* Преміум стилі для нотифікацій */
+/* Анімоване сповіщення про стрім */
 .stream-notification {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: rgba(20, 20, 20, 0.9);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(227, 41, 39, 0.5);
-  border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(227, 41, 39, 0.4);
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  z-index: 1000;
-  transform: translateX(120%);
-  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  max-width: 350px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--primary);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    box-shadow: 0 0 20px rgba(227, 41, 39, 0.5);
+    z-index: 1000;
+    max-width: 350px;
+    transform: translateX(120%);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .stream-notification.show {
-  transform: translateX(0);
+    transform: translateX(0);
 }
 
 .notification-avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid var(--primary-color);
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    border: 2px solid var(--primary);
+    flex-shrink: 0;
 }
 
 .notification-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.notification-avatar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: var(--radius-full);
+    background: var(--success);
+    border: 1px solid var(--primary);
+    animation: pulse-green 2s infinite;
 }
 
 .notification-content {
-  flex: 1;
+    flex-grow: 1;
+    min-width: 0;
 }
 
 .notification-title {
-  font-weight: bold;
-  color: var(--accent-color);
-  margin-bottom: 5px;
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 16px;
+    margin-bottom: var(--space-xs);
+    font-weight: 600;
 }
 
-.notification-title::before {
-  content: 'LIVE';
-  font-size: 10px;
-  background: var(--primary-color);
-  color: white;
-  padding: 2px 5px;
-  border-radius: 3px;
-  margin-right: 8px;
+.notification-title .live-badge {
+    font-size: 10px;
+    padding: 1px 5px;
+    border-radius: var(--radius-sm);
+    background: var(--primary);
+    color: white;
 }
 
 .notification-message {
-  font-size: 13px;
-  color: #eee;
+    font-size: 14px;
+    color: var(--text-secondary);
 }
 
-/* Ефект розмитості при активному фільтрі */
-.filter-active .streamer-card:not(.live) {
-  filter: blur(2px) grayscale(50%);
-  opacity: 0.7;
+.notification-close {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--text-secondary);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--transition-normal);
 }
 
-/* Преміум кнопка "Показати більше" */
-.show-more-btn {
-  background: linear-gradient(145deg, rgba(30, 30, 30, 0.7), rgba(20, 20, 20, 0.7));
-  border: none;
-  border-radius: 10px;
-  color: white;
-  padding: 12px 24px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  transition: all 0.3s;
-  box-shadow: var(--premium-shadow);
-  display: block;
-  margin: 20px auto;
-  position: relative;
-  overflow: hidden;
+.notification-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
 }
 
-.show-more-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: all 0.6s;
+/* Секція для подання заявки */
+.apply-section {
+    padding: var(--space-3xl) 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../img/apply-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-3xl);
 }
 
-.show-more-btn:hover::before {
-  left: 100%;
+.apply-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(227, 41, 39, 0.3) 0%, transparent 70%);
+    animation: pulse-opacity 3s infinite alternate;
 }
 
-.show-more-btn:hover {
-  background: linear-gradient(145deg, rgba(40, 40, 40, 0.7), rgba(30, 30, 30, 0.7));
-  transform: translateY(-2px);
-  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4);
+.apply-container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-/* Стилі для скроллбару */
+.apply-title {
+    font-size: 32px;
+    margin-bottom: var(--space-md);
+}
+
+.apply-description {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xl);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.apply-actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+}
+
+/* Адаптивність */
+@media (max-width: 1200px) {
+    .streamers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 992px) {
+    .filters-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-md);
+    }
+    
+    .filter-tabs {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .filter-tab {
+        flex: 1;
+        justify-content: center;
+    }
+    
+    .filters-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .apply-actions {
+        flex-direction: column;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .streamers-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .streamer-header {
+        padding: var(--space-md);
+    }
+    
+    .streamer-avatar {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .streamer-name {
+        font-size: 16px;
+    }
+    
+    .stream-info {
+        padding: var(--space-md);
+    }
+    
+    .stream-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-xs);
+    }
+    
+    .apply-title {
+        font-size: 28px;
+    }
+    
+    .apply-description {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .filters-panel {
+        padding: var(--space-md);
+    }
+    
+    .filter-tab {
+        padding: var(--space-xs) var(--space-sm);
+        font-size: 12px;
+    }
+    
+    .live-count {
+        min-width: 20px;
+        height: 20px;
+        font-size: 10px;
+    }
+    
+    .dropdown-toggle {
+        padding: var(--space-xs) var(--space-md);
+        min-width: auto;
+    }
+    
+    .streamer-avatar {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* Додаткові анімації та ефекти */
+.streamer-card {
+    animation: fadeInUp 0.5s backwards;
+}
+
+.streamer-card:nth-child(2n) {
+    animation-delay: 0.1s;
+}
+
+.streamer-card:nth-child(3n) {
+    animation-delay: 0.2s;
+}
+
+.streamer-card:nth-child(4n) {
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ефект відкриття та закриття карток */
+.streamer-card.hide {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+    position: absolute;
+}
+
+/* 3D ефект для карток */
+.card-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.streamer-card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    background: var(--bg-light);
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-lg);
+}
+
+/* Стильний скроллбар */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+    width: 8px;
+    height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
+    background: rgba(26, 26, 26, 0.3);
+    border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--primary-color), #c81e1d);
-  border-radius: 5px;
+    background: var(--primary);
+    border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(#c81e1d, var(--primary-color));
-}
-
-/* Плавні переходи для всіх елементів */
-.streamer-card *, 
-.filter-btn, 
-.apply-section * {
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-/* Преміум графічний засіб для покращення доступності */
-@media (prefers-reduced-motion: reduce) {
-  .streamer-card,
-  .live-badge,
-  .viewers-count,
-  .status-online::before,
-  .social-icons a.twitch.live::before {
-    animation: none !important;
-    transition: opacity 0.3s !important;
-  }
+    background: var(--primary-dark);
 }
