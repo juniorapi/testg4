@@ -344,27 +344,29 @@
     position: relative;
 }
 
+/* Контейнер слайдера повинен мати фіксовану ширину та маскувати вміст */
 .clans-preview-slider {
     position: relative;
     margin-bottom: var(--space-2xl);
+    margin-top: 20px; /* Додаємо відступ зверху */
+    max-width: 100%;
+    overflow: hidden;
 }
 
+/* Контейнер для карток з горизонтальною прокруткою */
 .clans-slider-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    display: flex;
     gap: var(--space-lg);
-    overflow-x: auto;
-    padding-bottom: var(--space-md);
+    overflow-x: hidden;
     scroll-behavior: smooth;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    padding-bottom: var(--space-md);
+    padding-top: 20px; /* Додаємо відступ зверху для карток */
 }
 
-.clans-slider-container::-webkit-scrollbar {
-    display: none;
-}
-
+/* Картки кланів */
 .clan-card {
+    flex: 0 0 calc((100% - var(--space-lg) * 2) / 3); /* Точно 3 картки в рядку */
+    min-width: 280px;
     background: rgba(26, 26, 26, 0.5);
     border-radius: var(--radius-md);
     overflow: hidden;
@@ -373,8 +375,9 @@
 }
 
 .clan-card:hover {
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 15px rgba(227, 41, 39, 0.3);
     transform: translateY(-10px);
-    box-shadow: var(--shadow-lg);
 }
 
 .clan-card.featured-clan {
@@ -482,10 +485,15 @@
     transition: all var(--transition-normal);
 }
 
-.slider-arrow:hover {
+.slider-arrow:hover:not(:disabled) {
     background: var(--primary);
     color: white;
     transform: scale(1.1);
+}
+
+.slider-arrow:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .slider-dots {
@@ -510,6 +518,19 @@
 .section-footer {
     text-align: center;
     margin-top: var(--space-xl);
+}
+
+/* Медіа-запити для адаптивності */
+@media (max-width: 992px) {
+    .clan-card {
+        flex: 0 0 calc((100% - var(--space-lg)) / 2); /* 2 картки в ряд */
+    }
+}
+
+@media (max-width: 576px) {
+    .clan-card {
+        flex: 0 0 100%; /* 1 картка в ряд */
+    }
 }
 
 /* Секція стримерів */
@@ -1173,7 +1194,7 @@
         gap: var(--space-sm);
     }
     
-.stats-grid {
+    .stats-grid {
         grid-template-columns: 1fr;
     }
     

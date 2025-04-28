@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Календар подій - Альянс G_UA - Українська спільнота World of Tanks</title>
+    <meta name="description" content="Розклад турнірів, змагань та внутрішніх подій альянсу G_UA. Приєднуйтесь до найкращої танкової спільноти України!">
+    
+    <!-- Підключення основних стилів -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Підключення стилів календаря -->
+    <link rel="stylesheet" href="css/wot-calendar.css">
+    
+    <!-- Font Awesome для іконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Шрифти -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Exo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Анімований фон з частинками -->
+    <div class="bg-animation">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+        <div id="stars4"></div>
+        <div class="bg-overlay"></div>
+    </div>
+
+    <div class="page-wrapper">
+        <header class="main-header glass-panel">
+            <div class="container header-container">
+                <a href="index.html" class="logo">
+                     <div class="logo-emblem">
+                        <img src="img/emblem_195x195.png" alt="G_UA">
+                    </div>
+                    <div class="logo-text">Альянс <span>G_UA</span></div>
+                </a>
+                
+                <button class="mobile-menu-toggle" aria-label="Відкрити меню" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html">
+                            <i class="fas fa-home"></i>
+                            <span>Головна</span>
+                        </a></li>
+                        <li><a href="about.html">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Про нас</span>
+                        </a></li>
+                        <li><a href="clans.html">
+                            <i class="fas fa-users"></i>
+                            <span>Клани</span>
+                        </a></li>
+                        <li><a href="streamers.html">
+                            <i class="fas fa-video"></i>
+                            <span>Стримери</span>
+                        </a></li>
+                        <li><a href="events.html" class="active">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Події</span>
+                        </a></li>
+                        <li><a href="contact.html">
+                            <i class="fas fa-envelope"></i>
+                            <span>Контакти</span>
+                        </a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <section class="page-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="page-title">Календар <span>подій</span></h1>
+                    <div class="breadcrumbs">
+                        <a href="index.html">Головна</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <span>Календар подій</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="events-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Офіційний <span>Календар Подій</span></h2>
+                    <p class="section-subtitle">Актуальні події та турніри у World of Tanks</p>
+                </div>
+                
+                <!-- Контейнер для календаря подій -->
+                <div id="wot-calendar" class="event-calendar_wrapper">
+                    <!-- Календар буде завантажено через JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section class="events-timeline-section dark-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Внутрішні <span>Події Альянсу</span></h2>
+                    <p class="section-subtitle">Розклад наших турнірів, скірмішів та внутрішніх зустрічей</p>
+                </div>
+                
+                <div class="events-timeline">
+                    <div class="timeline-event">
+                        <div class="event-date">
+                            <div class="date-day">12</div>
+                            <div class="date-month">Травня</div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-category tournament">Турнір</div>
+                            <h3 class="event-title">Щотижневий кланвар на Глобальній карті</h3>
+                            <p class="event-description">Участь беруть G1_UA та G2_UA. Заявки на участь приймаються до 10 травня.</p>
+                            <div class="event-time">
+                                <i class="fas fa-clock"></i>
+                                <span>19:00 - 22:00</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-sm">Деталі</a>
+                    </div>
+                    
+                    <div class="timeline-event">
+                        <div class="event-date">
+                            <div class="date-day">15</div>
+                            <div class="date-month">Травня</div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-category training">Тренування</div>
+                            <h3 class="event-title">Навчальний скірміш для новачків</h3>
+                            <p class="event-description">Відпрацювання базових тактик на картах. Для учасників G4_UA та G5_UA.</p>
+                            <div class="event-time">
+                                <i class="fas fa-clock"></i>
+                                <span>18:00 - 20:00</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-sm">Деталі</a>
+                    </div>
+                    
+                    <div class="timeline-event">
+                        <div class="event-date">
+                            <div class="date-day">20</div>
+                            <div class="date-month">Травня</div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-category community">Зустріч</div>
+                            <h3 class="event-title">Дискорд-мітап "Питання-відповідь" з командирами</h3>
+                            <p class="event-description">Обговорення стратегії альянсу, відповіді на запитання учасників.</p>
+                            <div class="event-time">
+                                <i class="fas fa-clock"></i>
+                                <span>20:00 - 21:30</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-sm">Деталі</a>
+                    </div>
+                </div>
+                
+                <div class="section-footer">
+                    <a href="#" class="btn btn-primary">
+                        <span>Всі події альянсу</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="main-footer">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="footer-grid">
+                        <div class="footer-about">
+                            <div class="footer-logo">
+                                <div class="logo-emblem">G_UA</div>
+                                <div class="logo-text">Альянс <span>G_UA</span></div>
+                            </div>
+                            <p class="footer-description">
+                                Альянс G_UA - найбільше українське об'єднання кланів у грі World of Tanks на європейському сервері.
+                            </p>
+                            <div class="social-links">
+                                <a href="#" class="social-link" aria-label="Facebook">
+								<i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-link" aria-label="YouTube">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Telegram">
+                                    <i class="fab fa-telegram"></i>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Discord">
+                                    <i class="fab fa-discord"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="footer-nav">
+                            <h3 class="footer-heading">Навігація</h3>
+                            <ul class="footer-links">
+                                <li><a href="index.html">Головна</a></li>
+                                <li><a href="about.html">Про нас</a></li>
+                                <li><a href="clans.html">Наші клани</a></li>
+                                <li><a href="streamers.html">Стримери</a></li>
+                                <li><a href="events.html">Події</a></li>
+                                <li><a href="contact.html">Контакти</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-services">
+                            <h3 class="footer-heading">Сервіси</h3>
+                            <ul class="footer-links">
+                                <li><a href="services.html#boost">Буст акаунтів</a></li>
+                                <li><a href="services.html#training">Тренування</a></li>
+                                <li><a href="services.html#tournaments">Участь у турнірах</a></li>
+                                <li><a href="services.html#clanwars">Кланові війни</a></li>
+                                <li><a href="services.html#lessons">Індивідуальні уроки</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-contact">
+                            <h3 class="footer-heading">Зв'язатися з нами</h3>
+                            <div class="contact-methods">
+                                <div class="contact-method">
+                                    <i class="fas fa-envelope"></i>
+                                    <a href="mailto:contact@g-ua-alliance.com">contact@g-ua-alliance.com</a>
+                                </div>
+                                <div class="contact-method">
+                                    <i class="fab fa-discord"></i>
+                                    <span>discord.gg/g_ua_alliance</span>
+                                </div>
+                                <div class="contact-method">
+                                    <i class="fab fa-telegram"></i>
+                                    <a href="https://t.me/g_ua_alliance">t.me/g_ua_alliance</a>
+                                </div>
+                            </div>
+                            
+                            <div class="newsletter">
+                                <h4>Підпишіться на новини</h4>
+                                <form class="newsletter-form">
+                                    <input type="email" placeholder="Ваш email" required>
+                                    <button type="submit" class="btn btn-sm btn-primary">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="copyright">
+                        &copy; 2025 Альянс G_UA. Всі права захищені.
+                    </div>
+                    <div class="footer-links-secondary">
+                        <a href="privacy.html">Політика конфіденційності</a>
+                        <a href="terms.html">Умови користування</a>
+                        <a href="rules.html">Правила альянсу</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div class="scroll-top">
+        <button aria-label="Нагору">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </div>
+
+    <!-- Підключення основних скриптів -->
+    <script src="js/main.js"></script>
+    
+    <!-- Підключення скрипта календаря подій -->
+    <script src="js/wot-calendar.js"></script>
+</body>
+</html>

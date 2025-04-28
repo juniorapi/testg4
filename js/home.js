@@ -22,17 +22,74 @@ function initSlider() {
     
     if (sliderContainer && prevButton && nextButton) {
         // Отримуємо всі клан-карточки
-        const slides = sliderContainer.querySelectorAll('.clan-card');
-        const slideWidth = slides[0]?.offsetWidth + 20; // Ширина слайда + gap
+        const slides = Array.from(sliderContainer.querySelectorAll('.clan-card'));
         let currentSlide = 0;
         const slidesCount = slides.length;
         
-        // Створюємо точки індикатора слайдів
-        if (sliderDots) {
-            for (let i = 0; i < slidesCount; i++) {
+        // Визначаємо кількість видимих слайдів залежно від ширини екрану
+        const getVisibleSlidesCount = () => {
+            if (window.innerWidth <= 576) return 1;
+            if (window.innerWidth <= 992) return 2;
+            return 3;
+        };
+        
+        let slidesPerView = getVisibleSlidesCount();
+        
+        // Обчислюємо ширину одного слайда з урахуванням відступів
+        const calculateSlideWidth = () => {
+            // Отримуємо ширину контейнера
+            const containerWidth = sliderContainer.offsetWidth;
+            // Обчислюємо проміжок між слайдами
+            const gap = parseInt(window.getComputedStyle(sliderContainer).gap) || 20;
+            
+            // Обчислюємо ширину слайда (з урахуванням gap)
+            const slideWidth = (containerWidth - (gap * (slidesPerView - 1))) / slidesPerView;
+            
+            // Встановлюємо ширину для кожного слайда
+            slides.forEach(slide => {
+                slide.style.flexBasis = `${slideWidth}px`;
+                slide.style.minWidth = `${slideWidth}px`;
+            });
+            
+            return slideWidth + gap;
+        };
+        
+        // Функція переходу до конкретного слайда
+        function goToSlide(index) {
+            if (index < 0) index = 0;
+            const maxIndex = slidesCount - slidesPerView;
+            if (index > maxIndex) index = maxIndex;
+            
+            currentSlide = index;
+            
+            // Розраховуємо ширину слайда
+            const slideWidth = calculateSlideWidth();
+            
+            // Прокручуємо контейнер до потрібного слайда
+            sliderContainer.scrollTo({
+                left: slideWidth * currentSlide,
+                behavior: 'smooth'
+            });
+            
+            // Оновлюємо активну точку
+            updateActiveDot();
+            // Оновлюємо стан кнопок
+            updateButtonsState();
+        }
+        
+        // Функція оновлення точок
+        function updateDots() {
+            if (!sliderDots) return;
+            
+            sliderDots.innerHTML = ''; // Очищаємо всі існуючі точки
+            
+            // Визначаємо кількість точок
+            const dotsCount = Math.max(1, slidesCount - slidesPerView + 1);
+            
+            for (let i = 0; i < dotsCount; i++) {
                 const dot = document.createElement('div');
                 dot.classList.add('dot');
-                if (i === 0) dot.classList.add('active');
+                if (i === currentSlide) dot.classList.add('active');
                 
                 dot.addEventListener('click', () => {
                     goToSlide(i);
@@ -40,31 +97,6 @@ function initSlider() {
                 
                 sliderDots.appendChild(dot);
             }
-        }
-        
-        // Функція переходу до конкретного слайда
-        function goToSlide(index) {
-            if (index < 0) index = 0;
-            if (index >= slidesCount) index = slidesCount - 1;
-            
-            currentSlide = index;
-            
-            // Прокручуємо контейнер
-            if (window.innerWidth > 992) {
-                sliderContainer.scrollTo({
-                    left: slideWidth * currentSlide,
-                    behavior: 'smooth'
-                });
-            } else {
-                slides[currentSlide].scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'nearest',
-                    inline: 'start'
-                });
-            }
-            
-            // Оновлюємо активну точку
-            updateActiveDot();
         }
         
         // Функція оновлення активної точки
@@ -110,6 +142,38 @@ function initSlider() {
                 goToSlide(currentSlide - 1); // Свайп вправо
             }
         }
+        
+        // Перевіряємо доступність кнопок
+        function updateButtonsState() {
+            prevButton.disabled = currentSlide === 0;
+            nextButton.disabled = currentSlide >= slidesCount - slidesPerView;
+            
+            prevButton.style.opacity = prevButton.disabled ? '0.5' : '1';
+            nextButton.style.opacity = nextButton.disabled ? '0.5' : '1';
+        }
+        
+        // Функція для оновлення слайдера при зміні розміру вікна
+        function handleResize() {
+            const newSlidesPerView = getVisibleSlidesCount();
+            
+            // Якщо змінилася кількість видимих слайдів, оновлюємо точки
+            if (newSlidesPerView !== slidesPerView) {
+                slidesPerView = newSlidesPerView;
+                updateDots();
+            }
+            
+            // Переходимо до поточного слайду з новими розмірами
+            calculateSlideWidth();
+            goToSlide(currentSlide);
+        }
+        
+        // Ініціалізуємо слайдер
+        calculateSlideWidth();
+        updateDots();
+        updateButtonsState();
+        
+        // Додаємо обробник зміни розміру вікна
+        window.addEventListener('resize', handleResize);
     }
 }
 
@@ -118,13 +182,116 @@ function initSlider() {
  */
 function initPlayButton() {
     const mediaCard = document.querySelector('.media-card');
-    const playButton = document.querySelector('.play-button');
+    const playButton = document.querySelector('.media-overlay .play-button');
     
     if (mediaCard && playButton) {
         playButton.addEventListener('click', function() {
-            // Тут можна додати код для відтворення відео
-            // Наприклад, створити модальне вікно з відео
-            alert('Відтворення відео демонстрації альянсу');
+            // Створюємо модальне вікно для відтворення відео
+            const videoModal = document.createElement('div');
+            videoModal.className = 'video-modal';
+            videoModal.innerHTML = `
+                <div class="video-modal-content">
+                    <button class="video-modal-close"><i class="fas fa-times"></i></button>
+                    <div class="video-container">
+                        <!-- Вставляємо YouTube iframe з автовідтворенням і без елементів керування -->
+                        <iframe src="https://www.youtube.com/embed/YShh-G6dL4A?autoplay=1&controls=0&disablekb=1&rel=0&showinfo=0" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(videoModal);
+            document.body.style.overflow = 'hidden'; // Блокуємо прокрутку
+            
+            // Додаємо стилі для відео-модальника
+            const style = document.createElement('style');
+            style.textContent = `
+                .video-modal {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.9);
+                    z-index: 9999;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    opacity: 0;
+                    transition: opacity 0.3s;
+                }
+                .video-modal-content {
+                    position: relative;
+                    width: 80%;
+                    max-width: 900px;
+                    background: #000;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+                }
+                .video-modal-close {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    background: rgba(0, 0, 0, 0.5);
+                    border: none;
+                    color: white;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    z-index: 10;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: background 0.3s;
+                }
+                .video-modal-close:hover {
+                    background: rgba(227, 41, 39, 0.8);
+                }
+                .video-container {
+                    position: relative;
+                    padding-bottom: 56.25%; /* 16:9 */
+                    height: 0;
+                    overflow: hidden;
+                }
+                .video-container iframe {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border: 0;
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Анімуємо появу модального вікна
+            setTimeout(() => {
+                videoModal.style.opacity = '1';
+            }, 10);
+            
+            // Додаємо обробник для закриття модального вікна
+            const closeButton = videoModal.querySelector('.video-modal-close');
+            if (closeButton) {
+                closeButton.addEventListener('click', function() {
+                    videoModal.style.opacity = '0';
+                    setTimeout(() => {
+                        videoModal.remove();
+                        document.body.style.overflow = ''; // Знову дозволяємо прокрутку
+                    }, 300);
+                });
+            }
+            
+            // Також закриваємо при кліку за межами контенту
+            videoModal.addEventListener('click', function(e) {
+                if (e.target === videoModal) {
+                    closeButton.click();
+                }
+            });
         });
     }
 }
