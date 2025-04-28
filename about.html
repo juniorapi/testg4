@@ -4,224 +4,304 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Про нас - Альянс G_UA</title>
+    <meta name="description" content="Історія та цінності української спільноти World of Tanks - Альянс G_UA">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/about.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Exo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Елементи фону -->
-    <div class="background-container"></div>
-    <div class="overlay"></div>
-
-    <header>
-        <div class="container nav-container">
-            <a href="index.html" class="logo">Альянс <span>G_UA</span></a>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Головна</a></li>
-                    <li><a href="about.html" class="active">Про нас</a></li>
-                    <li><a href="clans.html">Клани</a></li>
-                    <li><a href="streamers.html">Стримери</a></li>
-                    <li><a href="contact.html">Контакти</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <div class="page-header">
-        <div class="container">
-            <h1>Про <span>Альянс</span></h1>
-            <p>Історія та цінності нашої спільноти</p>
-        </div>
+    <!-- Анімований фон з частинками -->
+    <div class="bg-animation">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+        <div id="stars4"></div>
+        <div class="bg-overlay"></div>
     </div>
 
-    <section class="about-section">
-        <div class="container">
-            <div class="about-content-full">
-                <h2 class="section-title">Наша <span>Історія</span></h2>
-                <p>
-                    Альянс G_UA був заснований у 2018 році групою ентузіастів World of Tanks, об'єднаних спільною 
-                    метою — створити потужну українську спільноту в грі. Починаючи з одного клану G1_UA, ми поступово 
-                    розширювались, залучаючи все більше гравців та формуючи нові підрозділи.
-                </p>
-                <p>
-                    За ці роки ми пройшли довгий шлях від невеликої групи однодумців до найбільшого українського 
-                    альянсу в World of Tanks на європейському сервері. Ми брали участь у кланових війнах, турнірах, 
-                    чемпіонатах і завжди демонстрували високий рівень гри та командної роботи.
-                </p>
+    <div class="page-wrapper">
+        <header class="main-header glass-panel">
+            <div class="container header-container">
+                <a href="index.html" class="logo">
+                    <div class="logo-emblem">
+                        <img src="img/emblem_195x195.png" alt="G_UA">
+                    </div>
+                    <div class="logo-text">Альянс <span>G_UA</span></div>
+                </a>
                 
-                <div class="about-media">
-                    <img src="/api/placeholder/800/400" alt="Історія G_UA" class="about-img">
-                </div>
-
-                <h2 class="section-title">Наші <span>Цінності</span></h2>
-                <div class="values-grid">
-                    <div class="value-card">
-                        <div class="value-icon">
-                            <i class="fas fa-handshake"></i>
-                        </div>
-                        <h3>Взаємоповага</h3>
-                        <p>Ми створюємо дружнє середовище, де кожен гравець відчуває себе частиною команди</p>
-                    </div>
-                    <div class="value-card">
-                        <div class="value-icon">
-                            <i class="fas fa-award"></i>
-                        </div>
-                        <h3>Майстерність</h3>
-                        <p>Ми прагнемо постійно вдосконалювати свої навички та допомагаємо розвиватися іншим</p>
-                    </div>
-                    <div class="value-card">
-                        <div class="value-icon">
+                <button class="mobile-menu-toggle" aria-label="Відкрити меню" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html">
+                            <i class="fas fa-home"></i>
+                            <span>Головна</span>
+                        </a></li>
+                        <li><a href="about.html" class="active">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Про нас</span>
+                        </a></li>
+                        <li><a href="clans.html">
                             <i class="fas fa-users"></i>
-                        </div>
-                        <h3>Командна робота</h3>
-                        <p>Наша сила в єдності — ми допомагаємо один одному і разом досягаємо успіху</p>
-                    </div>
-                    <div class="value-card">
-                        <div class="value-icon">
-                            <i class="fas fa-flag"></i>
-                        </div>
-                        <h3>Патріотизм</h3>
-                        <p>Ми пишаємося тим, що представляємо Україну у світовому геймінг-співтоваристві</p>
-                    </div>
-                </div>
+                            <span>Клани</span>
+                        </a></li>
+                        <li><a href="streamers.html">
+                            <i class="fas fa-video"></i>
+                            <span>Стримери</span>
+                        </a></li>
+                        <li><a href="contact.html">
+                            <i class="fas fa-envelope"></i>
+                            <span>Контакти</span>
+                        </a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
-                <h2 class="section-title">Наші <span>Досягнення</span></h2>
-                <div class="achievements-timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-year">2018</div>
-                        <div class="timeline-content">
-                            <h3>Заснування G1_UA</h3>
-                            <p>Створення першого клану та початок формування альянсу</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-year">2019</div>
-                        <div class="timeline-content">
-                            <h3>Перші перемоги</h3>
-                            <p>Участь у регіональних турнірах та перші серйозні досягнення</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-year">2020</div>
-                        <div class="timeline-content">
-                            <h3>Розширення альянсу</h3>
-                            <p>Створення G2_UA та G3_UA для гравців різного рівня</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-year">2021</div>
-                        <div class="timeline-content">
-                            <h3>Перемога на Clan Wars</h3>
-                            <p>Здобуття техніки 10 рівня на глобальній карті</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-year">2022-2024</div>
-                        <div class="timeline-content">
-                            <h3>Піднесення альянсу</h3>
-                            <p>Розширення до шести кланів та утвердження як найбільшого українського об'єднання на сервері</p>
-                        </div>
-                    </div>
-                </div>
-
-                <h2 class="section-title">Наша <span>Команда</span></h2>
-                <div class="team-grid">
-                    <div class="team-card">
-                        <div class="team-avatar">
-                            <img src="/api/placeholder/150/150" alt="Commander_UA">
-                        </div>
-                        <h3>Commander_UA</h3>
-                        <p class="team-role">Засновник і лідер альянсу</p>
-                        <p class="team-desc">Координує роботу всіх кланів та представляє альянс на турнірах</p>
-                    </div>
-                    <div class="team-card">
-                        <div class="team-avatar">
-                            <img src="/api/placeholder/150/150" alt="StrategyMaster">
-                        </div>
-                        <h3>StrategyMaster</h3>
-                        <p class="team-role">Головний стратег</p>
-                        <p class="team-desc">Розробляє тактики та стратегії для кланових боїв</p>
-                    </div>
-                    <div class="team-card">
-                        <div class="team-avatar">
-                            <img src="/api/placeholder/150/150" alt="RecruitUA">
-                        </div>
-                        <h3>RecruitUA</h3>
-                        <p class="team-role">Відповідальний за набір</p>
-                        <p class="team-desc">Відбирає нових членів та допомагає їм інтегруватися</p>
-                    </div>
-                    <div class="team-card">
-                        <div class="team-avatar">
-                            <img src="/api/placeholder/150/150" alt="TechSupport">
-                        </div>
-                        <h3>TechSupport</h3>
-                        <p class="team-role">Технічна підтримка</p>
-                        <p class="team-desc">Адмініструє ресурси альянсу та вирішує технічні питання</p>
-                    </div>
-                </div>
+        <div class="page-header">
+            <div class="container">
+                <h1>Про <span>Альянс</span></h1>
+                <p>Історія та цінності нашої спільноти</p>
             </div>
         </div>
-    </section>
 
-    <section class="cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Приєднуйтесь до нашої спільноти!</h2>
-                <p>Станьте частиною найбільшого українського альянсу в World of Tanks</p>
-                <a href="contact.html" class="btn btn-large">Зв'язатися з нами</a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Альянс G_UA</h3>
-                    <ul>
-                        <li><a href="index.html">Головна</a></li>
-                        <li><a href="about.html">Про нас</a></li>
-                        <li><a href="clans.html">Наші клани</a></li>
-                        <li><a href="streamers.html">Стримери</a></li>
-                        <li><a href="contact.html">Контакти</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Сервіси</h3>
-                    <ul>
-                        <li><a href="services.html#boost">Буст аккаунтів</a></li>
-                        <li><a href="services.html#training">Тренування</a></li>
-                        <li><a href="services.html#tournaments">Участь у турнірах</a></li>
-                        <li><a href="services.html#clanwars">Клановим війни</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Корисні посилання</h3>
-                    <ul>
-                        <li><a href="https://worldoftanks.eu" target="_blank">World of Tanks EU</a></li>
-                        <li><a href="https://wargaming.net" target="_blank">Wargaming.net</a></li>
-                        <li><a href="events.html">Турніри та події</a></li>
-                        <li><a href="rules.html">Правила альянсу</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Соціальні мережі</h3>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-discord"></i></a>
-                    </div>
-                    <p class="contact-info">
-                        <strong>Email:</strong> contact@g-ua-alliance.com<br>
-                        <strong>Discord:</strong> discord.gg/g_ua_alliance
+        <section class="about-section">
+            <div class="container">
+                <div class="about-content-full">
+                    <h2 class="section-title">Наша <span>Історія</span></h2>
+                    <p>
+                        Альянс G_UA був заснований у 2018 році групою ентузіастів World of Tanks, об'єднаних спільною 
+                        метою — створити потужну українську спільноту в грі. Починаючи з одного клану G1_UA, ми поступово 
+                        розширювались, залучаючи все більше гравців та формуючи нові підрозділи.
                     </p>
+                    <p>
+                        За ці роки ми пройшли довгий шлях від невеликої групи однодумців до найбільшого українського 
+                        альянсу в World of Tanks на європейському сервері. Ми брали участь у кланових війнах, турнірах, 
+                        чемпіонатах і завжди демонстрували високий рівень гри та командної роботи.
+                    </p>
+                    
+                    <div class="about-media">
+                        <img src="/api/placeholder/800/400" alt="Історія G_UA" class="about-img">
+                    </div>
+
+                    <h2 class="section-title">Наші <span>Цінності</span></h2>
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h3>Взаємоповага</h3>
+                            <p>Ми створюємо дружнє середовище, де кожен гравець відчуває себе частиною команди</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <h3>Майстерність</h3>
+                            <p>Ми прагнемо постійно вдосконалювати свої навички та допомагаємо розвиватися іншим</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>Командна робота</h3>
+                            <p>Наша сила в єдності — ми допомагаємо один одному і разом досягаємо успіху</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-flag"></i>
+                            </div>
+                            <h3>Патріотизм</h3>
+                            <p>Ми пишаємося тим, що представляємо Україну у світовому геймінг-співтоваристві</p>
+                        </div>
+                    </div>
+
+                    <h2 class="section-title">Наші <span>Досягнення</span></h2>
+                    <div class="achievements-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">2018</div>
+                            <div class="timeline-content">
+                                <h3>Заснування G1_UA</h3>
+                                <p>Створення першого клану та початок формування альянсу</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2019</div>
+                            <div class="timeline-content">
+                                <h3>Перші перемоги</h3>
+                                <p>Участь у регіональних турнірах та перші серйозні досягнення</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2020</div>
+                            <div class="timeline-content">
+                                <h3>Розширення альянсу</h3>
+                                <p>Створення G2_UA та G3_UA для гравців різного рівня</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2021</div>
+                            <div class="timeline-content">
+                                <h3>Перемога на Clan Wars</h3>
+                                <p>Здобуття техніки 10 рівня на глобальній карті</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2022-2024</div>
+                            <div class="timeline-content">
+                                <h3>Піднесення альянсу</h3>
+                                <p>Розширення до шести кланів та утвердження як найбільшого українського об'єднання на сервері</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="section-title">Наша <span>Команда</span></h2>
+                    <div class="team-grid">
+                        <div class="team-card">
+                            <div class="team-avatar">
+                                <img src="img/emblem_195x195.png" alt="Commander_UA">
+                            </div>
+                            <h3>Commander_UA</h3>
+                            <p class="team-role">Засновник і лідер альянсу</p>
+                            <p class="team-desc">Координує роботу всіх кланів та представляє альянс на турнірах</p>
+                        </div>
+                        <div class="team-card">
+                            <div class="team-avatar">
+                                <img src="img/emblem_195x195.png" alt="StrategyMaster">
+                            </div>
+                            <h3>StrategyMaster</h3>
+                            <p class="team-role">Головний стратег</p>
+                            <p class="team-desc">Розробляє тактики та стратегії для кланових боїв</p>
+                        </div>
+                        <div class="team-card">
+                            <div class="team-avatar">
+                                <img src="img/emblem_195x195.png" alt="RecruitUA">
+                            </div>
+                            <h3>RecruitUA</h3>
+                            <p class="team-role">Відповідальний за набір</p>
+                            <p class="team-desc">Відбирає нових членів та допомагає їм інтегруватися</p>
+                        </div>
+                        <div class="team-card">
+                            <div class="team-avatar">
+                                <img src="img/emblem_195x195.png" alt="TechSupport">
+                            </div>
+                            <h3>TechSupport</h3>
+                            <p class="team-role">Технічна підтримка</p>
+                            <p class="team-desc">Адмініструє ресурси альянсу та вирішує технічні питання</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Альянс G_UA. Всі права захищені.</p>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Приєднуйтесь до нашої спільноти!</h2>
+                    <p>Станьте частиною найбільшого українського альянсу в World of Tanks</p>
+                    <a href="contact.html" class="btn btn-large">Зв'язатися з нами</a>
+                </div>
             </div>
-        </div>
-    </footer>
+        </section>
+
+        <footer class="main-footer">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="footer-grid">
+                        <div class="footer-about">
+                            <div class="footer-logo">
+                                <div class="logo-emblem">
+                                    <img src="img/emblem_195x195.png" alt="G_UA">
+                                </div>
+                                <div class="logo-text">Альянс <span>G_UA</span></div>
+                            </div>
+                            <p class="footer-description">
+                                Альянс G_UA - найбільше українське об'єднання кланів у грі World of Tanks на європейському сервері.
+                            </p>
+                            <div class="social-links">
+                                <a href="#" class="social-link" aria-label="Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-link" aria-label="YouTube">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Telegram">
+                                    <i class="fab fa-telegram"></i>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Discord">
+                                    <i class="fab fa-discord"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="footer-nav">
+                            <h3 class="footer-heading">Навігація</h3>
+                            <ul class="footer-links">
+                                <li><a href="index.html">Головна</a></li>
+                                <li><a href="about.html">Про нас</a></li>
+                                <li><a href="clans.html">Наші клани</a></li>
+                                <li><a href="streamers.html">Стримери</a></li>
+                                <li><a href="contact.html">Контакти</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-services">
+                            <h3 class="footer-heading">Сервіси</h3>
+                            <ul class="footer-links">
+                                <li><a href="services.html#boost">Буст аккаунтів</a></li>
+                                <li><a href="services.html#training">Тренування</a></li>
+                                <li><a href="services.html#tournaments">Участь у турнірах</a></li>
+                                <li><a href="services.html#clanwars">Клановим війни</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-contact">
+                            <h3 class="footer-heading">Зв'язатися з нами</h3>
+                            <div class="contact-methods">
+                                <div class="contact-method">
+                                    <i class="fas fa-envelope"></i>
+                                    <a href="mailto:contact@g-ua-alliance.com">contact@g-ua-alliance.com</a>
+                                </div>
+                                <div class="contact-method">
+                                    <i class="fab fa-discord"></i>
+                                    <span>discord.gg/g_ua_alliance</span>
+                                </div>
+                                <div class="contact-method">
+                                    <i class="fab fa-telegram"></i>
+                                    <a href="https://t.me/g_ua_alliance">t.me/g_ua_alliance</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="copyright">
+                        &copy; 2025 Альянс G_UA. Всі права захищені.
+                    </div>
+                    <div class="footer-links-secondary">
+                        <a href="privacy.html">Політика конфіденційності</a>
+                        <a href="terms.html">Умови користування</a>
+                        <a href="rules.html">Правила альянсу</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div class="scroll-top">
+        <button aria-label="Нагору">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </div>
+
+    <script src="js/main.js"></script>
 </body>
 </html>
