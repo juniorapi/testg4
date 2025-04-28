@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Стримери Альянсу G_UA - Офіційні трансляції українських гравців WoT</title>
+    <title>Стримери - Альянс G_UA</title>
     <meta name="description" content="Офіційні стримери альянсу G_UA. Дивіться стріми наших гравців, вчіться та спілкуйтесь з ними в прямому ефірі.">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/streamers.css">
@@ -26,7 +26,9 @@
         <header class="main-header glass-panel">
             <div class="container header-container">
                 <a href="index.html" class="logo">
-                    <div class="logo-emblem">G_UA</div>
+                    <div class="logo-emblem">
+                        <img src="img/emblem_195x195.png" alt="G_UA">
+                    </div>
                     <div class="logo-text">Альянс <span>G_UA</span></div>
                 </a>
                 
@@ -161,7 +163,9 @@
                     <div class="footer-grid">
                         <div class="footer-about">
                             <div class="footer-logo">
-                                <div class="logo-emblem">G_UA</div>
+                                <div class="logo-emblem">
+                                    <img src="img/emblem_195x195.png" alt="G_UA">
+                                </div>
                                 <div class="logo-text">Альянс <span>G_UA</span></div>
                             </div>
                             <p class="footer-description">
@@ -222,16 +226,6 @@
                                     <a href="https://t.me/g_ua_alliance">t.me/g_ua_alliance</a>
                                 </div>
                             </div>
-                            
-                            <div class="newsletter">
-                                <h4>Підпишіться на новини</h4>
-                                <form class="newsletter-form">
-                                    <input type="email" placeholder="Ваш email" required>
-                                    <button type="submit" class="btn btn-sm btn-primary">
-                                        <i class="fas fa-paper-plane"></i>
-                                    </button>
-                                </form>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -267,7 +261,7 @@
                             <h4>Членство в клані альянсу</h4>
                             <p>Ви повинні бути активним учасником одного з кланів альянсу G_UA</p>
                         </div>
-					</li>
+                    </li>
                     <li>
                         <i class="fas fa-check"></i>
                         <div>
@@ -366,40 +360,6 @@
         </div>
     </template>
 
-    <!-- Шаблон для пустого стану -->
-    <template id="empty-template">
-        <div class="empty-state">
-            <div class="empty-icon">
-                <i class="fas fa-user-slash"></i>
-            </div>
-            <h3 class="empty-title">Стримерів не знайдено</h3>
-            <p class="empty-message">За вашим запитом не знайдено стримерів. Спробуйте змінити фільтр або перегляньте всіх стримерів.</p>
-            <button class="btn btn-primary reset-filters">
-                <i class="fas fa-redo"></i>
-                <span>Скинути фільтри</span>
-            </button>
-        </div>
-    </template>
-
-    <!-- Шаблон для сповіщення про стрім -->
-    <template id="notification-template">
-        <div class="stream-notification">
-            <div class="notification-avatar">
-                <img src="" alt="">
-            </div>
-            <div class="notification-content">
-                <div class="notification-title">
-                    <span class="live-badge">LIVE</span>
-                    <span class="streamer-name"></span>
-                </div>
-                <div class="notification-message"></div>
-            </div>
-            <button class="notification-close" aria-label="Закрити">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </template>
-
     <div class="scroll-top">
         <button aria-label="Нагору">
             <i class="fas fa-chevron-up"></i>
@@ -409,4 +369,4 @@
     <script src="js/main.js"></script>
     <script src="js/streamers.js"></script>
 </body>
-</html>	
+</html>
