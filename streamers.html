@@ -3,119 +3,410 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Стримери - Альянс G_UA</title>
+    <title>Стримери Альянсу G_UA - Офіційні трансляції українських гравців WoT</title>
     <meta name="description" content="Офіційні стримери альянсу G_UA. Дивіться стріми наших гравців, вчіться та спілкуйтесь з ними в прямому ефірі.">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/streamers.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Exo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Елементи фону -->
-    <div class="background-container"></div>
-    <div class="overlay"></div>
-
-    <header>
-        <div class="container nav-container">
-            <a href="index.html" class="logo">Альянс <span>G_UA</span></a>
-            <nav aria-label="Головна навігація">
-                <ul>
-                    <li><a href="index.html">Головна</a></li>
-                    <li><a href="about.html">Про нас</a></li>
-                    <li><a href="clans.html">Клани</a></li>
-                    <li><a href="streamers.html" class="active" aria-current="page">Стримери</a></li>
-                    <li><a href="contact.html">Контакти</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <div class="page-header">
-        <div class="container">
-            <h1>Наші <span>Стримери</span></h1>
-            <p>Дивіться стріми наших гравців, вчіться та спілкуйтесь з ними в прямому ефірі</p>
-        </div>
+    <!-- Анімований фон з частинками -->
+    <div class="bg-animation">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+        <div id="stars4"></div>
+        <div class="bg-overlay"></div>
     </div>
 
-    <section class="streamers-section">
-        <div class="container">
-            <div class="online-status-filter">
-                <h2 class="section-title">Стримери альянсу</h2>
-                <div class="filter-buttons" role="group" aria-label="Фільтр стримерів">
-                    <button class="filter-btn active" data-filter="all" aria-pressed="true">Всі стримери</button>
-                    <button class="filter-btn live-btn" data-filter="live" aria-pressed="false">Зараз в ефірі <span class="live-count" aria-live="polite">0</span></button>
+    <div class="page-wrapper">
+        <header class="main-header glass-panel">
+            <div class="container header-container">
+                <a href="index.html" class="logo">
+                    <div class="logo-emblem">G_UA</div>
+                    <div class="logo-text">Альянс <span>G_UA</span></div>
+                </a>
+                
+                <button class="mobile-menu-toggle" aria-label="Відкрити меню" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html">
+                            <i class="fas fa-home"></i>
+                            <span>Головна</span>
+                        </a></li>
+                        <li><a href="about.html">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Про нас</span>
+                        </a></li>
+                        <li><a href="clans.html">
+                            <i class="fas fa-users"></i>
+                            <span>Клани</span>
+                        </a></li>
+                        <li><a href="streamers.html" class="active">
+                            <i class="fas fa-video"></i>
+                            <span>Стримери</span>
+                        </a></li>
+                        <li><a href="contact.html">
+                            <i class="fas fa-envelope"></i>
+                            <span>Контакти</span>
+                        </a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <div class="page-header">
+            <div class="container">
+                <h1>Наші <span>Стримери</span></h1>
+                <p>Дивіться стріми наших гравців, вчіться та спілкуйтесь з ними в прямому ефірі</p>
+            </div>
+        </div>
+
+        <section class="streamers-section">
+            <div class="container">
+                <div class="filters-panel">
+                    <div class="filters-header">
+                        <h2 class="section-title">Стримери альянсу</h2>
+                        
+                        <div class="filters-actions">
+                            <div class="filter-dropdown">
+                                <div class="dropdown-toggle" id="clanFilter">
+                                    <span>Всі клани</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="dropdown-menu" id="clanFilterMenu">
+                                    <div class="dropdown-item active" data-value="all">Всі клани</div>
+                                    <div class="dropdown-item" data-value="G1_UA">G1_UA</div>
+                                    <div class="dropdown-item" data-value="G2_UA">G2_UA</div>
+                                    <div class="dropdown-item" data-value="G3_UA">G3_UA</div>
+                                    <div class="dropdown-item" data-value="G4_UA">G4_UA</div>
+                                    <div class="dropdown-item" data-value="G5_UA">G5_UA</div>
+                                    <div class="dropdown-item" data-value="G6_UA">G6_UA</div>
+                                </div>
+                            </div>
+                            
+                            <div class="filter-dropdown">
+                                <div class="dropdown-toggle" id="sortFilter">
+                                    <span>За замовчуванням</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="dropdown-menu" id="sortFilterMenu">
+                                    <div class="dropdown-item active" data-value="default">За замовчуванням</div>
+                                    <div class="dropdown-item" data-value="name-asc">За іменем (А-Я)</div>
+                                    <div class="dropdown-item" data-value="name-desc">За іменем (Я-А)</div>
+                                    <div class="dropdown-item" data-value="viewers">За глядачами (спадання)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="all">
+                            <i class="fas fa-users"></i>
+                            <span>Всі стримери</span>
+                        </button>
+                        <button class="filter-tab live-btn" data-filter="live">
+                            <i class="fas fa-broadcast-tower"></i>
+                            <span>Зараз в ефірі</span>
+                            <span class="live-count">0</span>
+                        </button>
+                        <button class="filter-tab" data-filter="recent">
+                            <i class="fas fa-history"></i>
+                            <span>Недавно</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="streamers-container" class="streamers-grid">
+                    <!-- Стан завантаження -->
+                    <div class="loading-state">
+                        <div class="loader"></div>
+                        <p class="loading-message">Завантаження стримерів...</p>
+                    </div>
+                    
+                    <!-- Стримери будуть додані через JavaScript -->
+                </div>
+                
+                <div class="apply-section">
+                    <div class="apply-container">
+                        <h2 class="apply-title">Станьте стримером альянсу G_UA</h2>
+                        <p class="apply-description">
+                            Якщо ви регулярно стримите World of Tanks, є членом одного з наших кланів 
+                            та хочете стати офіційним стримером альянсу - зв'яжіться з нами!
+                        </p>
+                        <div class="apply-actions">
+                            <a href="contact.html" class="btn btn-primary btn-lg">
+                                <span>Подати заявку</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </a>
+                            <a href="#requirements" class="btn btn-outline btn-lg open-requirements">
+                                <span>Вимоги до стримерів</span>
+                                <i class="fas fa-list-check"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="main-footer">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="footer-grid">
+                        <div class="footer-about">
+                            <div class="footer-logo">
+                                <div class="logo-emblem">G_UA</div>
+                                <div class="logo-text">Альянс <span>G_UA</span></div>
+                            </div>
+                            <p class="footer-description">
+                                Альянс G_UA - найбільше українське об'єднання кланів у грі World of Tanks на європейському сервері.
+                            </p>
+                            <div class="social-links">
+                                <a href="#" class="social-link" aria-label="Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-link" aria-label="YouTube">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Telegram">
+                                    <i class="fab fa-telegram"></i>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Discord">
+                                    <i class="fab fa-discord"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="footer-nav">
+                            <h3 class="footer-heading">Навігація</h3>
+                            <ul class="footer-links">
+                                <li><a href="index.html">Головна</a></li>
+                                <li><a href="about.html">Про нас</a></li>
+                                <li><a href="clans.html">Наші клани</a></li>
+                                <li><a href="streamers.html">Стримери</a></li>
+                                <li><a href="events.html">Події</a></li>
+                                <li><a href="contact.html">Контакти</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-services">
+                            <h3 class="footer-heading">Сервіси</h3>
+                            <ul class="footer-links">
+                                <li><a href="services.html#boost">Буст акаунтів</a></li>
+                                <li><a href="services.html#training">Тренування</a></li>
+                                <li><a href="services.html#tournaments">Участь у турнірах</a></li>
+                                <li><a href="services.html#clanwars">Кланові війни</a></li>
+                                <li><a href="services.html#lessons">Індивідуальні уроки</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-contact">
+                            <h3 class="footer-heading">Зв'язатися з нами</h3>
+                            <div class="contact-methods">
+                                <div class="contact-method">
+                                    <i class="fas fa-envelope"></i>
+                                    <a href="mailto:contact@g-ua-alliance.com">contact@g-ua-alliance.com</a>
+                                </div>
+                                <div class="contact-method">
+                                    <i class="fab fa-discord"></i>
+                                    <span>discord.gg/g_ua_alliance</span>
+                                </div>
+                                <div class="contact-method">
+                                    <i class="fab fa-telegram"></i>
+                                    <a href="https://t.me/g_ua_alliance">t.me/g_ua_alliance</a>
+                                </div>
+                            </div>
+                            
+                            <div class="newsletter">
+                                <h4>Підпишіться на новини</h4>
+                                <form class="newsletter-form">
+                                    <input type="email" placeholder="Ваш email" required>
+                                    <button type="submit" class="btn btn-sm btn-primary">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <div id="streamers-container" class="streamers-grid streamers-compact" aria-live="polite">
-                <!-- Тут будуть динамічно додаватися всі картки стримерів через JavaScript -->
-                <div class="no-streamers-message">
-                    <p>Завантаження списку стримерів...</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="apply-section">
-        <div class="container">
-            <div class="apply-content">
-                <h2>Хочете стати стримером альянсу?</h2>
-                <p>Якщо ви регулярно стримите World of Tanks, є учасником одного з наших кланів і хочете стати офіційним стримером альянсу - зв'яжіться з нами!</p>
-                <a href="contact.html" class="btn btn-large">Надіслати заявку</a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Альянс G_UA</h3>
-                    <ul>
-                        <li><a href="index.html">Головна</a></li>
-                        <li><a href="about.html">Про нас</a></li>
-                        <li><a href="clans.html">Наші клани</a></li>
-                        <li><a href="streamers.html">Стримери</a></li>
-                        <li><a href="contact.html">Контакти</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Сервіси</h3>
-                    <ul>
-                        <li><a href="services.html#boost">Буст аккаунтів</a></li>
-                        <li><a href="services.html#training">Тренування</a></li>
-                        <li><a href="services.html#tournaments">Участь у турнірах</a></li>
-                        <li><a href="services.html#clanwars">Клановим війни</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Корисні посилання</h3>
-                    <ul>
-                        <li><a href="https://worldoftanks.eu" target="_blank" rel="noopener">World of Tanks EU</a></li>
-                        <li><a href="https://wargaming.net" target="_blank" rel="noopener">Wargaming.net</a></li>
-                        <li><a href="events.html">Турніри та події</a></li>
-                        <li><a href="rules.html">Правила альянсу</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Соціальні мережі</h3>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-                        <a href="#" aria-label="Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
-                        <a href="#" aria-label="Discord"><i class="fab fa-discord" aria-hidden="true"></i></a>
-                    </div>
-                    <p class="contact-info">
-                        <strong>Email:</strong> <a href="mailto:contact@g-ua-alliance.com">contact@g-ua-alliance.com</a><br>
-                        <strong>Discord:</strong> discord.gg/g_ua_alliance
-                    </p>
-                </div>
-            </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Альянс G_UA. Всі права захищені.</p>
+                <div class="container">
+                    <div class="copyright">
+                        &copy; 2025 Альянс G_UA. Всі права захищені.
+                    </div>
+                    <div class="footer-links-secondary">
+                        <a href="privacy.html">Політика конфіденційності</a>
+                        <a href="terms.html">Умови користування</a>
+                        <a href="rules.html">Правила альянсу</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Модальне вікно з вимогами до стримерів -->
+    <div class="modal-overlay" id="requirementsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Вимоги до офіційних стримерів альянсу</h3>
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <ul class="requirements-list">
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Членство в клані альянсу</h4>
+                            <p>Ви повинні бути активним учасником одного з кланів альянсу G_UA</p>
+                        </div>
+					</li>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Регулярні трансляції</h4>
+                            <p>Мінімум 3 стріми на тиждень з грою World of Tanks тривалістю не менше 2 годин</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Якість контенту</h4>
+                            <p>Висока якість відео та звуку, корисний та розважальний контент для аудиторії</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Позитивний імідж</h4>
+                            <p>Дотримання етичних норм, відсутність токсичної поведінки, представлення альянсу у позитивному світлі</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Розвиток каналу</h4>
+                            <p>Активна робота над зростанням аудиторії та покращенням контенту</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <h4>Технічні вимоги</h4>
+                            <p>Стабільне інтернет-з'єднання, можливість стримити з роздільною здатністю 1080p</p>
+                        </div>
+                    </li>
+                </ul>
+                
+                <div class="modal-actions">
+                    <a href="contact.html" class="btn btn-primary">
+                        <span>Подати заявку</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </a>
+                </div>
             </div>
         </div>
-    </footer>
+    </div>
 
-    <script src="js/twitch.js"></script>
+    <!-- Шаблон для стримера (буде використовуватись JavaScript) -->
+    <template id="streamer-template">
+        <div class="streamer-card" data-clan="">
+            <div class="streamer-header">
+                <div class="streamer-avatar">
+                    <img src="" alt="">
+                </div>
+                <div class="streamer-info">
+                    <h3 class="streamer-name"></h3>
+                    <div class="clan-tag"></div>
+                    <div class="stream-status">
+                        <span class="status-offline">Офлайн</span>
+                    </div>
+                </div>
+            </div>
+            <div class="stream-info" style="display: none;">
+                <div class="stream-title"></div>
+                <div class="stream-meta">
+                    <div class="stream-category">
+                        <i class="fas fa-gamepad"></i>
+                        <span></span>
+                    </div>
+                    <div class="viewers-count">
+                        <i class="fas fa-user"></i>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="stream-actions">
+                    <a href="#" class="watch-btn" target="_blank">
+                        <i class="fas fa-play"></i>
+                        <span>Дивитися стрім</span>
+                    </a>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="#" class="social-link twitch" target="_blank" title="Twitch канал">
+                    <i class="fab fa-twitch"></i>
+                </a>
+                <a href="#" class="social-link youtube" target="_blank" title="YouTube канал">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="#" class="social-link discord" target="_blank" title="Discord сервер">
+                    <i class="fab fa-discord"></i>
+                </a>
+                <a href="#" class="social-link telegram" target="_blank" title="Telegram канал">
+                    <i class="fab fa-telegram"></i>
+                </a>
+            </div>
+        </div>
+    </template>
+
+    <!-- Шаблон для пустого стану -->
+    <template id="empty-template">
+        <div class="empty-state">
+            <div class="empty-icon">
+                <i class="fas fa-user-slash"></i>
+            </div>
+            <h3 class="empty-title">Стримерів не знайдено</h3>
+            <p class="empty-message">За вашим запитом не знайдено стримерів. Спробуйте змінити фільтр або перегляньте всіх стримерів.</p>
+            <button class="btn btn-primary reset-filters">
+                <i class="fas fa-redo"></i>
+                <span>Скинути фільтри</span>
+            </button>
+        </div>
+    </template>
+
+    <!-- Шаблон для сповіщення про стрім -->
+    <template id="notification-template">
+        <div class="stream-notification">
+            <div class="notification-avatar">
+                <img src="" alt="">
+            </div>
+            <div class="notification-content">
+                <div class="notification-title">
+                    <span class="live-badge">LIVE</span>
+                    <span class="streamer-name"></span>
+                </div>
+                <div class="notification-message"></div>
+            </div>
+            <button class="notification-close" aria-label="Закрити">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </template>
+
+    <div class="scroll-top">
+        <button aria-label="Нагору">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/streamers.js"></script>
 </body>
-</html>
+</html>	
