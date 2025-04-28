@@ -4,276 +4,355 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Контакти - Альянс G_UA</title>
+    <meta name="description" content="Зв'яжіться з нами, щоб приєднатися до української спільноти World of Tanks G_UA або задати питання.">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Exo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Елементи фону -->
-    <div class="background-container"></div>
-    <div class="overlay"></div>
-
-    <header>
-        <div class="container nav-container">
-            <a href="index.html" class="logo">Альянс <span>G_UA</span></a>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Головна</a></li>
-                    <li><a href="about.html">Про нас</a></li>
-                    <li><a href="clans.html">Клани</a></li>
-                    <li><a href="streamers.html">Стримери</a></li>
-                    <li><a href="contact.html" class="active">Контакти</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <div class="page-header">
-        <div class="container">
-            <h1>Зв'яжіться з <span>Нами</span></h1>
-            <p>Маєте питання чи хочете приєднатися до нашого альянсу? Напишіть нам!</p>
-        </div>
+    <!-- Анімований фон з частинками -->
+    <div class="bg-animation">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+        <div id="stars4"></div>
+        <div class="bg-overlay"></div>
     </div>
 
-    <section class="contact-section">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h2 class="section-title">Наші <span>Контакти</span></h2>
-                    <p>
-                        Ви можете зв'язатися з нами за допомогою будь-якого зручного для вас способу. 
-                        Наша команда готова відповісти на ваші запитання та розглянути заявки на вступ до альянсу.
-                    </p>
-                    
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
+    <div class="page-wrapper">
+        <header class="main-header glass-panel">
+            <div class="container header-container">
+                <a href="index.html" class="logo">
+                    <div class="logo-emblem">
+                        <img src="img/emblem_195x195.png" alt="G_UA">
+                    </div>
+                    <div class="logo-text">Альянс <span>G_UA</span></div>
+                </a>
+                
+                <button class="mobile-menu-toggle" aria-label="Відкрити меню" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html">
+                            <i class="fas fa-home"></i>
+                            <span>Головна</span>
+                        </a></li>
+                        <li><a href="about.html">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Про нас</span>
+                        </a></li>
+                        <li><a href="clans.html">
+                            <i class="fas fa-users"></i>
+                            <span>Клани</span>
+                        </a></li>
+                        <li><a href="streamers.html">
+                            <i class="fas fa-video"></i>
+                            <span>Стримери</span>
+                        </a></li>
+                        <li><a href="contact.html" class="active">
+                            <i class="fas fa-envelope"></i>
+                            <span>Контакти</span>
+                        </a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <div class="page-header">
+            <div class="container">
+                <h1>Зв'яжіться з <span>Нами</span></h1>
+                <p>Маєте питання чи хочете приєднатися до нашого альянсу? Напишіть нам!</p>
+            </div>
+        </div>
+
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h2 class="section-title">Наші <span>Контакти</span></h2>
+                        <p>
+                            Ви можете зв'язатися з нами за допомогою будь-якого зручного для вас способу. 
+                            Наша команда готова відповісти на ваші запитання та розглянути заявки на вступ до альянсу.
+                        </p>
+                        
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>Email</h3>
+                                    <p>contact@g-ua-alliance.com</p>
+                                    <p class="contact-note">Відповідь протягом 24 годин</p>
+                                </div>
                             </div>
-                            <div class="contact-details">
-                                <h3>Email</h3>
-                                <p>contact@g-ua-alliance.com</p>
-                                <p class="contact-note">Відповідь протягом 24 годин</p>
+                            
+                            <div class="contact-method">
+                                <div class="contact-icon">
+                                    <i class="fab fa-discord"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>Discord</h3>
+                                    <p>discord.gg/g_ua_alliance</p>
+                                    <p class="contact-note">Найшвидший спосіб зв'язку</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="contact-icon">
+                                    <i class="fab fa-telegram"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>Telegram</h3>
+                                    <p>t.me/g_ua_alliance</p>
+                                    <p class="contact-note">Для швидких запитань</p>
+                                </div>
                             </div>
                         </div>
                         
-                        <div class="contact-method">
-                            <div class="contact-icon">
-                                <i class="fab fa-discord"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h3>Discord</h3>
-                                <p>discord.gg/g_ua_alliance</p>
-                                <p class="contact-note">Найшвидший спосіб зв'язку</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-method">
-                            <div class="contact-icon">
-                                <i class="fab fa-telegram"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h3>Telegram</h3>
-                                <p>t.me/g_ua_alliance</p>
-                                <p class="contact-note">Для швидких запитань</p>
+                        <div class="social-media-links">
+                            <h3>Слідкуйте за нами</h3>
+                            <div class="social-icons">
+                                <a href="#" class="social-icon" title="Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-icon" title="YouTube">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="#" class="social-icon" title="Twitch">
+                                    <i class="fab fa-twitch"></i>
+                                </a>
+                                <a href="#" class="social-icon" title="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="social-media-links">
-                        <h3>Слідкуйте за нами</h3>
-                        <div class="social-icons">
-                            <a href="#" class="social-icon" title="Facebook">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="social-icon" title="YouTube">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                            <a href="#" class="social-icon" title="Twitch">
-                                <i class="fab fa-twitch"></i>
-                            </a>
-                            <a href="#" class="social-icon" title="Twitter">
-                                <i class="fab fa-twitter"></i>
-                            </a>
+                    <div class="contact-form-container">
+                        <h2 class="section-title">Напишіть <span>Нам</span></h2>
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Ваше ім'я *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="nickname">Ігровий нікнейм</label>
+                                <input type="text" id="nickname" name="nickname">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Тема *</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">Оберіть тему</option>
+                                    <option value="join">Заявка на вступ до клану</option>
+                                    <option value="question">Запитання про альянс</option>
+                                    <option value="cooperation">Пропозиція співпраці</option>
+                                    <option value="streamer">Заявка на статус стримера</option>
+                                    <option value="other">Інше</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group clan-select" style="display: none;">
+                                <label for="clan">Який клан вас цікавить?</label>
+                                <select id="clan" name="clan">
+                                    <option value="">Оберіть клан</option>
+                                    <option value="G1_UA">G1_UA - Основний клан</option>
+                                    <option value="G2_UA">G2_UA - Турнірний клан</option>
+                                    <option value="G3_UA">G3_UA - Клан для досвідчених гравців</option>
+                                    <option value="G4_UA">G4_UA - Стандартний клан</option>
+                                    <option value="G5_UA">G5_UA - Тренувальний клан</option>
+                                    <option value="G6_UA">G6_UA - Резервний клан</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Повідомлення *</label>
+                                <textarea id="message" name="message" rows="6" required></textarea>
+                            </div>
+                            
+                            <div class="form-group form-checkbox">
+                                <input type="checkbox" id="privacy" name="privacy" required>
+                                <label for="privacy">Я погоджуюсь з обробкою моїх персональних даних *</label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-large">Надіслати повідомлення</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-mini">
+            <div class="container">
+                <h2 class="section-title">Часті <span>Запитання</span></h2>
+                
+                <div class="faq-mini-grid">
+                    <div class="faq-mini-item">
+                        <h3>Як швидко ви розглядаєте заявки?</h3>
+                        <p>
+                            Зазвичай ми розглядаємо заявки на вступ до кланів протягом 1-3 днів. 
+                            Після розгляду з вами зв'яжеться один з наших рекрутерів.
+                        </p>
+                    </div>
+                    
+                    <div class="faq-mini-item">
+                        <h3>Що має містити заявка на вступ?</h3>
+                        <p>
+                            Ваш ігровий нікнейм, клан, який вас цікавить, інформацію про ваш досвід 
+                            (статистика, наявні танки) та чому ви хочете приєднатися саме до нас.
+                        </p>
+                    </div>
+                    
+                    <div class="faq-mini-item">
+                        <h3>Як стати стримером альянсу?</h3>
+                        <p>
+                            Для цього ви повинні бути членом одного з наших кланів, мати власний канал 
+                            стримінгу та регулярно стримити World of Tanks. Заповніть форму для подачі заявки.
+                        </p>
+                    </div>
+                    
+                    <div class="faq-mini-item">
+                        <h3>Чи можу я запропонувати співпрацю?</h3>
+                        <p>
+                            Так, ми відкриті до різних форм співпраці з іншими кланами, стримерами, 
+                            спільнотами та організаціями. Опишіть вашу пропозицію в формі зворотного зв'язку.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="main-footer">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="footer-grid">
+                        <div class="footer-about">
+                            <div class="footer-logo">
+                                <div class="logo-emblem">
+                                    <img src="img/emblem_195x195.png" alt="G_UA">
+                                </div>
+                                <div class="logo-text">Альянс <span>G_UA</span></div>
+                            </div>
+                           <p class="footer-description">
+                                    Альянс G_UA - найбільше українське об'єднання кланів у грі World of Tanks на європейському сервері.
+                                </p>
+                                <div class="social-links">
+                                    <a href="#" class="social-link" aria-label="Facebook">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="#" class="social-link" aria-label="YouTube">
+                                        <i class="fab fa-youtube"></i>
+                                    </a>
+                                    <a href="#" class="social-link" aria-label="Telegram">
+                                        <i class="fab fa-telegram"></i>
+                                    </a>
+                                    <a href="#" class="social-link" aria-label="Discord">
+                                        <i class="fab fa-discord"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="footer-nav">
+                                <h3 class="footer-heading">Навігація</h3>
+                                <ul class="footer-links">
+                                    <li><a href="index.html">Головна</a></li>
+                                    <li><a href="about.html">Про нас</a></li>
+                                    <li><a href="clans.html">Наші клани</a></li>
+                                    <li><a href="streamers.html">Стримери</a></li>
+                                    <li><a href="contact.html">Контакти</a></li>
+                                </ul>
+                            </div>
+                            
+                            <div class="footer-services">
+                                <h3 class="footer-heading">Сервіси</h3>
+                                <ul class="footer-links">
+                                    <li><a href="services.html#boost">Буст аккаунтів</a></li>
+                                    <li><a href="services.html#training">Тренування</a></li>
+                                    <li><a href="services.html#tournaments">Участь у турнірах</a></li>
+                                    <li><a href="services.html#clanwars">Клановим війни</a></li>
+                                </ul>
+                            </div>
+                            
+                            <div class="footer-contact">
+                                <h3 class="footer-heading">Зв'язатися з нами</h3>
+                                <div class="contact-methods">
+                                    <div class="contact-method">
+                                        <i class="fas fa-envelope"></i>
+                                        <a href="mailto:contact@g-ua-alliance.com">contact@g-ua-alliance.com</a>
+                                    </div>
+                                    <div class="contact-method">
+                                        <i class="fab fa-discord"></i>
+                                        <span>discord.gg/g_ua_alliance</span>
+                                    </div>
+                                    <div class="contact-method">
+                                        <i class="fab fa-telegram"></i>
+                                        <a href="https://t.me/g_ua_alliance">t.me/g_ua_alliance</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="contact-form-container">
-                    <h2 class="section-title">Напишіть <span>Нам</span></h2>
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Ваше ім'я *</label>
-                            <input type="text" id="name" name="name" required>
+                <div class="footer-bottom">
+                    <div class="container">
+                        <div class="copyright">
+                            &copy; 2025 Альянс G_UA. Всі права захищені.
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required>
+                        <div class="footer-links-secondary">
+                            <a href="privacy.html">Політика конфіденційності</a>
+                            <a href="terms.html">Умови користування</a>
+                            <a href="rules.html">Правила альянсу</a>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="nickname">Ігровий нікнейм</label>
-                            <input type="text" id="nickname" name="nickname">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="subject">Тема *</label>
-                            <select id="subject" name="subject" required>
-                                <option value="">Оберіть тему</option>
-                                <option value="join">Заявка на вступ до клану</option>
-                                <option value="question">Запитання про альянс</option>
-                                <option value="cooperation">Пропозиція співпраці</option>
-                                <option value="streamer">Заявка на статус стримера</option>
-                                <option value="other">Інше</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group clan-select" style="display: none;">
-                            <label for="clan">Який клан вас цікавить?</label>
-                            <select id="clan" name="clan">
-                                <option value="">Оберіть клан</option>
-                                <option value="G1_UA">G1_UA - Основний клан</option>
-                                <option value="G2_UA">G2_UA - Турнірний клан</option>
-                                <option value="G3_UA">G3_UA - Клан для досвідчених гравців</option>
-                                <option value="G4_UA">G4_UA - Стандартний клан</option>
-                                <option value="G5_UA">G5_UA - Тренувальний клан</option>
-                                <option value="G6_UA">G6_UA - Резервний клан</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Повідомлення *</label>
-                            <textarea id="message" name="message" rows="6" required></textarea>
-                        </div>
-                        
-                        <div class="form-group form-checkbox">
-                            <input type="checkbox" id="privacy" name="privacy" required>
-                            <label for="privacy">Я погоджуюсь з обробкою моїх персональних даних *</label>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-large">Надіслати повідомлення</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="faq-mini">
-        <div class="container">
-            <h2 class="section-title">Часті <span>Запитання</span></h2>
-            
-            <div class="faq-mini-grid">
-                <div class="faq-mini-item">
-                    <h3>Як швидко ви розглядаєте заявки?</h3>
-                    <p>
-                        Зазвичай ми розглядаємо заявки на вступ до кланів протягом 1-3 днів. 
-                        Після розгляду з вами зв'яжеться один з наших рекрутерів.
-                    </p>
-                </div>
-                
-                <div class="faq-mini-item">
-                    <h3>Що має містити заявка на вступ?</h3>
-                    <p>
-                        Ваш ігровий нікнейм, клан, який вас цікавить, інформацію про ваш досвід 
-                        (статистика, наявні танки) та чому ви хочете приєднатися саме до нас.
-                    </p>
-                </div>
-                
-                <div class="faq-mini-item">
-                    <h3>Як стати стримером альянсу?</h3>
-                    <p>
-                        Для цього ви повинні бути членом одного з наших кланів, мати власний канал 
-                        стримінгу та регулярно стримити World of Tanks. Заповніть форму для подачі заявки.
-                    </p>
-                </div>
-                
-                <div class="faq-mini-item">
-                    <h3>Чи можу я запропонувати співпрацю?</h3>
-                    <p>
-                        Так, ми відкриті до різних форм співпраці з іншими кланами, стримерами, 
-                        спільнотами та організаціями. Опишіть вашу пропозицію в формі зворотного зв'язку.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Альянс G_UA</h3>
-                    <ul>
-                        <li><a href="index.html">Головна</a></li>
-                        <li><a href="about.html">Про нас</a></li>
-                        <li><a href="clans.html">Наші клани</a></li>
-                        <li><a href="streamers.html">Стримери</a></li>
-                        <li><a href="contact.html">Контакти</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Сервіси</h3>
-                    <ul>
-                        <li><a href="services.html#boost">Буст аккаунтів</a></li>
-                        <li><a href="services.html#training">Тренування</a></li>
-                        <li><a href="services.html#tournaments">Участь у турнірах</a></li>
-                        <li><a href="services.html#clanwars">Клановим війни</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Корисні посилання</h3>
-                    <ul>
-                        <li><a href="https://worldoftanks.eu" target="_blank">World of Tanks EU</a></li>
-                        <li><a href="https://wargaming.net" target="_blank">Wargaming.net</a></li>
-                        <li><a href="events.html">Турніри та події</a></li>
-                        <li><a href="rules.html">Правила альянсу</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Соціальні мережі</h3>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-discord"></i></a>
                     </div>
-                    <p class="contact-info">
-                        <strong>Email:</strong> contact@g-ua-alliance.com<br>
-                        <strong>Discord:</strong> discord.gg/g_ua_alliance
-                    </p>
                 </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Альянс G_UA. Всі права захищені.</p>
-            </div>
+            </footer>
         </div>
-    </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Показувати/приховувати вибір клану в залежності від теми
-            const subjectSelect = document.getElementById('subject');
-            const clanSelect = document.querySelector('.clan-select');
-            
-            subjectSelect.addEventListener('change', function() {
-                if (this.value === 'join') {
-                    clanSelect.style.display = 'block';
-                } else {
-                    clanSelect.style.display = 'none';
-                }
-            });
-            
-            // Обробка відправки форми
-            const contactForm = document.getElementById('contactForm');
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
+        <div class="scroll-top">
+            <button aria-label="Нагору">
+                <i class="fas fa-chevron-up"></i>
+            </button>
+        </div>
+
+        <script src="js/main.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Показувати/приховувати вибір клану в залежності від теми
+                const subjectSelect = document.getElementById('subject');
+                const clanSelect = document.querySelector('.clan-select');
                 
-                // В реальному проекті тут був би код для відправки форми на сервер
-                // Зараз просто покажемо повідомлення про успішну відправку
-                alert('Дякуємо! Ваше повідомлення успішно відправлено. Ми зв\'яжемося з вами найближчим часом.');
-                contactForm.reset();
+                subjectSelect.addEventListener('change', function() {
+                    if (this.value === 'join') {
+                        clanSelect.style.display = 'block';
+                    } else {
+                        clanSelect.style.display = 'none';
+                    }
+                });
+                
+                // Обробка відправки форми
+                const contactForm = document.getElementById('contactForm');
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // В реальному проекті тут був би код для відправки форми на сервер
+                    // Зараз просто покажемо повідомлення про успішну відправку
+                    alert('Дякуємо! Ваше повідомлення успішно відправлено. Ми зв\'яжемося з вами найближчим часом.');
+                    contactForm.reset();
+                });
             });
-        });
-    </script>
-</body>
+        </script>
+    </body>
 </html>
