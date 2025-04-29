@@ -22,21 +22,21 @@ const streamers = [
         displayName: 'cs2_maincast',
         avatarUrl: 'img/cs2_maincast.png',
         description: 'Стример і професійний гравець G1_UA.',
-        clan: 'G1_UA',
+        clan: 'G_UA',
         youtube: 'cs2_maincast',
         youtubeType: 'user',
         telegram: 'cs2_maincast'
     },
     { 
-        id: 'ceh9', 
-        twitchId: 'ceh9',
-        displayName: 'ceh9',
-        avatarUrl: 'img/ceh9.png',
+        id: 'ykp_boih_wot', 
+        twitchId: 'ykp_boih_wot',
+        displayName: 'YKP_BOIH',
+        avatarUrl: 'img/ykp_boih_wot.png',
         description: 'Відомий стример і коментатор. Командир G2_UA.',
-        clan: 'G2_UA',
-        youtube: 'ceh9live',
-        youtubeType: 'user',
-        telegram: 'ceh9forukraine'
+        clan: 'G0_UA',
+        youtube: 'UCUG710-yQ1nldw3d5ApQfgA',
+        youtubeType: 'channel',
+        telegram: 'Bad_company_HUB'
     },
     { 
         id: 'juniortv_gaming', 
