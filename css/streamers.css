@@ -801,27 +801,6 @@
     flex-direction: column;
     padding: var(--space-lg);
 }
-
-/* Стильний скроллбар */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: rgba(26, 26, 26, 0.3);
-    border-radius: var(--radius-full);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--primary);
-    border-radius: var(--radius-full);
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-dark);
-}
-
 /* Стилі для покращення фільтрації */
 .streamer-card[style*="display: none"] {
     display: none !important;
