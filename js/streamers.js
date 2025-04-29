@@ -55,7 +55,7 @@ const streamers = [
         displayName: 'INeSp1kI',
         avatarUrl: 'img/inesp1ki.png',
         description: 'Стример і гравець G1_UA.',
-        clan: 'G1_UA',
+        clan: 'GO_UA',
         youtube: 'INeSp1kI',
         youtubeType: 'user',
         telegram: 'INeSp1kIWOT'
@@ -65,11 +65,22 @@ const streamers = [
         twitchId: 'roha_wot',
         displayName: 'Roha_wot',
         avatarUrl: 'img/roha_wot.png',
-        description: 'Експерт з артилерії. Член G3_UA.',
-        clan: 'G3_UA',
+        description: 'Експерт з артилерії. Член G1_UA.',
+        clan: 'G1_UA',
         youtube: 'UC_rV2qI2UW2JL63yaLzuKpQ',
         youtubeType: 'channel',
         telegram: '+cLlIBjakfuUyMzYy'
+    },
+    { 
+        id: 'worldoftanks_ukraine', 
+        twitchId: 'worldoftanks_ukraine',
+        displayName: 'Firestormyo',
+        avatarUrl: 'img/worldoftanks_ukraine.png',
+        description: 'Експерт з артилерії. Член G3_UA.',
+        clan: 'G3_UA',
+        youtube: 'WorldofTanksOfitsiynyykanal',
+        youtubeType: 'user',
+        telegram: 'worldoftanksua_official'
     },
     { 
         id: 'vgostiua', 
@@ -77,7 +88,7 @@ const streamers = [
         displayName: 'vgostiua',
         avatarUrl: 'img/vgostiua.png',
         description: 'Стримить переважно техніку підтримки. Член G5_UA.',
-        clan: 'G5_UA',
+        clan: 'G2_UA',
         youtube: 'UCPQAAy7rnk3G4eqMdFh2gng',
         youtubeType: 'channel',
         telegram: 'vgostiua'
