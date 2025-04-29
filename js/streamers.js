@@ -17,15 +17,13 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 const streamers = [
     { 
-        id: 'cs2_maincast', 
-        twitchId: 'cs2_maincast',
-        displayName: 'cs2_maincast',
-        avatarUrl: 'img/cs2_maincast.png',
-        description: 'Стример і професійний гравець G1_UA.',
-        clan: 'G_UA',
-        youtube: 'cs2_maincast',
-        youtubeType: 'user',
-        telegram: 'cs2_maincast'
+        id: 'mrexclusivel', 
+        twitchId: 'mrexclusivel',
+        displayName: 'MrExclusivel',
+        avatarUrl: 'img/exclusivel.png',
+        description: 'Стример і професійний гравець G4_UA.',
+        clan: 'G4_UA',
+        
     },
     { 
         id: 'ykp_boih_wot', 
