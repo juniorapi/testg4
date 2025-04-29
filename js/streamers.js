@@ -561,7 +561,7 @@ function updateStreamerCardToLive(card, streamData) {
         }, 300);
     }, 100);
     
-    // Замінюємо статус на категорію та глядачів
+    // Замінюємо статус на категорію та глядачів у верхній частині
     const statusElement = card.querySelector('.stream-status');
     if (statusElement) {
         statusElement.style.opacity = 0;
@@ -580,17 +580,21 @@ function updateStreamerCardToLive(card, streamData) {
         }, 300);
     }
     
-    // Відображаємо інформацію про стрім
+    // Відображаємо інформацію про стрім, але без дублювання категорії та глядачів
     const streamInfo = card.querySelector('.stream-info');
     if (streamInfo) {
         streamInfo.style.display = 'block';
         streamInfo.style.opacity = 0;
         streamInfo.style.transform = 'translateY(20px)';
         
-        // Заповнюємо дані стріму
+        // Заповнюємо тільки назву стріму
         streamInfo.querySelector('.stream-title').textContent = streamData.title;
-        streamInfo.querySelector('.stream-category span').textContent = streamData.category;
-        streamInfo.querySelector('.viewers-count span').textContent = streamData.viewers.toLocaleString('uk-UA');
+        
+        // Приховуємо блок з інформацією про гру та глядачів
+        const gameInfoBlock = streamInfo.querySelector('.stream-game-info');
+        if (gameInfoBlock) {
+            gameInfoBlock.style.display = 'none';
+        }
         
         // Анімація появи інформації про стрім
         setTimeout(() => {
@@ -647,6 +651,12 @@ function updateStreamerCardToOffline(card) {
         
         setTimeout(() => {
             streamInfo.style.display = 'none';
+            
+            // Повертаємо видимість блоку з інформацією про гру та глядачів
+            const gameInfoBlock = streamInfo.querySelector('.stream-game-info');
+            if (gameInfoBlock) {
+                gameInfoBlock.style.display = '';
+            }
         }, 300);
     }
     
