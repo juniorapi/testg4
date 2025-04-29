@@ -1074,7 +1074,111 @@ function handleTwitchAPIError() {
         }
     }
 }
+document.addEventListener('DOMContentLoaded', function() {
+    const requirementsBtn = document.querySelector('.open-requirements');
+    const requirementsModal = document.createElement('div');
+    requirementsModal.className = 'requirements-modal';
+    requirementsModal.innerHTML = `
+        <div class="requirements-modal-content">
+            <div class="requirements-modal-header">
+                <h2 class="requirements-modal-title">Вимоги до офіційних стримерів альянсу</h2>
+                <button class="requirements-modal-close" aria-label="Закрити">&times;</button>
+            </div>
+            <div class="requirements-modal-body">
+                <div class="requirement-item">
+                    <div class="requirement-item-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="requirement-item-title">Членство в клані</h3>
+                    <p class="requirement-item-description">
+                        Активне членство в одному з кланів альянсу G_UA. 
+                        Підтвердження внеску в розвиток клану та альянсу.
+                    </p>
+                </div>
+                <div class="requirement-item">
+                    <div class="requirement-item-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="requirement-item-title">Регулярні трансляції</h3>
+                    <p class="requirement-item-description">
+                        Мінімум 3 стріми на тиждень з грою World of Tanks. 
+                        Кожен стрім має тривати не менше 2 годин.
+                    </p>
+                </div>
+                <div class="requirement-item">
+                    <div class="requirement-item-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="requirement-item-title">Якість контенту</h3>
+                    <p class="requirement-item-description">
+                        Висока якість відео та звуку. Корисний, інформативний 
+                        та розважальний контент для аудиторії.
+                    </p>
+                </div>
+                <div class="requirement-item">
+                    <div class="requirement-item-icon">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <h3 class="requirement-item-title">Позитивний імідж</h3>
+                    <p class="requirement-item-description">
+                        Дотримання етичних норм, відсутність токсичної поведінки. 
+                        Гідне представлення альянсу в медіа-просторі.
+                    </p>
+                </div>
+                <div class="requirement-item">
+                    <div class="requirement-item-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="requirement-item-title">Розвиток каналу</h3>
+                    <p class="requirement-item-description">
+                        Активна робота над зростанням аудиторії. 
+                        Постійне вдосконалення контенту та взаємодія з глядачами.
+                    </p>
+                </div>
+                <div class="requirement-item">
+                    <div class="requirement-item-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="requirement-item-title">Технічні вимоги</h3>
+                    <p class="requirement-item-description">
+                        Стабільне інтернет-з'єднання. Можливість стримити 
+                        з роздільною здатністю не нижче 1080p.
+                    </p>
+                </div>
+            </div>
+            <div class="requirements-modal-footer">
+                <a href="contact.html" class="btn btn-primary btn-lg">
+                    <span>Подати заявку на стримера</span>
+                    <i class="fas fa-paper-plane"></i>
+                </a>
+            </div>
+        </div>
+    `;
 
+    document.body.appendChild(requirementsModal);
+
+    // Обробник відкриття модального вікна
+    requirementsBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        requirementsModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+
+    // Обробник закриття модального вікна
+    const closeBtn = requirementsModal.querySelector('.requirements-modal-close');
+    closeBtn.addEventListener('click', function() {
+        requirementsModal.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+
+    // Закриття при кліці поза межами вікна
+    requirementsModal.addEventListener('click', function(e) {
+        if (e.target === requirementsModal) {
+            requirementsModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+});
 /**
  * Функція для імітації відповіді API Twitch (для демонстрації)
  */
@@ -1114,4 +1218,5 @@ function getLiveStreamersDemo() {
             viewers: Math.floor(Math.random() * 500) + 50 // 50-550 глядачів
         };
     });
+
 }
