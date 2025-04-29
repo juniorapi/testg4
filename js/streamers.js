@@ -1,6 +1,7 @@
 /**
- * JavaScript для сторінки стримерів Альянсу G_UA
- * Із сучасними фільтрами, анімаціями та відображенням статусу стримерів
+ * Оновлений скрипт для роботи зі стримерами альянсу G_UA
+ * З підтримкою анімацій, статусів та 3D ефектів
+ * Включає інтеграцію з Twitch API
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -12,97 +13,74 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /**
- * Дані про стримерів
- * У реальному проекті ці дані завантажувалися б з API або CMS
+ * Реальні дані про стримерів альянсу G_UA
  */
-const streamersData = [
-    {
-        id: 'tankmaster',
-        twitchId: 'tankmaster_ua',
-        displayName: 'TankMaster_UA',
-        avatarUrl: 'img/streamers/streamer1.jpg',
+const streamers = [
+    { 
+        id: 'cs2_maincast', 
+        twitchId: 'cs2_maincast',
+        displayName: 'cs2_maincast',
+        avatarUrl: 'img/cs2_maincast.png',
+        description: 'Стример і професійний гравець G1_UA.',
         clan: 'G1_UA',
-        description: 'Стример і професійний гравець G1_UA. Спеціалізується на важких танках та тактичній грі.',
-        youtube: '@TankMaster_UA',
-        discord: 'discord.gg/tankmaster',
-        telegram: 'tankmaster_ua'
+        youtube: 'cs2_maincast',
+        youtubeType: 'user',
+        telegram: 'cs2_maincast'
     },
-    {
-        id: 'artypro',
-        twitchId: 'artypro',
-        displayName: 'ArtyPro',
-        avatarUrl: 'img/streamers/streamer2.jpg',
+    { 
+        id: 'ceh9', 
+        twitchId: 'ceh9',
+        displayName: 'ceh9',
+        avatarUrl: 'img/ceh9.png',
+        description: 'Відомий стример і коментатор. Командир G2_UA.',
         clan: 'G2_UA',
-        description: 'Командир клану G2_UA. Експерт з артилерії та СТ.',
-        youtube: '@ArtyProWoT',
-        discord: 'discord.gg/artypro',
-        telegram: 'artypro_wot'
+        youtube: 'ceh9live',
+        youtubeType: 'user',
+        telegram: 'ceh9forukraine'
     },
-    {
-        id: 'lightgirl',
-        twitchId: 'lighttank_girl',
-        displayName: 'LightTank_Girl',
-        avatarUrl: 'img/streamers/streamer3.jpg',
+    { 
+        id: 'juniortv_gaming', 
+        twitchId: 'juniortv_gaming',
+        displayName: 'JuniorTV_Gaming',
+        avatarUrl: 'img/jtv.png',
+        description: 'Учасник G4_UA. Стримить регулярно з фокусом на командну гру.',
         clan: 'G4_UA',
-        description: 'Учасниця G4_UA. Спеціалізується на світлових танках та розвідці.',
-        youtube: '@LightTankGirl',
-        discord: 'discord.gg/lighttankgirl',
-        telegram: 'lighttank_girl'
+        youtube: 'JuniorTV_Gaming',
+        youtubeType: 'user',
+        telegram: 'JuniorTV_Gaming'
     },
-    {
-        id: 'tacticmaster',
-        twitchId: 'tactic_master',
-        displayName: 'Tactic_Master',
-        avatarUrl: 'img/streamers/streamer4.jpg',
+    { 
+        id: 'inesp1ki', 
+        twitchId: 'inesp1ki',
+        displayName: 'INeSp1kI',
+        avatarUrl: 'img/inesp1ki.png',
+        description: 'Стример і гравець G1_UA.',
         clan: 'G1_UA',
-        description: 'Професійний гравець та стратег. Проводить навчальні стріми та аналіз тактик.',
-        youtube: '@TacticMaster',
-        discord: 'discord.gg/tacticmaster',
-        telegram: 'tacticmaster_wot'
+        youtube: 'INeSp1kI',
+        youtubeType: 'user',
+        telegram: 'INeSp1kIWOT'
     },
-    {
-        id: 'sniperelite',
-        twitchId: 'sniper_elite_ua',
-        displayName: 'Sniper_Elite_UA',
-        avatarUrl: 'img/streamers/streamer5.jpg',
-        clan: 'G2_UA',
-        description: 'Спеціаліст з ПТ-САУ та далекобійних СТ.',
-        youtube: '@SniperEliteUA',
-        discord: 'discord.gg/sniperelite',
-        telegram: 'sniper_elite_ua'
-    },
-    {
-        id: 'speedmeister',
-        twitchId: 'speed_meister',
-        displayName: 'Speed_Meister',
-        avatarUrl: 'img/streamers/streamer6.jpg',
+    { 
+        id: 'roha_wot', 
+        twitchId: 'roha_wot',
+        displayName: 'Roha_wot',
+        avatarUrl: 'img/roha_wot.png',
+        description: 'Експерт з артилерії. Член G3_UA.',
         clan: 'G3_UA',
-        description: 'Спеціаліст зі швидких танків та агресивної гри.',
-        youtube: '@SpeedMeister',
-        discord: 'discord.gg/speedmeister',
-        telegram: 'speed_meister_wot'
+        youtube: 'UC_rV2qI2UW2JL63yaLzuKpQ',
+        youtubeType: 'channel',
+        telegram: '+cLlIBjakfuUyMzYy'
     },
-    {
-        id: 'commander',
-        twitchId: 'commander_ua',
-        displayName: 'Commander_UA',
-        avatarUrl: 'img/streamers/streamer7.jpg',
-        clan: 'G1_UA',
-        description: 'Головний командир альянсу G_UA. Стріми з фокусом на командну гру та кланові бої.',
-        youtube: '@CommanderUA',
-        discord: 'discord.gg/commanderua',
-        telegram: 'commander_ua'
-    },
-    {
-        id: 'analyticsexpert',
-        twitchId: 'analytics_expert',
-        displayName: 'Analytics_Expert',
-        avatarUrl: 'img/streamers/streamer8.jpg',
+    { 
+        id: 'vgostiua', 
+        twitchId: 'vgostiua',
+        displayName: 'vgostiua',
+        avatarUrl: 'img/vgostiua.png',
+        description: 'Стримить переважно техніку підтримки. Член G5_UA.',
         clan: 'G5_UA',
-        description: 'Аналітика статистики, огляд оновлень та навчальні стріми для новачків.',
-        youtube: '@AnalyticsExpertWoT',
-        discord: 'discord.gg/analyticsexpert',
-        telegram: 'analytics_expert'
+        youtube: 'UCPQAAy7rnk3G4eqMdFh2gng',
+        youtubeType: 'channel',
+        telegram: 'vgostiua'
     }
 ];
 
@@ -213,29 +191,44 @@ function initModals() {
 }
 
 /**
- * Завантаження стримерів та отримання їх статусу
+ * Завантаження стримерів та перевірка їх статусу
  */
 function loadStreamers() {
     const streamersContainer = document.getElementById('streamers-container');
     
     if (streamersContainer) {
-        // Імітуємо завантаження (в реальному проекті тут був би запит до API)
+        // Імітуємо стан завантаження
+        streamersContainer.innerHTML = `
+            <div class="loading-state">
+                <div class="loader"></div>
+                <p class="loading-message">Завантаження стримерів...</p>
+            </div>
+        `;
+        
+        // Із затримкою додаємо картки стримерів
         setTimeout(() => {
-            // Очищаємо контейнер від стану завантаження
+            // Очищуємо контейнер
             streamersContainer.innerHTML = '';
             
-            // Додаємо стримерів
-            streamersData.forEach(streamer => {
-                const streamerCard = createStreamerCard(streamer);
-                streamersContainer.appendChild(streamerCard);
+            // Додаємо стримерів з каскадною анімацією
+            streamers.forEach((streamer, index) => {
+                setTimeout(() => {
+                    const card = createStreamerCard(streamer);
+                    streamersContainer.appendChild(card);
+                    
+                    // Додаємо 3D ефект при наведенні
+                    initializeCard3DEffect(card);
+                }, index * 100);
             });
             
-            // Отримуємо статус стримерів
-            checkStreamersStatus();
-            
-            // Запускаємо таймер для періодичної перевірки статусу
-            setInterval(checkStreamersStatus, 60000); // Кожну хвилину
-        }, 1500);
+            // Перевіряємо статус стримерів після додавання всіх карток
+            setTimeout(() => {
+                checkStreamStatus();
+                
+                // Запускаємо таймер для періодичної перевірки статусу
+                setInterval(checkStreamStatus, 60000); // Кожну хвилину
+            }, streamers.length * 100 + 200);
+        }, 800); // Затримка для ефекту завантаження
     }
 }
 
@@ -243,158 +236,384 @@ function loadStreamers() {
  * Створення картки стримера
  */
 function createStreamerCard(streamer) {
-    // Використовуємо шаблон
-    const template = document.getElementById('streamer-template');
-    const card = document.importNode(template.content, true).querySelector('.streamer-card');
-    
-    // Заповнюємо дані
-    card.setAttribute('data-id', streamer.id);
+    const card = document.createElement('div');
+    card.className = 'streamer-card';
+    card.id = `streamer-${streamer.id}`;
+    card.setAttribute('data-live', 'false');
     card.setAttribute('data-clan', streamer.clan);
     
-    // Аватар та ім'я
-    const avatar = card.querySelector('.streamer-avatar img');
-    avatar.src = streamer.avatarUrl;
-    avatar.alt = streamer.displayName;
-    
-    card.querySelector('.streamer-name').textContent = streamer.displayName;
-    card.querySelector('.clan-tag').textContent = streamer.clan;
-    
-    // Соціальні посилання
-    const twitchLink = card.querySelector('.social-link.twitch');
-    twitchLink.href = `https://twitch.tv/${streamer.twitchId}`;
-    
-    const youtubeLink = card.querySelector('.social-link.youtube');
-    youtubeLink.href = `https://youtube.com/${streamer.youtube}`;
-    
-    if (streamer.discord) {
-        const discordLink = card.querySelector('.social-link.discord');
-        discordLink.href = `https://${streamer.discord}`;
+    // Визначаємо, чи є ім'я довгим
+    const nameClass = streamer.displayName.length > 12 ? 'streamer-name long-name' : 'streamer-name';
+
+    // Формуємо посилання на YouTube
+    let youtubeUrl = '';
+    if (streamer.youtubeType === 'channel') {
+        youtubeUrl = `https://youtube.com/channel/${streamer.youtube}`;
+    } else if (streamer.youtubeType === 'UC') {
+        youtubeUrl = `https://youtube.com/channel/${streamer.youtube}`;
     } else {
-        card.querySelector('.social-link.discord').style.display = 'none';
+        if (streamer.youtube.startsWith('@')) {
+            youtubeUrl = `https://youtube.com/${streamer.youtube}`;
+        } else {
+            youtubeUrl = `https://youtube.com/@${streamer.youtube}`;
+        }
     }
     
-    if (streamer.telegram) {
-        const telegramLink = card.querySelector('.social-link.telegram');
-        telegramLink.href = `https://t.me/${streamer.telegram}`;
+    // Формуємо посилання на Telegram
+    let telegramUrl = '';
+    if (streamer.telegram.startsWith('+') || streamer.telegram.startsWith('https://')) {
+        telegramUrl = `https://t.me/${streamer.telegram}`;
     } else {
-        card.querySelector('.social-link.telegram').style.display = 'none';
+        telegramUrl = `https://t.me/${streamer.telegram}`;
     }
+    
+    // HTML для картки стримера
+    card.innerHTML = `
+        <div class="streamer-header">
+            <div class="streamer-avatar">
+                <img src="${streamer.avatarUrl}" alt="${streamer.displayName}">
+            </div>
+            <div class="streamer-info">
+                <h3 class="${nameClass}">${streamer.displayName}</h3>
+                <div class="clan-tag">${streamer.clan}</div>
+                <div class="stream-status">
+                    <span class="status-offline">Офлайн</span>
+                </div>
+            </div>
+        </div>
+        <div class="stream-info" style="display: none;">
+            <div class="stream-title"></div>
+            <div class="stream-meta">
+                <div class="stream-category">
+                    <i class="fas fa-gamepad"></i>
+                    <span></span>
+                </div>
+                <div class="viewers-count">
+                    <i class="fas fa-user"></i>
+                    <span></span>
+                </div>
+            </div>
+            <div class="stream-actions">
+                <a href="https://twitch.tv/${streamer.twitchId}" class="watch-btn" target="_blank">
+                    <i class="fas fa-play"></i>
+                    <span>Дивитися стрім</span>
+                </a>
+            </div>
+        </div>
+        <div class="social-links">
+            <a href="https://twitch.tv/${streamer.twitchId}" class="social-link twitch" target="_blank" title="Twitch канал">
+                <i class="fab fa-twitch"></i>
+            </a>
+            <a href="${youtubeUrl}" class="social-link youtube" target="_blank" title="YouTube канал">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="${telegramUrl}" class="social-link telegram" target="_blank" title="Telegram канал">
+                <i class="fab fa-telegram"></i>
+            </a>
+        </div>
+    `;
+    
+    // Додаємо анімацію появи картки
+    card.style.animation = 'fadeInUp 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards';
+    card.style.animationDelay = '0.1s';
     
     return card;
 }
 
 /**
- * Перевірка статусу стримерів через API Twitch
- * У демо-версії імітуємо відповідь API
+ * Ініціалізація 3D ефекту при наведенні на картку
  */
-function checkStreamersStatus() {
-    // Отримуємо всі картки стримерів
-    const streamerCards = document.querySelectorAll('.streamer-card');
-    
-    // У реальному проекті тут був би запит до API Twitch
-    // Імітуємо відповідь для демонстрації
-    const liveStreamers = getLiveStreamersDemo();
-    
-    // Оновлюємо лічильник стримерів онлайн
-    const liveCount = document.querySelector('.live-count');
-    if (liveCount) {
-        liveCount.textContent = liveStreamers.length;
-    }
-    
-    // Додаємо клас has-live, якщо є стримери онлайн
-    const liveBtn = document.querySelector('.live-btn');
-    if (liveBtn) {
-        if (liveStreamers.length > 0) {
-            liveBtn.classList.add('has-live');
-        } else {
-            liveBtn.classList.remove('has-live');
-        }
-    }
-    
-    // Оновлюємо картки стримерів
-    streamerCards.forEach(card => {
-        const streamerId = card.getAttribute('data-id');
-        const liveData = liveStreamers.find(live => live.id === streamerId);
+function initializeCard3DEffect(card) {
+    card.addEventListener('mousemove', function(e) {
+        // Пропускаємо ефект на мобільних пристроях
+        if (window.innerWidth < 992) return;
         
-        if (liveData) {
-            // Стример онлайн
-            updateStreamerCardToLive(card, liveData);
-            
-            // Якщо стример щойно з'явився онлайн, показуємо сповіщення
-            const wasOffline = card.getAttribute('data-last-status') === 'offline' || !card.getAttribute('data-last-status');
-            if (wasOffline) {
-                showStreamNotification(liveData);
-            }
-            
-            // Запам'ятовуємо, що стример був онлайн
-            card.setAttribute('data-last-status', 'online');
-            localStorage.setItem(`streamer_${streamerId}_last_online`, Date.now());
-        } else {
-            // Стример офлайн
-            updateStreamerCardToOffline(card);
-            card.setAttribute('data-last-status', 'offline');
-        }
+        const cardRect = this.getBoundingClientRect();
+        const cardCenterX = cardRect.left + cardRect.width / 2;
+        const cardCenterY = cardRect.top + cardRect.height / 2;
+        
+        // Розрахунок позиції миші відносно центру картки
+        const mouseX = e.clientX - cardCenterX;
+        const mouseY = e.clientY - cardCenterY;
+        
+        // Максимальний кут повороту
+        const maxRotation = 5;
+        
+        // Розрахунок кутів повороту з нормалізацією 
+        const rotateY = (mouseX / (cardRect.width / 2)) * maxRotation;
+        const rotateX = -((mouseY / (cardRect.height / 2)) * maxRotation);
+        
+        // Застосування трансформації з плавністю
+        this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        
+        // Рухаємо світло за курсором
+        const intensity = 0.2;
+        const light = `radial-gradient(circle at ${e.clientX - cardRect.left}px ${e.clientY - cardRect.top}px, rgba(255, 255, 255, ${intensity}), transparent 40%)`;
+        
+        // Додаємо світловий ефект
+        card.style.background = `linear-gradient(135deg, rgba(20, 20, 20, 0.7), rgba(15, 15, 15, 0.7)), ${light}`;
     });
     
-    // Сортуємо картки: спочатку онлайн
-    sortStreamers('default');
+    // Повернення в початковий стан при виході курсору
+    card.addEventListener('mouseleave', function() {
+        this.style.transform = '';
+        this.style.background = '';
+    });
     
-    // Оновлюємо активний фільтр, якщо потрібно
-    const activeTab = document.querySelector('.filter-tab.active');
-    if (activeTab) {
-        const filter = activeTab.getAttribute('data-filter');
-        if (filter !== 'all') {
-            filterByStatus(filter);
-        }
+    // Ефект натискання
+    card.addEventListener('mousedown', function() {
+        this.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(0.98)`;
+    });
+    
+    // Повернення після натискання
+    card.addEventListener('mouseup', function() {
+        this.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.02)`;
+    });
+}
+
+/**
+ * Перевірка статусу стримерів через API Twitch
+ */
+function checkStreamStatus() {
+    // Налаштування API Twitch
+    const clientId = 'gp762nuuoqcoxypju8c569th9wz7q5';
+    const accessToken = '0b09xd33shszp6496w5m8f03yalc8p';
+    
+    // Формуємо параметри запиту для кількох каналів одночасно
+    const queryParams = streamers.map(streamer => `user_login=${streamer.twitchId}`).join('&');
+    
+    // Видаляємо повідомлення про завантаження
+    const loadingMessage = document.querySelector('.loading-state');
+    if (loadingMessage) {
+        loadingMessage.remove();
     }
+    
+    // Отримуємо дані про стріми з API
+    fetch(`https://api.twitch.tv/helix/streams?${queryParams}`, {
+        headers: {
+            'Client-ID': clientId,
+            'Authorization': `Bearer ${accessToken}`
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`API error (streams): ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Створюємо мапу для швидкого пошуку каналів, які зараз в ефірі
+        const liveChannels = {};
+        
+        // Лічильник онлайн-стримерів і масив нових стримерів (які щойно з'явились)
+        let onlineCount = 0;
+        const newlyOnlineStreamers = [];
+        
+        // Заповнюємо мапу каналами, які зараз онлайн
+        if (data.data && data.data.length > 0) {
+            data.data.forEach(stream => {
+                const streamerName = stream.user_login.toLowerCase();
+                
+                liveChannels[streamerName] = {
+                    title: stream.title,
+                    viewers: stream.viewer_count,
+                    category: stream.game_name || 'Unknown',
+                    startedAt: stream.started_at
+                };
+                
+                // Перевіряємо, чи стример щойно з'явився в мережі
+                const lastStatus = localStorage.getItem(`${streamerName}_status`);
+                if (lastStatus === 'offline' || !lastStatus) {
+                    // Знаходимо стример об'єкт за іменем
+                    const streamerObj = streamers.find(s => s.twitchId.toLowerCase() === streamerName);
+                    if (streamerObj) {
+                        newlyOnlineStreamers.push({
+                            ...streamerObj,
+                            streamData: liveChannels[streamerName]
+                        });
+                    }
+                }
+                
+                // Зберігаємо поточний статус
+                localStorage.setItem(`${streamerName}_status`, 'online');
+                
+                onlineCount++;
+            });
+        }
+        
+        // Позначаємо як офлайн тих, хто не в ефірі зараз
+        streamers.forEach(streamer => {
+            if (!liveChannels[streamer.twitchId.toLowerCase()]) {
+                localStorage.setItem(`${streamer.twitchId.toLowerCase()}_status`, 'offline');
+            }
+        });
+        
+        // Оновлюємо лічильник онлайн-стримерів у кнопці фільтра з анімацією
+        const liveCount = document.querySelector('.live-count');
+        if (liveCount) {
+            // Якщо кількість змінилась, додаємо анімацію оновлення
+            if (liveCount.textContent !== onlineCount.toString()) {
+                liveCount.style.transform = 'scale(1.5)';
+                setTimeout(() => {
+                    liveCount.textContent = onlineCount;
+                    setTimeout(() => {
+                        liveCount.style.transform = '';
+                    }, 150);
+                }, 150);
+            } else {
+                liveCount.textContent = onlineCount;
+            }
+            
+            // Якщо є онлайн-стримери, підсвічуємо кнопку
+            const liveBtn = document.querySelector('.live-btn');
+            if (liveBtn) {
+                if (onlineCount > 0) {
+                    liveBtn.classList.add('has-live');
+                } else {
+                    liveBtn.classList.remove('has-live');
+                }
+            }
+        }
+        
+        // Оновлюємо дані для кожного стримера з затримкою для каскадного ефекту
+        streamers.forEach((streamer, index) => {
+            setTimeout(() => {
+                const isLive = liveChannels[streamer.twitchId.toLowerCase()] !== undefined;
+                const streamData = liveChannels[streamer.twitchId.toLowerCase()];
+                
+                // Оновлюємо картку стримера
+                const streamerCard = document.getElementById(`streamer-${streamer.id}`);
+                if (streamerCard) {
+                    if (isLive) {
+                        // Стример онлайн
+                        updateStreamerCardToLive(streamerCard, streamData);
+                        
+                        // Зберігаємо останній онлайн
+                        localStorage.setItem(`streamer_${streamer.id}_last_online`, Date.now().toString());
+                    } else {
+                        // Стример офлайн
+                        updateStreamerCardToOffline(streamerCard);
+                    }
+                }
+            }, index * 100); // Затримка для каскадного ефекту
+        });
+        
+        // Перевіряємо, чи активний фільтр "Зараз в ефірі"
+        const activeLiveFilter = document.querySelector('.filter-btn[data-filter="live"].active');
+        if (activeLiveFilter) {
+            setTimeout(() => {
+                filterByStatus('live');
+            }, streamers.length * 100 + 100);
+        }
+        
+        // Сортування стримерів з анімацією
+        setTimeout(() => {
+            sortStreamers('default');
+        }, streamers.length * 100 + 200);
+        
+        // Показуємо сповіщення про нових стримерів в ефірі
+        if (newlyOnlineStreamers.length > 0) {
+            setTimeout(() => {
+                showStreamNotification(newlyOnlineStreamers[0]);
+            }, streamers.length * 100 + 300);
+        }
+    })
+    .catch(error => {
+        console.error('Помилка отримання даних Twitch API:', error);
+        
+        // В разі помилки використовуємо демо-дані
+        setTimeout(() => {
+            handleTwitchAPIError();
+        }, 1000);
+    });
 }
 
 /**
  * Оновлення картки стримера до стану "онлайн"
  */
-function updateStreamerCardToLive(card, liveData) {
-    // Додаємо клас live
-    card.classList.add('live');
+function updateStreamerCardToLive(card, streamData) {
+    // Додаємо клас live з анімацією
     card.classList.remove('recent');
+    card.setAttribute('data-live', 'true');
+    
+    // Плавна анімація зміни статусу
+    const currentTransform = card.style.transform;
+    card.style.transform = `${currentTransform || ''} scale(1.05)`;
+    
+    setTimeout(() => {
+        card.classList.add('live');
+        setTimeout(() => {
+            card.style.transform = currentTransform || '';
+        }, 300);
+    }, 100);
     
     // Оновлюємо статус
     const statusElement = card.querySelector('.stream-status');
-    statusElement.innerHTML = `
-        <span class="status-online">Онлайн</span>
-    `;
+    if (statusElement) {
+        statusElement.style.opacity = 0;
+        setTimeout(() => {
+            statusElement.innerHTML = `
+                <span class="status-online">Онлайн</span>
+                <span class="viewers-count">
+                    <i class="fas fa-user"></i> ${streamData.viewers.toLocaleString('uk-UA')}
+                </span>
+            `;
+            statusElement.style.opacity = 1;
+        }, 300);
+    }
     
     // Додаємо індикатор онлайн до аватару
     const avatar = card.querySelector('.streamer-avatar');
-    if (!avatar.querySelector('.online-indicator')) {
+    if (avatar && !avatar.querySelector('.online-indicator')) {
         const indicator = document.createElement('div');
         indicator.className = 'online-indicator';
         avatar.appendChild(indicator);
     }
     
-    // Додаємо живий індикатор
-    if (!card.querySelector('.live-indicator')) {
-        const liveIndicator = document.createElement('div');
-        liveIndicator.className = 'live-indicator';
-        liveIndicator.innerHTML = 'LIVE';
-        card.appendChild(liveIndicator);
+    // Додаємо індикатор LIVE з анімацією
+    if (!card.querySelector('.live-badge')) {
+        const liveBadge = document.createElement('div');
+        liveBadge.className = 'live-badge';
+        liveBadge.textContent = 'LIVE';
+        liveBadge.style.transform = 'scale(0)';
+        card.appendChild(liveBadge);
+        
+        setTimeout(() => {
+            liveBadge.style.transform = 'scale(1)';
+        }, 100);
     }
     
     // Відображаємо інформацію про стрім
     const streamInfo = card.querySelector('.stream-info');
-    streamInfo.style.display = 'block';
-    
-    // Заповнюємо дані стріму
-    card.querySelector('.stream-title').textContent = liveData.title;
-    card.querySelector('.stream-category span').textContent = liveData.category;
-    card.querySelector('.viewers-count span').textContent = liveData.viewers;
-    
-    // Оновлюємо посилання на стрім
-    const watchBtn = card.querySelector('.watch-btn');
-    const twitchId = streamersData.find(s => s.id === liveData.id)?.twitchId;
-    watchBtn.href = `https://twitch.tv/${twitchId}`;
+    if (streamInfo) {
+        streamInfo.style.display = 'block';
+        streamInfo.style.opacity = 0;
+        streamInfo.style.transform = 'translateY(20px)';
+        
+        // Заповнюємо дані стріму
+        streamInfo.querySelector('.stream-title').textContent = streamData.title;
+        streamInfo.querySelector('.stream-category span').textContent = streamData.category;
+        streamInfo.querySelector('.viewers-count span').textContent = streamData.viewers.toLocaleString('uk-UA');
+        
+        // Анімація появи інформації про стрім
+        setTimeout(() => {
+            streamInfo.style.opacity = 1;
+            streamInfo.style.transform = 'translateY(0)';
+        }, 200);
+    }
     
     // Додаємо клас live до іконки Twitch
-    card.querySelector('.social-link.twitch').classList.add('live');
+    const twitchIcon = card.querySelector('.social-link.twitch');
+    if (twitchIcon) {
+        twitchIcon.classList.add('live');
+        twitchIcon.title = 'Дивитись стрім';
+        
+        // Додаємо анімацію при зміні статусу
+        twitchIcon.style.transform = 'scale(1.2)';
+        setTimeout(() => {
+            twitchIcon.style.transform = '';
+        }, 500);
+    }
 }
 
 /**
@@ -402,28 +621,58 @@ function updateStreamerCardToLive(card, liveData) {
  */
 function updateStreamerCardToOffline(card) {
     const streamerId = card.getAttribute('data-id');
+    card.setAttribute('data-live', 'false');
     
-    // Видаляємо клас live
-    card.classList.remove('live');
+    // Видаляємо клас live з анімацією
+    if (card.classList.contains('live')) {
+        const currentTransform = card.style.transform;
+        card.style.transform = `${currentTransform || ''} scale(0.95)`;
+        
+        setTimeout(() => {
+            card.classList.remove('live');
+            setTimeout(() => {
+                card.style.transform = currentTransform || '';
+            }, 300);
+        }, 100);
+    }
     
-    // Видаляємо індикатор онлайн
+    // Видаляємо індикатор онлайн з анімацією
     const onlineIndicator = card.querySelector('.online-indicator');
     if (onlineIndicator) {
-        onlineIndicator.remove();
+        onlineIndicator.style.transform = 'scale(0)';
+        
+        setTimeout(() => {
+            onlineIndicator.remove();
+        }, 300);
     }
     
-    // Видаляємо живий індикатор
-    const liveIndicator = card.querySelector('.live-indicator');
-    if (liveIndicator) {
-        liveIndicator.remove();
+    // Видаляємо індикатор LIVE з анімацією
+    const liveBadge = card.querySelector('.live-badge');
+    if (liveBadge) {
+        liveBadge.style.transform = 'scale(0)';
+        
+        setTimeout(() => {
+            liveBadge.remove();
+        }, 300);
     }
     
-    // Приховуємо інформацію про стрім
+    // Приховуємо інформацію про стрім з анімацією
     const streamInfo = card.querySelector('.stream-info');
-    streamInfo.style.display = 'none';
+    if (streamInfo && streamInfo.style.display !== 'none') {
+        streamInfo.style.opacity = 0;
+        streamInfo.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            streamInfo.style.display = 'none';
+        }, 300);
+    }
     
     // Видаляємо клас live з іконки Twitch
-    card.querySelector('.social-link.twitch').classList.remove('live');
+    const twitchIcon = card.querySelector('.social-link.twitch');
+    if (twitchIcon) {
+        twitchIcon.classList.remove('live');
+        twitchIcon.title = 'Twitch канал';
+    }
     
     // Перевіряємо, чи був стример недавно онлайн
     const lastOnline = localStorage.getItem(`streamer_${streamerId}_last_online`);
@@ -431,7 +680,7 @@ function updateStreamerCardToOffline(card) {
         const now = Date.now();
         const diff = now - parseInt(lastOnline);
         
-        // Якщо менше 2 годин тому
+        // Якщо менше 2 годин тому, показуємо статус "недавно онлайн"
         if (diff < 2 * 60 * 60 * 1000) {
             card.classList.add('recent');
             
@@ -449,20 +698,38 @@ function updateStreamerCardToOffline(card) {
             
             // Оновлюємо статус
             const statusElement = card.querySelector('.stream-status');
-            statusElement.innerHTML = `
-                <span class="status-offline">Офлайн</span>
-                <span class="status-time">Був онлайн ${timeText}</span>
-            `;
+            if (statusElement) {
+                statusElement.style.opacity = 0;
+                setTimeout(() => {
+                    statusElement.innerHTML = `
+                        <span class="status-offline">Офлайн</span>
+                        <span class="status-time">Був онлайн ${timeText}</span>
+                    `;
+                    statusElement.style.opacity = 1;
+                }, 300);
+            }
         } else {
             card.classList.remove('recent');
             // Звичайний статус офлайн
             const statusElement = card.querySelector('.stream-status');
-            statusElement.innerHTML = `<span class="status-offline">Офлайн</span>`;
+            if (statusElement) {
+                statusElement.style.opacity = 0;
+                setTimeout(() => {
+                    statusElement.innerHTML = `<span class="status-offline">Офлайн</span>`;
+                    statusElement.style.opacity = 1;
+                }, 300);
+            }
         }
     } else {
         // Звичайний статус офлайн
         const statusElement = card.querySelector('.stream-status');
-        statusElement.innerHTML = `<span class="status-offline">Офлайн</span>`;
+        if (statusElement) {
+            statusElement.style.opacity = 0;
+            setTimeout(() => {
+                statusElement.innerHTML = `<span class="status-offline">Офлайн</span>`;
+                statusElement.style.opacity = 1;
+            }, 300);
+        }
     }
 }
 
@@ -501,13 +768,16 @@ function filterByStatus(status) {
     
     // Рахуємо кількість прихованих карток
     let hiddenCount = 0;
+    let visibleCount = 0;
     
     streamerCards.forEach(card => {
         if (status === 'all') {
             card.classList.remove('hidden-by-status');
+            visibleCount++;
         } else if (status === 'live') {
             if (card.classList.contains('live')) {
                 card.classList.remove('hidden-by-status');
+                visibleCount++;
             } else {
                 card.classList.add('hidden-by-status');
                 hiddenCount++;
@@ -515,6 +785,7 @@ function filterByStatus(status) {
         } else if (status === 'recent') {
             if (card.classList.contains('live') || card.classList.contains('recent')) {
                 card.classList.remove('hidden-by-status');
+                visibleCount++;
             } else {
                 card.classList.add('hidden-by-status');
                 hiddenCount++;
@@ -524,6 +795,62 @@ function filterByStatus(status) {
     
     // Перевіряємо, чи потрібно показати пустий стан
     checkEmptyState();
+}
+
+/**
+ * Перевірка на пустий стан (коли всі стримери відфільтровані)
+ */
+function checkEmptyState() {
+    const streamersContainer = document.getElementById('streamers-container');
+    const visibleCards = Array.from(document.querySelectorAll('.streamer-card')).filter(card => {
+        return !card.classList.contains('hidden-by-clan') && !card.classList.contains('hidden-by-status');
+    });
+    
+    // Видаляємо попередній empty-state, якщо він є
+    const existingEmptyState = streamersContainer.querySelector('.empty-state');
+    if (existingEmptyState) {
+        existingEmptyState.remove();
+    }
+    
+    // Якщо немає видимих карток, показуємо пустий стан
+    if (visibleCards.length === 0) {
+        const emptyState = document.createElement('div');
+        emptyState.className = 'empty-state';
+        
+        emptyState.innerHTML = `
+            <div class="empty-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <h3 class="empty-title">Нічого не знайдено</h3>
+            <p class="empty-message">Стримерів, що відповідають заданим критеріям, не знайдено</p>
+            <button class="btn reset-filters">Скинути фільтри</button>
+        `;
+        
+        // Додаємо обробник для кнопки скидання фільтрів
+        const resetBtn = emptyState.querySelector('.reset-filters');
+        if (resetBtn) {
+            resetBtn.addEventListener('click', function() {
+                // Скидаємо фільтр кланів
+                const clanFilter = document.getElementById('clanFilter');
+                if (clanFilter) {
+                    clanFilter.querySelector('span').textContent = 'Всі клани';
+                    document.querySelector('#clanFilterMenu .dropdown-item[data-value="all"]').click();
+                }
+                
+                // Скидаємо фільтр статусу
+                document.querySelector('.filter-tab[data-filter="all"]').click();
+                
+                // Скидаємо сортування
+                const sortFilter = document.getElementById('sortFilter');
+                if (sortFilter) {
+                    sortFilter.querySelector('span').textContent = 'За замовчуванням';
+                    document.querySelector('#sortFilterMenu .dropdown-item[data-value="default"]').click();
+                }
+            });
+        }
+        
+        streamersContainer.appendChild(emptyState);
+    }
 }
 
 /**
@@ -566,13 +893,13 @@ function sortStreamers(sortType) {
         else if (sortType === 'name-asc') {
             const aName = a.querySelector('.streamer-name').textContent;
             const bName = b.querySelector('.streamer-name').textContent;
-            return aName.localeCompare(bName);
+            return aName.localeCompare(bName, 'uk');
         }
         // За іменем (Я-А)
         else if (sortType === 'name-desc') {
             const aName = a.querySelector('.streamer-name').textContent;
             const bName = b.querySelector('.streamer-name').textContent;
-            return bName.localeCompare(aName);
+            return bName.localeCompare(aName, 'uk');
         }
         // За кількістю глядачів (тільки для стримерів онлайн)
         else if (sortType === 'viewers') {
@@ -582,8 +909,8 @@ function sortStreamers(sortType) {
             
             // Якщо обидва онлайн, порівнюємо кількість глядачів
             if (aLive && bLive) {
-                const aViewers = parseInt(a.querySelector('.viewers-count span').textContent) || 0;
-                const bViewers = parseInt(b.querySelector('.viewers-count span').textContent) || 0;
+                const aViewers = parseInt(a.querySelector('.viewers-count span').textContent.replace(/\D/g, '')) || 0;
+                const bViewers = parseInt(b.querySelector('.viewers-count span').textContent.replace(/\D/g, '')) || 0;
                 return bViewers - aViewers; // Спадання
             }
             
@@ -601,129 +928,177 @@ function sortStreamers(sortType) {
         return 0;
     });
     
-    // Видаляємо картки з контейнера
-    streamerCards.forEach(card => card.remove());
+    // Запам'ятовуємо поточну позицію кожної картки
+    const positions = new Map();
     
-    // Додаємо відсортовані картки назад
+    streamerCards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        positions.set(card, {
+            left: rect.left,
+            top: rect.top
+        });
+    });
+    
+    // Очищаємо контейнер і додаємо відсортовані картки
+    streamerCards.forEach(card => card.remove());
     streamerCards.forEach(card => {
         streamersContainer.appendChild(card);
     });
-}
-
-/**
- * Перевірка на пустий стан (коли всі стримери відфільтровані)
- */
-function checkEmptyState() {
-    const streamersContainer = document.getElementById('streamers-container');
-    const visibleCards = Array.from(document.querySelectorAll('.streamer-card')).filter(card => {
-        return !card.classList.contains('hidden-by-clan') && !card.classList.contains('hidden-by-status');
-    });
     
-    // Видаляємо попередній empty-state, якщо він є
-    const existingEmptyState = streamersContainer.querySelector('.empty-state');
-    if (existingEmptyState) {
-        existingEmptyState.remove();
-    }
-    
-    // Якщо немає видимих карток, показуємо пустий стан
-    if (visibleCards.length === 0) {
-        const template = document.getElementById('empty-template');
-        const emptyState = document.importNode(template.content, true);
-        
-        // Додаємо обробник для кнопки скидання фільтрів
-        const resetBtn = emptyState.querySelector('.reset-filters');
-        if (resetBtn) {
-            resetBtn.addEventListener('click', function() {
-                // Скидаємо фільтр кланів
-                const clanFilter = document.getElementById('clanFilter');
-                if (clanFilter) {
-                    clanFilter.querySelector('span').textContent = 'Всі клани';
-                    document.querySelector('#clanFilterMenu .dropdown-item[data-value="all"]').click();
-                }
+    // Анімуємо переміщення карток, якщо в контейнері більше 1 елемента
+    if (streamerCards.length > 1) {
+        streamerCards.forEach(card => {
+            const oldPosition = positions.get(card);
+            if (!oldPosition) return;
+            
+            const newPosition = card.getBoundingClientRect();
+            
+            // Розраховуємо зміщення
+            const deltaX = oldPosition.left - newPosition.left;
+            const deltaY = oldPosition.top - newPosition.top;
+            
+            // Застосовуємо початкове зміщення
+            if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
+                card.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
                 
-                // Скидаємо фільтр статусу
-                document.querySelector('.filter-tab[data-filter="all"]').click();
-                
-                // Скидаємо сортування
-                const sortFilter = document.getElementById('sortFilter');
-                if (sortFilter) {
-                    sortFilter.querySelector('span').textContent = 'За замовчуванням';
-                    document.querySelector('#sortFilterMenu .dropdown-item[data-value="default"]').click();
-                }
-            });
-        }
-        
-        streamersContainer.appendChild(emptyState);
+                // Анімуємо повернення на нову позицію
+                requestAnimationFrame(() => {
+                    card.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)';
+                    card.style.transform = '';
+                    
+                    // Видаляємо властивості після завершення анімації
+                    setTimeout(() => {
+                        card.style.transition = '';
+                    }, 500);
+                });
+            }
+        });
     }
 }
 
 /**
- * Показ сповіщення про стрімера, який почав трансляцію
+ * Показує сповіщення про нові стріми
  */
-function showStreamNotification(streamerData) {
-    // Видаляємо попереднє сповіщення, якщо воно є
+function showStreamNotification(streamerInfo) {
+    // Видаляємо попередні сповіщення
     const existingNotification = document.querySelector('.stream-notification');
     if (existingNotification) {
         existingNotification.remove();
     }
     
-    // Знаходимо дані стримера
-    const streamer = streamersData.find(s => s.id === streamerData.id);
-    if (!streamer) return;
+    // Створюємо нове сповіщення
+    const notification = document.createElement('div');
+    notification.className = 'stream-notification';
     
-    // Використовуємо шаблон для сповіщення
-    const template = document.getElementById('notification-template');
-    const notification = document.importNode(template.content, true).querySelector('.stream-notification');
+    notification.innerHTML = `
+        <div class="notification-avatar">
+            <img src="${streamerInfo.avatarUrl}" alt="${streamerInfo.displayName}">
+        </div>
+        <div class="notification-content">
+            <div class="notification-title">
+                <span class="streamer-name">${streamerInfo.displayName}</span>
+                <span class="live-badge">LIVE</span>
+            </div>
+            <div class="notification-message">${streamerInfo.streamData.title}</div>
+        </div>
+        <button class="notification-close" aria-label="Закрити">
+            <i class="fas fa-times"></i>
+        </button>
+    `;
     
-    // Заповнюємо дані
-    notification.querySelector('.notification-avatar img').src = streamer.avatarUrl;
-    notification.querySelector('.streamer-name').textContent = streamer.displayName;
-    notification.querySelector('.notification-message').textContent = streamerData.title;
-    
-    // Додаємо до сторінки
     document.body.appendChild(notification);
     
-    // Додаємо клас для анімації
-    setTimeout(() => {
-        notification.classList.add('show');
-    }, 100);
-    
     // Додаємо обробник для закриття
-    const closeBtn = notification.querySelector('.notification-close');
-    if (closeBtn) {
-        closeBtn.addEventListener('click', function() {
-            notification.classList.remove('show');
+    const closeButton = notification.querySelector('.notification-close');
+    if (closeButton) {
+        closeButton.addEventListener('click', () => {
+            notification.style.transform = 'translateX(120%)';
             setTimeout(() => {
                 notification.remove();
             }, 500);
         });
     }
     
-    // Додаємо обробник для кліку на сповіщення (перенаправлення на стрім)
-    notification.addEventListener('click', function(e) {
+    // Додаємо обробник для переходу на стрім при кліку на сповіщення
+    notification.addEventListener('click', (e) => {
         if (!e.target.closest('.notification-close')) {
-            window.open(`https://twitch.tv/${streamer.twitchId}`, '_blank');
-            notification.classList.remove('show');
+            window.open(`https://twitch.tv/${streamerInfo.twitchId}`, '_blank');
+            notification.style.transform = 'translateX(120%)';
             setTimeout(() => {
                 notification.remove();
             }, 500);
         }
     });
     
-    // Автоматично закриваємо сповіщення через 8 секунд
+    // Показуємо сповіщення з затримкою
     setTimeout(() => {
-        if (document.body.contains(notification)) {
-            notification.classList.remove('show');
-            setTimeout(() => {
-                notification.remove();
-            }, 500);
-        }
+        notification.classList.add('show');
+    }, 100);
+    
+    // Автоматично ховаємо сповіщення через 8 секунд
+    setTimeout(() => {
+        notification.style.transform = 'translateX(120%)';
+        setTimeout(() => {
+            notification.remove();
+        }, 500);
     }, 8000);
 }
 
 /**
+ * Обробка помилок при запиті до Twitch API
+ */
+function handleTwitchAPIError() {
+    console.log('Використання демо-даних для стримерів через помилку API');
+    
+    // Генеруємо випадкові статуси для стримерів
+    const liveStreamers = getLiveStreamersDemo();
+    
+    // Оновлюємо лічильник онлайн-стримерів
+    const liveCount = document.querySelector('.live-count');
+    if (liveCount) {
+        liveCount.textContent = liveStreamers.length;
+    }
+    
+    // Додаємо клас has-live, якщо є стримери онлайн
+    const liveBtn = document.querySelector('.live-btn');
+    if (liveBtn && liveStreamers.length > 0) {
+        liveBtn.classList.add('has-live');
+    }
+    
+    // Оновлюємо статус кожного стримера
+    streamers.forEach(streamer => {
+        const liveData = liveStreamers.find(live => live.id === streamer.id);
+        const streamerCard = document.getElementById(`streamer-${streamer.id}`);
+        
+        if (streamerCard) {
+            if (liveData) {
+                // Стример онлайн
+                updateStreamerCardToLive(streamerCard, liveData);
+                
+                // Зберігаємо останній онлайн
+                localStorage.setItem(`streamer_${streamer.id}_last_online`, Date.now().toString());
+            } else {
+                // Стример офлайн
+                updateStreamerCardToOffline(streamerCard);
+            }
+        }
+    });
+    
+    // Сортуємо картки
+    sortStreamers('default');
+    
+    // Якщо активний фільтр "Зараз в ефірі"
+    const activeTab = document.querySelector('.filter-tab.active');
+    if (activeTab) {
+        const filter = activeTab.getAttribute('data-filter');
+        if (filter !== 'all') {
+            filterByStatus(filter);
+        }
+    }
+}
+
+/**
  * Функція для імітації відповіді API Twitch (для демонстрації)
- * У реальному проекті тут був би запит до API
  */
 function getLiveStreamersDemo() {
     // Випадковим чином вибираємо 2-3 стримерів, які зараз "онлайн"
@@ -732,7 +1107,7 @@ function getLiveStreamersDemo() {
     
     // Вибираємо випадкові індекси
     while (liveStreamersIndices.length < liveStreamersCount) {
-        const randomIndex = Math.floor(Math.random() * streamersData.length);
+        const randomIndex = Math.floor(Math.random() * streamers.length);
         if (!liveStreamersIndices.includes(randomIndex)) {
             liveStreamersIndices.push(randomIndex);
         }
@@ -740,7 +1115,7 @@ function getLiveStreamersDemo() {
     
     // Формуємо дані про стримерів онлайн
     return liveStreamersIndices.map(index => {
-        const streamer = streamersData[index];
+        const streamer = streamers[index];
         
         // Генеруємо випадкові дані для стріму
         const streamTitles = [
@@ -762,131 +1137,3 @@ function getLiveStreamersDemo() {
         };
     });
 }
-
-/**
- * Додавання CSS стилів для модальних вікон
- */
-(function addModalStyles() {
-    const styleEl = document.createElement('style');
-    styleEl.textContent = `
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .modal-content {
-            background: var(--bg-dark);
-            border-radius: var(--radius-lg);
-            width: 100%;
-            max-width: 700px;
-            max-height: 80vh;
-            overflow-y: auto;
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: var(--shadow-xl);
-        }
-        
-        .modal-overlay.active .modal-content {
-            transform: scale(1);
-        }
-        
-        .modal-header {
-            padding: var(--space-lg);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .modal-header h3 {
-            margin: 0;
-            font-size: 20px;
-        }
-        
-        .modal-close {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 20px;
-            cursor: pointer;
-            transition: all var(--transition-normal);
-        }
-        
-        .modal-close:hover {
-            color: var(--primary);
-            transform: rotate(90deg);
-        }
-        
-        .modal-body {
-            padding: var(--space-lg);
-        }
-        
-        .requirements-list {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .requirements-list li {
-            display: flex;
-            gap: var(--space-md);
-            margin-bottom: var(--space-lg);
-        }
-        
-        .requirements-list li i {
-            color: var(--primary);
-            font-size: 20px;
-            flex-shrink: 0;
-            margin-top: 5px;
-        }
-        
-        .requirements-list li h4 {
-            margin: 0 0 var(--space-xs);
-            font-size: 18px;
-        }
-        
-        .requirements-list li p {
-            margin: 0;
-            color: var(--text-secondary);
-        }
-        
-        .modal-actions {
-            margin-top: var(--space-xl);
-            text-align: center;
-        }
-        
-        body.modal-open {
-            overflow: hidden;
-        }
-        
-        @media (max-width: 768px) {
-            .modal-content {
-                width: 90%;
-            }
-            
-            .requirements-list li {
-                flex-direction: column;
-                gap: var(--space-xs);
-            }
-        }
-    `;
-    document.head.appendChild(styleEl);
-})();
