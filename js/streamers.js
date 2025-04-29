@@ -23,7 +23,9 @@ const streamers = [
         avatarUrl: 'img/exclusivel.png',
         description: 'Стример і професійний гравець G4_UA.',
         clan: 'G4_UA',
-        
+        youtube: 'none',
+        youtubeType: 'user',
+        telegram: 'none'
     },
     { 
         id: 'ykp_boih_wot', 
