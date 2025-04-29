@@ -235,6 +235,9 @@ function loadStreamers() {
 /**
  * Створення картки стримера
  */
+/**
+ * Створення картки стримера
+ */
 function createStreamerCard(streamer) {
     const card = document.createElement('div');
     card.className = 'streamer-card';
@@ -311,6 +314,7 @@ function createStreamerCard(streamer) {
                 <i class="fab fa-telegram"></i>
             </a>
         </div>
+        <div class="live-status-label">LIVE</div>
     `;
     
     // Додаємо анімацію появи картки
