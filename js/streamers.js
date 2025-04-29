@@ -72,15 +72,15 @@ const streamers = [
         telegram: '+cLlIBjakfuUyMzYy'
     },
     { 
-        id: 'worldoftanks_ukraine', 
-        twitchId: 'worldoftanks_ukraine',
+        id: 'firestormyo', 
+        twitchId: 'firestormyo',
         displayName: 'Firestormyo',
-        avatarUrl: 'img/worldoftanks_ukraine.png',
+        avatarUrl: 'img/firestormyo.png',
         description: 'Експерт з артилерії. Член G3_UA.',
         clan: 'G3_UA',
-        youtube: 'WorldofTanksOfitsiynyykanal',
-        youtubeType: 'user',
-        telegram: 'worldoftanksua_official'
+        youtube: '',
+        youtubeType: '',
+        telegram: 'firestormyo'
     },
     { 
         id: 'vgostiua', 
