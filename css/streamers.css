@@ -916,3 +916,116 @@
         height: 50px;
     }
 }
+/* Стилі для секції вимог до стримерів */
+.requirements-section {
+    background-color: var(--bg-darker);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-3xl);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: var(--shadow-lg);
+}
+
+.requirements-section h2 {
+    font-size: 24px;
+    margin-bottom: var(--space-lg);
+    color: var(--primary);
+    text-align: center;
+}
+
+.requirements-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.requirements-list li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: var(--space-md);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: var(--space-md);
+}
+
+.requirements-list li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.requirements-list li i,
+.requirements-list li svg {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    color: var(--primary);
+    font-size: 18px;
+}
+
+.requirements-list li h3 {
+    font-size: 18px;
+    margin-bottom: var(--space-xs);
+    color: var(--text-primary);
+}
+
+.requirements-list li p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xs);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Стилі для FAQ-подібної структури */
+.requirement-item {
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-md);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.requirement-header {
+    display: flex;
+    align-items: center;
+    padding: var(--space-md);
+    background: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: background var(--transition-normal);
+}
+
+.requirement-header:hover {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.requirement-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.requirement-title i {
+    color: var(--primary);
+    margin-right: var(--space-sm);
+    font-size: 18px;
+}
+
+.requirement-content {
+    padding: var(--space-md);
+    background: rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Стиль для кнопки в нижній частині секції вимог */
+.apply-button {
+    text-align: center;
+    margin-top: var(--space-xl);
+}
+
+.apply-button .btn {
+    padding: var(--space-md) var(--space-2xl);
+}
