@@ -450,6 +450,7 @@
 
 .streamer-social-links {
     display: flex;
+    flex-direction: row; 
     padding: var(--space-md);
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     gap: var(--space-md);
