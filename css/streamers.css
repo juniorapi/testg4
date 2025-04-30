@@ -1,0 +1,1059 @@
+/* Оновлений CSS для сторінки стримерів сайту G_UA Alliance з сучасними технологічними ефектами */
+
+.streamers-section {
+    padding-top: var(--space-3xl);
+}
+
+/* Фільтр стримерів */
+.filters-panel {
+    position: sticky;
+    top: 70px;
+    z-index: 10;
+    background: rgba(15, 15, 15, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: var(--shadow-lg);
+}
+
+.filters-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-lg);
+}
+
+.filters-actions {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.filter-tabs {
+    display: flex;
+    gap: var(--space-sm);
+    background: rgba(10, 10, 10, 0.5);
+    padding: var(--space-xs);
+    border-radius: var(--radius-md);
+}
+
+.filter-tab {
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.filter-tab.active {
+    background: var(--primary);
+    color: white;
+}
+
+.filter-tab:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.live-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    height: 24px;
+    background: white;
+    color: var(--primary);
+    border-radius: var(--radius-full);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.filter-tab.active .live-count {
+    background: white;
+    color: var(--primary);
+}
+
+.filter-dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-md);
+    background: rgba(26, 26, 26, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    min-width: 150px;
+}
+
+.dropdown-toggle:hover {
+    background: rgba(26, 26, 26, 0.8);
+}
+
+.dropdown-toggle i {
+    transition: transform var(--transition-normal);
+}
+
+.dropdown-toggle.active i {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transform: translateY(-10px);
+    visibility: hidden;
+    transition: all var(--transition-normal);
+    z-index: 100;
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.dropdown-item {
+    padding: var(--space-sm) var(--space-lg);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.dropdown-item.active {
+    background: rgba(227, 41, 39, 0.2);
+    color: var(--primary);
+}
+
+/* Сітка стримерів */
+.streamers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+}
+
+.streamer-card {
+    position: relative;
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all var(--transition-normal);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.streamer-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.streamer-card.live {
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 15px rgba(227, 41, 39, 0.3);
+    order: -1;
+}
+
+.streamer-card.live:hover {
+    box-shadow: 0 0 20px rgba(227, 41, 39, 0.5);
+}
+
+.streamer-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.streamer-card.live .streamer-header {
+    background: rgba(227, 41, 39, 0.1);
+    border-bottom: 1px solid rgba(227, 41, 39, 0.2);
+}
+
+.streamer-avatar {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+    transition: all var(--transition-normal);
+}
+
+.streamer-card.live .streamer-avatar {
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(227, 41, 39, 0.5);
+}
+
+.streamer-avatar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+    z-index: 1;
+}
+
+.streamer-card.live .streamer-avatar::before {
+    background: linear-gradient(135deg, rgba(227, 41, 39, 0.2), transparent);
+    animation: rotate-gradient 3s linear infinite;
+}
+
+@keyframes rotate-gradient {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.streamer-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-normal);
+}
+
+.streamer-card:hover .streamer-avatar img {
+    transform: scale(1.1);
+}
+
+.streamer-info {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.streamer-name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: var(--space-xs);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.streamer-card.live .streamer-name {
+    color: var(--primary);
+}
+
+.clan-tag {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--accent);
+    background: rgba(255, 204, 0, 0.1);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-xs);
+}
+
+.stream-status {
+    margin-top: var(--space-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.status-offline {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* Оновлені стилі для відображення категорії та глядачів у верхній частині */
+.stream-category-badge, 
+.viewers-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    color: var(--text-secondary);
+    transition: all var(--transition-normal);
+}
+
+.stream-category-badge i {
+    color: var(--primary);
+}
+
+.viewers-badge i {
+    color: var(--primary);
+}
+
+/* Анімація для бейджів при зміні статусу */
+.streamer-card.live .stream-category-badge,
+.streamer-card.live .viewers-badge {
+    animation: fadeInUp 0.5s forwards;
+}
+
+/* Ефект пульсації для бейджів у верхній частині */
+@keyframes pulse-badge-top {
+    0% { background: rgba(255, 255, 255, 0.1); }
+    50% { background: rgba(227, 41, 39, 0.15); }
+    100% { background: rgba(255, 255, 255, 0.1); }
+}
+
+.streamer-card.live .stream-category-badge,
+.streamer-card.live .viewers-badge {
+    animation: pulse-badge-top 2s infinite;
+}
+
+.live-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--primary);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    display: none;
+    align-items: center;
+    gap: var(--space-xs);
+    box-shadow: 0 0 15px rgba(227, 41, 39, 0.5);
+    animation: pulse-badge 2s infinite;
+    z-index: 1;
+}
+
+@keyframes pulse-badge {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.stream-info {
+    padding: var(--space-md) var(--space-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.streamer-card.live .stream-info {
+    border-top: 1px solid rgba(227, 41, 39, 0.2);
+}
+
+.stream-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: var(--space-lg);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 48px;
+}
+
+/* Оновлені стилі для .stream-meta, коли .stream-game-info прихований */
+.stream-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    padding-top: var(--space-sm);
+}
+
+.stream-game-info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-sm);
+}
+
+.stream-category {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.stream-category i {
+    color: var(--primary);
+}
+
+.viewers-count {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.viewers-count i {
+    color: var(--primary);
+}
+
+.stream-actions {
+    width: 100%;
+    text-align: center;
+}
+
+/* Стилі для нової кнопки "Дивитися" */
+.watch-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    background: var(--primary);
+    color: white;
+    padding: 5px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    transition: all var(--transition-normal);
+    flex-shrink: 0;
+    text-decoration: none;
+}
+
+.watch-link:hover {
+    background: var(--primary-dark);
+    transform: scale(1.05);
+    color: white;
+}
+
+/* Приховуємо стару кнопку watch-btn */
+.watch-btn {
+    display: none;
+}
+
+/* Додаткові стилі для адаптивності */
+@media (max-width: 576px) {
+    .watch-link {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+}
+
+.streamer-social-links {
+    display: flex;
+    flex-direction: row; 
+    padding: var(--space-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    gap: var(--space-md);
+    justify-content: center;
+}
+
+.streamer-card.live .streamer-social-links {
+    border-top: 1px solid rgba(227, 41, 39, 0.2);
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    background: rgba(26, 26, 26, 0.7);
+    color: var(--text-secondary);
+    transition: all var(--transition-normal);
+}
+
+.social-link:hover {
+    transform: translateY(-5px);
+}
+
+.social-link.twitch {
+    position: relative;
+}
+
+.social-link.twitch.live::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-full);
+    background: var(--success);
+    border: 1px solid var(--bg-dark);
+    animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+    0% {
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(76, 175, 80, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+    }
+}
+
+.social-link.twitch:hover {
+    background: #6441a5;
+    color: white;
+    box-shadow: 0 0 15px rgba(100, 65, 165, 0.6);
+}
+
+.social-link.youtube:hover {
+    background: #ff0000;
+    color: white;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+}
+
+.social-link.discord:hover {
+    background: #5865f2;
+    color: white;
+    box-shadow: 0 0 15px rgba(88, 101, 242, 0.6);
+}
+
+.social-link.telegram:hover {
+    background: #0088cc;
+    color: white;
+    box-shadow: 0 0 15px rgba(0, 136, 204, 0.6);
+}
+
+/* Стилі для відображення порожніх станів */
+.empty-state {
+    grid-column: 1 / -1;
+    padding: var(--space-2xl);
+    text-align: center;
+    background: rgba(26, 26, 26, 0.3);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.empty-icon {
+    font-size: 48px;
+    color: var(--text-muted);
+    margin-bottom: var(--space-md);
+}
+
+.empty-title {
+    font-size: 20px;
+    margin-bottom: var(--space-sm);
+}
+
+.empty-message {
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0 auto var(--space-lg);
+}
+
+.empty-state .btn {
+    margin-top: var(--space-md);
+}
+
+/* Стан завантаження */
+.loading-state {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-2xl);
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-full);
+    border-top-color: var(--primary);
+    animation: spin 1s infinite linear;
+    margin-bottom: var(--space-md);
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-message {
+    color: var(--text-secondary);
+}
+
+/* Анімоване сповіщення про стрім */
+.stream-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--primary);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    box-shadow: 0 0 20px rgba(227, 41, 39, 0.5);
+    z-index: 1000;
+    max-width: 350px;
+    transform: translateX(120%);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.stream-notification.show {
+    transform: translateX(0);
+}
+
+.notification-avatar {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    border: 2px solid var(--primary);
+    flex-shrink: 0;
+}
+
+.notification-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.notification-content {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.notification-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 16px;
+    margin-bottom: var(--space-xs);
+    font-weight: 600;
+}
+
+.notification-title .live-badge {
+    font-size: 10px;
+    padding: 1px 5px;
+    border-radius: var(--radius-sm);
+    background: var(--primary);
+    color: white;
+}
+
+.notification-message {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.notification-close {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--text-secondary);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.notification-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+}
+
+/* Секція для подання заявки */
+.apply-section {
+    padding: var(--space-3xl) 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../img/apply-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-3xl);
+}
+
+.apply-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(227, 41, 39, 0.3) 0%, transparent 70%);
+    animation: pulse-opacity 3s infinite alternate;
+}
+
+@keyframes pulse-opacity {
+    0% { opacity: 0.5; }
+    100% { opacity: 0.8; }
+}
+
+.apply-container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.apply-title {
+    font-size: 32px;
+    margin-bottom: var(--space-md);
+}
+
+.apply-description {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xl);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.apply-actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+}
+
+/* Додаткові анімації та ефекти */
+.streamer-card {
+    animation: fadeInUp 0.5s backwards;
+}
+
+.streamer-card:nth-child(2n) {
+    animation-delay: 0.1s;
+}
+
+.streamer-card:nth-child(3n) {
+    animation-delay: 0.2s;
+}
+
+.streamer-card:nth-child(4n) {
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ефект відкриття та закриття карток */
+.streamer-card.hide {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+    position: absolute;
+}
+
+/* 3D ефект для карток */
+.card-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.streamer-card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    background: var(--bg-light);
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-lg);
+}
+/* Стилі для покращення фільтрації */
+.streamer-card[style*="display: none"] {
+    display: none !important;
+}
+
+.streamer-card.live {
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(227, 41, 39, 0.3);
+}
+
+/* Анімації для плавних переходів при фільтрації */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Адаптивність */
+@media (max-width: 1200px) {
+    .streamers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 992px) {
+    .filters-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-md);
+    }
+    
+    .filter-tabs {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .filter-tab {
+        flex: 1;
+        justify-content: center;
+    }
+    
+    .filters-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .apply-actions {
+        flex-direction: column;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .streamers-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .streamer-header {
+        padding: var(--space-md);
+    }
+    
+    .streamer-avatar {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .streamer-name {
+        font-size: 16px;
+    }
+    
+    .stream-info {
+        padding: var(--space-md);
+    }
+    
+    .stream-game-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-xs);
+    }
+    
+    .apply-title {
+        font-size: 28px;
+    }
+    
+    .apply-description {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .filters-panel {
+        padding: var(--space-md);
+    }
+    
+    .filter-tab {
+        padding: var(--space-xs) var(--space-sm);
+        font-size: 12px;
+    }
+    
+    .live-count {
+        min-width: 20px;
+        height: 20px;
+        font-size: 10px;
+    }
+    
+    .dropdown-toggle {
+        padding: var(--space-xs) var(--space-md);
+        min-width: auto;
+    }
+    
+    .streamer-avatar {
+        width: 50px;
+        height: 50px;
+    }
+}
+.requirements-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1100;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.requirements-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.requirements-modal-content {
+    background: var(--bg-dark);
+    max-width: 800px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    border-radius: var(--radius-lg);
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: var(--space-2xl);
+}
+
+.requirements-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-xl);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: var(--space-md);
+}
+
+.requirements-modal-title {
+    font-size: 24px;
+    color: var(--primary);
+    margin: 0;
+}
+
+.requirements-modal-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 24px;
+    cursor: pointer;
+    transition: color var(--transition-normal);
+}
+
+.requirements-modal-close:hover {
+    color: var(--primary);
+}
+
+.requirements-modal-body {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+}
+
+.requirement-item {
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all var(--transition-normal);
+}
+
+.requirement-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-color: var(--primary);
+}
+
+.requirement-item-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: var(--radius-full);
+    background: rgba(227, 41, 39, 0.1);
+    color: var(--primary);
+    margin-bottom: var(--space-md);
+    font-size: 24px;
+}
+
+.requirement-item-title {
+    font-size: 18px;
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+}
+
+.requirement-item-description {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.requirements-modal-footer {
+    margin-top: var(--space-xl);
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: var(--space-lg);
+}
+
+@media (max-width: 768px) {
+    .requirements-modal-content {
+        width: 95%;
+        padding: var(--space-lg);
+    }
+
+    .requirements-modal-body {
+        grid-template-columns: 1fr;
+    }
+}
+.main-footer .footer-top {
+    border-bottom: none;
+    padding-bottom: 0;
+}
