@@ -450,7 +450,7 @@ function initLiveStreamers() {
             const currentTime = Date.now();
             
             // Перевіряємо, чи дані не застарілі (не старше 5 хвилин)
-            if (currentTime - updateTime < 5 * 60 * 1000 && liveStreamers.length > 0) {
+            if (currentTime - updateTime < 5 * 60 * 1000) {
                 updateLiveStreamersSection(streamersContainer, liveStreamers);
                 return;
             }
@@ -459,8 +459,8 @@ function initLiveStreamers() {
         }
     }
     
-    // Якщо даних немає або вони застарілі, використовуємо демо-дані
-    useDemoStreamers(streamersContainer);
+    // Якщо даних немає або вони застарілі, показуємо повідомлення що немає стримерів онлайн
+    showNoLiveStreamersMessage(streamersContainer);
 }
 
 /**
@@ -471,24 +471,17 @@ function updateLiveStreamersSection(container, liveStreamers) {
     container.innerHTML = '';
     
     // Якщо немає стримерів онлайн, показуємо повідомлення
-    if (liveStreamers.length === 0) {
-        container.innerHTML = `
-            <div class="empty-state" style="grid-column: span 12; text-align: center; padding: 50px;">
-                <div style="font-size: 48px; color: var(--text-muted); margin-bottom: 20px;">
-                    <i class="fas fa-video-slash"></i>
-                </div>
-                <h3 style="margin-bottom: 10px;">Наразі немає активних стримів</h3>
-                <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 20px;">
-                    Наші стримери зараз не в ефірі. Слідкуйте за розкладом або перегляньте список всіх стримерів.
-                </p>
-                <a href="streamers.html" class="btn btn-primary">Всі стримери</a>
-            </div>
-        `;
+    if (!liveStreamers || liveStreamers.length === 0) {
+        showNoLiveStreamersMessage(container);
         return;
     }
     
     // Сортуємо стримерів за кількістю глядачів (спочатку з найбільшою)
-    liveStreamers.sort((a, b) => (b.streamData?.viewers || 0) - (a.streamData?.viewers || 0));
+    liveStreamers.sort((a, b) => {
+        const aViewers = a.viewers || 0;
+        const bViewers = b.viewers || 0;
+        return bViewers - aViewers;
+    });
     
     // Визначаємо, хто буде featured стример (перший в списку)
     const featuredStreamer = liveStreamers[0];
@@ -501,7 +494,7 @@ function updateLiveStreamersSection(container, liveStreamers) {
                 <div class="live-badge">LIVE</div>
                 <div class="viewers-count">
                     <i class="fas fa-eye"></i>
-                    <span>${featuredStreamer.streamData?.viewers || 0}</span>
+                    <span>${featuredStreamer.viewers || 0}</span>
                 </div>
             </div>
             <div class="stream-info">
@@ -510,7 +503,7 @@ function updateLiveStreamersSection(container, liveStreamers) {
                     <div class="online-indicator"></div>
                 </div>
                 <div class="stream-details">
-                    <h3 class="stream-title">${featuredStreamer.streamData?.title || 'Стрім без назви'}</h3>
+                    <h3 class="stream-title">${featuredStreamer.title || 'Стрім без назви'}</h3>
                     <div class="streamer-name">
                         <span>${featuredStreamer.displayName}</span>
                         <span class="clan-tag">${featuredStreamer.clan}</span>
@@ -539,7 +532,7 @@ function updateLiveStreamersSection(container, liveStreamers) {
                     <div class="live-badge">LIVE</div>
                     <div class="viewers-count">
                         <i class="fas fa-eye"></i>
-                        <span>${streamer.streamData?.viewers || 0}</span>
+                        <span>${streamer.viewers || 0}</span>
                     </div>
                 </div>
                 <div class="stream-info">
@@ -548,7 +541,7 @@ function updateLiveStreamersSection(container, liveStreamers) {
                         <div class="online-indicator"></div>
                     </div>
                     <div class="stream-details">
-                        <h3 class="stream-title">${streamer.streamData?.title || 'Стрім без назви'}</h3>
+                        <h3 class="stream-title">${streamer.title || 'Стрім без назви'}</h3>
                         <div class="streamer-name">
                             <span>${streamer.displayName}</span>
                             <span class="clan-tag">${streamer.clan}</span>
@@ -564,43 +557,22 @@ function updateLiveStreamersSection(container, liveStreamers) {
         
         container.innerHTML += streamerHTML;
     }
-    
-    // Якщо є місце, додаємо offline стример для балансу сітки (якщо є менше 2 додаткових стримерів)
-    if (maxRegularStreamers < 2) {
-        const offlineHTML = `
-            <div class="offline-streamer">
-                <div class="streamer-header">
-                    <div class="streamer-avatar">
-                        <img src="img/streamer-3.jpg" alt="Офлайн стример">
-                    </div>
-                    <div class="streamer-info">
-                        <h3>LightTank_Girl</h3>
-                        <div class="clan-tag">G4_UA</div>
-                        <div class="last-online">
-                            <i class="fas fa-clock"></i>
-                            <span>Остання трансляція: вчора</span>
-                        </div>
-                    </div>
-                    <div class="social-links">
-                        <a href="https://twitch.tv/" target="_blank" class="social-link">
-                            <i class="fab fa-twitch"></i>
-                        </a>
-                        <a href="https://youtube.com/" target="_blank" class="social-link">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        `;
-        
-        container.innerHTML += offlineHTML;
-    }
 }
 
 /**
- * Показує демо-стримерів, якщо немає реальних даних
+ * Показує повідомлення, коли немає стримерів онлайн
  */
-function useDemoStreamers(container) {
-    // Залишаємо контейнер з демо-даними, які вже є в HTML
-    console.log('Використання демо-даних для стримерів на головній сторінці');
+function showNoLiveStreamersMessage(container) {
+    container.innerHTML = `
+        <div class="empty-state" style="grid-column: span 12; text-align: center; padding: 50px;">
+            <div style="font-size: 48px; color: var(--text-muted); margin-bottom: 20px;">
+                <i class="fas fa-video-slash"></i>
+            </div>
+            <h3 style="margin-bottom: 10px;">Наразі немає активних стримів</h3>
+            <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 20px;">
+                Наші стримери зараз не в ефірі. Слідкуйте за розкладом або перегляньте список всіх стримерів.
+            </p>
+            <a href="streamers.html" class="btn btn-primary">Всі стримери</a>
+        </div>
+    `;
 }
