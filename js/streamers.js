@@ -32,8 +32,8 @@ function loadStreamersData() {
         `;
     }
     
-    // Завантажуємо JSON з даними
-    fetch('streamers.json')
+    // Завантажуємо JSON з даними (з тієї ж директорії)
+    fetch('js/streamers.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Не вдалося завантажити дані стримерів');
@@ -57,7 +57,7 @@ function loadStreamersData() {
                             <i class="fas fa-exclamation-triangle"></i>
                         </div>
                         <h3 class="empty-title">Помилка завантаження</h3>
-                        <p class="empty-message">Не вдалося завантажити дані стримерів. Спробуйте оновити сторінку.</p>
+                        <p class="empty-message">Не вдалося завантажити дані стримерів. Перевірте наявність файлу js/streamers.json</p>
                         <button class="btn btn-primary" onclick="location.reload()">Оновити сторінку</button>
                     </div>
                 `;
@@ -170,222 +170,6 @@ function initModals() {
         });
     }
 }
-
-/**
- * Показує сповіщення про нові стріми
- */
-function showStreamNotification(streamerInfo) {
-    // Видаляємо попередні сповіщення
-    const existingNotification = document.querySelector('.stream-notification');
-    if (existingNotification) {
-        existingNotification.remove();
-    }
-    
-    // Створюємо нове сповіщення
-    const notification = document.createElement('div');
-    notification.className = 'stream-notification';
-    
-    notification.innerHTML = `
-        <div class="notification-avatar">
-            <img src="${streamerInfo.avatarUrl}" alt="${streamerInfo.displayName}">
-        </div>
-        <div class="notification-content">
-            <div class="notification-title">
-                <span class="streamer-name">${streamerInfo.displayName}</span>
-                <span class="live-badge">LIVE</span>
-            </div>
-            <div class="notification-message">${streamerInfo.streamData.title}</div>
-        </div>
-        <button class="notification-close" aria-label="Закрити">
-            <i class="fas fa-times"></i>
-        </button>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    // Додаємо обробник для закриття
-    const closeButton = notification.querySelector('.notification-close');
-    if (closeButton) {
-        closeButton.addEventListener('click', () => {
-            notification.style.transform = 'translateX(120%)';
-            setTimeout(() => {
-                notification.remove();
-            }, 500);
-        });
-    }
-    
-    // Додаємо обробник для переходу на стрім при кліку на сповіщення
-    notification.addEventListener('click', (e) => {
-        if (!e.target.closest('.notification-close')) {
-            window.open(`https://twitch.tv/${streamerInfo.twitchId}`, '_blank');
-            notification.style.transform = 'translateX(120%)';
-            setTimeout(() => {
-                notification.remove();
-            }, 500);
-        }
-    });
-    
-    // Показуємо сповіщення з затримкою
-    setTimeout(() => {
-        notification.classList.add('show');
-    }, 100);
-    
-    // Автоматично ховаємо сповіщення через 8 секунд
-    setTimeout(() => {
-        notification.style.transform = 'translateX(120%)';
-        setTimeout(() => {
-            notification.remove();
-        }, 500);
-    }, 8000);
-}
-
-/**
- * Оновлення для handleTwitchAPIError - виправлення синхронізації демо-даних
- */
-function handleTwitchAPIError() {
-    console.log('Використання демо-даних для стримерів через помилку API');
-    
-    // Генеруємо випадкові статуси для стримерів
-    const liveStreamers = getLiveStreamersDemo();
-    
-    // Синхронізуємо лайв стримерів для відображення на інших сторінках
-    const liveStreamersWithData = liveStreamers.map(liveData => {
-        const streamerObj = streamers.find(s => s.id === liveData.id);
-        if (streamerObj) {
-            return {
-                ...streamerObj,
-                streamData: {
-                    title: liveData.title,
-                    viewers: liveData.viewers,
-                    category: liveData.category
-                }
-            };
-        }
-        return null;
-    }).filter(Boolean); // Видаляємо null значення
-    
-    syncLiveStreamers(liveStreamersWithData);
-    
-    // Оновлюємо лічильник онлайн-стримерів
-    const liveCount = document.querySelector('.live-count');
-    if (liveCount) {
-        liveCount.textContent = liveStreamers.length;
-    }
-    
-    // Додаємо клас has-live, якщо є стримери онлайн
-    const liveBtn = document.querySelector('.live-btn');
-    if (liveBtn && liveStreamers.length > 0) {
-        liveBtn.classList.add('has-live');
-    }
-    
-    // Оновлюємо статус кожного стримера
-    streamers.forEach(streamer => {
-        const liveData = liveStreamers.find(live => live.id === streamer.id);
-        const streamerCard = document.getElementById(`streamer-${streamer.id}`);
-        
-        if (streamerCard) {
-            if (liveData) {
-                // Стример онлайн
-                updateStreamerCardToLive(streamerCard, liveData);
-                
-                // Зберігаємо останній онлайн
-                localStorage.setItem(`streamer_${streamer.id}_last_online`, Date.now().toString());
-            } else {
-                // Стример офлайн
-                updateStreamerCardToOffline(streamerCard);
-            }
-        }
-    });
-    
-    // Сортуємо картки
-    sortStreamers('default');
-    
-    // Якщо активний фільтр "Зараз в ефірі"
-    const activeTab = document.querySelector('.filter-tab.active');
-    if (activeTab) {
-        const filter = activeTab.getAttribute('data-filter');
-        if (filter !== 'all') {
-            filterByStatus(filter);
-        }
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    const requirementsBtn = document.querySelector('.open-requirements');
-    const requirementsModal = document.createElement('div');
-    requirementsModal.className = 'requirements-modal';
-    requirementsModal.id = 'requirementsModal';
-    requirementsModal.innerHTML = `
-        <div class="requirements-modal-content">
-            <div class="requirements-modal-header">
-                <h2 class="requirements-modal-title">Вимоги до офіційних стримерів альянсу</h2>
-                <button class="requirements-modal-close modal-close" aria-label="Закрити">&times;</button>
-            </div>
-            <div class="requirements-modal-body">
-                <div class="requirement-item">
-                    <div class="requirement-item-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3 class="requirement-item-title">Членство в клані</h3>
-                    <p class="requirement-item-description">
-                        Активне членство в одному з кланів альянсу G_UA. 
-                        Підтвердження внеску в розвиток клану та альянсу.
-                    </p>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-item-icon">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                    <h3 class="requirement-item-title">Регулярні трансляції</h3>
-                    <p class="requirement-item-description">
-                        Мінімум 3 стріми на тиждень з грою World of Tanks. 
-                        Кожен стрім має тривати не менше 2 годин.
-                    </p>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-item-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <h3 class="requirement-item-title">Якість контенту</h3>
-                    <p class="requirement-item-description">
-                        Висока якість відео та звуку. Корисний, інформативний 
-                        та розважальний контент для аудиторії.
-                    </p>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-item-icon">
-                        <i class="fas fa-smile"></i>
-                    </div>
-                    <h3 class="requirement-item-title">Позитивний імідж</h3>
-                    <p class="requirement-item-description">
-                        Дотримання етичних норм, відсутність токсичної поведінки. 
-                        Гідне представлення альянсу в медіа-просторі.
-                    </p>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-item-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="requirement-item-title">Розвиток каналу</h3>
-                    <p class="requirement-item-description">
-                        Активна робота над зростанням аудиторії. 
-                        Постійне вдосконалення контенту та взаємодія з глядачами.
-                    </p>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-item-icon">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <h3 class="requirement-item-title">Технічні вимоги</h3>
-                    <p class="requirement-item-description">
-                        Стабільне інтернет-з'єднання. Можливість стримити 
-                        з роздільною здатністю не нижче 1080p.
-                    </p>
-                </div>
-            </div>
-            <div class="requirements-modal-footer">
-                <a href="contact.html" class="btn btn-primary btn-lg">
-                    
 
 /**
  * Завантаження стримерів та перевірка їх статусу
@@ -585,8 +369,8 @@ function initializeCard3DEffect(card) {
  */
 function checkStreamStatus() {
     // Налаштування API Twitch
-    const clientId = 'gp762nuuoqcoxypju8c569th9wz7q5';
-    const accessToken = '0b09xd33shszp6496w5m8f03yalc8p';
+    const clientId = 'YOUR_TWITCH_CLIENT_ID'; // Замініть на ваш Client ID
+    const accessToken = 'YOUR_TWITCH_ACCESS_TOKEN'; // Замініть на ваш Access Token
     
     // Формуємо параметри запиту для кількох каналів одночасно
     const queryParams = streamers.map(streamer => `user_login=${streamer.twitchId}`).join('&');
@@ -748,10 +532,22 @@ function checkStreamStatus() {
     .catch(error => {
         console.error('Помилка отримання даних Twitch API:', error);
         
-        // В разі помилки використовуємо демо-дані
-        setTimeout(() => {
-            handleTwitchAPIError();
-        }, 1000);
+        // Показуємо повідомлення про помилку
+        const streamersContainer = document.getElementById('streamers-container');
+        if (streamersContainer) {
+            streamersContainer.innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3 class="empty-title">Помилка підключення до Twitch</h3>
+                    <p class="empty-message">Не вдалося отримати дані про стріми. Перевірте ключі API Twitch або підключення до інтернету.</p>
+                    <button class="btn btn-primary" onclick="location.reload()">
+                        <i class="fas fa-sync"></i> Оновити сторінку
+                    </button>
+                </div>
+            `;
+        }
     });
 }
 
@@ -942,6 +738,53 @@ function filterByClan(clan) {
 }
 
 /**
+ * Фільтрація стримерів за статусом
+ */
+function filterByStatus(status) {
+    const streamerCards = document.querySelectorAll('.streamer-card');
+    
+    // Рахуємо кількість прихованих карток
+    let hiddenCount = 0;
+    let visibleCount = 0;
+    
+    streamerCards.forEach(card => {
+        // Спочатку перевіряємо чи не прихований картка через фільтр клану
+        const isHiddenByClan = card.classList.contains('hidden-by-clan');
+        
+        if (status === 'all') {
+            if (!isHiddenByClan) {
+                card.style.display = '';
+                card.classList.remove('hidden-by-status');
+                visibleCount++;
+            }
+        } else if (status === 'live') {
+            if (card.classList.contains('live') && !isHiddenByClan) {
+                card.style.display = '';
+                card.classList.remove('hidden-by-status');
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+                card.classList.add('hidden-by-status');
+                hiddenCount++;
+            }
+        } else if (status === 'recent') {
+            if ((card.classList.contains('live') || card.classList.contains('recent')) && !isHiddenByClan) {
+                card.style.display = '';
+                card.classList.remove('hidden-by-status');
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+                card.classList.add('hidden-by-status');
+                hiddenCount++;
+            }
+        }
+    });
+    
+    // Перевіряємо, чи потрібно показати пустий стан
+    checkEmptyState();
+}
+
+/**
  * Перевірка на пустий стан (коли всі стримери відфільтровані)
  */
 function checkEmptyState() {
@@ -1083,7 +926,7 @@ function sortStreamers(sortType) {
         });
     });
     
-    // Очищаємо контейнер і додаємо відсортовані картки
+    // Очищуємо контейнер і додаємо відсортовані картки
     streamerCards.forEach(card => card.remove());
     streamerCards.forEach(card => {
         streamersContainer.appendChild(card);
@@ -1121,48 +964,180 @@ function sortStreamers(sortType) {
 }
 
 /**
- * Фільтрація стримерів за статусом
+ * Показує сповіщення про нові стріми
  */
-function filterByStatus(status) {
-    const streamerCards = document.querySelectorAll('.streamer-card');
+function showStreamNotification(streamerInfo) {
+    // Видаляємо попередні сповіщення
+    const existingNotification = document.querySelector('.stream-notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
     
-    // Рахуємо кількість прихованих карток
-    let hiddenCount = 0;
-    let visibleCount = 0;
+    // Створюємо нове сповіщення
+    const notification = document.createElement('div');
+    notification.className = 'stream-notification';
     
-    streamerCards.forEach(card => {
-        // Спочатку перевіряємо чи не прихований картка через фільтр клану
-        const isHiddenByClan = card.classList.contains('hidden-by-clan');
-        
-        if (status === 'all') {
-            if (!isHiddenByClan) {
-                card.style.display = '';
-                card.classList.remove('hidden-by-status');
-                visibleCount++;
-            }
-        } else if (status === 'live') {
-            if (card.classList.contains('live') && !isHiddenByClan) {
-                card.style.display = '';
-                card.classList.remove('hidden-by-status');
-                visibleCount++;
-            } else {
-                card.style.display = 'none';
-                card.classList.add('hidden-by-status');
-                hiddenCount++;
-            }
-        } else if (status === 'recent') {
-            if ((card.classList.contains('live') || card.classList.contains('recent')) && !isHiddenByClan) {
-                card.style.display = '';
-                card.classList.remove('hidden-by-status');
-                visibleCount++;
-            } else {
-                card.style.display = 'none';
-                card.classList.add('hidden-by-status');
-                hiddenCount++;
-            }
+    notification.innerHTML = `
+        <div class="notification-avatar">
+            <img src="${streamerInfo.avatarUrl}" alt="${streamerInfo.displayName}">
+        </div>
+        <div class="notification-content">
+            <div class="notification-title">
+                <span class="streamer-name">${streamerInfo.displayName}</span>
+                <span class="live-badge">LIVE</span>
+            </div>
+            <div class="notification-message">${streamerInfo.streamData.title}</div>
+        </div>
+        <button class="notification-close" aria-label="Закрити">
+            <i class="fas fa-times"></i>
+        </button>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Додаємо обробник для закриття
+    const closeButton = notification.querySelector('.notification-close');
+    if (closeButton) {
+        closeButton.addEventListener('click', () => {
+            notification.style.transform = 'translateX(120%)';
+            setTimeout(() => {
+                notification.remove();
+            }, 500);
+        });
+    }
+    
+    // Додаємо обробник для переходу на стрім при кліку на сповіщення
+    notification.addEventListener('click', (e) => {
+        if (!e.target.closest('.notification-close')) {
+            window.open(`https://twitch.tv/${streamerInfo.twitchId}`, '_blank');
+            notification.style.transform = 'translateX(120%)';
+            setTimeout(() => {
+                notification.remove();
+            }, 500);
         }
     });
     
-    // Перевіряємо, чи потрібно показати пустий стан
-    checkEmptyState();
+    // Показуємо сповіщення з затримкою
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 100);
+    
+    // Автоматично ховаємо сповіщення через 8 секунд
+    setTimeout(() => {
+        notification.style.transform = 'translateX(120%)';
+        setTimeout(() => {
+            notification.remove();
+        }, 500);
+    }, 8000);
 }
+
+/**
+ * Зберігаємо лайв стримерів в localStorage для використання на інших сторінках
+ */
+function syncLiveStreamers(liveStreamers) {
+    // Зберігаємо основну інформацію про стримерів онлайн
+    const liveStreamersInfo = liveStreamers.map(streamer => {
+        // Обробляємо дані про стрім
+        const streamData = streamer.streamData || {};
+        
+        return {
+            id: streamer.id,
+            twitchId: streamer.twitchId,
+            displayName: streamer.displayName,
+            avatarUrl: streamer.avatarUrl,
+            clan: streamer.clan,
+            title: streamData.title || '',
+            viewers: streamData.viewers || 0,
+            category: streamData.category || 'World of Tanks'
+        };
+    });
+    
+    // Зберігаємо в localStorage
+    localStorage.setItem('gua_live_streamers', JSON.stringify(liveStreamersInfo));
+    localStorage.setItem('gua_live_streamers_updated', Date.now().toString());
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const requirementsBtn = document.querySelector('.open-requirements');
+    const requirementsModal = document.createElement('div');
+    requirementsModal.className = 'requirements-modal';
+    requirementsModal.id = 'requirementsModal';
+    requirementsModal.innerHTML = `
+        <div class="requirements-modal-content">
+            <div class="requirements-modal-header">
+                <h2 class="requirements-modal-title">Вимоги до офіційних стримерів альянсу</h2>
+                <button class="requirements-modal-close modal-close" aria-label="Закрити">&times;</button>
+            </div>
+            <div class="requirements-modal-body">
+                <div class="requirement-item">
+                    <div class="requirement-item-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="requirement-item-title">Членство в клані</h3>
+                    <p class="requirement-item-description">
+                        Активне членство в одному з кланів альянсу G_UA. 
+                        Підтвердження внеску в розвиток клану та альянсу.
+                    </p>
+                </div>
+                <div class="requirement-item">
+                    <div class="requirement-item-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="requirement-item-title">Регулярні трансляції</h3>
+                    <p class="requirement-item-description">
+                        Мінімум 3 стріми на тиждень з грою World of Tanks. 
+                        Кожен стрім має тривати не менше 2 годин.
+                    </p>
+                </div>
+                <div class="requirement-item">
+                    <div class="requirement-item-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="requirement-item-title">Якість контенту</h3>
+                    <p class="requirement-item-description">
+                        Висока якість відео та звуку. Корисний, інформативний 
+                        та розважальний контент для аудиторії.
+                    </p>
+                </div>
+                <div class="requirement-item">
+                    <div class="requirement-item-icon">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <h3 class="requirement-item-title">Позитивний імідж</h3>
+                    <p class="requirement-item-description">
+                        Дотримання етичних норм, відсутність токсичної поведінки. 
+                        Гідне представлення альянсу в медіа-просторі.
+                    </p>
+                </div>
+                <div class="requirement-item">
+                    <div class="requirement-item-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="requirement-item-title">Розвиток каналу</h3>
+                    <p class="requirement-item-description">
+                        Активна робота над зростанням аудиторії. 
+                        Постійне вдосконалення контенту та взаємодія з глядачами.
+                    </p>
+                </div>
+                <div class="requirement-item">
+                    <div class="requirement-item-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="requirement-item-title">Технічні вимоги</h3>
+                    <p class="requirement-item-description">
+                        Стабільне інтернет-з'єднання. Можливість стримити 
+                        з роздільною здатністю не нижче 1080p.
+                    </p>
+                </div>
+            </div>
+            <div class="requirements-modal-footer">
+                <a href="contact.html" class="btn btn-primary btn-lg">
+                    <span>Подати заявку на стримера</span>
+                    <i class="fas fa-paper-plane"></i>
+                </a>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(requirementsModal);
+});
