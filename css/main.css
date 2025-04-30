@@ -840,3 +840,15 @@ section {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--primary-dark);
 }
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: var(--z-fixed);
+    padding: var(--space-sm) 0;
+    transition: background-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+.page-header, .page-hero {
+    padding-top: 100px;
+}
