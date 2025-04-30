@@ -61,15 +61,15 @@ const streamers = [
         telegram: 'INeSp1kIWOT'
     },
     { 
-        id: 'roha_wot', 
-        twitchId: 'roha_wot',
-        displayName: 'Roha_wot',
-        avatarUrl: 'img/roha_wot.png',
-        description: 'Експерт з артилерії. Член G1_UA.',
-        clan: 'G1_UA',
-        youtube: 'UC_rV2qI2UW2JL63yaLzuKpQ',
+        id: 'el_sld', 
+        twitchId: 'el_sld',
+        displayName: 'El_SlD',
+        avatarUrl: 'img/el_sid.png',
+        description: 'Експерт з артилерії. Член G0_UA.',
+        clan: 'G0_UA',
+        youtube: 'UCMP24qFvIZ3te2oCGdIBIYg',
         youtubeType: 'channel',
-        telegram: '+cLlIBjakfuUyMzYy'
+        telegram: 'ghosts_ua_official'
     },
     { 
         id: 'firestormyo', 
