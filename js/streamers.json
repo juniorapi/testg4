@@ -56,6 +56,17 @@
       "telegram": "ghosts_ua_official"
     },
     { 
+      "id": "lara_lapki_cat", 
+      "twitchId": "lara_lapki_cat",
+      "displayName": "Lara_LAPKI_CAT",
+      "avatarUrl": "img/lara_lapki_cat.png",
+      "description": "Експерт з артилерії. Член G0_UA.",
+      "clan": "G4_UA",
+      "youtube": "LAPKICAT",
+      "youtubeType": "user",
+      "telegram": "Lapki_cat_mr"
+    },
+    { 
       "id": "firestormyo", 
       "twitchId": "firestormyo",
       "displayName": "Firestormyo",
