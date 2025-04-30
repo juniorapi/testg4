@@ -490,11 +490,11 @@ function updateLiveStreamersSection(container, liveStreamers) {
     const featuredStreamHTML = `
         <div class="live-stream featured-stream">
             <div class="stream-thumbnail">
-                <img src="img/stream-thumb-1.jpg" alt="${featuredStreamer.displayName} стрім">
+                <img src="img/featured-stream-bg.jpg" alt="${featuredStreamer.displayName} стрім">
                 <div class="live-badge">LIVE</div>
-                <div class="viewers-count">
+                <div class="viewers-count" style="right: 10px; padding: 3px 8px; font-size: 12px;">
                     <i class="fas fa-eye"></i>
-                    <span>${featuredStreamer.viewers || 0}</span>
+                    <span>${formatViewersCount(featuredStreamer.viewers || 0)}</span>
                 </div>
             </div>
             <div class="stream-info">
@@ -528,11 +528,11 @@ function updateLiveStreamersSection(container, liveStreamers) {
         const streamerHTML = `
             <div class="live-stream">
                 <div class="stream-thumbnail">
-                    <img src="img/stream-thumb-${i + 1}.jpg" alt="${streamer.displayName} стрім">
+                    <img src="img/stream-bg-${i}.jpg" alt="${streamer.displayName} стрім">
                     <div class="live-badge">LIVE</div>
-                    <div class="viewers-count">
+                    <div class="viewers-count" style="right: 10px; padding: 3px 8px; font-size: 12px;">
                         <i class="fas fa-eye"></i>
-                        <span>${streamer.viewers || 0}</span>
+                        <span>${formatViewersCount(streamer.viewers || 0)}</span>
                     </div>
                 </div>
                 <div class="stream-info">
@@ -557,6 +557,16 @@ function updateLiveStreamersSection(container, liveStreamers) {
         
         container.innerHTML += streamerHTML;
     }
+}
+
+/**
+ * Форматування кількості глядачів для коректного відображення
+ */
+function formatViewersCount(count) {
+    if (count >= 1000) {
+        return (count / 1000).toFixed(1).replace('.0', '') + 'K';
+    }
+    return count.toString();
 }
 
 /**
