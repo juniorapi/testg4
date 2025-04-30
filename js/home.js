@@ -9,8 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     init3DEffect();
     initCountAnimation();
     initLiveDemo();
-    // Додаємо ініціалізацію відображення стримерів онлайн
-    initLiveStreamers();
+    fixStreamThumbnails(); // Виправлення фонових зображень та стилів карток стримерів
 });
 
 /**
@@ -433,156 +432,66 @@ function initLiveDemo() {
 }
 
 /**
- * Ініціалізація відображення стримерів онлайн на головній сторінці
+ * Виправлення фонових зображень та стилів карток стримерів
  */
-function initLiveStreamers() {
-    const streamersContainer = document.querySelector('.streamers-live-grid');
-    if (!streamersContainer) return;
+function fixStreamThumbnails() {
+    // Знаходимо всі ескізи стримів
+    const thumbnails = document.querySelectorAll('.stream-thumbnail img');
     
-    // Отримуємо стримерів онлайн з localStorage
-    const liveStreamersData = localStorage.getItem('gua_live_streamers');
-    const lastUpdated = localStorage.getItem('gua_live_streamers_updated');
-    
-    if (liveStreamersData && lastUpdated) {
-        try {
-            const liveStreamers = JSON.parse(liveStreamersData);
-            const updateTime = parseInt(lastUpdated);
-            const currentTime = Date.now();
-            
-            // Перевіряємо, чи дані не застарілі (не старше 5 хвилин)
-            if (currentTime - updateTime < 5 * 60 * 1000) {
-                updateLiveStreamersSection(streamersContainer, liveStreamers);
-                return;
+    // Якщо є битий фон, замінюємо його на фіксовані зображення
+    thumbnails.forEach((thumbnail, index) => {
+        thumbnail.addEventListener('error', function() {
+            // Якщо зображення битее, замінюємо його на фіксоване
+            if (index === 0) {
+                // Для головного (featured) стрімера
+                this.src = 'img/featured-stream-bg.jpg';
+            } else {
+                // Для інших стримерів
+                this.src = `img/stream-thumb-${(index % 3) + 1}.jpg`;
             }
-        } catch (e) {
-            console.error('Помилка при обробці даних стримерів:', e);
+        });
+        
+        // Також перевіряємо поточний src
+        if (!thumbnail.src || thumbnail.src === 'data:,' || thumbnail.src.endsWith('undefined')) {
+            if (index === 0) {
+                thumbnail.src = 'img/featured-stream-bg.jpg';
+            } else {
+                thumbnail.src = `img/stream-thumb-${(index % 3) + 1}.jpg`;
+            }
         }
-    }
-    
-    // Якщо даних немає або вони застарілі, показуємо повідомлення що немає стримерів онлайн
-    showNoLiveStreamersMessage(streamersContainer);
-}
-
-/**
- * Оновлення секції стримерів на головній сторінці
- */
-function updateLiveStreamersSection(container, liveStreamers) {
-    // Очищаємо контейнер від демо-стримерів
-    container.innerHTML = '';
-    
-    // Якщо немає стримерів онлайн, показуємо повідомлення
-    if (!liveStreamers || liveStreamers.length === 0) {
-        showNoLiveStreamersMessage(container);
-        return;
-    }
-    
-    // Сортуємо стримерів за кількістю глядачів (спочатку з найбільшою)
-    liveStreamers.sort((a, b) => {
-        const aViewers = a.viewers || 0;
-        const bViewers = b.viewers || 0;
-        return bViewers - aViewers;
     });
     
-    // Визначаємо, хто буде featured стример (перший в списку)
-    const featuredStreamer = liveStreamers[0];
-    
-    // Створюємо HTML для featured стримера
-    const featuredStreamHTML = `
-        <div class="live-stream featured-stream">
-            <div class="stream-thumbnail">
-                <img src="img/featured-stream-bg.jpg" alt="${featuredStreamer.displayName} стрім">
-                <div class="live-badge">LIVE</div>
-                <div class="viewers-count" style="right: 10px; padding: 3px 8px; font-size: 12px;">
-                    <i class="fas fa-eye"></i>
-                    <span>${formatViewersCount(featuredStreamer.viewers || 0)}</span>
-                </div>
-            </div>
-            <div class="stream-info">
-                <div class="streamer-avatar">
-                    <img src="${featuredStreamer.avatarUrl}" alt="${featuredStreamer.displayName}">
-                    <div class="online-indicator"></div>
-                </div>
-                <div class="stream-details">
-                    <h3 class="stream-title">${featuredStreamer.title || 'Стрім без назви'}</h3>
-                    <div class="streamer-name">
-                        <span>${featuredStreamer.displayName}</span>
-                        <span class="clan-tag">${featuredStreamer.clan}</span>
-                    </div>
-                </div>
-                <a href="https://twitch.tv/${featuredStreamer.twitchId}" target="_blank" class="watch-link">
-                    <i class="fab fa-twitch"></i>
-                    <span>Дивитися</span>
-                </a>
-            </div>
-        </div>
-    `;
-    
-    // Додаємо featured стримера
-    container.innerHTML = featuredStreamHTML;
-    
-    // Додаємо решту стримерів (максимум 2 для балансу секції)
-    const maxRegularStreamers = Math.min(2, liveStreamers.length - 1);
-    for (let i = 1; i <= maxRegularStreamers; i++) {
-        const streamer = liveStreamers[i];
+    // Виправляємо стиль для ескізів стримів
+    thumbnails.forEach(thumbnail => {
+        thumbnail.style.objectFit = 'cover';
+        thumbnail.style.width = '100%';
+        thumbnail.style.height = '100%';
         
-        const streamerHTML = `
-            <div class="live-stream">
-                <div class="stream-thumbnail">
-                    <img src="img/stream-bg-${i}.jpg" alt="${streamer.displayName} стрім">
-                    <div class="live-badge">LIVE</div>
-                    <div class="viewers-count" style="right: 10px; padding: 3px 8px; font-size: 12px;">
-                        <i class="fas fa-eye"></i>
-                        <span>${formatViewersCount(streamer.viewers || 0)}</span>
-                    </div>
-                </div>
-                <div class="stream-info">
-                    <div class="streamer-avatar">
-                        <img src="${streamer.avatarUrl}" alt="${streamer.displayName}">
-                        <div class="online-indicator"></div>
-                    </div>
-                    <div class="stream-details">
-                        <h3 class="stream-title">${streamer.title || 'Стрім без назви'}</h3>
-                        <div class="streamer-name">
-                            <span>${streamer.displayName}</span>
-                            <span class="clan-tag">${streamer.clan}</span>
-                        </div>
-                    </div>
-                    <a href="https://twitch.tv/${streamer.twitchId}" target="_blank" class="watch-link">
-                        <i class="fab fa-twitch"></i>
-                        <span>Дивитися</span>
-                    </a>
-                </div>
-            </div>
-        `;
-        
-        container.innerHTML += streamerHTML;
-    }
-}
-
-/**
- * Форматування кількості глядачів для коректного відображення
- */
-function formatViewersCount(count) {
-    if (count >= 1000) {
-        return (count / 1000).toFixed(1).replace('.0', '') + 'K';
-    }
-    return count.toString();
-}
-
-/**
- * Показує повідомлення, коли немає стримерів онлайн
- */
-function showNoLiveStreamersMessage(container) {
-    container.innerHTML = `
-        <div class="empty-state" style="grid-column: span 12; text-align: center; padding: 50px;">
-            <div style="font-size: 48px; color: var(--text-muted); margin-bottom: 20px;">
-                <i class="fas fa-video-slash"></i>
-            </div>
-            <h3 style="margin-bottom: 10px;">Наразі немає активних стримів</h3>
-            <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 20px;">
-                Наші стримери зараз не в ефірі. Слідкуйте за розкладом або перегляньте список всіх стримерів.
-            </p>
-            <a href="streamers.html" class="btn btn-primary">Всі стримери</a>
-        </div>
-    `;
+        // Переконуємося, що батьківський елемент має правильне відношення сторін
+        const container = thumbnail.closest('.stream-thumbnail');
+        if (container) {
+            container.style.aspectRatio = '16 / 9';
+            container.style.overflow = 'hidden';
+        }
+    });
+    
+    // Виправляємо стиль для лічильників глядачів
+    const viewerCounters = document.querySelectorAll('.viewers-count');
+    viewerCounters.forEach(counter => {
+        counter.style.position = 'absolute';
+        counter.style.bottom = '10px';
+        counter.style.right = '10px';
+        counter.style.background = 'rgba(0, 0, 0, 0.7)';
+        counter.style.color = 'white';
+        counter.style.padding = '3px 8px';
+        counter.style.borderRadius = 'var(--radius-sm)';
+        counter.style.fontSize = '12px';
+        counter.style.display = 'flex';
+        counter.style.alignItems = 'center';
+        counter.style.gap = 'var(--space-xs)';
+        counter.style.zIndex = '2';
+        counter.style.maxWidth = '80px';
+        counter.style.overflow = 'hidden';
+        counter.style.whiteSpace = 'nowrap';
+    });
 }
