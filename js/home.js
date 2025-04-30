@@ -483,8 +483,8 @@ function initLiveDemo() {
             streamersContainer.innerHTML += featuredStreamHTML;
         }
         
-        // Додаємо інших стримерів
-        for (let i = 1; i < streamersToShow.length; i++) {
+        // Додаємо інших стримерів (максимум ще 2)
+        for (let i = 1; i < streamersToShow.length && i < 3; i++) {
             const streamer = streamersToShow[i];
             const streamHTML = `
                 <div class="live-stream">
@@ -517,64 +517,21 @@ function initLiveDemo() {
             `;
             streamersContainer.innerHTML += streamHTML;
         }
-        
-        // Якщо менше 3 стримерів, додаємо офлайн-стримера
-        if (streamersToShow.length < 3) {
-            // Дані для офлайн-стримера
-            const offlineStreamers = [
-                {
-                    name: "Firestormyo",
-                    clan: "G3_UA",
-                    avatar: "img/firestormyo.png",
-                    twitch: "firestormyo",
-                    telegram: "firestormyo"
-                },
-                {
-                    name: "El_SlD",
-                    clan: "G0_UA",
-                    avatar: "img/el_sid.png",
-                    twitch: "el_sld",
-                    telegram: "ghosts_ua_official"
-                },
-                {
-                    name: "INeSp1kI",
-                    clan: "GO_UA",
-                    avatar: "img/inesp1ki.png",
-                    twitch: "inesp1ki",
-                    telegram: "INeSp1kIWOT"
-                }
-            ];
-            
-            const offlineIndex = Math.floor(Math.random() * offlineStreamers.length);
-            const offline = offlineStreamers[offlineIndex];
-            
-            const offlineHTML = `
-                <div class="offline-streamer">
-                    <div class="streamer-header">
-                        <div class="streamer-avatar">
-                            <img src="${offline.avatar}" alt="Аватар стримера">
-                        </div>
-                        <div class="streamer-info">
-                            <h3>${offline.name}</h3>
-                            <div class="clan-tag">${offline.clan}</div>
-                            <div class="last-online">
-                                <i class="fas fa-clock"></i>
-                                <span>Остання трансляція: вчора</span>
-                            </div>
-                        </div>
-                        <div class="social-links">
-                            <a href="https://twitch.tv/${offline.twitch}" target="_blank" class="social-link twitch">
-                                <i class="fab fa-twitch"></i>
-                            </a>
-                            <a href="https://t.me/${offline.telegram}" target="_blank" class="social-link telegram">
-                                <i class="fab fa-telegram"></i>
-                            </a>
-                        </div>
-                    </div>
+    } else {
+        // Якщо немає стримерів онлайн, показуємо спеціальний блок
+        const emptyStateHTML = `
+            <div class="streamers-empty-state">
+                <div class="empty-icon">
+                    <i class="fas fa-tv"></i>
                 </div>
-            `;
-            streamersContainer.innerHTML += offlineHTML;
-        }
+                <p>На жаль, зараз немає стримерів онлайн</p>
+                <a href="streamers.html" class="btn btn-primary">
+                    <span>Переглянути всіх стримерів</span>
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+        `;
+        streamersContainer.innerHTML = emptyStateHTML;
     }
     
     // Виправляємо стилі після динамічного оновлення
@@ -704,47 +661,29 @@ function generateDemoLiveStreamers() {
 
 /**
  * Виправлення фонових зображень та стилів карток стримерів
- * Адаптовано для роботи з живими стримерами
  */
 function fixStreamThumbnails() {
     // Знаходимо всі ескізи стримів
     const thumbnails = document.querySelectorAll('.stream-thumbnail img');
     
-    // Якщо є битий фон, замінюємо його на фіксовані зображення
+    // Заміна зображень на якісніші превю
     thumbnails.forEach((thumbnail, index) => {
-        thumbnail.addEventListener('error', function() {
-            // Якщо зображення битее, замінюємо його на фіксоване
-            if (index === 0 || this.closest('.featured-stream')) {
-                // Для головного (featured) стримера
-                this.src = 'img/featured-stream-bg.jpg';
-            } else {
-                // Для інших стримерів
-                this.src = `img/stream-thumb-${(index % 3) + 1}.jpg`;
-            }
-        });
-        
-       // Також перевіряємо поточний src
-        if (!thumbnail.src || thumbnail.src === 'data:,' || thumbnail.src.endsWith('undefined')) {
-            if (index === 0 || thumbnail.closest('.featured-stream')) {
-                thumbnail.src = 'img/featured-stream-bg.jpg';
-            } else {
-                thumbnail.src = `img/stream-thumb-${(index % 3) + 1}.jpg`;
-            }
+        // Замінюємо всі зображення на кращі превю залежно від індексу
+        if (index === 0 || thumbnail.closest('.featured-stream')) {
+            thumbnail.src = 'img/featured-stream-bg.jpg';
+        } else {
+            thumbnail.src = `img/stream-thumb-${(index % 3) + 1}.jpg`;
         }
+        
+        // Встановлюємо фільтр для зображення для додаткового покращення вигляду
+        thumbnail.style.filter = 'brightness(0.9) contrast(1.1)';
     });
     
-    // Виправляємо стиль для ескізів стримів
+    // Переконуємося, що співвідношення сторін всіх ескізів однакові
     thumbnails.forEach(thumbnail => {
         thumbnail.style.objectFit = 'cover';
         thumbnail.style.width = '100%';
         thumbnail.style.height = '100%';
-        
-        // Переконуємося, що батьківський елемент має правильне відношення сторін
-        const container = thumbnail.closest('.stream-thumbnail');
-        if (container) {
-            container.style.aspectRatio = '16 / 9';
-            container.style.overflow = 'hidden';
-        }
     });
     
     // Виправляємо стиль для лічильників глядачів
@@ -767,6 +706,24 @@ function fixStreamThumbnails() {
         counter.style.whiteSpace = 'nowrap';
     });
     
+    // Поліпшуємо вигляд live-бейджа
+    const liveBadges = document.querySelectorAll('.live-badge');
+    liveBadges.forEach(badge => {
+        badge.style.position = 'absolute';
+        badge.style.top = '10px';
+        badge.style.left = '10px';
+        badge.style.background = 'var(--primary)';
+        badge.style.color = 'white';
+        badge.style.padding = '3px 8px';
+        badge.style.borderRadius = 'var(--radius-sm)';
+        badge.style.fontSize = '12px';
+        badge.style.fontWeight = '700';
+        badge.style.textTransform = 'uppercase';
+        badge.style.boxShadow = 'var(--shadow-md)';
+        badge.style.zIndex = '2';
+        badge.style.animation = 'pulse-badge 2s infinite';
+    });
+
     // Перевіряємо аватарки стримерів
     const avatars = document.querySelectorAll('.streamer-avatar img');
     avatars.forEach(avatar => {
