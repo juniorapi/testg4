@@ -27,6 +27,17 @@ const streamers = [
         youtubeType: 'user',
         telegram: 'none'
     },
+     { 
+        id: 'lazerok07', 
+        twitchId: 'lazerok07',
+        displayName: 'lazerok07',
+        avatarUrl: 'img/lazerok07.png',
+        description: 'Стример і професійний гравець G4_UA.',
+        clan: 'G4_UA',
+        youtube: 'lazerok07',
+        youtubeType: 'user',
+        telegram: 'lazerok07'
+    },
     { 
         id: 'iyouxin', 
         twitchId: 'iyouxin',
@@ -34,7 +45,7 @@ const streamers = [
         avatarUrl: 'img/iyouxin.png',
         description: 'Стример і професійний гравець G4_UA.',
         clan: 'G3_UA',
-        youtube: 'UCb1Cc16ozngmp1gAP',
+        youtube: 'UCb1Cc16ozngmp1gAP-GJoFA',
         youtubeType: 'channel',
         telegram: 'none'
     },
