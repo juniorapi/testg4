@@ -1295,16 +1295,21 @@ function getLiveStreamersDemo() {
  */
 function syncLiveStreamers(liveStreamers) {
     // Зберігаємо основну інформацію про стримерів онлайн
-    const liveStreamersInfo = liveStreamers.map(streamer => ({
-        id: streamer.id,
-        twitchId: streamer.twitchId,
-        displayName: streamer.displayName,
-        avatarUrl: streamer.avatarUrl,
-        clan: streamer.clan,
-        title: streamer.streamData?.title || '',
-        viewers: streamer.streamData?.viewers || 0,
-        category: streamer.streamData?.category || 'World of Tanks'
-    }));
+    const liveStreamersInfo = liveStreamers.map(streamer => {
+        // Обробляємо дані про стрім
+        const streamData = streamer.streamData || {};
+        
+        return {
+            id: streamer.id,
+            twitchId: streamer.twitchId,
+            displayName: streamer.displayName,
+            avatarUrl: streamer.avatarUrl,
+            clan: streamer.clan,
+            title: streamData.title || '',
+            viewers: streamData.viewers || 0,
+            category: streamData.category || 'World of Tanks'
+        };
+    });
     
     // Зберігаємо в localStorage
     localStorage.setItem('gua_live_streamers', JSON.stringify(liveStreamersInfo));
