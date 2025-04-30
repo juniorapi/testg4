@@ -62,6 +62,7 @@
 .main-footer .social-links {
     display: flex;
     gap: var(--space-sm);
+    justify-content: flex-start;
 }
 
 .main-footer .social-link {
@@ -135,6 +136,9 @@
     gap: var(--space-sm);
     margin-bottom: var(--space-sm);
     color: var(--text-secondary);
+    background: none; /* Явно вказуємо відсутність фону */
+    border: none; /* Явно вказуємо відсутність рамки */
+    padding: 0; /* Скидаємо можливі відступи */
 }
 
 .main-footer .contact-method i {
