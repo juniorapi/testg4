@@ -533,47 +533,7 @@
     }
 }
 
-/* Секція стримерів - оновлена, спрощена версія */
-.streamers-section {
-    padding-top: var(--space-3xl);
-    padding-bottom: var(--space-3xl);
-    background-color: rgba(15, 15, 15, 0.8);
-    text-align: center;
-}
-
-.streamers-simple-view {
-    padding: var(--space-xl) 0;
-    text-align: center;
-}
-
-.streamers-empty-state {
-    background: rgba(20, 20, 20, 0.7);
-    border-radius: var(--radius-md);
-    padding: var(--space-xl);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    min-height: 220px;
-    gap: var(--space-lg);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    margin: 0 auto;
-    max-width: 800px;
-}
-
-.streamers-empty-state .empty-icon {
-    font-size: 48px;
-    color: var(--primary);
-    margin-bottom: var(--space-md);
-}
-
-.streamers-empty-state .btn {
-    font-size: 16px;
-    padding: 12px 24px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
+/* Секція стримерів видалена */
 
 /* Секція подій */
 .events-section {
