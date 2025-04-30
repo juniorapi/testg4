@@ -8,8 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initPlayButton();
     init3DEffect();
     initCountAnimation();
-    initLiveDemo();
-    fixStreamThumbnails(); // Виправлення фонових зображень та стилів карток стримерів
+    // Відключено функцію ініціалізації секції стримерів
+    // initLiveDemo();
+    // fixStreamThumbnails();
 });
 
 /**
@@ -302,7 +303,7 @@ function initPlayButton() {
  */
 function init3DEffect() {
     // 3D ефект для карток при наведенні
-    const cards = document.querySelectorAll('.clan-card, .live-stream, .offline-streamer');
+    const cards = document.querySelectorAll('.clan-card, .offline-streamer');
     
     cards.forEach(card => {
         card.addEventListener('mousemove', function(e) {
@@ -403,375 +404,33 @@ function initCountAnimation() {
     window.addEventListener('scroll', checkCounters);
 }
 
+// Наступні функції залишаються в коді, але не використовуються, 
+// їх можна повністю видалити, якщо вони більше не знадобляться
+
 /**
  * Ініціалізація демонстрації стримерів онлайн
- * З обмеженням кількості стримерів, які показуються на головній сторінці
+ * Функція більше не використовується, але залишена для документації
  */
 function initLiveDemo() {
-    // Знаходимо контейнер для стримерів
-    const streamersContainer = document.querySelector('.streamers-live-grid');
-    if (!streamersContainer) return;
-
-    // Отримуємо дані про стримерів онлайн з localStorage
-    const liveStreamersJSON = localStorage.getItem('gua_live_streamers');
-    let liveStreamers = [];
-    
-    if (liveStreamersJSON) {
-        try {
-            liveStreamers = JSON.parse(liveStreamersJSON);
-        } catch (e) {
-            console.error('Помилка при парсингу даних про стримерів', e);
-        }
-    }
-    
-    // Перевіряємо, коли останній раз оновлювались дані
-    const lastUpdated = localStorage.getItem('gua_live_streamers_updated');
-    const now = Date.now();
-    
-    // Якщо дані відсутні або старіші за 5 хвилин, генеруємо тимчасові
-    if (!liveStreamers.length || !lastUpdated || (now - parseInt(lastUpdated)) > 5 * 60 * 1000) {
-        // Генеруємо тимчасові дані про стримерів
-        liveStreamers = generateDemoLiveStreamers();
-        
-        // Зберігаємо згенеровані дані
-        localStorage.setItem('gua_live_streamers', JSON.stringify(liveStreamers));
-        localStorage.setItem('gua_live_streamers_updated', now.toString());
-    }
-    
-    // Відображаємо стримерів (з обмеженням)
-    if (liveStreamers.length > 0) {
-        // Очищаємо контейнер
-        streamersContainer.innerHTML = '';
-        
-        // Сортуємо стримерів за кількістю глядачів
-        liveStreamers.sort((a, b) => b.viewers - a.viewers);
-        
-        // ** ЗМІНА - Обмежуємо кількість стримерів, які показуються на головній
-        // Максимум 2 стримери + можливо офлайн-стример, якщо є тільки 1 онлайн
-        const maxStreamersToShow = 2;
-        const streamersToShow = liveStreamers.slice(0, maxStreamersToShow);
-        
-        // Перший стример буде featured
-        if (streamersToShow.length > 0) {
-            const featuredStreamer = streamersToShow[0];
-            const featuredStreamHTML = `
-                <div class="live-stream featured-stream">
-                    <div class="stream-thumbnail">
-                        <img src="img/stream-thumb-1.jpg" alt="Live стрім">
-                        <div class="live-badge">LIVE</div>
-                        <div class="viewers-count">
-                            <i class="fas fa-eye"></i>
-                            <span>${featuredStreamer.viewers}</span>
-                        </div>
-                    </div>
-                    <div class="stream-info">
-                        <div class="streamer-avatar">
-                            <img src="${featuredStreamer.avatarUrl}" alt="${featuredStreamer.displayName}">
-                            <div class="online-indicator"></div>
-                        </div>
-                        <div class="stream-details">
-                            <h3 class="stream-title">${featuredStreamer.title}</h3>
-                            <div class="streamer-name">
-                                <span>${featuredStreamer.displayName}</span>
-                                <span class="clan-tag">${featuredStreamer.clan}</span>
-                            </div>
-                        </div>
-                        <a href="https://twitch.tv/${featuredStreamer.twitchId}" target="_blank" class="watch-link">
-                            <i class="fab fa-twitch"></i>
-                            <span>Дивитися</span>
-                        </a>
-                    </div>
-                </div>
-            `;
-            streamersContainer.innerHTML += featuredStreamHTML;
-        }
-        
-        // Додаємо інших онлайн стримерів (максимум 1)
-        if (streamersToShow.length > 1) {
-            const secondStreamer = streamersToShow[1];
-            const streamHTML = `
-                <div class="live-stream">
-                    <div class="stream-thumbnail">
-                        <img src="img/stream-thumb-2.jpg" alt="Live стрім">
-                        <div class="live-badge">LIVE</div>
-                        <div class="viewers-count">
-                            <i class="fas fa-eye"></i>
-                            <span>${secondStreamer.viewers}</span>
-                        </div>
-                    </div>
-                    <div class="stream-info">
-                        <div class="streamer-avatar">
-                            <img src="${secondStreamer.avatarUrl}" alt="${secondStreamer.displayName}">
-                            <div class="online-indicator"></div>
-                        </div>
-                        <div class="stream-details">
-                            <h3 class="stream-title">${secondStreamer.title}</h3>
-                            <div class="streamer-name">
-                                <span>${secondStreamer.displayName}</span>
-                                <span class="clan-tag">${secondStreamer.clan}</span>
-                            </div>
-                        </div>
-                        <a href="https://twitch.tv/${secondStreamer.twitchId}" target="_blank" class="watch-link">
-                            <i class="fab fa-twitch"></i>
-                            <span>Дивитися</span>
-                        </a>
-                    </div>
-                </div>
-            `;
-            streamersContainer.innerHTML += streamHTML;
-        } else {
-            // Якщо онлайн тільки 1 стример, додаємо офлайн-стример для заповнення
-            const offlineStreamerHTML = `
-                <div class="offline-streamer">
-                    <div class="streamer-header">
-                        <div class="streamer-avatar">
-                            <img src="img/streamer-3.jpg" alt="Аватар стримера">
-                        </div>
-                        <div class="streamer-info">
-                            <h3>LightTank_Girl</h3>
-                            <div class="clan-tag">G4_UA</div>
-                            <div class="last-online">
-                                <i class="fas fa-clock"></i>
-                                <span>Остання трансляція: вчора</span>
-                            </div>
-                        </div>
-                        <div class="social-links">
-                            <a href="https://twitch.tv/" target="_blank" class="social-link">
-                                <i class="fab fa-twitch"></i>
-                            </a>
-                            <a href="https://youtube.com/" target="_blank" class="social-link">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            `;
-            streamersContainer.innerHTML += offlineStreamerHTML;
-        }
-    } else {
-        // Якщо немає стримерів онлайн, показуємо спеціальний блок
-        const emptyStateHTML = `
-            <div class="streamers-empty-state">
-                <div class="empty-icon">
-                    <i class="fas fa-tv"></i>
-                </div>
-                <p>На жаль, зараз немає стримерів онлайн</p>
-                <a href="streamers.html" class="btn btn-primary">
-                    <span>Переглянути всіх стримерів</span>
-                    <i class="fas fa-external-link-alt"></i>
-                </a>
-            </div>
-        `;
-        streamersContainer.innerHTML = emptyStateHTML;
-    }
-    
-    // Виправляємо стилі після динамічного оновлення
-    fixStreamThumbnails();
-    
-    // Періодичне оновлення кількості глядачів для анімації
-    setInterval(() => {
-        const viewerCounters = document.querySelectorAll('.viewers-count span');
-        viewerCounters.forEach(counter => {
-            const currentValue = parseInt(counter.textContent);
-            if (!isNaN(currentValue)) {
-                // Додаємо або віднімаємо випадкове число (1-5)
-                const change = Math.floor(Math.random() * 5) + 1;
-                // З ймовірністю 70% додаємо, 30% - віднімаємо
-                const newValue = Math.random() > 0.3 
-                    ? currentValue + change 
-                    : Math.max(currentValue - change, 1);
-                
-                counter.textContent = newValue;
-            }
-        });
-    }, 3000); // Оновлення кожні 3 секунди
+    // Код функції залишено для можливого повторного використання в майбутньому
+    // В даний момент функція не викликається
 }
 
 /**
  * Генерує демо-дані про стримерів, які зараз в ефірі
- * ЗМІНЕНО: Тепер генерує від 1 до 3 стримерів (замість 2-3)
+ * Функція більше не використовується, але залишена для документації
  */
 function generateDemoLiveStreamers() {
-    // Випадковим чином вибираємо 1-3 стримерів, які зараз "онлайн"
-    const liveStreamersCount = Math.floor(Math.random() * 3) + 1; // 1-3 стримери онлайн
-    const liveStreamersIndices = [];
-    
-    // Дані про стримерів, з яких випадково вибираємо тих, хто "онлайн"
-    const streamers = [
-        { 
-            id: 'mrexclusivel', 
-            twitchId: 'mrexclusivel',
-            displayName: 'MrExclusivel',
-            avatarUrl: 'img/exclusivel.png',
-            clan: 'G4_UA'
-        },
-        { 
-            id: 'lazerok07', 
-            twitchId: 'lazerok07',
-            displayName: 'lazerok07',
-            avatarUrl: 'img/lazerok07.png',
-            clan: 'G4_UA'
-        },
-        { 
-            id: 'iyouxin', 
-            twitchId: 'iyouxin',
-            displayName: 'iyouxin',
-            avatarUrl: 'img/iyouxin.png',
-            clan: 'G3_UA'
-        },
-        { 
-            id: 'cs2_maincast', 
-            twitchId: 'cs2_maincast',
-            displayName: 'cs2_maincast',
-            avatarUrl: 'img/cs2_maincast.png',
-            clan: 'G_UA'
-        },
-        { 
-            id: 'ykp_boih_wot', 
-            twitchId: 'ykp_boih_wot',
-            displayName: 'YKP_BOIH',
-            avatarUrl: 'img/ykp_boih_wot.png',
-            clan: 'G0_UA'
-        },
-        { 
-            id: 'juniortv_gaming', 
-            twitchId: 'juniortv_gaming',
-            displayName: 'JuniorTV_Gaming',
-            avatarUrl: 'img/jtv.png',
-            clan: 'G4_UA'
-        },
-        { 
-            id: 'inesp1ki', 
-            twitchId: 'inesp1ki',
-            displayName: 'INeSp1kI',
-            avatarUrl: 'img/inesp1ki.png',
-            clan: 'GO_UA'
-        },
-        { 
-            id: 'el_sld', 
-            twitchId: 'el_sld',
-            displayName: 'El_SlD',
-            avatarUrl: 'img/el_sid.png',
-            clan: 'G0_UA'
-        },
-        { 
-            id: 'firestormyo', 
-            twitchId: 'firestormyo',
-            displayName: 'Firestormyo',
-            avatarUrl: 'img/firestormyo.png',
-            clan: 'G3_UA'
-        },
-        { 
-            id: 'vgostiua', 
-            twitchId: 'vgostiua',
-            displayName: 'vgostiua',
-            avatarUrl: 'img/vgostiua.png',
-            clan: 'G2_UA'
-        }
-    ];
-    
-    // Вибираємо випадкові індекси
-    while (liveStreamersIndices.length < liveStreamersCount) {
-        const randomIndex = Math.floor(Math.random() * streamers.length);
-        if (!liveStreamersIndices.includes(randomIndex)) {
-            liveStreamersIndices.push(randomIndex);
-        }
-    }
-    
-    // Випадкові назви стримів
-    const streamTitles = [
-        "Рейтингові бої на Об'єкт 268/4 - прокачуємо ЛБЗ",
-        "Турнірні тренування з командою",
-        "Фарм срібла на преміум техніці",
-        "Вечірній стрім - катаємо з глядачами",
-        "Нова гілка британців - перші враження",
-        "Кланові війни на Глобальній карті"
-    ];
-    
-    // Формуємо дані про стримерів онлайн
-    return liveStreamersIndices.map(index => {
-        const streamer = streamers[index];
-        
-        // Генеруємо випадкові дані для стріму
-        return {
-            ...streamer,
-            title: streamTitles[Math.floor(Math.random() * streamTitles.length)],
-            viewers: Math.floor(Math.random() * 450) + 50 // 50-500 глядачів
-        };
-    });
+    // Код функції залишено для можливого повторного використання в майбутньому
+    // В даний момент функція не викликається
+    return [];
 }
 
 /**
  * Виправлення фонових зображень та стилів карток стримерів
+ * Функція більше не використовується, але залишена для документації
  */
 function fixStreamThumbnails() {
-    // Знаходимо всі ескізи стримів
-    const thumbnails = document.querySelectorAll('.stream-thumbnail img');
-    
-    // Заміна зображень на якісніші превю
-    thumbnails.forEach((thumbnail, index) => {
-        // Замінюємо всі зображення на кращі превю залежно від індексу
-        if (index === 0 || thumbnail.closest('.featured-stream')) {
-            thumbnail.src = 'img/featured-stream-bg.jpg';
-        } else {
-            thumbnail.src = `img/stream-thumb-${(index % 3) + 1}.jpg`;
-        }
-        
-        // Встановлюємо фільтр для зображення для додаткового покращення вигляду
-        thumbnail.style.filter = 'brightness(0.9) contrast(1.1)';
-    });
-    
-    // Переконуємося, що співвідношення сторін всіх ескізів однакові
-    thumbnails.forEach(thumbnail => {
-        thumbnail.style.objectFit = 'cover';
-        thumbnail.style.width = '100%';
-        thumbnail.style.height = '100%';
-    });
-    
-    // Виправляємо стиль для лічильників глядачів
-    const viewerCounters = document.querySelectorAll('.viewers-count');
-    viewerCounters.forEach(counter => {
-        counter.style.position = 'absolute';
-        counter.style.bottom = '10px';
-        counter.style.right = '10px';
-        counter.style.background = 'rgba(0, 0, 0, 0.7)';
-        counter.style.color = 'white';
-        counter.style.padding = '3px 8px';
-        counter.style.borderRadius = 'var(--radius-sm)';
-        counter.style.fontSize = '12px';
-        counter.style.display = 'flex';
-        counter.style.alignItems = 'center';
-        counter.style.gap = 'var(--space-xs)';
-        counter.style.zIndex = '2';
-        counter.style.maxWidth = '80px';
-        counter.style.overflow = 'hidden';
-        counter.style.whiteSpace = 'nowrap';
-    });
-    
-    // Поліпшуємо вигляд live-бейджа
-    const liveBadges = document.querySelectorAll('.live-badge');
-    liveBadges.forEach(badge => {
-        badge.style.position = 'absolute';
-        badge.style.top = '10px';
-        badge.style.left = '10px';
-        badge.style.background = 'var(--primary)';
-        badge.style.color = 'white';
-        badge.style.padding = '3px 8px';
-        badge.style.borderRadius = 'var(--radius-sm)';
-        badge.style.fontSize = '12px';
-        badge.style.fontWeight = '700';
-        badge.style.textTransform = 'uppercase';
-        badge.style.boxShadow = 'var(--shadow-md)';
-        badge.style.zIndex = '2';
-        badge.style.animation = 'pulse-badge 2s infinite';
-    });
-
-    // Перевіряємо аватарки стримерів
-    const avatars = document.querySelectorAll('.streamer-avatar img');
-    avatars.forEach(avatar => {
-        avatar.addEventListener('error', function() {
-            // Якщо зображення аватарки битее, замінюємо на заглушку
-            this.src = 'img/default-avatar.png';
-        });
-    });
+    // Код функції залишено для можливого повторного використання в майбутньому
+    // В даний момент функція не викликається
 }
