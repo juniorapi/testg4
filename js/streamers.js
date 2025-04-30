@@ -28,6 +28,17 @@ const streamers = [
         telegram: 'none'
     },
     { 
+        id: 'cs2_maincast', 
+        twitchId: 'cs2_maincast',
+        displayName: 'cs2_maincast',
+        avatarUrl: 'img/cs2_maincast.png',
+        description: 'Стример і професійний гравець G4_UA.',
+        clan: 'G_UA',
+        youtube: 'none',
+        youtubeType: 'user',
+        telegram: 'none'
+    },
+    { 
         id: 'ykp_boih_wot', 
         twitchId: 'ykp_boih_wot',
         displayName: 'YKP_BOIH',
