@@ -28,6 +28,17 @@ const streamers = [
         telegram: 'none'
     },
     { 
+        id: 'iyouxin', 
+        twitchId: 'iyouxin',
+        displayName: 'iyouxin',
+        avatarUrl: 'img/iyouxin.png',
+        description: 'Стример і професійний гравець G4_UA.',
+        clan: 'G3_UA',
+        youtube: 'UCb1Cc16ozngmp1gAP',
+        youtubeType: 'channel',
+        telegram: 'none'
+    },
+    { 
         id: 'cs2_maincast', 
         twitchId: 'cs2_maincast',
         displayName: 'cs2_maincast',
