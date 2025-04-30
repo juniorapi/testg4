@@ -424,11 +424,13 @@
 .stream-actions {
     width: 100%;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 /* Стилі для нової кнопки "Дивитися" */
 .watch-link {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-xs);
@@ -440,6 +442,8 @@
     transition: all var(--transition-normal);
     flex-shrink: 0;
     text-decoration: none;
+    min-width: auto; /* Знімаємо будь-які мінімальні ширини */
+    max-width: fit-content; /* Дозволяємо кнопці адаптуватися за вмістом */
 }
 
 .watch-link:hover {
@@ -448,9 +452,9 @@
     color: white;
 }
 
-/* Приховуємо стару кнопку watch-btn */
+/* Видаляємо або заміняємо стилі для watch-btn, якщо вони існують */
 .watch-btn {
-    display: none;
+    display: none; /* Приховуємо стару кнопку */
 }
 
 /* Додаткові стилі для адаптивності */
