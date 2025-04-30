@@ -428,7 +428,7 @@
     justify-content: center;
 }
 
-/* Стилі для нової кнопки "Дивитися" */
+/* Замінюємо стилі для кнопки "Дивитися" */
 .watch-link {
     display: inline-flex;
     align-items: center;
@@ -452,17 +452,9 @@
     color: white;
 }
 
-/* Видаляємо або заміняємо стилі для watch-btn, якщо вони існують */
+/* Приховуємо стару кнопку */
 .watch-btn {
-    display: none; /* Приховуємо стару кнопку */
-}
-
-/* Додаткові стилі для адаптивності */
-@media (max-width: 576px) {
-    .watch-link {
-        padding: 4px 8px;
-        font-size: 11px;
-    }
+    display: none;
 }
 
 .streamer-social-links {
@@ -933,6 +925,12 @@
         width: 50px;
         height: 50px;
     }
+    
+    /* Додаткові стилі для адаптивності кнопки "Дивитися" */
+    .watch-link {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
 }
 .requirements-modal {
     position: fixed;
@@ -1057,6 +1055,7 @@
         grid-template-columns: 1fr;
     }
 }
+
 .main-footer .footer-top {
     border-bottom: none;
     padding-bottom: 0;
