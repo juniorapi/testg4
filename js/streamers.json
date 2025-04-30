@@ -1,0 +1,70 @@
+{
+  "streamers": [
+    { 
+      "id": "mrexclusivel", 
+      "twitchId": "mrexclusivel",
+      "displayName": "MrExclusivel",
+      "avatarUrl": "img/exclusivel.png",
+      "description": "Стример і професійний гравець G4_UA.",
+      "clan": "G4_UA",
+      "youtube": "none",
+      "youtubeType": "user",
+      "telegram": "none"
+    },
+    { 
+      "id": "lazerok07", 
+      "twitchId": "lazerok07",
+      "displayName": "lazerok07",
+      "avatarUrl": "img/lazerok07.png",
+      "description": "Стример і професійний гравець G4_UA.",
+      "clan": "G4_UA",
+      "youtube": "lazerok07",
+      "youtubeType": "user",
+      "telegram": "lazerok07"
+    },
+    { 
+      "id": "ykp_boih_wot", 
+      "twitchId": "ykp_boih_wot",
+      "displayName": "YKP_BOIH",
+      "avatarUrl": "img/ykp_boih_wot.png",
+      "description": "Відомий стример і коментатор. Командир G2_UA.",
+      "clan": "G0_UA",
+      "youtube": "UCUG710-yQ1nldw3d5ApQfgA",
+      "youtubeType": "channel",
+      "telegram": "Bad_company_HUB"
+    },
+    { 
+      "id": "juniortv_gaming", 
+      "twitchId": "juniortv_gaming",
+      "displayName": "JuniorTV_Gaming",
+      "avatarUrl": "img/jtv.png",
+      "description": "Учасник G4_UA. Стримить регулярно з фокусом на командну гру.",
+      "clan": "G4_UA",
+      "youtube": "JuniorTV_Gaming",
+      "youtubeType": "user",
+      "telegram": "JuniorTV_Gaming"
+    },
+    { 
+      "id": "el_sld", 
+      "twitchId": "el_sld",
+      "displayName": "El_SlD",
+      "avatarUrl": "img/el_sid.png",
+      "description": "Експерт з артилерії. Член G0_UA.",
+      "clan": "G0_UA",
+      "youtube": "UCMP24qFvIZ3te2oCGdIBIYg",
+      "youtubeType": "channel",
+      "telegram": "ghosts_ua_official"
+    },
+    { 
+      "id": "firestormyo", 
+      "twitchId": "firestormyo",
+      "displayName": "Firestormyo",
+      "avatarUrl": "img/firestormyo.png",
+      "description": "Експерт з артилерії. Член G3_UA.",
+      "clan": "G3_UA",
+      "youtube": "",
+      "youtubeType": "",
+      "telegram": "firestormyo"
+    }
+  ]
+}
