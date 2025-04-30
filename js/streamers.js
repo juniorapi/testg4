@@ -313,7 +313,7 @@ function createStreamerCard(streamer) {
                 </div>
             </div>
         </div>
-        <div class="social-links">
+        <div class="streamer-social-links">
             <a href="https://twitch.tv/${streamer.twitchId}" class="social-link twitch" target="_blank" title="Twitch канал">
                 <i class="fab fa-twitch"></i>
             </a>
