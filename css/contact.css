@@ -22,19 +22,28 @@
     line-height: 1.6;
 }
 
-/* Методи зв'язку */
+/* Переконайтеся, що ці стилі не впливають на футер */
 .contact-methods {
-    margin-bottom: 30px;
+    /* Додайте селектор, який виключає футер */
+    /* Наприклад: */
+    .contact-section .contact-methods {
+        margin-bottom: 30px;
+    }
 }
 
+/* Переконайтеся, що цей стиль не впливає на футер */
 .contact-method {
-    display: flex;
-    margin-bottom: 20px;
-    background-color: rgba(0, 0, 0, 0.2);
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #333;
-    transition: transform 0.3s;
+    /* Додайте селектор, який виключає футер */
+    /* Наприклад: */
+    .contact-section .contact-method {
+        display: flex;
+        margin-bottom: 20px;
+        background-color: rgba(0, 0, 0, 0.2);
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #333;
+        transition: transform 0.3s;
+    }
 }
 
 .contact-method:hover {
