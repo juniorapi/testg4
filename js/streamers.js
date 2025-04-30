@@ -369,8 +369,8 @@ function initializeCard3DEffect(card) {
  */
 function checkStreamStatus() {
     // Налаштування API Twitch
-    const clientId = 'YOUR_TWITCH_CLIENT_ID'; // Замініть на ваш Client ID
-    const accessToken = 'YOUR_TWITCH_ACCESS_TOKEN'; // Замініть на ваш Access Token
+    const clientId = 'gp762nuuoqcoxypju8c569th9wz7q5'; // Замініть на ваш Client ID
+    const accessToken = '0b09xd33shszp6496w5m8f03yalc8p'; // Замініть на ваш Access Token
     
     // Формуємо параметри запиту для кількох каналів одночасно
     const queryParams = streamers.map(streamer => `user_login=${streamer.twitchId}`).join('&');
