@@ -567,11 +567,15 @@
 .stream-thumbnail {
     position: relative;
     overflow: hidden;
+    aspect-ratio: 16 / 9; /* Фіксоване співвідношення сторін для всіх ескізів */
+    max-height: 220px; /* Максимальна висота для ескізів */
+    background-color: var(--bg-darker); /* Фоновий колір, якщо зображення ще не завантажилось */
 }
 
 .stream-thumbnail img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover; /* Покриває всю область, зберігаючи пропорції */
     display: block;
     transition: transform var(--transition-normal);
 }
@@ -607,6 +611,20 @@
     display: flex;
     align-items: center;
     gap: var(--space-xs);
+    z-index: 2; /* Забезпечує відображення поверх інших елементів */
+    max-width: 90px; /* Обмежує ширину для уникнення переповнення */
+    overflow: hidden; /* Приховує переповнення тексту */
+    white-space: nowrap; /* Запобігає переносу рядка */
+}
+
+.viewers-count i {
+    color: var(--primary);
+    flex-shrink: 0; /* Запобігає стисканню іконки */
+}
+
+.viewers-count span {
+    overflow: hidden;
+    text-overflow: ellipsis; /* Додає три крапки, якщо текст не вміщується */
 }
 
 .stream-info {
@@ -645,15 +663,20 @@
 
 .stream-details {
     flex-grow: 1;
-    min-width: 0;
+    min-width: 0; /* Дозволяє контейнеру стискатися */
+    padding-right: var(--space-sm);
 }
 
 .stream-title {
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: 600;
     margin-bottom: var(--space-xs);
-    white-space: nowrap;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Обмежує текст двома рядками */
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
+    line-height: 1.3;
+    max-height: 2.6em; /* Максимальна висота для двох рядків */
 }
 
 .streamer-name {
@@ -673,7 +696,7 @@
 }
 
 .watch-link {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-xs);
@@ -684,6 +707,9 @@
     font-size: 12px;
     transition: all var(--transition-normal);
     flex-shrink: 0;
+    text-decoration: none;
+    min-width: auto; /* Знімаємо будь-які мінімальні ширини */
+    max-width: fit-content; /* Дозволяємо кнопці адаптуватися за вмістом */
 }
 
 .watch-link:hover {
@@ -1237,6 +1263,19 @@
     .center-emblem {
         width: 100px;
         height: 100px;
+    }
+    .streamers-live-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    
+    .featured-stream {
+        grid-column: 1;
+    }
+    
+    .stream-thumbnail {
+        max-height: 180px;
     }
 }
 
