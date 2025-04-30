@@ -405,6 +405,7 @@ function initCountAnimation() {
 
 /**
  * Ініціалізація демонстрації стримерів онлайн
+ * З обмеженням кількості стримерів, які показуються на головній сторінці
  */
 function initLiveDemo() {
     // Знаходимо контейнер для стримерів
@@ -437,7 +438,7 @@ function initLiveDemo() {
         localStorage.setItem('gua_live_streamers_updated', now.toString());
     }
     
-    // Відображаємо стримерів
+    // Відображаємо стримерів (з обмеженням)
     if (liveStreamers.length > 0) {
         // Очищаємо контейнер
         streamersContainer.innerHTML = '';
@@ -445,8 +446,10 @@ function initLiveDemo() {
         // Сортуємо стримерів за кількістю глядачів
         liveStreamers.sort((a, b) => b.viewers - a.viewers);
         
-        // Обмежуємо кількість стримерів до показу
-        const streamersToShow = liveStreamers.slice(0, 3);
+        // ** ЗМІНА - Обмежуємо кількість стримерів, які показуються на головній
+        // Максимум 2 стримери + можливо офлайн-стример, якщо є тільки 1 онлайн
+        const maxStreamersToShow = 2;
+        const streamersToShow = liveStreamers.slice(0, maxStreamersToShow);
         
         // Перший стример буде featured
         if (streamersToShow.length > 0) {
@@ -483,32 +486,32 @@ function initLiveDemo() {
             streamersContainer.innerHTML += featuredStreamHTML;
         }
         
-        // Додаємо інших стримерів (максимум ще 2)
-        for (let i = 1; i < streamersToShow.length && i < 3; i++) {
-            const streamer = streamersToShow[i];
+        // Додаємо інших онлайн стримерів (максимум 1)
+        if (streamersToShow.length > 1) {
+            const secondStreamer = streamersToShow[1];
             const streamHTML = `
                 <div class="live-stream">
                     <div class="stream-thumbnail">
-                        <img src="img/stream-thumb-${(i % 2) + 1}.jpg" alt="Live стрім">
+                        <img src="img/stream-thumb-2.jpg" alt="Live стрім">
                         <div class="live-badge">LIVE</div>
                         <div class="viewers-count">
                             <i class="fas fa-eye"></i>
-                            <span>${streamer.viewers}</span>
+                            <span>${secondStreamer.viewers}</span>
                         </div>
                     </div>
                     <div class="stream-info">
                         <div class="streamer-avatar">
-                            <img src="${streamer.avatarUrl}" alt="${streamer.displayName}">
+                            <img src="${secondStreamer.avatarUrl}" alt="${secondStreamer.displayName}">
                             <div class="online-indicator"></div>
                         </div>
                         <div class="stream-details">
-                            <h3 class="stream-title">${streamer.title}</h3>
+                            <h3 class="stream-title">${secondStreamer.title}</h3>
                             <div class="streamer-name">
-                                <span>${streamer.displayName}</span>
-                                <span class="clan-tag">${streamer.clan}</span>
+                                <span>${secondStreamer.displayName}</span>
+                                <span class="clan-tag">${secondStreamer.clan}</span>
                             </div>
                         </div>
-                        <a href="https://twitch.tv/${streamer.twitchId}" target="_blank" class="watch-link">
+                        <a href="https://twitch.tv/${secondStreamer.twitchId}" target="_blank" class="watch-link">
                             <i class="fab fa-twitch"></i>
                             <span>Дивитися</span>
                         </a>
@@ -516,6 +519,34 @@ function initLiveDemo() {
                 </div>
             `;
             streamersContainer.innerHTML += streamHTML;
+        } else {
+            // Якщо онлайн тільки 1 стример, додаємо офлайн-стример для заповнення
+            const offlineStreamerHTML = `
+                <div class="offline-streamer">
+                    <div class="streamer-header">
+                        <div class="streamer-avatar">
+                            <img src="img/streamer-3.jpg" alt="Аватар стримера">
+                        </div>
+                        <div class="streamer-info">
+                            <h3>LightTank_Girl</h3>
+                            <div class="clan-tag">G4_UA</div>
+                            <div class="last-online">
+                                <i class="fas fa-clock"></i>
+                                <span>Остання трансляція: вчора</span>
+                            </div>
+                        </div>
+                        <div class="social-links">
+                            <a href="https://twitch.tv/" target="_blank" class="social-link">
+                                <i class="fab fa-twitch"></i>
+                            </a>
+                            <a href="https://youtube.com/" target="_blank" class="social-link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            streamersContainer.innerHTML += offlineStreamerHTML;
         }
     } else {
         // Якщо немає стримерів онлайн, показуємо спеціальний блок
@@ -558,8 +589,13 @@ function initLiveDemo() {
 
 /**
  * Генерує демо-дані про стримерів, які зараз в ефірі
+ * ЗМІНЕНО: Тепер генерує від 1 до 3 стримерів (замість 2-3)
  */
 function generateDemoLiveStreamers() {
+    // Випадковим чином вибираємо 1-3 стримерів, які зараз "онлайн"
+    const liveStreamersCount = Math.floor(Math.random() * 3) + 1; // 1-3 стримери онлайн
+    const liveStreamersIndices = [];
+    
     // Дані про стримерів, з яких випадково вибираємо тих, хто "онлайн"
     const streamers = [
         { 
@@ -634,6 +670,14 @@ function generateDemoLiveStreamers() {
         }
     ];
     
+    // Вибираємо випадкові індекси
+    while (liveStreamersIndices.length < liveStreamersCount) {
+        const randomIndex = Math.floor(Math.random() * streamers.length);
+        if (!liveStreamersIndices.includes(randomIndex)) {
+            liveStreamersIndices.push(randomIndex);
+        }
+    }
+    
     // Випадкові назви стримів
     const streamTitles = [
         "Рейтингові бої на Об'єкт 268/4 - прокачуємо ЛБЗ",
@@ -644,13 +688,11 @@ function generateDemoLiveStreamers() {
         "Кланові війни на Глобальній карті"
     ];
     
-    // Випадково вибираємо 1-3 стримерів, які "онлайн"
-    const liveCount = Math.floor(Math.random() * 3) + 1;
-    const shuffled = [...streamers].sort(() => 0.5 - Math.random());
-    const liveStreamers = shuffled.slice(0, liveCount);
-    
-    // Додаємо необхідні дані
-    return liveStreamers.map(streamer => {
+    // Формуємо дані про стримерів онлайн
+    return liveStreamersIndices.map(index => {
+        const streamer = streamers[index];
+        
+        // Генеруємо випадкові дані для стріму
         return {
             ...streamer,
             title: streamTitles[Math.floor(Math.random() * streamTitles.length)],
