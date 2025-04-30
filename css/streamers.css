@@ -456,7 +456,7 @@
     justify-content: center;
 }
 
-.streamer-card.live .social-links {
+.streamer-card.live .streamer-social-links {
     border-top: 1px solid rgba(227, 41, 39, 0.2);
 }
 
