@@ -33,7 +33,7 @@ function loadStreamersData() {
     }
     
     // Завантажуємо JSON з даними
-    fetch('data/streamers.json')
+    fetch('streamers.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Не вдалося завантажити дані стримерів');
