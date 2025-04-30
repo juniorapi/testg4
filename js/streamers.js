@@ -1041,7 +1041,7 @@ function showStreamNotification(streamerInfo) {
 }
 
 /**
- * Обробка помилок при запиті до Twitch API
+ * Оновлення для handleTwitchAPIError - виправлення синхронізації демо-даних
  */
 function handleTwitchAPIError() {
     console.log('Використання демо-даних для стримерів через помилку API');
@@ -1052,11 +1052,19 @@ function handleTwitchAPIError() {
     // Синхронізуємо лайв стримерів для відображення на інших сторінках
     const liveStreamersWithData = liveStreamers.map(liveData => {
         const streamerObj = streamers.find(s => s.id === liveData.id);
-        return {
-            ...streamerObj,
-            streamData: liveData
-        };
-    });
+        if (streamerObj) {
+            return {
+                ...streamerObj,
+                streamData: {
+                    title: liveData.title,
+                    viewers: liveData.viewers,
+                    category: liveData.category
+                }
+            };
+        }
+        return null;
+    }).filter(Boolean); // Видаляємо null значення
+    
     syncLiveStreamers(liveStreamersWithData);
     
     // Оновлюємо лічильник онлайн-стримерів
