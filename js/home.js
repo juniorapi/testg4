@@ -8,9 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initPlayButton();
     init3DEffect();
     initCountAnimation();
-    // Відключено функцію ініціалізації секції стримерів
-    // initLiveDemo();
-    // fixStreamThumbnails();
+    // Функції для стримерів видалені
 });
 
 /**
@@ -303,7 +301,7 @@ function initPlayButton() {
  */
 function init3DEffect() {
     // 3D ефект для карток при наведенні
-    const cards = document.querySelectorAll('.clan-card, .offline-streamer');
+    const cards = document.querySelectorAll('.clan-card');
     
     cards.forEach(card => {
         card.addEventListener('mousemove', function(e) {
@@ -402,35 +400,4 @@ function initCountAnimation() {
     
     // Слухаємо подію прокрутки
     window.addEventListener('scroll', checkCounters);
-}
-
-// Наступні функції залишаються в коді, але не використовуються, 
-// їх можна повністю видалити, якщо вони більше не знадобляться
-
-/**
- * Ініціалізація демонстрації стримерів онлайн
- * Функція більше не використовується, але залишена для документації
- */
-function initLiveDemo() {
-    // Код функції залишено для можливого повторного використання в майбутньому
-    // В даний момент функція не викликається
-}
-
-/**
- * Генерує демо-дані про стримерів, які зараз в ефірі
- * Функція більше не використовується, але залишена для документації
- */
-function generateDemoLiveStreamers() {
-    // Код функції залишено для можливого повторного використання в майбутньому
-    // В даний момент функція не викликається
-    return [];
-}
-
-/**
- * Виправлення фонових зображень та стилів карток стримерів
- * Функція більше не використовується, але залишена для документації
- */
-function fixStreamThumbnails() {
-    // Код функції залишено для можливого повторного використання в майбутньому
-    // В даний момент функція не викликається
 }
