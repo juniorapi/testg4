@@ -313,10 +313,9 @@ function updateCalculator(targetPercent) {
  * @param {number} targetMark - Цільовий відсоток відзнак
  * @returns {number} - Базова ціна
  */
-function calculateBasePrice(tankLevel, targetMark) {
+function calculateBasePrice(tankLevel, targetMark, complexity) {
     let basePrice = 0;
     
-    // Встановлюємо базову ціну залежно від рівня танка і цільової відзнаки
     if (tankLevel === '6') {
         if (targetMark === 65) basePrice = 500;
         else if (targetMark === 85) basePrice = 1000;
@@ -329,6 +328,13 @@ function calculateBasePrice(tankLevel, targetMark) {
         if (targetMark === 65) basePrice = 1200;
         else if (targetMark === 85) basePrice = 2000;
         else if (targetMark === 95) basePrice = 3000;
+    }
+    
+    // Застосовуємо множник за складність
+    if (complexity === 'medium') {
+        basePrice *= 1.2; // +20% за середню складність
+    } else if (complexity === 'hard') {
+        basePrice *= 1.5; // +50% за високу складність
     }
     
     return basePrice;
