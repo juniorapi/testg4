@@ -988,3 +988,55 @@
         padding: var(--space-sm);
     }
 }
+/* Селектор складності танка */
+.difficulty-selector {
+    display: flex;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.difficulty-option {
+    background: rgba(26, 26, 26, 0.3);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    flex: 1;
+}
+
+.difficulty-option:hover {
+    background: rgba(26, 26, 26, 0.5);
+    transform: translateY(-3px);
+}
+
+.difficulty-option.selected {
+    background: rgba(227, 41, 39, 0.2);
+    border-color: var(--primary);
+}
+
+.difficulty-icon {
+    font-size: 18px;
+    color: var(--primary);
+    margin-bottom: var(--space-sm);
+}
+
+.difficulty-name {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.difficulty-option.selected .difficulty-name {
+    color: var(--text-primary);
+}
+
+.options-title {
+    font-size: 16px;
+    margin: var(--space-lg) 0 var(--space-sm);
+    color: var(--text-primary);
+}
+
+.checkbox-options {
+    margin-top: var(--space-md);
+}
