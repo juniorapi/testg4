@@ -80,7 +80,7 @@ function initFAQAccordion() {
 }
 
 /**
- * Ініціалізація слайдера відсотка відзнак - ВИПРАВЛЕНИЙ КОД
+ * Ініціалізація слайдера відсотка відзнак - ОСТАТОЧНО ВИПРАВЛЕНИЙ КОД
  */
 function initRangeSlider() {
     const marksRange = document.getElementById('marksRange');
@@ -88,57 +88,91 @@ function initRangeSlider() {
         const currentMarkSpan = document.getElementById('currentMark');
         const targetMarkSpan = document.getElementById('targetMark');
         
-        // Встановлюємо початкові значення
-        // Початкове значення встановлюємо на 95% (третю відмітку)
-        marksRange.value = 95;
+        // Встановлюємо максимум і мінімум для повзунка
+        marksRange.min = 0;
+        marksRange.max = 100;
         
-        // Визначаємо відмітки для точних положень повзунка
-        const markPositions = {
-            0: 0,    // 0%
-            65: 65,  // 1 відмітка
-            85: 85,  // 2 відмітки
-            95: 95   // 3 відмітки
+        // Початкове значення встановлюємо на 0
+        marksRange.value = 0;
+        
+        // Встановлюємо чіткі відзначки для позицій
+        const markThresholds = {
+            0: 0,     // 0%
+            20: 65,   // 1 відмітка (65%)
+            50: 85,   // 2 відмітки (85%)
+            80: 95,   // 3 відмітки (95%)
+            100: 100  // 100%
         };
         
-        // Функція для налаштування повзунка на найближчу відмітку
-        function snapToNearestMark(value) {
-            // Знаходимо найближчу відмітку
-            const marks = Object.keys(markPositions).map(Number);
-            return marks.reduce((prev, curr) => {
-                return (Math.abs(curr - value) < Math.abs(prev - value)) ? curr : prev;
-            });
+        // Функція для отримання значення відзнаки відповідно до позиції повзунка
+        function getMarkPercentage(sliderValue) {
+            const numValue = parseInt(sliderValue, 10);
+            
+            // Для точного розташування повзунка
+            if (numValue < 10) return 0;
+            if (numValue < 35) return 65;
+            if (numValue < 65) return 85;
+            if (numValue <= 100) return 95;
+            
+            return 0; // За замовчуванням
         }
         
-        // Оновлюємо відмітки при завантаженні
-        setMarksPercentage(marksRange.value);
-        
-        // Оновлюємо відсоток при зміні слайдера
-        marksRange.addEventListener('input', function() {
-            setMarksPercentage(this.value);
-        });
-        
-        // Встановлюємо точне значення при відпусканні слайдера
-        marksRange.addEventListener('change', function() {
-            const exactValue = snapToNearestMark(parseInt(this.value));
-            this.value = exactValue;
-            setMarksPercentage(exactValue);
-        });
-        
-        // Обробляємо зміну відсотка
-        function setMarksPercentage(value) {
-            // Переконуємося, що значення числове
-            value = parseInt(value);
+        // Функція для оновлення позиції повзунка до найближчої відзнаки
+        function updateSliderPosition(percentage) {
+            // Знаходимо відповідну позицію для повзунка
+            let sliderPosition;
+            if (percentage === 0) sliderPosition = 0;
+            else if (percentage === 65) sliderPosition = 25;
+            else if (percentage === 85) sliderPosition = 50;
+            else if (percentage === 95) sliderPosition = 80;
+            else sliderPosition = 0;
             
-            // Визначаємо найближчий поріг відзнак (0%, 65%, 85%, 95%)
-            let targetPercent = snapToNearestMark(value);
+            // Встановлюємо позицію повзунка
+            marksRange.value = sliderPosition;
             
-            // Оновлюємо відображення поточного та цільового відсотка
+            // Оновлюємо відображувані значення
+            updateDisplayedValues(percentage);
+        }
+        
+        // Функція оновлення відображуваних значень
+        function updateDisplayedValues(percentage) {
+            let markName = '';
+            
+            if (percentage === 0) markName = '0 відзнак';
+            else if (percentage === 65) markName = '1 відзнака';
+            else if (percentage === 85) markName = '2 відзнаки';
+            else if (percentage === 95) markName = '3 відзнаки';
+            
+            // Оновлюємо текстове відображення
             currentMarkSpan.textContent = '0%';
-            targetMarkSpan.textContent = targetPercent + '%';
+            targetMarkSpan.textContent = percentage + '%';
             
-            // Оновлюємо значення в калькуляторі
-            updateCalculator(targetPercent);
+            // Оновлюємо калькулятор
+            updateCalculator(percentage);
         }
+        
+        // Встановлюємо початкові значення
+        updateSliderPosition(0);
+        
+        // Слухаємо подію введення (під час руху повзунка)
+        marksRange.addEventListener('input', function() {
+            const markPercentage = getMarkPercentage(this.value);
+            updateDisplayedValues(markPercentage);
+        });
+        
+        // Слухаємо подію зміни (після відпускання повзунка)
+        marksRange.addEventListener('change', function() {
+            const markPercentage = getMarkPercentage(this.value);
+            updateSliderPosition(markPercentage);
+        });
+        
+        // Додаємо слухачів подій для клікабельних відзначок
+        document.querySelectorAll('.range-mark').forEach(mark => {
+            mark.addEventListener('click', function() {
+                const percentage = parseInt(this.textContent.replace('%', ''), 10);
+                updateSliderPosition(percentage);
+            });
+        });
     }
 }
 
@@ -215,23 +249,24 @@ function updateCalculator(targetPercent) {
     const tankLevel = selectedTank.getAttribute('data-level');
     
     // Визначаємо цільовий відсоток відзнак
-    let targetMarkPercent = targetPercent || parseInt(marksRange.value);
-    let markName = '';
+    // Якщо передано цільовий відсоток, використовуємо його, інакше визначаємо з повзунка
+    let targetMarkPercent = targetPercent;
     
-    // Забезпечуємо точну відповідність цільового відсотка
-    if (targetMarkPercent < 32) {
-        targetMarkPercent = 0;
-        markName = '0 відзнак';
-    } else if (targetMarkPercent < 75) {
-        targetMarkPercent = 65;
-        markName = '1 відзнака';
-    } else if (targetMarkPercent < 90) {
-        targetMarkPercent = 85;
-        markName = '2 відзнаки';
-    } else {
-        targetMarkPercent = 95;
-        markName = '3 відзнаки';
+    if (targetMarkPercent === undefined) {
+        // Визначаємо відсоток на основі положення повзунка
+        const sliderValue = parseInt(marksRange.value, 10);
+        if (sliderValue < 10) targetMarkPercent = 0;
+        else if (sliderValue < 35) targetMarkPercent = 65;
+        else if (sliderValue < 65) targetMarkPercent = 85;
+        else targetMarkPercent = 95;
     }
+    
+    // Визначаємо назву відмітки
+    let markName = '';
+    if (targetMarkPercent === 0) markName = '0 відзнак';
+    else if (targetMarkPercent === 65) markName = '1 відзнака';
+    else if (targetMarkPercent === 85) markName = '2 відзнаки';
+    else if (targetMarkPercent === 95) markName = '3 відзнаки';
     
     // Оновлюємо відображення значень у калькуляторі
     tankTypeValue.textContent = tankLevel ? `${tankLevel} рівня` : 'Не вибрано';
