@@ -1,0 +1,429 @@
+/* CSS стилі для сторінки "Про нас" для G_UA Alliance */
+
+/* Заголовок сторінки */
+.page-header {
+    padding: 120px 0 80px;
+    text-align: center;
+    position: relative;
+}
+
+.page-header h1 {
+    font-size: 48px;
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+    position: relative;
+    display: inline-block;
+}
+
+.page-header h1 span {
+    color: var(--primary);
+}
+
+.page-header p {
+    font-size: 18px;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Секція про нас */
+.about-section {
+    padding: var(--space-3xl) 0;
+    position: relative;
+}
+
+.about-content-full {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.about-content-full p {
+    margin-bottom: var(--space-lg);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.about-media {
+    margin: var(--space-2xl) 0;
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.about-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-lg);
+    transition: transform var(--transition-normal);
+}
+
+.about-media:hover .about-img {
+    transform: scale(1.02);
+}
+
+/* Grid для цінностей */
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+    margin: var(--space-2xl) 0;
+}
+
+.value-card {
+    background-color: rgba(30, 30, 30, 0.7);
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.value-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-normal);
+}
+
+.value-card:hover::before {
+    transform: scaleX(1);
+}
+
+.value-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-full);
+    background: rgba(227, 41, 39, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: var(--space-md);
+    transition: all var(--transition-normal);
+}
+
+.value-card:hover .value-icon {
+    background: var(--primary);
+    box-shadow: var(--glow-primary);
+}
+
+.value-icon i {
+    font-size: 24px;
+    color: var(--primary);
+    transition: color var(--transition-normal);
+}
+
+.value-card:hover .value-icon i {
+    color: white;
+}
+
+.value-card h3 {
+    font-size: 20px;
+    margin-bottom: var(--space-sm);
+    color: var(--text-primary);
+}
+
+.value-card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Таймлайн для досягнень */
+.achievements-timeline {
+    margin: var(--space-2xl) 0;
+    position: relative;
+    padding-left: 30px;
+}
+
+.achievements-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 10px;
+    width: 2px;
+    background: linear-gradient(to bottom, 
+        rgba(227, 41, 39, 0.8) 0%, 
+        rgba(227, 41, 39, 0.4) 100%);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-md);
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-year {
+    position: absolute;
+    left: -30px;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: var(--primary);
+    border-radius: var(--radius-full);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 700;
+    font-size: 12px;
+    box-shadow: var(--glow-primary);
+    z-index: 1;
+}
+
+.timeline-year::before {
+    content: attr(data-year);
+    position: absolute;
+    left: 30px;
+    top: 0;
+    width: 60px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.timeline-content {
+    background-color: rgba(30, 30, 30, 0.7);
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-normal);
+    border-left: 3px solid var(--primary);
+}
+
+.timeline-content:hover {
+    transform: translateX(5px);
+}
+
+.timeline-content h3 {
+    font-size: 18px;
+    margin-bottom: var(--space-xs);
+    color: var(--text-primary);
+}
+
+.timeline-content p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+}
+
+/* Команда */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-xl);
+    margin: var(--space-2xl) 0;
+}
+
+.team-card {
+    background-color: rgba(30, 30, 30, 0.7);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.team-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin: 0 auto var(--space-md);
+    border: 3px solid var(--primary);
+    transition: all var(--transition-normal);
+}
+
+.team-card:hover .team-avatar {
+    box-shadow: var(--glow-primary);
+    transform: scale(1.05);
+}
+
+.team-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-card h3 {
+    font-size: 18px;
+    margin-bottom: var(--space-xs);
+    color: var(--text-primary);
+}
+
+.team-role {
+    font-size: 14px;
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+}
+
+.team-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* CTA секція */
+.cta {
+    padding: var(--space-3xl) 0;
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.9), rgba(10, 10, 10, 0.9));
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../img/tank-pattern.png') repeat;
+    opacity: 0.05;
+    z-index: -1;
+}
+
+.cta-content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.cta-content h2 {
+    font-size: 36px;
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+}
+
+.cta-content p {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xl);
+}
+
+.cta .btn {
+    min-width: 200px;
+}
+
+/* Адаптивність */
+@media (max-width: 992px) {
+    .page-header {
+        padding: 100px 0 60px;
+    }
+    
+    .page-header h1 {
+        font-size: 40px;
+    }
+    
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header {
+        padding: 80px 0 40px;
+    }
+    
+    .page-header h1 {
+        font-size: 32px;
+    }
+    
+    .page-header p {
+        font-size: 16px;
+    }
+    
+    .about-content-full p {
+        font-size: 15px;
+    }
+    
+    .timeline-content h3 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .cta-content h2 {
+        font-size: 28px;
+    }
+    
+    .cta-content p {
+        font-size: 16px;
+    }
+}
+
+/* Анімації для елементів */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.value-card, .team-card, .timeline-item {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+.value-card:nth-child(1), .team-card:nth-child(1), .timeline-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.value-card:nth-child(2), .team-card:nth-child(2), .timeline-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.value-card:nth-child(3), .team-card:nth-child(3), .timeline-item:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.value-card:nth-child(4), .team-card:nth-child(4), .timeline-item:nth-child(4) {
+    animation-delay: 0.4s;
+}
