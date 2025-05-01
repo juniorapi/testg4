@@ -1,4 +1,4 @@
-/* Стилі для календаря подій World of Tanks */
+/* Оновлені стилі для календаря подій World of Tanks у стилі офіційного сайту */
 .event-calendar_wrapper {
     font-family: 'Exo 2', sans-serif;
     max-width: 1200px;
@@ -7,13 +7,34 @@
 }
 
 .event-calendar {
-    background-color: #131822;
+    background-color: rgba(15, 15, 15, 0.7);
     border-radius: 12px;
     overflow: hidden;
     color: #fff;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    border: 1px solid #2a3544;
+    border: 1px solid #2a2a2a;
     position: relative;
+}
+
+.event-calendar_header {
+    background-color: rgba(10, 10, 10, 0.8);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.event-calendar_title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.event-calendar_date-range {
+    font-size: 18px;
+    color: #cccccc;
 }
 
 .event-calendar_inner {
@@ -28,11 +49,11 @@
 }
 
 .event-calendar_day {
-    background-color: #1e2638;
+    background-color: rgba(26, 26, 26, 0.7);
     border-radius: 8px;
     padding: 12px 8px;
     text-align: center;
-    border: 1px solid #2a3544;
+    border: 1px solid #2a2a2a;
     transition: all 0.3s ease;
 }
 
@@ -42,16 +63,31 @@
 }
 
 .event-calendar_day__current {
-    background-color: #2a3851;
-    border: 2px solid #ff5e19;
-    box-shadow: 0 0 15px rgba(255, 94, 25, 0.3);
+    background-color: rgba(227, 41, 39, 0.2);
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 15px rgba(227, 41, 39, 0.3);
+    position: relative;
+}
+
+/* Коло для позначення поточного дня */
+.event-calendar_day__current .event-calendar_day-date {
+    background-color: var(--primary);
+    color: white;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
 }
 
 .event-calendar_day-weekday {
     font-size: 14px;
     margin-bottom: 5px;
-    color: #8da0bc;
+    color: #999999;
     font-weight: 600;
+    text-transform: uppercase;
 }
 
 .event-calendar_day-date {
@@ -66,17 +102,27 @@
 }
 
 .event-calendar_event {
-    background-color: #1e2638;
+    position: relative;
+    background-color: rgba(26, 26, 26, 0.7);
     border-radius: 8px;
     overflow: hidden;
     transition: all 0.3s ease;
-    border: 1px solid #2a3544;
+    border: 1px solid #2a2a2a;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .event-calendar_event:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.event-calendar_event::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
 }
 
 .event-calendar_event-link {
@@ -89,6 +135,18 @@
     display: flex;
 }
 
+.event-calendar_event-image-container {
+    width: 80px;
+    height: 70px;
+    overflow: hidden;
+}
+
+.event-calendar_event-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .event-calendar_event-body {
     padding: 12px;
     display: flex;
@@ -96,50 +154,24 @@
     flex: 1;
 }
 
-.event-calendar_event-image {
-    width: 80px;
-    height: 40px;
-    object-fit: cover;
-    border-radius: 4px;
-    margin-right: 12px;
-    border: 1px solid #3a4659;
-}
-
 .event-calendar_event-content {
     flex: 1;
 }
 
-.event-calendar_event-content-upper {
-    display: flex;
-    align-items: center;
+.event-calendar_event-time-left {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
     margin-bottom: 5px;
-}
-
-.event-calendar_event-icon {
-    width: 16px;
-    height: 16px;
-    margin-right: 8px;
-    color: #8da0bc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.event-calendar_event-tag-container {
-    flex: 1;
-}
-
-.event-calendar_event-tag {
     display: inline-block;
-    background-color: #2a3851;
-    border-radius: 4px;
+    background-color: rgba(227, 41, 39, 0.1);
     padding: 3px 8px;
-    font-size: 12px;
+    border-radius: 4px;
 }
 
-.event-calendar_event-tag-text {
-    color: #8da0bc;
-    font-weight: 500;
+.event-calendar_event-time-left i {
+    margin-right: 5px;
 }
 
 .event-calendar_event-title {
@@ -149,20 +181,20 @@
 }
 
 /* Типи подій з різними кольорами */
-.event-calendar_event__green {
-    border-left: 4px solid #44a337;
+.event-calendar_event__green::before {
+    background-color: #44a337;
 }
 
-.event-calendar_event__orange {
-    border-left: 4px solid #ff5e19;
+.event-calendar_event__orange::before {
+    background-color: #ff5e19;
 }
 
-.event-calendar_event__purple {
-    border-left: 4px solid #9b59b6;
+.event-calendar_event__purple::before {
+    background-color: #9b59b6;
 }
 
-.event-calendar_event__azure {
-    border-left: 4px solid #3498db;
+.event-calendar_event__azure::before {
+    background-color: #3498db;
 }
 
 /* Статуси подій */
@@ -171,7 +203,7 @@
 }
 
 .event-calendar_event__future {
-    opacity: 0.85;
+    opacity: 0.9;
 }
 
 /* Індикатор завантаження */
@@ -179,7 +211,7 @@
     text-align: center;
     padding: 30px;
     font-size: 16px;
-    color: #8da0bc;
+    color: #999999;
 }
 
 .loading-indicator i {
@@ -198,7 +230,7 @@
     text-align: center;
     padding: 30px;
     font-size: 16px;
-    color: #ff5e19;
+    color: var(--primary);
 }
 
 .error-message i {
@@ -207,38 +239,23 @@
 }
 
 /* Повідомлення про відсутність подій */
-.event-calendar_overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(19, 24, 34, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 10;
-    border-radius: 12px;
-}
-
-.event-calendar_overlay-visible {
-    opacity: 1;
-    visibility: visible;
-}
-
-.event-calendar_overlay-text {
-    font-size: 18px;
-    font-weight: 600;
-    color: #8da0bc;
+.event-calendar_empty {
     text-align: center;
-    padding: 20px;
+    padding: 30px;
+    font-size: 16px;
+    color: #999999;
 }
 
 /* Адаптивність */
 @media (max-width: 768px) {
+    .event-calendar_title {
+        font-size: 20px;
+    }
+    
+    .event-calendar_date-range {
+        font-size: 14px;
+    }
+    
     .event-calendar_days {
         grid-template-columns: repeat(7, 1fr);
     }
@@ -251,22 +268,37 @@
         font-size: 16px;
     }
     
-    .event-calendar_event-image {
-        width: 60px;
-        height: 30px;
+    .event-calendar_day__current .event-calendar_day-date {
+        width: 28px;
+        height: 28px;
     }
     
-    .event-calendar_event-title {
-        font-size: 12px;
+    .event-calendar_event-image-container {
+        width: 60px;
+        height: 60px;
     }
 }
 
 @media (max-width: 576px) {
+    .event-calendar_header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .event-calendar_date-range {
+        margin-top: 5px;
+    }
+    
     .event-calendar_day {
         padding: 8px 4px;
     }
     
-    .event-calendar_event-image {
-        display: none;
+    .event-calendar_event-image-container {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .event-calendar_event-title {
+        font-size: 12px;
     }
 }
