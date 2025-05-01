@@ -39,7 +39,7 @@
                     <span></span><span></span><span></span>
                 </button>
                 
-		    <nav class="main-nav">
+                <nav class="main-nav">
                     <ul>
                         <li><a href="index.html">
                             <i class="fas fa-home"></i>
@@ -57,7 +57,7 @@
                             <i class="fas fa-video"></i>
                             <span>Стримери</span>
                         </a></li>
-                        <li><a href="events.html">
+                        <li><a href="events.html" class="active">
                             <i class="fas fa-calendar-alt"></i>
                             <span>Події</span>
                         </a></li>
@@ -90,14 +90,58 @@
                     <p class="section-subtitle">Актуальні події та турніри у World of Tanks</p>
                 </div>
                 
-                <!-- Контейнер для календаря подій -->
+                <!-- Контейнер для календаря подій World of Tanks -->
                 <div id="wot-calendar" class="event-calendar_wrapper">
-                    <!-- Календар буде завантажено через JavaScript -->
+                    <!-- Вміст буде завантажено через JavaScript -->
+                    <div class="loading-indicator">
+                        <i class="fas fa-spinner"></i> Завантаження подій...
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="events-timeline-section dark-section">
+        <section class="past-events-section dark-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Завершені <span>Події</span></h2>
+                    <p class="section-subtitle">Огляд минулих подій та турнірів World of Tanks</p>
+                </div>
+                
+                <div class="past-events-grid">
+                    <div class="past-event">
+                        <div class="past-event-status">Завершено</div>
+                        <div class="past-event-title">Сезон 21</div>
+                        <a href="#" class="btn btn-sm btn-outline">Деталі</a>
+                    </div>
+                    
+                    <div class="past-event">
+                        <div class="past-event-status">Завершено</div>
+                        <div class="past-event-title">Сезон 20</div>
+                        <a href="#" class="btn btn-sm btn-outline">Деталі</a>
+                    </div>
+                    
+                    <div class="past-event">
+                        <div class="past-event-status">Завершено</div>
+                        <div class="past-event-title">WE 2023</div>
+                        <a href="#" class="btn btn-sm btn-outline">Деталі</a>
+                    </div>
+                    
+                    <div class="past-event">
+                        <div class="past-event-status">Завершено</div>
+                        <div class="past-event-title">Сезон 19</div>
+                        <a href="#" class="btn btn-sm btn-outline">Деталі</a>
+                    </div>
+                    
+                    <div class="past-event">
+                        <div class="past-event-status">Завершено</div>
+                        <div class="past-event-title">Iron Age</div>
+                        <a href="#" class="btn btn-sm btn-outline">Деталі</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="events-timeline-section">
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Внутрішні <span>Події Альянсу</span></h2>
@@ -166,104 +210,98 @@
             </div>
         </section>
 
-        <!-- ПОВНИЙ КОД ФУТЕРА ДЛЯ ВСІХ СТОРІНОК -->
-<footer class="main-footer">
-    <div class="footer-top">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-about">
-                    <div class="footer-logo">
-                        <div class="logo-emblem">
-                            <img src="img/emblem_195x195.png" alt="G_UA">
+        <!-- ФУТЕР -->
+        <footer class="main-footer">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="footer-grid">
+                        <div class="footer-about">
+                            <div class="footer-logo">
+                                <div class="logo-emblem">
+                                    <img src="img/emblem_195x195.png" alt="G_UA">
+                                </div>
+                                <div class="logo-text">Альянс <span>G_UA</span></div>
+                            </div>
+                            <p class="footer-description">
+                                Альянс G_UA - найбільше українське об'єднання кланів у грі World of Tanks на європейському сервері.
+                            </p>
+                            <div class="social-links">
+                                <a href="https://t.me/ghosts_ua_official" class="social-link" aria-label="Telegram">
+                                    <i class="fab fa-telegram"></i>
+                                </a>
+                                <a href="https://discord.gg/MtN3T3KZSM" class="social-link" aria-label="Discord">
+                                    <i class="fab fa-discord"></i>
+                                </a>
+                            </div>
                         </div>
-                        <div class="logo-text">Альянс <span>G_UA</span></div>
-                    </div>
-                    <p class="footer-description">
-                        Альянс G_UA - найбільше українське об'єднання кланів у грі World of Tanks на європейському сервері.
-                    </p>
-                    <div class="social-links">
-                       <!-- <a href="#" class="social-link" aria-label="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="YouTube">
-                            <i class="fab fa-youtube"></i>
-                        </a>-->
-                        <a href="https://t.me/ghosts_ua_official" class="social-link" aria-label="Telegram">
-                            <i class="fab fa-telegram"></i>
-                        </a>
-                        <a href="https://discord.gg/MtN3T3KZSM" class="social-link" aria-label="Discord">
-                            <i class="fab fa-discord"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="footer-nav">
-                    <h3 class="footer-heading">Навігація</h3>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Головна</a></li>
-                        <li><a href="about.html">Про нас</a></li>
-                        <li><a href="clans.html">Наші клани</a></li>
-                        <li><a href="streamers.html">Стримери</a></li>
-                        <li><a href="events.html">Події</a></li>
-                        <li><a href="contact.html">Контакти</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-services">
-                    <h3 class="footer-heading">Сервіси</h3>
-                    <ul class="footer-links">
-                        <li><a href="services.html#boost">Буст акаунтів</a></li>
-                        <li><a href="services.html#training">Тренування</a></li>
-                        <li><a href="services.html#tournaments">Участь у турнірах</a></li>
-                        <li><a href="services.html#clanwars">Кланові війни</a></li>
-                        <li><a href="services.html#lessons">Індивідуальні уроки</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-contact">
-                    <h3 class="footer-heading">Зв'язатися з нами</h3>
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:contact@g-ua-alliance.com">contact@g-ua-alliance.com</a>
+                        
+                        <div class="footer-nav">
+                            <h3 class="footer-heading">Навігація</h3>
+                            <ul class="footer-links">
+                                <li><a href="index.html">Головна</a></li>
+                                <li><a href="about.html">Про нас</a></li>
+                                <li><a href="clans.html">Наші клани</a></li>
+                                <li><a href="streamers.html">Стримери</a></li>
+                                <li><a href="events.html">Події</a></li>
+                                <li><a href="contact.html">Контакти</a></li>
+                            </ul>
                         </div>
-                        <div class="contact-method">
-                            <i class="fab fa-discord"></i>
-                            <a href="https://discord.gg/MtN3T3KZSM">Ghost's_UA Team</a>
+                        
+                        <div class="footer-services">
+                            <h3 class="footer-heading">Сервіси</h3>
+                            <ul class="footer-links">
+                                <li><a href="services.html#boost">Буст акаунтів</a></li>
+                                <li><a href="services.html#training">Тренування</a></li>
+                                <li><a href="services.html#tournaments">Участь у турнірах</a></li>
+                                <li><a href="services.html#clanwars">Кланові війни</a></li>
+                                <li><a href="services.html#lessons">Індивідуальні уроки</a></li>
+                            </ul>
                         </div>
-                        <div class="contact-method">
-                            <i class="fab fa-telegram"></i>
-                            <a href="https://t.me/ghosts_ua_assistance">Ghost's_UA Assistant</a>
+                        
+                        <div class="footer-contact">
+                            <h3 class="footer-heading">Зв'язатися з нами</h3>
+                            <div class="contact-methods">
+                                <div class="contact-method">
+                                    <i class="fas fa-envelope"></i>
+                                    <a href="mailto:contact@g-ua-alliance.com">contact@g-ua-alliance.com</a>
+                                </div>
+                                <div class="contact-method">
+                                    <i class="fab fa-discord"></i>
+                                    <a href="https://discord.gg/MtN3T3KZSM">Ghost's_UA Team</a>
+                                </div>
+                                <div class="contact-method">
+                                    <i class="fab fa-telegram"></i>
+                                    <a href="https://t.me/ghosts_ua_assistance">Ghost's_UA Assistant</a>
+                                </div>
+                            </div>
+                            
+                            <div class="newsletter">
+                                <h4>Підпишіться на новини</h4>
+                                <form class="newsletter-form">
+                                    <input type="email" placeholder="Ваш email" required>
+                                    <button type="submit" class="btn btn-sm btn-primary">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="newsletter">
-                        <h4>Підпишіться на новини</h4>
-                        <form class="newsletter-form">
-                            <input type="email" placeholder="Ваш email" required>
-                            <button type="submit" class="btn btn-sm btn-primary">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </form>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    
-    <div class="footer-bottom">
-        <div class="container">
-            <div class="copyright">
-                &copy; 2025 Альянс G_UA. Всі права захищені.
+            
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="copyright">
+                        &copy; 2025 Альянс G_UA. Всі права захищені.
+                    </div>
+                    <div class="footer-links-secondary">
+                        <a href="privacy.html">Політика конфіденційності</a>
+                        <a href="terms.html">Умови користування</a>
+                        <a href="rules.html">Правила альянсу</a>
+                    </div>
+                </div>
             </div>
-            <div class="footer-links-secondary">
-                <a href="privacy.html">Політика конфіденційності</a>
-                <a href="terms.html">Умови користування</a>
-                <a href="rules.html">Правила альянсу</a>
-            </div>
-        </div>
-    </div>
-</footer>
+        </footer>
     </div>
 
     <div class="scroll-top">
