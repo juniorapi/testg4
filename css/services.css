@@ -1,0 +1,990 @@
+/* Стилі для сторінки послуг G_UA Alliance */
+
+/* Секція героя */
+.services-hero {
+    padding: 160px 0 100px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../img/services-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    position: relative;
+}
+
+.services-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to top, var(--bg-dark), transparent);
+}
+
+.services-hero-title {
+    font-size: 48px;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+}
+
+.services-hero-subtitle {
+    font-size: 18px;
+    max-width: 800px;
+    margin: 0 auto var(--space-xl);
+    color: var(--text-secondary);
+}
+
+/* Таби послуг */
+.services-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--space-2xl);
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.service-tab {
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-md);
+    background: rgba(26, 26, 26, 0.5);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: 500;
+}
+
+.service-tab:hover {
+    background: rgba(26, 26, 26, 0.8);
+    color: var(--text-primary);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.service-tab.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: var(--glow-primary);
+}
+
+.services-section {
+    padding: var(--space-3xl) 0;
+}
+
+.service-content {
+    display: none;
+}
+
+.service-content.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Виділені блоки */
+.highlighted-block {
+    background: rgba(227, 41, 39, 0.1);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    border-left: 3px solid var(--primary);
+}
+
+/* Карточки бусту */
+.boost-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+    margin-bottom: var(--space-2xl);
+}
+
+.boost-card {
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all var(--transition-normal);
+}
+
+.boost-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: var(--glow-primary), var(--shadow-lg);
+}
+
+.boost-header {
+    padding: var(--space-lg);
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+}
+
+.boost-title {
+    font-size: 24px;
+    margin-bottom: var(--space-xs);
+    color: var(--text-primary);
+}
+
+.boost-type {
+    display: inline-block;
+    font-size: 14px;
+    padding: 5px 15px;
+    border-radius: var(--radius-full);
+    background: rgba(227, 41, 39, 0.2);
+    color: var(--primary);
+    margin-bottom: var(--space-md);
+}
+
+.boost-price {
+    font-size: 32px;
+    font-weight: 700;
+    font-family: 'Exo 2', sans-serif;
+    color: var(--primary);
+}
+
+.boost-price .currency {
+    font-size: 16px;
+    vertical-align: super;
+}
+
+.boost-price .period {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: normal;
+}
+
+.boost-content {
+    padding: var(--space-lg);
+}
+
+.boost-features {
+    margin-bottom: var(--space-lg);
+}
+
+.boost-feature {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    color: var(--text-secondary);
+}
+
+.boost-feature i {
+    color: var(--primary);
+    font-size: 16px;
+    min-width: 16px;
+}
+
+.boost-actions {
+    text-align: center;
+}
+
+/* Опис сервісу */
+.service-description {
+    margin-bottom: var(--space-2xl);
+}
+
+.service-description h3 {
+    font-size: 20px;
+    margin-bottom: var(--space-sm);
+    color: var(--text-primary);
+}
+
+.service-description p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-md);
+}
+
+/* Селектор опцій для бусту */
+.boost-selector {
+    margin-bottom: var(--space-2xl);
+}
+
+.boost-selector-title {
+    font-size: 20px;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.boost-selector-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
+}
+
+.selector-card {
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all var(--transition-normal);
+}
+
+.selector-card:hover {
+    background: rgba(26, 26, 26, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.selector-title {
+    font-size: 18px;
+    margin-bottom: var(--space-sm);
+    color: var(--text-primary);
+}
+
+.selector-content {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+}
+
+/* Таблиця відзнак */
+.marks-table-responsive {
+    overflow-x: auto;
+    margin-bottom: var(--space-xl);
+}
+
+.marks-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--space-2xl);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.marks-table thead {
+    background: rgba(227, 41, 39, 0.2);
+    color: var(--text-primary);
+}
+
+.marks-table th {
+    padding: var(--space-md);
+    text-align: center;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.marks-table tbody tr {
+    background: rgba(26, 26, 26, 0.3);
+    transition: background var(--transition-normal);
+}
+
+.marks-table tbody tr:hover {
+    background: rgba(26, 26, 26, 0.5);
+}
+
+.marks-table td {
+    padding: var(--space-md);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.marks-table .category-title {
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: left;
+}
+
+.marks-table .mark-percent {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* Список з кроками */
+.step-list {
+    list-style: none;
+    counter-reset: step-counter;
+    margin: 0 0 var(--space-xl);
+    padding: 0;
+}
+
+.step-list li {
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: var(--space-md);
+    counter-increment: step-counter;
+    color: var(--text-secondary);
+}
+
+.step-list li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: var(--radius-full);
+    background: rgba(227, 41, 39, 0.2);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+/* Чекбокси стилізовані */
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+}
+
+.custom-checkbox {
+    position: relative;
+    width: 50px;
+    height: 24px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+}
+
+.custom-checkbox::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    transition: all var(--transition-normal);
+}
+
+.checkbox-input {
+    display: none;
+}
+
+.checkbox-input:checked + .custom-checkbox {
+    background-color: var(--primary);
+}
+
+.checkbox-input:checked + .custom-checkbox::after {
+    left: calc(100% - 22px);
+}
+
+.checkbox-label {
+    flex-grow: 1;
+    color: var(--text-secondary);
+}
+
+/* Селектор танків */
+.tank-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.tank-option {
+    background: rgba(26, 26, 26, 0.3);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.tank-option:hover {
+    background: rgba(26, 26, 26, 0.5);
+    transform: translateY(-3px);
+}
+
+.tank-option.selected {
+    background: rgba(227, 41, 39, 0.2);
+    border-color: var(--primary);
+}
+
+.tank-image {
+    width: 80px;
+    height: 60px;
+    object-fit: contain;
+    margin: 0 auto var(--space-xs);
+}
+
+.tank-name {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* Слайдер для вибору відзнак */
+.range-slider {
+    width: 100%;
+    margin-bottom: var(--space-md);
+}
+
+.range-slider-wrap {
+    position: relative;
+    padding: 0 var(--space-sm);
+}
+
+.range-marks {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--space-sm);
+}
+
+.range-mark {
+    font-size: 14px;
+    color: var(--text-secondary);
+    position: relative;
+    text-align: center;
+}
+
+.range-mark::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    width: 1px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(-50%);
+}
+
+.range-input {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.1);
+    outline: none;
+}
+
+.range-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary);
+    cursor: pointer;
+    box-shadow: 0 0 5px var(--primary);
+    transition: all var(--transition-normal);
+}
+
+.range-input::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary);
+    cursor: pointer;
+    box-shadow: 0 0 5px var(--primary);
+    transition: all var(--transition-normal);
+    border: none;
+}
+
+.range-input::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px var(--primary);
+}
+
+.range-input::-moz-range-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px var(--primary);
+}
+
+.range-values {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--space-sm);
+}
+
+.range-value {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* Калькулятор вартості */
+.boost-calculator {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: var(--space-2xl);
+}
+
+.calculator-title {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    color: var(--text-primary);
+}
+
+.calculator-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-xl);
+}
+
+.calculator-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+}
+
+.calc-option {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.calc-value {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.calculator-result {
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.result-title {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-sm);
+}
+
+.result-price {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: var(--space-md);
+    font-family: 'Exo 2', sans-serif;
+}
+
+.result-price .currency {
+    font-size: 18px;
+    vertical-align: super;
+}
+
+/* Картки переваг сервісу */
+.service-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+    margin-bottom: var(--space-2xl);
+}
+
+.feature-card {
+    background: rgba(26, 26, 26, 0.3);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all var(--transition-normal);
+}
+
+.feature-card:hover {
+    background: rgba(26, 26, 26, 0.5);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-md);
+    background: rgba(227, 41, 39, 0.1);
+    margin-bottom: var(--space-md);
+    color: var(--primary);
+    font-size: 24px;
+}
+
+.feature-title {
+    font-size: 18px;
+    margin-bottom: var(--space-sm);
+    color: var(--text-primary);
+}
+
+.feature-text {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Секція FAQ */
+.faq-section {
+    margin-bottom: var(--space-2xl);
+}
+
+.faq-title {
+    font-size: 24px;
+    margin-bottom: var(--space-xl);
+    text-align: center;
+}
+
+.faq-list {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: rgba(26, 26, 26, 0.3);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    margin-bottom: var(--space-md);
+}
+
+.faq-question {
+    padding: var(--space-md) var(--space-lg);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.faq-question:hover {
+    background: rgba(227, 41, 39, 0.1);
+}
+
+.faq-question i {
+    transition: transform var(--transition-normal);
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    padding: 0 var(--space-lg);
+    max-height: 0;
+    overflow: hidden;
+    transition: all var(--transition-normal);
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.faq-item.active .faq-answer {
+    padding: var(--space-lg);
+    max-height: 500px;
+}
+
+/* Секція відгуків */
+.testimonials {
+    margin-bottom: var(--space-2xl);
+}
+
+.testimonials-title {
+    font-size: 24px;
+    margin-bottom: var(--space-xl);
+    text-align: center;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+}
+
+.testimonial-card {
+    background: rgba(26, 26, 26, 0.3);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all var(--transition-normal);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    background: rgba(26, 26, 26, 0.5);
+    box-shadow: var(--shadow-lg);
+}
+
+.testimonial-content {
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+    line-height: 1.6;
+}
+
+.testimonial-quote {
+    font-size: 60px;
+    color: rgba(227, 41, 39, 0.2);
+    line-height: 0;
+    margin-bottom: var(--space-md);
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.author-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.author-info {
+    flex-grow: 1;
+}
+
+.author-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.author-role {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* Секція заклику до дії (CTA) */
+.service-cta {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: var(--space-2xl);
+}
+
+.service-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../img/cta-bg.jpg') center/cover no-repeat;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+.cta-title {
+    font-size: 28px;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+}
+
+.cta-text {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-actions {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+}
+
+/* Пов'язані послуги */
+.related-services {
+    margin-top: var(--space-3xl);
+}
+
+.related-title {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+}
+
+.related-card {
+    background: rgba(26, 26, 26, 0.3);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all var(--transition-normal);
+}
+
+.related-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: var(--glow-primary), var(--shadow-lg);
+}
+
+.related-header {
+    padding: var(--space-lg);
+    text-align: center;
+    background: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.related-title-card {
+    font-size: 18px;
+    margin-bottom: var(--space-xs);
+    color: var(--text-primary);
+}
+
+.related-features {
+    padding: var(--space-md) var(--space-lg);
+}
+
+.related-feature {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.related-feature i {
+    color: var(--primary);
+    font-size: 14px;
+}
+
+.related-footer {
+    padding: var(--space-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.related-price {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.related-price span {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: normal;
+}
+
+/* Адаптивність */
+@media (max-width: 1200px) {
+    .boost-options, 
+    .tank-selector,
+    .service-features, 
+    .testimonials-grid,
+    .related-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .boost-selector-grid, 
+    .calculator-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .service-features,
+    .related-grid {
+        gap: var(--space-lg);
+    }
+    
+    .tank-selector {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .boost-options, 
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tank-selector {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .services-tabs {
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+    
+    .service-tab {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .calculator-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .cta-actions {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+    
+    .services-hero-title {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 576px) {
+    .tank-selector {
+        grid-template-columns: 1fr;
+    }
+    
+    .services-hero-title {
+        font-size: 32px;
+    }
+    
+    .boost-title, 
+    .calculator-title, 
+    .cta-title, 
+    .faq-title,
+    .testimonials-title,
+    .related-title {
+        font-size: 24px;
+    }
+    
+    .boost-price {
+        font-size: 28px;
+    }
+    
+    .result-price {
+        font-size: 32px;
+    }
+    
+    .faq-question {
+        font-size: 14px;
+        padding: var(--space-md) var(--space-sm);
+    }
+    
+    .faq-answer {
+        padding: var(--space-md) var(--space-sm);
+        font-size: 14px;
+    }
+    
+    .marks-table {
+        font-size: 12px;
+    }
+    
+    .marks-table th,
+    .marks-table td {
+        padding: var(--space-sm);
+    }
+}
