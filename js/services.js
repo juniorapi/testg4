@@ -1,5 +1,5 @@
 /**
- * JavaScript для сторінки послуг G_UA Alliance
+ * JavaScript для сторінки послуг G_UA Alliance з виправленим функціоналом повзунка відміток
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -80,7 +80,7 @@ function initFAQAccordion() {
 }
 
 /**
- * Ініціалізація слайдера відсотка відзнак
+ * Ініціалізація слайдера відсотка відзнак - ВИПРАВЛЕНИЙ КОД
  */
 function initRangeSlider() {
     const marksRange = document.getElementById('marksRange');
@@ -89,6 +89,27 @@ function initRangeSlider() {
         const targetMarkSpan = document.getElementById('targetMark');
         
         // Встановлюємо початкові значення
+        // Початкове значення встановлюємо на 95% (третю відмітку)
+        marksRange.value = 95;
+        
+        // Визначаємо відмітки для точних положень повзунка
+        const markPositions = {
+            0: 0,    // 0%
+            65: 65,  // 1 відмітка
+            85: 85,  // 2 відмітки
+            95: 95   // 3 відмітки
+        };
+        
+        // Функція для налаштування повзунка на найближчу відмітку
+        function snapToNearestMark(value) {
+            // Знаходимо найближчу відмітку
+            const marks = Object.keys(markPositions).map(Number);
+            return marks.reduce((prev, curr) => {
+                return (Math.abs(curr - value) < Math.abs(prev - value)) ? curr : prev;
+            });
+        }
+        
+        // Оновлюємо відмітки при завантаженні
         setMarksPercentage(marksRange.value);
         
         // Оновлюємо відсоток при зміні слайдера
@@ -96,26 +117,27 @@ function initRangeSlider() {
             setMarksPercentage(this.value);
         });
         
+        // Встановлюємо точне значення при відпусканні слайдера
+        marksRange.addEventListener('change', function() {
+            const exactValue = snapToNearestMark(parseInt(this.value));
+            this.value = exactValue;
+            setMarksPercentage(exactValue);
+        });
+        
         // Обробляємо зміну відсотка
         function setMarksPercentage(value) {
+            // Переконуємося, що значення числове
+            value = parseInt(value);
+            
             // Визначаємо найближчий поріг відзнак (0%, 65%, 85%, 95%)
-            let targetPercent;
-            if (value < 32) {
-                targetPercent = 0;
-            } else if (value < 75) {
-                targetPercent = 65;
-            } else if (value < 90) {
-                targetPercent = 85;
-            } else {
-                targetPercent = 95;
-            }
+            let targetPercent = snapToNearestMark(value);
             
             // Оновлюємо відображення поточного та цільового відсотка
             currentMarkSpan.textContent = '0%';
             targetMarkSpan.textContent = targetPercent + '%';
             
             // Оновлюємо значення в калькуляторі
-            updateCalculator();
+            updateCalculator(targetPercent);
         }
     }
 }
@@ -164,8 +186,9 @@ function initPricingCalculator() {
 
 /**
  * Оновлення калькулятора вартості
+ * @param {number} [targetPercent] - Цільовий відсоток відзнаки (якщо передано)
  */
-function updateCalculator() {
+function updateCalculator(targetPercent) {
     // Отримуємо всі необхідні елементи
     const selectedTank = document.querySelector('.tank-option.selected');
     const marksRange = document.getElementById('marksRange');
@@ -192,15 +215,17 @@ function updateCalculator() {
     const tankLevel = selectedTank.getAttribute('data-level');
     
     // Визначаємо цільовий відсоток відзнак
-    let targetMarkPercent;
+    let targetMarkPercent = targetPercent || parseInt(marksRange.value);
     let markName = '';
-    if (marksRange.value < 32) {
+    
+    // Забезпечуємо точну відповідність цільового відсотка
+    if (targetMarkPercent < 32) {
         targetMarkPercent = 0;
         markName = '0 відзнак';
-    } else if (marksRange.value < 75) {
+    } else if (targetMarkPercent < 75) {
         targetMarkPercent = 65;
         markName = '1 відзнака';
-    } else if (marksRange.value < 90) {
+    } else if (targetMarkPercent < 90) {
         targetMarkPercent = 85;
         markName = '2 відзнаки';
     } else {
