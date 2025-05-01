@@ -81,7 +81,7 @@ function initFAQAccordion() {
 }
 
 /**
- * Ініціалізація слайдера відсотка відзнак - ОСТАТОЧНО ВИПРАВЛЕНИЙ КОД
+ * Ініціалізація слайдера відсотка відзнак
  */
 function initRangeSlider() {
     const marksRange = document.getElementById('marksRange');
@@ -95,15 +95,6 @@ function initRangeSlider() {
         
         // Початкове значення встановлюємо на 0
         marksRange.value = 0;
-        
-        // Встановлюємо чіткі відзначки для позицій
-        const markThresholds = {
-            0: 0,     // 0%
-            20: 65,   // 1 відмітка (65%)
-            50: 85,   // 2 відмітки (85%)
-            80: 95,   // 3 відмітки (95%)
-            100: 100  // 100%
-        };
         
         // Функція для отримання значення відзнаки відповідно до позиції повзунка
         function getMarkPercentage(sliderValue) {
@@ -203,20 +194,18 @@ function initTankSelector() {
 function initDifficultySelector() {
     const difficultyOptions = document.querySelectorAll('.difficulty-option');
     
-    if (difficultyOptions.length > 0) {
-        difficultyOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                // Знімаємо виділення з усіх опцій
-                difficultyOptions.forEach(opt => opt.classList.remove('selected'));
-                
-                // Встановлюємо виділення на поточній опції
-                this.classList.add('selected');
-                
-                // Оновлюємо калькулятор
-                updateCalculator();
-            });
+    difficultyOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            // Знімаємо виділення з усіх опцій
+            difficultyOptions.forEach(opt => opt.classList.remove('selected'));
+            
+            // Встановлюємо виділення на поточній опції
+            this.classList.add('selected');
+            
+            // Оновлюємо калькулятор
+            updateCalculator();
         });
-    }
+    });
 }
 
 /**
@@ -256,30 +245,24 @@ function updateCalculator(targetPercent) {
     
     // Отримуємо елементи для відображення значень
     const tankTypeValue = document.querySelector('.calc-option:nth-child(1) .calc-value');
-    const currentMarkValue = document.querySelector('.calc-option:nth-child(2) .calc-value');
-    const targetMarkValue = document.querySelector('.calc-option:nth-child(3) .calc-value');
-    const complexityValue = document.querySelector('.calc-option:nth-child(4) .calc-value');
+    const difficultyValue = document.querySelector('.calc-option:nth-child(2) .calc-value');
+    const currentMarkValue = document.querySelector('.calc-option:nth-child(3) .calc-value');
+    const targetMarkValue = document.querySelector('.calc-option:nth-child(4) .calc-value');
     const winsValue = document.querySelector('.calc-option:nth-child(5) .calc-value');
     const streamValue = document.querySelector('.calc-option:nth-child(6) .calc-value');
     const timeframeValue = document.querySelector('.calc-option:nth-child(7) .calc-value');
     const resultPrice = document.querySelector('.result-price');
     
-    // Виявляємо, чи є селектор складності на сторінці
-    const hasDifficultySelector = selectedDifficulty !== null;
-    
     // Не продовжуємо, якщо якийсь із необхідних елементів відсутній
-    if (!selectedTank || !marksRange || !tankTypeValue || !resultPrice) {
+    if (!selectedTank || !selectedDifficulty || !marksRange || !tankTypeValue || !resultPrice) {
         return;
     }
     
     // Отримуємо рівень танка
     const tankLevel = selectedTank.getAttribute('data-level');
     
-    // Отримуємо складність танка (якщо селектор існує)
-    let tankDifficulty = 'medium'; // За замовчуванням, якщо немає селектора
-    if (hasDifficultySelector) {
-        tankDifficulty = selectedDifficulty.getAttribute('data-difficulty') || 'medium';
-    }
+    // Отримуємо складність танка
+    const tankDifficulty = selectedDifficulty.getAttribute('data-difficulty');
     
     // Визначаємо цільовий відсоток відзнак
     let targetMarkPercent = targetPercent;
@@ -302,24 +285,10 @@ function updateCalculator(targetPercent) {
     
     // Оновлюємо відображення значень у калькуляторі
     tankTypeValue.textContent = tankLevel ? `${tankLevel} рівня` : 'Не вибрано';
+    difficultyValue.textContent = tankDifficulty === 'easy' ? 'Легкий' : 
+                               tankDifficulty === 'medium' ? 'Середній' : 'Складний';
     currentMarkValue.textContent = '0%';
     targetMarkValue.textContent = `${targetMarkPercent}% (${markName})`;
-    
-    // Відображаємо складність танка
-    if (hasDifficultySelector) {
-        const difficultyDisplayValue = document.querySelector('.calc-option:nth-child(2) .calc-value');
-        if (difficultyDisplayValue) {
-            difficultyDisplayValue.textContent = tankDifficulty === 'easy' ? 'Легкий' : 
-                                      tankDifficulty === 'medium' ? 'Середній' : 'Складний';
-        }
-        
-        // Змінюємо опис складності, якщо такий показник є на сторінці
-        complexityValue.textContent = 'Середня';
-    } else {
-        // Якщо немає селектора складності, використовуємо стандартні елементи
-        complexityValue.textContent = 'Середня';
-    }
-    
     winsValue.textContent = win60Checkbox && win60Checkbox.checked ? 'Так' : 'Ні';
     streamValue.textContent = streamCheckbox && streamCheckbox.checked ? 'Так' : 'Ні';
     
