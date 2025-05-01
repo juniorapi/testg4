@@ -1,0 +1,2230 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Послуги Альянсу G_UA - Буст акаунтів та інші сервіси</title>
+    <link rel="icon" href="img/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+    <meta name="description" content="Професійні послуги від Альянсу G_UA: буст акаунтів, тренування, участь у турнірах та кланових війнах.">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Exo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Стилі для сторінки послуг */
+        .services-hero {
+            padding: 160px 0 100px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/services-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            position: relative;
+        }
+        
+        .services-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, var(--bg-dark), transparent);
+        }
+        
+        .services-hero-title {
+            font-size: 48px;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+        }
+        
+        .services-hero-subtitle {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto var(--space-xl);
+            color: var(--text-secondary);
+        }
+        
+        .services-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: var(--space-2xl);
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+        
+        .service-tab {
+            padding: var(--space-md) var(--space-lg);
+            border-radius: var(--radius-md);
+            background: rgba(26, 26, 26, 0.5);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 500;
+        }
+        
+        .service-tab:hover {
+            background: rgba(26, 26, 26, 0.8);
+            color: var(--text-primary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .service-tab.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: var(--glow-primary);
+        }
+        
+        .services-section {
+            padding: var(--space-3xl) 0;
+        }
+        
+        .service-content {
+            display: none;
+        }
+        
+        .service-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Стилі для буст-секції */
+        .boost-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-xl);
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .boost-card {
+            background: rgba(26, 26, 26, 0.5);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all var(--transition-normal);
+        }
+        
+        .boost-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: var(--glow-primary), var(--shadow-lg);
+        }
+        
+        .boost-header {
+            padding: var(--space-lg);
+            background: rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+        
+        .boost-title {
+            font-size: 24px;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+        
+        .boost-type {
+            display: inline-block;
+            font-size: 14px;
+            padding: 5px 15px;
+            border-radius: var(--radius-full);
+            background: rgba(227, 41, 39, 0.2);
+            color: var(--primary);
+            margin-bottom: var(--space-md);
+        }
+        
+        .boost-price {
+            font-size: 32px;
+            font-weight: 700;
+            font-family: 'Exo 2', sans-serif;
+            color: var(--primary);
+        }
+        
+        .boost-price .currency {
+            font-size: 16px;
+            vertical-align: super;
+        }
+        
+        .boost-price .period {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: normal;
+        }
+        
+        .boost-content {
+            padding: var(--space-lg);
+        }
+        
+        .boost-features {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .boost-feature {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-sm);
+            color: var(--text-secondary);
+        }
+        
+        .boost-feature i {
+            color: var(--primary);
+            font-size: 16px;
+            min-width: 16px;
+        }
+        
+        .boost-actions {
+            text-align: center;
+        }
+        
+        .boost-selector {
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .boost-selector-title {
+            font-size: 20px;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            text-align: center;
+        }
+        
+        .boost-selector-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-xl);
+        }
+        
+        .selector-card {
+            background: rgba(26, 26, 26, 0.5);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all var(--transition-normal);
+        }
+        
+        .selector-card:hover {
+            background: rgba(26, 26, 26, 0.8);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .selector-title {
+            font-size: 18px;
+            margin-bottom: var(--space-sm);
+            color: var(--text-primary);
+        }
+        
+        .selector-content {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+        }
+        
+        .range-slider {
+            width: 100%;
+            margin-bottom: var(--space-md);
+        }
+        
+        .range-slider-wrap {
+            position: relative;
+            padding: 0 var(--space-sm);
+        }
+        
+        .range-marks {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .range-mark {
+            font-size: 14px;
+            color: var(--text-secondary);
+            position: relative;
+            text-align: center;
+        }
+        
+        .range-mark::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            width: 1px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateX(-50%);
+        }
+        
+        .range-input {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: var(--radius-full);
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+        
+        .range-input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            box-shadow: 0 0 5px var(--primary);
+            transition: all var(--transition-normal);
+        }
+        
+        .range-input::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            box-shadow: 0 0 5px var(--primary);
+            transition: all var(--transition-normal);
+            border: none;
+        }
+        
+        .range-input::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 10px var(--primary);
+        }
+        
+        .range-input::-moz-range-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 10px var(--primary);
+        }
+        
+        .range-values {
+            display: flex;
+            justify-content: space-between;
+            margin-top: var(--space-sm);
+        }
+        
+        .range-value {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .custom-checkbox {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            border-radius: 12px;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-normal);
+            cursor: pointer;
+        }
+        
+        .custom-checkbox::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: white;
+            transition: all var(--transition-normal);
+        }
+        
+        .checkbox-input {
+            display: none;
+        }
+        
+        .checkbox-input:checked + .custom-checkbox {
+            background-color: var(--primary);
+        }
+        
+        .checkbox-input:checked + .custom-checkbox::after {
+            left: calc(100% - 22px);
+        }
+        
+        .checkbox-label {
+            flex-grow: 1;
+            color: var(--text-secondary);
+        }
+        
+        .tank-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .tank-option {
+            background: rgba(26, 26, 26, 0.3);
+            border-radius: var(--radius-md);
+            padding: var(--space-sm);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+        
+        .tank-option:hover {
+            background: rgba(26, 26, 26, 0.5);
+            transform: translateY(-3px);
+        }
+        
+        .tank-option.selected {
+            background: rgba(227, 41, 39, 0.2);
+            border-color: var(--primary);
+        }
+        
+        .tank-image {
+            width: 80px;
+            height: 60px;
+            object-fit: contain;
+            margin: 0 auto var(--space-xs);
+        }
+        
+        .tank-name {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        .boost-calculator {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .calculator-title {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            color: var(--text-primary);
+        }
+        
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--space-xl);
+        }
+        
+        .calculator-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+        }
+        
+        .calc-option {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .calc-value {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .calculator-result {
+            background: rgba(26, 26, 26, 0.5);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .result-title {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .result-price {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: var(--space-md);
+            font-family: 'Exo 2', sans-serif;
+        }
+        
+        .result-price .currency {
+            font-size: 18px;
+            vertical-align: super;
+        }
+        
+        .service-description {
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .service-description p {
+            margin-bottom: var(--space-md);
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        .service-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-xl);
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .feature-card {
+            background: rgba(26, 26, 26, 0.3);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all var(--transition-normal);
+        }
+        
+        .feature-card:hover {
+            background: rgba(26, 26, 26, 0.5);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .feature-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-md);
+            background: rgba(227, 41, 39, 0.1);
+            margin-bottom: var(--space-md);
+            color: var(--primary);
+            font-size: 24px;
+        }
+        
+        .feature-title {
+            font-size: 18px;
+            margin-bottom: var(--space-sm);
+            color: var(--text-primary);
+        }
+        
+        .feature-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .faq-section {
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .faq-title {
+            font-size: 24px;
+            margin-bottom: var(--space-xl);
+            text-align: center;
+        }
+        
+        .faq-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: rgba(26, 26, 26, 0.3);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            margin-bottom: var(--space-md);
+        }
+        
+        .faq-question {
+            padding: var(--space-md) var(--space-lg);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+        
+        .faq-question:hover {
+            background: rgba(227, 41, 39, 0.1);
+        }
+        
+        .faq-question i {
+            transition: transform var(--transition-normal);
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 var(--space-lg);
+            max-height: 0;
+            overflow: hidden;
+            transition: all var(--transition-normal);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: var(--space-lg);
+            max-height: 500px;
+        }
+        
+        .testimonials {
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .testimonials-title {
+            font-size: 24px;
+            margin-bottom: var(--space-xl);
+            text-align: center;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-xl);
+        }
+        
+        .testimonial-card {
+            background: rgba(26, 26, 26, 0.3);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all var(--transition-normal);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            background: rgba(26, 26, 26, 0.5);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+            line-height: 1.6;
+        }
+        
+        .testimonial-quote {
+            font-size: 60px;
+            color: rgba(227, 41, 39, 0.2);
+            line-height: 0;
+            margin-bottom: var(--space-md);
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info {
+            flex-grow: 1;
+        }
+        
+        .author-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        
+        .author-role {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        
+        .service-cta {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('img/cta-bg.jpg') center/cover no-repeat;
+            opacity: 0.2;
+            z-index: -1;
+        }
+        
+        .cta-title {
+            font-size: 28px;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+        }
+        
+        .cta-text {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-actions {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: center;
+        }
+        
+        /* Стилі для тренувальної секції */
+        .training-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .training-image {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            height: 100%;
+            min-height: 400px;
+        }
+        
+        .training-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .training-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+        }
+        
+        .training-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .training-title {
+            font-size: 28px;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+        }
+        
+        .training-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+            line-height: 1.7;
+        }
+        
+        .training-features {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .training-feature {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
+        }
+        
+        .feature-check {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: var(--radius-full);
+            background: rgba(227, 41, 39, 0.2);
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+        
+        .feature-text {
+            color: var(--text-secondary);
+        }
+        
+        .training-grid-full {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-xl);
+            margin-bottom: var(--space-2xl);
+        }
+        
+        /* Стилі для турнірної секції */
+        .tournaments-header {
+            max-width: 800px;
+            margin: 0 auto var(--space-2xl);
+            text-align: center;
+        }
+        
+        .tournaments-title {
+            font-size: 28px;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+        }
+        
+        .tournaments-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+            line-height: 1.7;
+        }
+        
+        .tournaments-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-xl);
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .tournament-card {
+            background: rgba(26, 26, 26, 0.3);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all var(--transition-normal);
+        }
+        
+        .tournament-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: var(--glow-primary), var(--shadow-lg);
+        }
+        
+        .tournament-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .tournament-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-normal);
+        }
+        
+        .tournament-card:hover .tournament-image img {
+            transform: scale(1.1);
+        }
+        
+        .tournament-type {
+            position: absolute;
+            top: var(--space-md);
+            right: var(--space-md);
+            padding: 5px 15px;
+            border-radius: var(--radius-full);
+            background: var(--primary);
+            color: white;
+            font-size: 12px;
+            z-index: 1;
+        }
+        
+        .tournament-content {
+            padding: var(--space-lg);
+        }
+        
+        .tournament-title {
+            font-size: 20px;
+            margin-bottom: var(--space-sm);
+            color: var(--text-primary);
+        }
+        
+        .tournament-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .tournament-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-md);
+        }
+        
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .info-value {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 18px;
+            margin-bottom: 2px;
+        }
+        
+        .info-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        
+        .tournament-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--space-md);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .tournament-price {
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+        
+        .price-icon {
+            color: var(--primary);
+        }
+        
+        /* Стилі для секції кланових війн */
+        .clanwars-stages {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xl);
+            margin-bottom: var(--space-2xl);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .stage-item {
+            display: flex;
+            gap: var(--space-xl);
+            background: rgba(26, 26, 26, 0.3);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all var(--transition-normal);
+            align-items: center;
+        }
+        
+        .stage-item:hover {
+            background: rgba(26, 26, 26, 0.5);
+            transform: translateX(10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .stage-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-full);
+            background: var(--primary);
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: var(--glow-primary);
+        }
+        
+        .stage-content {
+            flex-grow: 1;
+        }
+        
+        .stage-title {
+            font-size: 20px;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+        
+        .stage-description {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        /* Стилі для секції індивідуальних уроків */
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .coach-card {
+            background: rgba(26, 26, 26, 0.3);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all var(--transition-normal);
+        }
+        
+        .coach-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: var(--glow-primary), var(--shadow-lg);
+        }
+        
+        .coach-header {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .coach-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-normal);
+        }
+        
+        .coach-card:hover .coach-image {
+            transform: scale(1.1);
+        }
+        
+        .coach-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        }
+        
+        .coach-rating {
+            position: absolute;
+            bottom: var(--space-md);
+            left: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            color: var(--accent);
+            font-weight: 600;
+            z-index: 1;
+        }
+        
+        .coach-content {
+            padding: var(--space-lg);
+        }
+        
+        .coach-name {
+            font-size: 20px;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+        
+        .coach-role {
+            font-size: 14px;
+            color: var(--primary);
+            margin-bottom: var(--space-md);
+        }
+        
+        .coach-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .coach-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-md);
+        }
+        
+        .coach-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .stat-value {
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        
+        .coach-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--space-md);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .coach-price {
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 18px;
+        }
+        
+        .coach-price span {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        /* Адаптивність */
+        @media (max-width: 1200px) {
+            .boost-options, 
+            .tank-selector,
+            .service-features, 
+            .testimonials-grid,
+            .tournaments-grid,
+            .training-grid-full {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .boost-selector-grid, 
+            .calculator-grid, 
+            .training-grid, 
+            .lessons-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-features,
+            .tournaments-grid {
+                gap: var(--space-lg);
+            }
+            
+            .tank-selector {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stage-item {
+                flex-direction: column;
+                text-align: center;
+                padding: var(--space-lg) var(--space-md);
+            }
+            
+            .stage-number {
+                margin-bottom: var(--space-md);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .boost-options, 
+            .testimonials-grid,
+            .training-grid-full {
+                grid-template-columns: 1fr;
+            }
+            
+            .tank-selector {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .services-tabs {
+                flex-direction: column;
+                gap: var(--space-xs);
+            }
+            
+            .service-tab {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .calculator-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-actions {
+                flex-direction: column;
+                gap: var(--space-sm);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .tank-selector {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-hero-title {
+                font-size: 32px;
+            }
+            
+            .boost-title, 
+            .calculator-title, 
+            .cta-title, 
+            .training-title, 
+            .tournaments-title {
+                font-size: 24px;
+            }
+            
+            .info-value, 
+            .stat-value {
+                font-size: 16px;
+            }
+            
+            .boost-price {
+                font-size: 28px;
+            }
+            
+            .result-price {
+                font-size: 32px;
+            }
+            
+            .faq-question {
+                font-size: 14px;
+                padding: var(--space-md) var(--space-sm);
+            }
+            
+            .faq-answer {
+                padding: var(--space-md) var(--space-sm);
+                font-size: 14px;
+            }
+        }
+        
+        /* Таблица для страницы буста отметок */
+        .marks-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: var(--space-2xl);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .marks-table thead {
+            background: rgba(227, 41, 39, 0.2);
+            color: var(--text-primary);
+        }
+        
+        .marks-table th {
+            padding: var(--space-md);
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .marks-table tbody tr {
+            background: rgba(26, 26, 26, 0.3);
+            transition: background var(--transition-normal);
+        }
+        
+        .marks-table tbody tr:hover {
+            background: rgba(26, 26, 26, 0.5);
+        }
+        
+        .marks-table td {
+            padding: var(--space-md);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        
+        .marks-table .category-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: left;
+        }
+        
+        .marks-table .mark-percent {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Выделенные блоки текста */
+        .highlighted-block {
+            background: rgba(227, 41, 39, 0.1);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-xl);
+            border-left: 3px solid var(--primary);
+        }
+        
+        /* Дополнительные стили для контента */
+        .step-list {
+            list-style: none;
+            counter-reset: step-counter;
+            margin: 0 0 var(--space-xl);
+            padding: 0;
+        }
+        
+        .step-list li {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: var(--space-md);
+            counter-increment: step-counter;
+            color: var(--text-secondary);
+        }
+        
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            border-radius: var(--radius-full);
+            background: rgba(227, 41, 39, 0.2);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        
+        .list-check {
+            list-style: none;
+            margin: 0 0 var(--space-xl);
+            padding: 0;
+        }
+        
+        .list-check li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: var(--space-sm);
+            color: var(--text-secondary);
+        }
+        
+        .list-check li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--primary);
+        }
+        
+        /* Блоки преимуществ */
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-xl);
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .advantage-item {
+            display: flex;
+            gap: var(--space-md);
+            align-items: flex-start;
+        }
+        
+        .advantage-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-md);
+            background: rgba(227, 41, 39, 0.1);
+            color: var(--primary);
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .advantage-content h4 {
+            font-size: 18px;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+        
+        .advantage-content p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        /* Дополнительные карточки услуг */
+        .related-services {
+            margin-top: var(--space-3xl);
+        }
+        
+        .related-title {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+        
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-xl);
+        }
+        
+        .related-card {
+            background: rgba(26, 26, 26, 0.3);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all var(--transition-normal);
+        }
+        
+        .related-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: var(--glow-primary), var(--shadow-lg);
+        }
+        
+        .related-header {
+            padding: var(--space-lg);
+            text-align: center;
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .related-title-card {
+            font-size: 18px;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+        
+        .related-features {
+            padding: var(--space-md) var(--space-lg);
+        }
+        
+        .related-feature {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-sm);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .related-feature i {
+            color: var(--primary);
+            font-size: 14px;
+        }
+        
+        .related-footer {
+            padding: var(--space-lg);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .related-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .related-price span {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: normal;
+        }
+        
+        @media (max-width: 992px) {
+            .related-grid,
+            .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .marks-table {
+                font-size: 12px;
+            }
+            
+            .marks-table th,
+            .marks-table td {
+                padding: var(--space-sm);
+            }
+            
+            .advantage-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .advantage-icon {
+                margin: 0 auto var(--space-sm);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Анімований фон з частинками -->
+    <div class="bg-animation">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+        <div id="stars4"></div>
+        <div class="bg-overlay"></div>
+    </div>
+
+    <div class="page-wrapper">
+        <header class="main-header glass-panel">
+            <div class="container header-container">
+                <a href="index.html" class="logo">
+                     <div class="logo-emblem">
+                        <img src="img/emblem_195x195.png" alt="G_UA">
+                    </div>
+                    <div class="logo-text">Альянс <span>G_UA</span></div>
+                </a>
+                
+                <button class="mobile-menu-toggle" aria-label="Відкрити меню" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html">
+                            <i class="fas fa-home"></i>
+                            <span>Головна</span>
+                        </a></li>
+                        <li><a href="about.html">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Про нас</span>
+                        </a></li>
+                        <li><a href="clans.html">
+                            <i class="fas fa-users"></i>
+                            <span>Клани</span>
+                        </a></li>
+                        <li><a href="streamers.html">
+                            <i class="fas fa-video"></i>
+                            <span>Стримери</span>
+                        </a></li>
+                        <li><a href="events.html">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Події</span>
+                        </a></li>
+                        <li><a href="contact.html">
+                            <i class="fas fa-envelope"></i>
+                            <span>Контакти</span>
+                        </a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <section class="services-hero">
+            <div class="container">
+                <h1 class="services-hero-title">Наші послуги для гравців</h1>
+                <p class="services-hero-subtitle">
+                    Альянс G_UA пропонує професійні послуги для гравців World of Tanks: від бусту акаунтів до навчання та участі в турнірах
+                </p>
+                
+                <div class="services-tabs">
+                    <div class="service-tab active" data-tab="boost">Буст акаунтів</div>
+                    <div class="service-tab" data-tab="training">Тренування</div>
+                    <div class="service-tab" data-tab="tournaments">Участь у турнірах</div>
+                    <div class="service-tab" data-tab="clanwars">Кланові війни</div>
+                    <div class="service-tab" data-tab="lessons">Індивідуальні уроки</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="services-section">
+            <div class="container">
+                <!-- Буст акаунтів -->
+                <div class="service-content active" id="boost">
+                    <div class="section-header">
+                        <h2 class="section-title">Буст <span>акаунтів</span></h2>
+                        <p class="section-subtitle">Професійні послуги з покращення показників вашого акаунту від досвідчених гравців альянсу</p>
+                    </div>
+                    
+                    <div class="highlighted-block">
+                        <h3>Отметки на стволах World of Tanks</h3>
+                        <p>Відзнаки на дулах - це найвищий показник вашої майстерності гри на конкретному танку. Щоб отримати їх, ви повинні нанести танком більше пошкоджень та асистів, ніж 65-95% інших гравців за останні два тижні. Хоча завдання звучить досить просто, процес отримання відзнаки може зайняти тижні або навіть місяці безперервної гри у непідготовлених гравців.</p>
+                        <p>Наявність Третьої відзнаки на дулі вашого танка вважається престижним досягненням, і Альянс G_UA хоче допомогти вам у його отриманні! Виберіть наш буст відзнак на дула World of Tanks і отримайте три відзнаки якомога швидше.</p>
+                    </div>
+                    
+                    <div class="boost-options">
+                        <div class="boost-card">
+                            <div class="boost-header">
+                                <h3 class="boost-title">Буст першої відзнаки</h3>
+                                <span class="boost-type">65% рейтингу</span>
+                                <div class="boost-price">від 500<span class="currency">₴</span></div>
+                            </div>
+                            <div class="boost-content">
+                                <div class="boost-features">
+                                    <div class="boost-feature">
+                                        <i class="fas fa-check"></i>
+                                        <span>Гарантія отримання 1 відзнаки</span>
+                                    </div>
+                                    <div class="boost-feature">
+                                        <i class="fas fa-check"></i>
+                                        <span>Бонусний досвід для екіпажу</span>
+                                    </div>
+                                    <div class="boost-feature">
+                                        <i class="fas fa-check"></i>
+                                        <span>Виконання за 1-3 дні</span>
+                                    </div>
+                                    <div class="boost-feature">
+                                        <i class="fas fa-check"></i>
+                                        <span>Збереження амуніції та ресурсів</span>
+                                    </div>
+                                </div>
+                                <div class="boost-actions">
+                                    <a href="#calculator" class="btn btn-primary">Розрахувати</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="boost-card">
+                            <div class="boost-header">
+                                <h3 class="boost-title">Буст другої відзнаки</h3>
+                                <span class="boost-type">85% рейтингу</span>
+                                <div class="boost-price">від 1000<span class="currency">₴</span></div>
+                            </div>
+                            <div class="boost-content">
+                                <div class="boost-features">
+                                    <div class="boost-feature">
+                                        <i class="fas fa-check"></i>
+                                        <span>Гарантія отримання 2 відзнак</span>
+                                    </div>
+                                    <div class="boost-feature">
+                                        <i class="fas fa-check"></i>
+                                        <span>Бонусний досвід для екіпажу</span>
+                                    </div>
+                                    <div class="boost-feature">
+                                        <i class="fas fa-check"></i>
+                                        <span>Виконання за 3-5 днів</span>
+                                    </div>
+                                    <div class="boost-feature">
+                                        <i class="fas fa-check"></i>
+                                        <span>Гарантія безпеки акаунту</span>
+                                    </div>
+                                </div>
+                                <div class="boost-actions">
+                                    <a href="#calculator" class="btn btn-primary">Розрахувати</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="boost-card">
+                            <div class="boost-header">
+                                <h3 class="boost-title">Буст третьої відзнаки</h3>
+                                <span class="boost-type">95% рейтингу</span>
+                                <div class="boost-price">від 2000<span class="currency">₴</span></div>
+                            </div>
+                            <div class="boost-content">
+                                <div class="boost-features">
+                                    <div class="boost-feature">
+                                        <i class="fas fa-check"></i>
+                                        <span>Гарантія отримання 3 відзнак</span>
+                                    </div>
+                                    <div class="boost-feature">
+                                        <i class="fas fa-check"></i>
+                                        <span>Преміум бонусний досвід</span>
+                                    </div>
+                                    <div class="boost-feature">
+                                        <i class="fas fa-check"></i>
+                                        <span>Виконання за 5-10 днів</span>
+                                    </div>
+                                    <div class="boost-feature">
+                                        <i class="fas fa-check"></i>
+                                        <span>Робота з топовими бустерами</span>
+                                    </div>
+                                </div>
+                                <div class="boost-actions">
+                                    <a href="#calculator" class="btn btn-primary">Розрахувати</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-description">
+                        <h3>Що таке відзнаки на дулах в WoT?</h3>
+                        <p>Відзнаки на дулах - це спосіб продемонструвати іншим гравцям, наскільки добре ви граєте на конкретному танку. Всього можна отримати від однієї до трьох відзнак. У різних ігрових націй відзнаки відрізняються візуально, але механіка їх отримання однакова.</p>
+                        
+                        <h3>Як отримати відзнаки в WoT?</h3>
+                        <p>Для отримання відзнак на дуло необхідно грати краще, ніж певна кількість гравців за останні два тижні. Відсоток відзнак зростає поступово, на відміну від Майстра їх не можна взяти "випадково" за пару боїв. Для однієї відзнаки необхідно грати краще, ніж 65% гравців на такому ж танку, для двох - 85%, для трьох - 95%. Для кожного танка відзнаки заробляються окремо. Вони залишаються на дулі назавжди, але відсоток у статистиці може з часом впасти, якщо рівень гри погіршиться.</p>
+                        
+                        <h3>Що враховується для отримання відзнак на дуло?</h3>
+                        <p>У "залік" йде нанесений урон та підтримка (збиті гусениці, вибиті члени екіпажу, підсвічування танків). Виживаність та відсоток перемог на відзнаку не впливають.</p>
+                    </div>
+                    
+                    <div class="boost-selector">
+                        <h3 class="boost-selector-title">Категорії складності для відзнак</h3>
+                        <p class="section-subtitle">Визначте категорію складності вашого танка за допомогою таблиці нижче</p>
+                        
+                        <div class="marks-table-responsive">
+                            <table class="marks-table">
+                                <thead>
+                                    <tr>
+                                        <th>Категорія складності</th>
+                                        <th>Відзнака</th>
+                                        <th>V</th>
+                                        <th>VI</th>
+                                        <th>VII</th>
+                                        <th>VIII</th>
+                                        <th>IX</th>
+                                        <th>X</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td rowspan="3" class="category-title">Легкий рівень</td>
+                                        <td class="mark-percent">65%</td>
+                                        <td>500+</td>
+                                        <td>700+</td>
+                                        <td>800+</td>
+                                        <td>1000+</td>
+                                        <td>1400+</td>
+                                        <td>2200+</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="mark-percent">85%</td>
+                                        <td>700+</td>
+                                        <td>1000+</td>
+                                        <td>1300+</td>
+                                        <td>1700+</td>
+                                        <td>2200+</td>
+                                        <td>3000+</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="mark-percent">95%</td>
+                                        <td>1100+</td>
+                                        <td>1500+</td>
+                                        <td>2100+</td>
+                                        <td>2700+</td>
+                                        <td>3200+</td>
+                                        <td>3900+</td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="3" class="category-title">Середній рівень</td>
+                                        <td class="mark-percent">65%</td>
+                                        <td>800+</td>
+                                        <td>950+</td>
+                                        <td>1100+</td>
+                                        <td>1400+</td>
+                                        <td>1800+</td>
+                                        <td>2600+</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="mark-percent">85%</td>
+                                        <td>1100+</td>
+                                        <td>1300+</td>
+                                        <td>1600+</td>
+                                        <td>2300+</td>
+                                        <td>2500+</td>
+                                        <td>3400+</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="mark-percent">95%</td>
+                                        <td>1400+</td>
+                                        <td>1800+</td>
+                                        <td>2400+</td>
+                                        <td>3200+</td>
+                                        <td>3600+</td>
+                                        <td>4400+</td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="3" class="category-title">Складний рівень</td>
+                                        <td class="mark-percent">65%</td>
+                                        <td>1000+</td>
+                                        <td>1150+</td>
+                                        <td>1400+</td>
+                                        <td>1800+</td>
+                                        <td>2150+</td>
+                                        <td>3000+</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="mark-percent">85%</td>
+                                        <td>1350+</td>
+                                        <td>1550+</td>
+                                        <td>1900+</td>
+                                        <td>2800+</td>
+                                        <td>2900+</td>
+                                        <td>3900+</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="mark-percent">95%</td>
+                                        <td>1800+</td>
+                                        <td>2100+</td>
+                                        <td>2900+</td>
+                                        <td>3600+</td>
+                                        <td>4200+</td>
+                                        <td>4800+</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="highlighted-block">
+                            <h3>Як визначити категорію складності?</h3>
+                            <p>Хочете покращити свої відзнаки в грі World of Tanks? Ми зробили це дуже просто! Ось як це працює:</p>
+                            <ol class="step-list">
+                                <li>Відвідайте сайт <a href="https://wotlabs.net/" target="_blank">wotlabs.net</a>.</li>
+                                <li>Виберіть ваш сервер.</li>
+                                <li>Введіть повну назву вашого танка.</li>
+                                <li>Співставте числа пошкоджень, які ви бачите, з категоріями, переліченими вище.</li>
+                            </ol>
+                            <p>Ось і все! Завдяки нашому спрощеному процесу ви точно будете знати, що отримаєте і скільки це буде коштувати залежно від складності вашого танка. Просто і легко!</p>
+                        </div>
+                        
+                        <div class="boost-selector-grid">
+                            <div class="selector-card">
+                                <h3 class="selector-title">Додаткові опції</h3>
+                                <div class="selector-content">
+                                    <p>Виберіть додаткові опції для оптимізації процесу бусту</p>
+                                </div>
+                                
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="wins60" class="checkbox-input">
+                                    <label for="wins60" class="custom-checkbox"></label>
+                                    <label for="wins60" class="checkbox-label">Гарантовані 60% Перемог</label>
+                                </div>
+                                
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="stream" class="checkbox-input">
+                                    <label for="stream" class="custom-checkbox"></label>
+                                    <label for="stream" class="checkbox-label">Стрім процесу бусту</label>
+                                </div>
+                                
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="fastexec" class="checkbox-input">
+                                    <label for="fastexec" class="custom-checkbox"></label>
+                                    <label for="fastexec" class="checkbox-label">Пріоритетне виконання</label>
+                                </div>
+                            </div>
+                            
+                            <div class="selector-card">
+                                <h3 class="selector-title">Вибір танка</h3>
+                                <div class="selector-content">
+                                    <p>Виберіть рівень і тип танка для розрахунку вартості</p>
+                                </div>
+                                
+                                <div class="tank-selector">
+                                    <div class="tank-option" data-level="6">
+                                        <img src="img/tank-tier6.png" alt="Tier 6" class="tank-image">
+                                        <div class="tank-name">Рівень VI</div>
+                                    </div>
+                                    <div class="tank-option" data-level="8">
+                                        <img src="img/tank-tier8.png" alt="Tier 8" class="tank-image">
+                                        <div class="tank-name">Рівень VIII</div>
+                                    </div>
+                                    <div class="tank-option selected" data-level="10">
+                                        <img src="img/tank-tier10.png" alt="Tier 10" class="tank-image">
+                                        <div class="tank-name">Рівень X</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="range-slider">
+                                    <div class="range-slider-wrap">
+                                        <div class="range-marks">
+                                            <div class="range-mark">0%</div>
+                                            <div class="range-mark">65%</div>
+                                            <div class="range-mark">85%</div>
+                                            <div class="range-mark">95%</div>
+                                            <div class="range-mark">100%</div>
+                                        </div>
+                                        <input type="range" min="0" max="100" value="85" class="range-input" id="marksRange">
+                                        <div class="range-values">
+                                            <div class="range-value">Поточний: <span id="currentMark">0%</span></div>
+                                            <div class="range-value">Цільовий: <span id="targetMark">85%</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="boost-calculator" id="calculator">
+                        <h3 class="calculator-title">Калькулятор вартості бусту</h3>
+                        
+                        <div class="calculator-grid">
+                            <div class="calculator-options">
+                                <div class="calc-option">
+                                    <span>Тип танка:</span>
+                                    <span class="calc-value">X рівня</span>
+                                </div>
+                                <div class="calc-option">
+                                    <span>Поточна відзнака:</span>
+                                    <span class="calc-value">0%</span>
+                                </div>
+                                <div class="calc-option">
+                                    <span>Цільова відзнака:</span>
+                                    <span class="calc-value">85% (2 відзнаки)</span>
+                                </div>
+                                <div class="calc-option">
+                                    <span>Складність:</span>
+                                    <span class="calc-value">Середня</span>
+                                </div>
+                                <div class="calc-option">
+                                    <span>Гарантія перемог:</span>
+                                    <span class="calc-value">Ні</span>
+                                </div>
+                                <div class="calc-option">
+                                    <span>Стрім процесу:</span>
+                                    <span class="calc-value">Ні</span>
+                                </div>
+                                <div class="calc-option">
+                                    <span>Термін виконання:</span>
+                                    <span class="calc-value">3-5 днів</span>
+                                </div>
+                            </div>
+                            
+                            <div class="calculator-result">
+                                <div class="result-title">Загальна вартість</div>
+                                <div class="result-price">3000<span class="currency">₴</span></div>
+                                <a href="contact.html" class="btn btn-primary btn-lg">Замовити буст</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-features">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3 class="feature-title">Безпека акаунту</h3>
+                            <p class="feature-text">Ми забезпечуємо повну безпеку вашого акаунту під час виконання бусту. Всі наші бустери мають високий рівень довіри та досвід роботи.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h3 class="feature-title">Швидке виконання</h3>
+                            <p class="feature-text">Наші досвідчені гравці виконають буст максимально швидко та ефективно, дотримуючись усіх термінів.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <h3 class="feature-title">Гарантія результату</h3>
+                            <p class="feature-text">Ми гарантуємо досягнення замовленого результату. Ви отримаєте відзнаки або повернемо гроші.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-section">
+                        <h3 class="faq-title">Часті запитання про буст відзнак</h3>
+                        
+                        <div class="faq-list">
+                            <div class="faq-item active">
+                                <div class="faq-question">
+                                    <span>Як працює процес бусту відзнак?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Процес бусту відзнак працює так:</p>
+                                    <ol>
+                                        <li>Виберіть необхідні опції та підготуйте замовлення;</li>
+                                        <li>Наші менеджери зв'яжуться з вами в чаті або через електронну пошту;</li>
+                                        <li>Уточніть всі необхідні деталі та виберіть зручний час для старту;</li>
+                                        <li>У призначений час наш бустер увійде в гру та приступить до виконання замовлення;</li>
+                                        <li>Насолоджуйтесь нагородами та не забувайте оцінити наші послуги.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Скільки часу займає отримання трьох відзнак?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Час отримання трьох відзнак залежить від багатьох факторів: рівня танка, його поточних показників, складності категорії та поточного відсотка відзнак. У середньому отримання трьох відзнак займає від 5 до 10 днів. Конкретний термін буде вказаний після розрахунку вартості бусту.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Чи можу я грати на своєму акаунті під час бусту?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Ми не рекомендуємо грати на акаунті під час активного бусту, оскільки це може негативно вплинути на процес отримання відзнак та збільшити час виконання замовлення. Проте ви можете погодити з нашим менеджером конкретний графік гри та час, коли бустер буде працювати з вашим акаунтом.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Які вимоги для замовлення бусту відзнак?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Для замовлення бусту відзнак вам потрібен активний акаунт World of Tanks з танком, на якому ви бажаєте отримати відзнаки. Танк повинен бути повністю дослідженим, з встановленими модулями та достатньою кількістю кредитів для закупівлі витратних матеріалів (снарядів, ремкомплектів, аптечок). Якщо у вас недостатньо кредитів, ви можете замовити додаткову послугу фарму кредитів.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Чи безпечно передавати дані для входу в акаунт?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Ми забезпечуємо максимальну безпеку ваших даних. Всі наші бустери - перевірені гравці з альянсу G_UA з бездоганною репутацією. Ми ніколи не зберігаємо ваші дані після завершення замовлення та настійно рекомендуємо змінити пароль після виконання робіт. При бажанні ви можете замовити послугу стріму, щоб спостерігати за процесом бусту в реальному часі.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonials">
+                        <h3 class="testimonials-title">Відгуки наших клієнтів</h3>
+                        
+                        <div class="testimonials-grid">
+                            <div class="testimonial-card">
+                                <div class="testimonial-quote">"</div>
+                                <div class="testimonial-content">
+                                    Замовляв буст трьох відзнак на T-54. Все зроблено швидко і професійно. Бустер постійно був на зв'язку, надсилав звіти про прогрес. Рекомендую!
+                                </div>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar">
+                                        <img src="img/avatar1.jpg" alt="Олександр К.">
+                                    </div>
+                                    <div class="author-info">
+                                        <div class="author-name">Олександр К.</div>
+                                        <div class="author-role">Клієнт</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="testimonial-card">
+                                <div class="testimonial-quote">"</div>
+                                <div class="testimonial-content">
+                                    Спочатку сумнівався, але результат перевершив очікування. Замовив буст другої відзнаки на Об'єкт 140, а хлопці зробили 93% - майже до третьої! Дуже задоволений.
+                                </div>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar">
+                                        <img src="img/avatar2.jpg" alt="Віталій М.">
+                                    </div>
+                                    <div class="author-info">
+                                        <div class="author-name">Віталій М.</div>
+                                        <div class="author-role">Клієнт</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="testimonial-card">
+                                <div class="testimonial-quote">"</div>
+                                <div class="testimonial-content">
+                                    Замовляв буст з 0% до третьої відзнаки на Progetto 65. Бустер впорався за 7 днів, хоча був заявлений термін 10 днів. Окрім відзнак, отримав ще й додаткові кредити та досвід екіпажу!
+                                </div>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar">
+                                        <img src="img/avatar3.jpg" alt="Максим Д.">
+                                    </div>
+                                    <div class="author-info">
+                                        <div class="author-name">Максим Д.</div>
+                                        <div class="author-role">Клієнт</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-cta">
+                        <h3 class="cta-title">Готові покращити свій аккаунт?</h3>
+                        <p class="cta-text">Замовте буст відзнак прямо зараз і отримайте професійну допомогу від досвідчених гравців Альянсу G_UA!</p>
+                        <div class="cta-actions">
+                            <a href="contact.html" class="btn btn-primary btn-lg">Замовити буст</a>
+                            <a href="#calculator" class="btn btn-outline btn-lg">Розрахувати вартість</a>
+                        </div>
+                    </div>
+                    
+                    <div class="related-services">
+                        <h3 class="related-title">Інші послуги, що можуть вас зацікавити</h3>
+                        
+                        <div class="related-grid">
+                            <div class="related-card">
+                                <div class="related-header">
+                                    <h3 class="related-title-card">Буст WN8 Статистики</h3>
+                                </div>
+                                <div class="related-features">
+                                    <div class="related-feature">
+                                        <i class="fas fa-check"></i>
+                                        <span>Досягнення 5000+ рейтингу</span>
+                                    </div>
+                                    <div class="related-feature">
+                                        <i class="fas fa-check"></i>
+                                        <span>Множина екстра опцій</span>
+                                    </div>
+                                    <div class="related-feature">
+                                        <i class="fas fa-check"></i>
+                                        <span>Індивідуальний підхід</span>
+                                    </div>
+                                </div>
+                                <div class="related-footer">
+                                    <div class="related-price">Від 350<span>₴</span></div>
+                                    <a href="#" class="btn btn-sm">Детальніше</a>
+                                </div>
+                            </div>
+                            
+                            <div class="related-card">
+                                <div class="related-header">
+                                    <h3 class="related-title-card">Буст Винрейту</h3>
+                                </div>
+                                <div class="related-features">
+                                    <div class="related-feature">
+                                        <i class="fas fa-check"></i>
+                                        <span>Гарантія винрейту</span>
+                                    </div>
+                                    <div class="related-feature">
+                                        <i class="fas fa-check"></i>
+                                        <span>Множина екстра опцій</span>
+                                    </div>
+                                    <div class="related-feature">
+                                        <i class="fas fa-check"></i>
+                                        <span>Швидкий результат</span>
+                                    </div>
+                                </div>
+                                <div class="related-footer">
+                                    <div class="related-price">Від 700<span>₴</span></div>
+                                    <a href="#" class="btn btn-sm">Детальніше</a>
+                                </div>
+                            </div>
+                            
+                            <div class="related-card">
+                                <div class="related-header">
+                                    <h3 class="related-title-card">Буст знаку класності Майстер</h3>
+                                </div>
+                                <div class="related-features">
+                                    <div class="related-feature">
+                                        <i class="fas fa-check"></i>
+                                        <span>Отримайте Майстра</span>
+                                    </div>
+                                    <div class="related-feature">
+                                        <i class="fas fa-check"></i>
+                                        <span>Екстра опції</span>
+                                    </div>
+                                    <div class="related-feature">
+                                        <i class="fas fa-check"></i>
+                                        <span>Робота топ-гравців</span>
+                                    </div>
+                                </div>
+                                <div class="related-footer">
+                                    <div class="related-price">Від 400<span>₴</span></div>
+                                    <a href="#" class="btn btn-sm">Детальніше</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Тренування -->
+                <div class="service-content" id="training">
+                    <div class="section-header">
+                        <h2 class="section-title">Тренування <span>гравців</span></h2>
+                        <p class="section-subtitle">Професійні тренування та навчання від досвідчених гравців альянсу G_UA</p>
+                    </div>
+                    
+                    <div class="training-grid">
+                        <div class="training-image">
+                            <img src="img/training.jpg" alt="Тренування гравців">
+                        </div>
+                        
+                        <div class="training-content">
+                            <h3 class="training-title">Покращіть свої навички гри</h3>
+                            <div class="training-description">
+                                <p>Наші тренування розроблені для гравців різного рівня підготовки - від новачків до досвідчених бійців. Під керівництвом кращих гравців альянсу ви зможете значно покращити свою ефективність у боях.</p>
+                                <p>Ми використовуємо структурований підхід до навчання, який включає теоретичні заняття та практичні тренування з індивідуальним зворотнім зв'язком від тренера.</p>
+                            </div>
+                            
+                            <div class="training-features">
+                                <div class="training-feature">
+                                    <div class="feature-check">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="feature-text">
+                                        <strong>Індивідуальний підхід</strong> - програма тренувань, адаптована під ваш рівень та цілі
+                                    </div>
+                                </div>
+                                
+                                <div class="training-feature">
+                                    <div class="feature-check">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="feature-text">
+                                        <strong>Детальний аналіз реплеїв</strong> - розбір ваших боїв з виявленням помилок та рекомендаціями
+                                    </div>
+                                </div>
+                                
+                                <div class="training-feature">
+                                    <div class="feature-check">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="feature-text">
+                                        <strong>Практичні заняття</strong> - тренування в тренувальній кімнаті та спільні бої з тренером
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <a href="contact.html" class="btn btn-primary">Записатися на тренування</a>
+                        </div>
+                    </div>
+                    
+                    <div class="training-grid-full">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                            <h3 class="feature-title">Тактика на картах</h3>
+                            <p class="feature-text">Вивчіть сильні позиції, ефективні маршрути та тактичні прийоми для кожної карти в грі. Навчіться правильно обирати напрямок атаки та адаптувати стратегію залежно від складу команд.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-tanks"></i>
+                            </div>
+                            <h3 class="feature-title">Майстерність керування танком</h3>
+                            <p class="feature-text">Опануйте мистецтво ефективного використання характеристик вашого танка. Навчіться маневрувати, правильно ставити танк у бою та використовувати особливості рельєфу для максимальної ефективності.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h3 class="feature-title">Аналіз слабких зон</h3>
+                            <p class="feature-text">Вивчіть слабкі місця всіх танків у грі та навчіться ефективно використовувати ці знання в бою. Покращіть точність пострілів та ефективність нанесення пошкоджень.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3 class="feature-title">Командна гра</h3>
+                            <p class="feature-text">Розвиньте навички ефективної командної гри та комунікації. Навчіться взаємодіяти з союзниками, координувати дії та приймати правильні тактичні рішення в складі взводу.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3 class="feature-title">Покращення статистики</h3>
+                            <p class="feature-text">Отримайте конкретні рекомендації щодо підвищення ваших ігрових показників: відсотка перемог, середньої шкоди, WN8, ефективності та інших важливих метрик.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                            <h3 class="feature-title">Налаштування техніки</h3>
+                            <p class="feature-text">Отримайте поради з оптимального налаштування вашої техніки: вибір обладнання, витратних матеріалів, модифікацій та навичок екіпажу залежно
