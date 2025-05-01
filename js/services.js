@@ -1,5 +1,5 @@
 /**
- * JavaScript для сторінки послуг G_UA Alliance з виправленим функціоналом повзунка відміток
+ * JavaScript для сторінки послуг G_UA Alliance з підтримкою вибору складності танка
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initFAQAccordion();
     initRangeSlider();
     initTankSelector();
+    initDifficultySelector(); // Додана ініціалізація селектора складності
     initCheckboxes();
     initPricingCalculator();
 });
@@ -197,6 +198,28 @@ function initTankSelector() {
 }
 
 /**
+ * Ініціалізація селектора складності
+ */
+function initDifficultySelector() {
+    const difficultyOptions = document.querySelectorAll('.difficulty-option');
+    
+    if (difficultyOptions.length > 0) {
+        difficultyOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Знімаємо виділення з усіх опцій
+                difficultyOptions.forEach(opt => opt.classList.remove('selected'));
+                
+                // Встановлюємо виділення на поточній опції
+                this.classList.add('selected');
+                
+                // Оновлюємо калькулятор
+                updateCalculator();
+            });
+        });
+    }
+}
+
+/**
  * Ініціалізація чекбоксів додаткових опцій
  */
 function initCheckboxes() {
@@ -225,6 +248,7 @@ function initPricingCalculator() {
 function updateCalculator(targetPercent) {
     // Отримуємо всі необхідні елементи
     const selectedTank = document.querySelector('.tank-option.selected');
+    const selectedDifficulty = document.querySelector('.difficulty-option.selected');
     const marksRange = document.getElementById('marksRange');
     const win60Checkbox = document.getElementById('wins60');
     const streamCheckbox = document.getElementById('stream');
@@ -240,6 +264,9 @@ function updateCalculator(targetPercent) {
     const timeframeValue = document.querySelector('.calc-option:nth-child(7) .calc-value');
     const resultPrice = document.querySelector('.result-price');
     
+    // Виявляємо, чи є селектор складності на сторінці
+    const hasDifficultySelector = selectedDifficulty !== null;
+    
     // Не продовжуємо, якщо якийсь із необхідних елементів відсутній
     if (!selectedTank || !marksRange || !tankTypeValue || !resultPrice) {
         return;
@@ -248,8 +275,13 @@ function updateCalculator(targetPercent) {
     // Отримуємо рівень танка
     const tankLevel = selectedTank.getAttribute('data-level');
     
+    // Отримуємо складність танка (якщо селектор існує)
+    let tankDifficulty = 'medium'; // За замовчуванням, якщо немає селектора
+    if (hasDifficultySelector) {
+        tankDifficulty = selectedDifficulty.getAttribute('data-difficulty') || 'medium';
+    }
+    
     // Визначаємо цільовий відсоток відзнак
-    // Якщо передано цільовий відсоток, використовуємо його, інакше визначаємо з повзунка
     let targetMarkPercent = targetPercent;
     
     if (targetMarkPercent === undefined) {
@@ -272,7 +304,22 @@ function updateCalculator(targetPercent) {
     tankTypeValue.textContent = tankLevel ? `${tankLevel} рівня` : 'Не вибрано';
     currentMarkValue.textContent = '0%';
     targetMarkValue.textContent = `${targetMarkPercent}% (${markName})`;
-    complexityValue.textContent = 'Середня';
+    
+    // Відображаємо складність танка
+    if (hasDifficultySelector) {
+        const difficultyDisplayValue = document.querySelector('.calc-option:nth-child(2) .calc-value');
+        if (difficultyDisplayValue) {
+            difficultyDisplayValue.textContent = tankDifficulty === 'easy' ? 'Легкий' : 
+                                      tankDifficulty === 'medium' ? 'Середній' : 'Складний';
+        }
+        
+        // Змінюємо опис складності, якщо такий показник є на сторінці
+        complexityValue.textContent = 'Середня';
+    } else {
+        // Якщо немає селектора складності, використовуємо стандартні елементи
+        complexityValue.textContent = 'Середня';
+    }
+    
     winsValue.textContent = win60Checkbox && win60Checkbox.checked ? 'Так' : 'Ні';
     streamValue.textContent = streamCheckbox && streamCheckbox.checked ? 'Так' : 'Ні';
     
@@ -288,7 +335,7 @@ function updateCalculator(targetPercent) {
     }
     
     // Розраховуємо базову ціну
-    let basePrice = calculateBasePrice(tankLevel, targetMarkPercent);
+    let basePrice = calculateBasePrice(tankLevel, targetMarkPercent, tankDifficulty);
     
     // Додаємо вартість додаткових опцій
     if (win60Checkbox && win60Checkbox.checked) {
@@ -308,12 +355,13 @@ function updateCalculator(targetPercent) {
 }
 
 /**
- * Розрахунок базової ціни
+ * Розрахунок базової ціни з урахуванням складності
  * @param {string} tankLevel - Рівень танка
  * @param {number} targetMark - Цільовий відсоток відзнак
+ * @param {string} difficulty - Складність танка (easy, medium, hard)
  * @returns {number} - Базова ціна
  */
-function calculateBasePrice(tankLevel, targetMark, complexity) {
+function calculateBasePrice(tankLevel, targetMark, difficulty) {
     let basePrice = 0;
     
     if (tankLevel === '6') {
@@ -331,9 +379,11 @@ function calculateBasePrice(tankLevel, targetMark, complexity) {
     }
     
     // Застосовуємо множник за складність
-    if (complexity === 'medium') {
+    if (difficulty === 'easy') {
+        basePrice *= 1.0; // Без змін для легкого рівня
+    } else if (difficulty === 'medium') {
         basePrice *= 1.2; // +20% за середню складність
-    } else if (complexity === 'hard') {
+    } else if (difficulty === 'hard') {
         basePrice *= 1.5; // +50% за високу складність
     }
     
