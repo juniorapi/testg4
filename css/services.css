@@ -981,6 +981,76 @@
         font-size: 14px;
     }
     
+    /* Стилі для таблиці відзнак */
+.marks-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--space-2xl);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    background: rgba(10, 10, 10, 0.7);
+}
+
+.marks-table thead {
+    background: rgba(227, 41, 39, 0.2);
+    color: var(--text-primary);
+}
+
+.marks-table th {
+    padding: var(--space-md);
+    text-align: center;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.marks-table tbody tr {
+    background: rgba(26, 26, 26, 0.3);
+    transition: background var(--transition-normal);
+}
+
+.marks-table tbody tr:hover {
+    background: rgba(26, 26, 26, 0.5);
+}
+
+.marks-table td {
+    padding: var(--space-md);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.marks-table .category-title {
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: left;
+    background: rgba(26, 26, 26, 0.5);
+}
+
+.marks-table .mark-percent {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* Для виділення значень можна використати різні кольори */
+.marks-table .value-tier5,
+.marks-table .value-tier6,
+.marks-table .value-tier7,
+.marks-table .value-tier8,
+.marks-table .value-tier9,
+.marks-table .value-tier10 {
+    font-weight: 500;
+}
+
+.marks-table .value-tier5 { color: #a0a0ff; }
+.marks-table .value-tier6 { color: #80e080; }
+.marks-table .value-tier7 { color: #ffcc66; }
+.marks-table .value-tier8 { color: #ff9966; }
+.marks-table .value-tier9 { color: #ff80b0; }
+.marks-table .value-tier10 { color: #ff6666; }
+
+/* Адаптивність для мобільних пристроїв */
+@media (max-width: 768px) {
     .marks-table {
         font-size: 12px;
     }
@@ -988,5 +1058,16 @@
     .marks-table th,
     .marks-table td {
         padding: var(--space-sm);
+    }
+}
+
+@media (max-width: 576px) {
+    .marks-table-responsive {
+        overflow-x: auto;
+        margin-bottom: var(--space-xl);
+    }
+    
+    .marks-table {
+        min-width: 600px;
     }
 }
