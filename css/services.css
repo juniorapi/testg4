@@ -212,6 +212,7 @@
     text-align: center;
 }
 
+/* Оновлений layout для селекторів */
 .boost-selector-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -224,6 +225,7 @@
     padding: var(--space-lg);
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: all var(--transition-normal);
+    margin-bottom: var(--space-lg);
 }
 
 .selector-card:hover {
@@ -242,93 +244,84 @@
     margin-bottom: var(--space-md);
 }
 
-/* Таблиця відзнак */
-.marks-table-responsive {
-    overflow-x: auto;
-    margin-bottom: var(--space-xl);
-}
-
-.marks-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: var(--space-2xl);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-}
-
-.marks-table thead {
-    background: rgba(227, 41, 39, 0.2);
-    color: var(--text-primary);
-}
-
-.marks-table th {
-    padding: var(--space-md);
-    text-align: center;
-    font-weight: 600;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.marks-table tbody tr {
-    background: rgba(26, 26, 26, 0.3);
-    transition: background var(--transition-normal);
-}
-
-.marks-table tbody tr:hover {
+/* Новий блок для зібраних опцій налаштувань */
+.options-container {
     background: rgba(26, 26, 26, 0.5);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: var(--space-lg);
 }
 
-.marks-table td {
+/* Секція вибору складності танка */
+.difficulty-selector {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+}
+
+.difficulty-option {
+    flex-grow: 1;
+    background: rgba(26, 26, 26, 0.3);
+    border-radius: var(--radius-md);
     padding: var(--space-md);
     border: 1px solid rgba(255, 255, 255, 0.05);
     text-align: center;
-    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-normal);
 }
 
-.marks-table .category-title {
-    font-weight: 600;
-    color: var(--text-primary);
-    text-align: left;
+.difficulty-option:hover {
+    background: rgba(26, 26, 26, 0.5);
+    transform: translateY(-3px);
 }
 
-.marks-table .mark-percent {
-    color: var(--primary);
-    font-weight: 600;
-}
-
-/* Список з кроками */
-.step-list {
-    list-style: none;
-    counter-reset: step-counter;
-    margin: 0 0 var(--space-xl);
-    padding: 0;
-}
-
-.step-list li {
-    position: relative;
-    padding-left: 40px;
-    margin-bottom: var(--space-md);
-    counter-increment: step-counter;
-    color: var(--text-secondary);
-}
-
-.step-list li::before {
-    content: counter(step-counter);
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 30px;
-    height: 30px;
-    border-radius: var(--radius-full);
+.difficulty-option.selected {
     background: rgba(227, 41, 39, 0.2);
-    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.difficulty-icon {
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-weight: 700;
+    margin-bottom: var(--space-xs);
+    color: var(--text-secondary);
+}
+
+.difficulty-option.selected .difficulty-icon {
+    color: var(--primary);
+}
+
+.difficulty-icon i {
+    margin: 0 2px;
+    font-size: 16px;
+}
+
+.difficulty-name {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.difficulty-option.selected .difficulty-name {
+    color: var(--text-primary);
+}
+
+.options-title {
+    font-size: 16px;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: var(--space-xs);
 }
 
 /* Чекбокси стилізовані */
+.checkbox-options {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: var(--space-sm);
+}
+
 .checkbox-option {
     display: flex;
     align-items: center;
@@ -907,6 +900,11 @@
     .tank-selector {
         grid-template-columns: repeat(2, 1fr);
     }
+    
+    .difficulty-selector {
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
 }
 
 @media (max-width: 768px) {
@@ -940,6 +938,10 @@
     
     .services-hero-title {
         font-size: 36px;
+    }
+    
+    .checkbox-options {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -987,56 +989,4 @@
     .marks-table td {
         padding: var(--space-sm);
     }
-}
-/* Селектор складності танка */
-.difficulty-selector {
-    display: flex;
-    justify-content: space-between;
-    gap: var(--space-sm);
-}
-
-.difficulty-option {
-    flex-grow: 1;
-    background: rgba(26, 26, 26, 0.3);
-    border-radius: var(--radius-md);
-    padding: var(--space-md);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    text-align: center;
-    cursor: pointer;
-    transition: all var(--transition-normal);
-}
-
-.difficulty-option:hover {
-    background: rgba(26, 26, 26, 0.5);
-    transform: translateY(-3px);
-}
-
-.difficulty-option.selected {
-    background: rgba(227, 41, 39, 0.2);
-    border-color: var(--primary);
-}
-
-.difficulty-icon {
-    display: flex;
-    justify-content: center;
-    margin-bottom: var(--space-xs);
-    color: var(--text-secondary);
-}
-
-.difficulty-option.selected .difficulty-icon {
-    color: var(--primary);
-}
-
-.difficulty-icon i {
-    margin: 0 2px;
-    font-size: 16px;
-}
-
-.difficulty-name {
-    font-size: 14px;
-    color: var(--text-secondary);
-}
-
-.difficulty-option.selected .difficulty-name {
-    color: var(--text-primary);
 }
