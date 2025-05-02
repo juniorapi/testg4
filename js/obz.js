@@ -3,158 +3,30 @@
  * З удосконаленим калькулятором та інтерактивним вибором завдань
  */
 
-// Функція ініціалізації ОБЗ секції
-function initOBZSection() {
-    // Ініціалізація всіх компонентів
-    initOBZCampaignSelector();
-    initOBZTechSelector();
-    initOBZCheckboxes();
-    initOBZMissionsInterface();
-    updateOBZPrice();
-}
+// Глобальні змінні для кешування часто використовуваних даних
+let cachedCampaignPrices = {
+    'stug': { full: 1508, all: 14073 },
+    't28': { full: 2513, all: 14073 },
+    't55a': { full: 4021, all: 14073 },
+    'obj260': { full: 6031, all: 14073 }
+};
 
-// Ініціалізація селектора кампаній ОБЗ
-function initOBZCampaignSelector() {
-    const campaignOptions = document.querySelectorAll('.difficulty-option[data-difficulty]');
-    
-    campaignOptions.forEach(option => {
-        option.addEventListener('click', function() {
-            // Знімаємо виділення з усіх опцій
-            campaignOptions.forEach(opt => opt.classList.remove('selected'));
-            
-            // Встановлюємо виділення на поточній опції
-            this.classList.add('selected');
-            
-            // Оновлюємо інтерфейс завдань і калькулятор
-            updateOBZMissionsInterface();
-            updateOBZPrice();
-            
-            // Оновлюємо назву кампанії в калькуляторі
-            updateCampaignName();
-        });
-    });
-}
+let cachedTotalPrices = {
+    'stug': {
+        'lt': 477, 'mt': 452, 'ht': 452, 'td': 477, 'spg': 578
+    },
+    't28': {
+        'lt': 603, 'mt': 578, 'ht': 578, 'td': 603, 'spg': 703
+    },
+    't55a': {
+        'lt': 854, 'mt': 829, 'ht': 829, 'td': 854, 'spg': 954
+    },
+    'obj260': {
+        'lt': 1206, 'mt': 1181, 'ht': 1181, 'td': 1206, 'spg': 1306
+    }
+};
 
-// Ініціалізація селектора класу техніки
-function initOBZTechSelector() {
-    const techOptions = document.querySelectorAll('.difficulty-option[data-tech]');
-    
-    techOptions.forEach(option => {
-        option.addEventListener('click', function() {
-            // Знімаємо виділення з усіх опцій
-            techOptions.forEach(opt => opt.classList.remove('selected'));
-            
-            // Встановлюємо виділення на поточній опції
-            this.classList.add('selected');
-            
-            // Оновлюємо інтерфейс завдань і калькулятор
-            updateOBZMissionsInterface();
-            updateOBZPrice();
-        });
-    });
-}
-
-// Ініціалізація чекбоксів для додаткових опцій
-function initOBZCheckboxes() {
-    const checkboxes = document.querySelectorAll('#obz-priority, #obz-night');
-    
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-            // Оновлюємо ціну при зміні чекбоксів
-            updateOBZPrice();
-        });
-    });
-}
-
-// Оновлення назви кампанії в калькуляторі
-function updateCampaignName() {
-    const selectedCampaign = document.querySelector('.difficulty-option[data-difficulty].selected').getAttribute('data-difficulty');
-    
-    // Формуємо словник назв кампаній
-    const campaignNames = {
-        'stug': 'StuG IV',
-        't28': 'T28 HTC',
-        't55a': 'T-55A',
-        'obj260': 'Об\'єкт 260'
-    };
-    
-    // Оновлюємо відображення назви кампанії у всіх потрібних елементах
-    const campaignTitles = document.querySelectorAll('.campaign-name');
-    campaignTitles.forEach(element => {
-        element.textContent = campaignNames[selectedCampaign];
-    });
-}
-// Ініціалізація інтерфейсу вибору завдань
-function initOBZMissionsInterface() {
-    // Очищаємо контейнер для завдань
-    const missionsContainer = document.getElementById('missions-container');
-    if (!missionsContainer) return;
-    
-    // Створюємо кнопки для швидкого вибору завдань
-    const buttonsContainer = document.createElement('div');
-    buttonsContainer.className = 'missions-buttons';
-    
-    // Кнопка "Вибрати всі"
-    const selectAllBtn = document.createElement('button');
-    selectAllBtn.className = 'btn btn-outline select-all-btn';
-    selectAllBtn.textContent = 'Вибрати всі';
-    selectAllBtn.addEventListener('click', handleSelectAll);
-    
-    // Кнопка "Завдання 1-7"
-    const selectEasyBtn = document.createElement('button');
-    selectEasyBtn.className = 'btn btn-outline select-easy-btn';
-    selectEasyBtn.textContent = 'Завдання 1-7';
-    selectEasyBtn.addEventListener('click', function() {
-        handleSelectGroup('easy');
-    });
-    
-    // Кнопка "Завдання 8-15"
-    const selectHardBtn = document.createElement('button');
-    selectHardBtn.className = 'btn btn-outline select-hard-btn';
-    selectHardBtn.textContent = 'Завдання 8-15';
-    selectHardBtn.addEventListener('click', function() {
-        handleSelectGroup('hard');
-    });
-    
-    // Кнопка "Очистити вибір"
-    const clearAllBtn = document.createElement('button');
-    clearAllBtn.className = 'btn btn-outline clear-all-btn';
-    clearAllBtn.textContent = 'Очистити вибір';
-    clearAllBtn.addEventListener('click', function() {
-        document.querySelectorAll('.mission-checkbox').forEach(cb => {
-            cb.checked = false;
-        });
-        updateOBZPrice();
-    });
-    
-    // Додаємо кнопки в контейнер
-    buttonsContainer.appendChild(selectAllBtn);
-    buttonsContainer.appendChild(selectEasyBtn);
-    buttonsContainer.appendChild(selectHardBtn);
-    buttonsContainer.appendChild(clearAllBtn);
-    
-    // Додаємо контейнер з кнопками на сторінку
-    missionsContainer.appendChild(buttonsContainer);
-    
-    // Запускаємо оновлення інтерфейсу завдань
-    updateOBZMissionsInterface();
-}
-
-// Оновлення інтерфейсу завдань на основі вибраної кампанії і класу техніки
-function updateOBZMissionsInterface() {
-    const selectedCampaign = document.querySelector('.difficulty-option[data-difficulty].selected').getAttribute('data-difficulty');
-    const selectedTech = document.querySelector('.difficulty-option[data-tech].selected').getAttribute('data-tech');
-    
-    // Отримуємо контейнер для завдань
-    const missionsContainer = document.getElementById('missions-container');
-    if (!missionsContainer) return;
-    
-    // Видаляємо існуючий список завдань, якщо він є
-    const existingList = document.querySelector('.missions-list');
-    if (existingList) {
-        existingList.remove();
-}
-// Ціни для різної кампанії та класу техніки
+    // Ціни для різної кампанії та класу техніки
     const priceTable = {
         'stug': {
             'lt': [
@@ -237,35 +109,176 @@ function updateOBZMissionsInterface() {
                 [70, 0], [70, 0], [70, 0], [70, 0], [352, 427]
             ]
         },
-        'obj260': {
-            'lt': [
-                [90, 0], [90, 0], [90, 0], [90, 0], [90, 0],
-                [90, 0], [90, 0], [110, 0], [100, 0], [100, 0],
-                [100, 0], [100, 0], [100, 0], [100, 0], [402, 502]
-            ],
-            'mt': [
-                [90, 0], [90, 0], [90, 0], [90, 0], [90, 0],
-                [90, 0], [90, 0], [90, 0], [100, 0], [100, 0],
-                [100, 0], [125, 0], [100, 0], [100, 0], [402, 502]
-            ],
-            'ht': [
-                [90, 0], [90, 0], [90, 0], [90, 0], [90, 0],
-                [90, 0], [90, 0], [90, 0], [90, 0], [90, 0],
-                [125, 0], [90, 0], [125, 0], [90, 0], [402, 502]
-            ],
-            'td': [
-                [90, 0], [90, 0], [90, 0], [90, 0], [90, 0],
-                [90, 0], [90, 0], [100, 0], [100, 0], [100, 0],
-                [100, 0], [100, 0], [100, 0], [100, 0], [452, 552]
-            ],
-            'spg': [
-                [100, 0], [100, 0], [100, 0], [100, 0], [100, 0],
-                [100, 0], [100, 0], [100, 0], [100, 0], [100, 0],
-                [100, 0], [100, 0], [100, 0], [100, 0], [452, 552]
-            ]
-        }
+		'obj260': {
+			'lt': [
+				[90, 0], [90, 0], [90, 0], [90, 0], [90, 0],
+				[90, 0], [90, 0], [110, 0], [100, 0], [100, 0],
+				[100, 0], [100, 0], [100, 0], [100, 0], [402, 502]
+			],
+			'mt': [
+				[90, 0], [90, 0], [90, 0], [90, 0], [90, 0],
+				[90, 0], [90, 0], [90, 0], [100, 0], [100, 0],
+				[100, 0], [125, 0], [100, 0], [100, 0], [402, 502]
+			],
+			'ht': [
+				[90, 0], [90, 0], [90, 0], [90, 0], [90, 0],
+				[90, 0], [90, 0], [90, 0], [90, 0], [90, 0],
+				[125, 0], [90, 0], [125, 0], [90, 0], [402, 502]
+			],
+			'td': [
+				[90, 0], [90, 0], [90, 0], [90, 0], [90, 0],
+				[90, 0], [90, 0], [100, 0], [100, 0], [100, 0],
+				[100, 0], [100, 0], [100, 0], [100, 0], [452, 552]
+			],
+			'spg': [
+				[100, 0], [100, 0], [100, 0], [100, 0], [100, 0],
+				[100, 0], [100, 0], [100, 0], [100, 0], [100, 0],
+				[100, 0], [100, 0], [100, 0], [100, 0], [452, 552]
+			]
+}
+			};
+
+// Функція ініціалізації ОБЗ секції
+function initOBZSection() {
+    console.log("Ініціалізація ОБЗ секції");
+    initOBZSelectors();
+    initOBZCheckboxes();
+    initOBZMissionsInterface();
+    updateOBZPrice();
+}
+
+// Ініціалізація селекторів кампаній і класу техніки
+function initOBZSelectors() {
+    const campaignOptions = document.querySelectorAll('.option-item[data-difficulty]');
+    
+    campaignOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            campaignOptions.forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+            
+            updateOBZMissionsInterface();
+            updateOBZPrice();
+            updateCampaignName();
+        });
+    });
+    
+    const techOptions = document.querySelectorAll('.option-item[data-tech]');
+    
+    techOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            techOptions.forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+            
+            updateOBZMissionsInterface();
+            updateOBZPrice();
+        });
+    });
+}
+
+// Ініціалізація чекбоксів для додаткових опцій
+function initOBZCheckboxes() {
+    const checkboxes = document.querySelectorAll('#obz-priority, #obz-night');
+    
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateOBZPrice);
+    });
+}
+
+// Оновлення назви кампанії в калькуляторі
+function updateCampaignName() {
+    const selectedCampaign = document.querySelector('.option-item[data-difficulty].selected').getAttribute('data-difficulty');
+    
+    const campaignNames = {
+        'stug': 'StuG IV',
+        't28': 'T28 HTC',
+        't55a': 'T-55A',
+        'obj260': 'Об\'єкт 260'
     };
-// Створюємо список завдань
+    
+    const campaignTitles = document.querySelectorAll('.campaign-name');
+    campaignTitles.forEach(element => {
+        element.textContent = campaignNames[selectedCampaign];
+    });
+}
+
+// Ініціалізація інтерфейсу вибору завдань
+function initOBZMissionsInterface() {
+    const missionsContainer = document.getElementById('missions-container');
+    
+    if (!missionsContainer) {
+        console.error("Помилка: Контейнер для завдань не знайдено!");
+        return;
+    }
+    
+    // Створюємо кнопки для швидкого вибору завдань
+    const buttonsContainer = document.createElement('div');
+    buttonsContainer.className = 'missions-buttons';
+    
+    // Кнопка "Вибрати всі"
+    const selectAllBtn = document.createElement('button');
+    selectAllBtn.className = 'btn btn-outline select-all-btn';
+    selectAllBtn.textContent = 'Вибрати всі';
+    selectAllBtn.addEventListener('click', handleSelectAll);
+    
+    // Кнопка "Завдання 1-7"
+    const selectEasyBtn = document.createElement('button');
+    selectEasyBtn.className = 'btn btn-outline select-easy-btn';
+    selectEasyBtn.textContent = 'Завдання 1-7';
+    selectEasyBtn.addEventListener('click', () => handleSelectGroup('easy'));
+    
+    // Кнопка "Завдання 8-15"
+    const selectHardBtn = document.createElement('button');
+    selectHardBtn.className = 'btn btn-outline select-hard-btn';
+    selectHardBtn.textContent = 'Завдання 8-15';
+    selectHardBtn.addEventListener('click', () => handleSelectGroup('hard'));
+    
+    // Кнопка "Очистити вибір"
+    const clearAllBtn = document.createElement('button');
+    clearAllBtn.className = 'btn btn-outline clear-all-btn';
+    clearAllBtn.textContent = 'Очистити вибір';
+    clearAllBtn.addEventListener('click', function() {
+        document.querySelectorAll('.mission-checkbox').forEach(cb => {
+            cb.checked = false;
+        });
+        updateOBZPrice();
+    });
+    
+    // Додаємо кнопки в контейнер
+    buttonsContainer.append(selectAllBtn, selectEasyBtn, selectHardBtn, clearAllBtn);
+    
+    // Додаємо контейнер з кнопками на сторінку
+    missionsContainer.appendChild(buttonsContainer);
+    
+    // Запускаємо оновлення інтерфейсу завдань
+    updateOBZMissionsInterface();
+}
+
+// Оновлення інтерфейсу завдань на основі вибраної кампанії і класу техніки
+function updateOBZMissionsInterface() {
+    const selectedCampaign = document.querySelector('.option-item[data-difficulty].selected').getAttribute('data-difficulty');
+    const selectedTech = document.querySelector('.option-item[data-tech].selected').getAttribute('data-tech');
+    
+    // Отримуємо контейнер для завдань
+    const missionsContainer = document.getElementById('missions-container');
+    if (!missionsContainer) {
+        console.error("Помилка: Контейнер для завдань не знайдено при оновленні!");
+        return;
+    }
+    
+    // Видаляємо існуючий список завдань, якщо він є
+    const existingList = document.querySelector('.missions-list');
+    if (existingList) {
+        existingList.remove();
+    }
+    
+    // Встановлюємо відзнаку для 15-го завдання, якщо не встановлено
+    for (let i = 0; i < priceTable[selectedCampaign][selectedTech].length; i++) {
+        if (priceTable[selectedCampaign][selectedTech][i][1] === 0 && i === 14) {
+            priceTable[selectedCampaign][selectedTech][i][1] = Math.round(priceTable[selectedCampaign][selectedTech][i][0] * 1.25);
+        }
+    }
+    
+    // Створюємо список завдань
     const missionsList = document.createElement('div');
     missionsList.className = 'missions-list';
     
@@ -274,11 +287,6 @@ function updateOBZMissionsInterface() {
         const missionItem = document.createElement('div');
         missionItem.className = 'mission-item';
         
-        // Номер завдання
-        const missionNumber = document.createElement('div');
-        missionNumber.className = 'mission-number';
-        missionNumber.textContent = i + 1;
-        
         // Чекбокс для вибору завдання
         const missionCheckbox = document.createElement('input');
         missionCheckbox.type = 'checkbox';
@@ -286,15 +294,18 @@ function updateOBZMissionsInterface() {
         missionCheckbox.dataset.missionIndex = i;
         missionCheckbox.addEventListener('change', updateOBZPrice);
         
+        // Номер завдання
+        const missionNumber = document.createElement('div');
+        missionNumber.className = 'mission-number';
+        missionNumber.textContent = i + 1;
+        
         // Ціна завдання
         const missionPrice = document.createElement('div');
         missionPrice.className = 'mission-price';
         missionPrice.textContent = priceTable[selectedCampaign][selectedTech][i][0] + '₴';
         
         // Додаємо елементи в картку завдання
-        missionItem.appendChild(missionCheckbox);
-        missionItem.appendChild(missionNumber);
-        missionItem.appendChild(missionPrice);
+        missionItem.append(missionCheckbox, missionNumber, missionPrice);
         
         // Додаємо особливі елементи для 15-го завдання (відзнака)
         if (i === 14) {
@@ -310,8 +321,7 @@ function updateOBZMissionsInterface() {
             const excellentText = document.createElement('span');
             excellentText.textContent = 'З відзнакою +' + (priceTable[selectedCampaign][selectedTech][i][1] - priceTable[selectedCampaign][selectedTech][i][0]) + '₴';
             
-            excellentLabel.appendChild(excellentCheckbox);
-            excellentLabel.appendChild(excellentText);
+            excellentLabel.append(excellentCheckbox, excellentText);
             
             missionItem.appendChild(excellentLabel);
         }
@@ -385,49 +395,32 @@ function handleSelectGroup(group) {
     // Оновлюємо ціну
     updateOBZPrice();
 }
+
 // Оновлення відображення вартості в калькуляторі
 function updateOBZPrice() {
-    const selectedCampaign = document.querySelector('.difficulty-option[data-difficulty].selected').getAttribute('data-difficulty');
-    const selectedTech = document.querySelector('.difficulty-option[data-tech].selected').getAttribute('data-tech');
+    // Отримуємо поточні налаштування
+    const selectedCampaign = document.querySelector('.option-item[data-difficulty].selected').getAttribute('data-difficulty');
+    const selectedTech = document.querySelector('.option-item[data-tech].selected').getAttribute('data-tech');
     const priorityCheckbox = document.getElementById('obz-priority');
     const nightCheckbox = document.getElementById('obz-night');
     
-    // Ціни для різних кампаній в гривнях
-    const campaignPrices = {
-        'stug': { full: 1508, all: 14073 },
-        't28': { full: 2513, all: 14073 },
-        't55a': { full: 4021, all: 14073 },
-        'obj260': { full: 6031, all: 14073 }
-    };
+    // Отримуємо всі відмічені чекбокси завдань
+    const checkboxes = document.querySelectorAll('.mission-checkbox');
+    const selectedMissions = [];
     
-    // Отримуємо вибрані завдання
-    const selectedMissions = Array.from(document.querySelectorAll('.mission-checkbox:checked')).map(cb => 
-        parseInt(cb.dataset.missionIndex, 10)
-    );
-    
-    // Тотальні ціни для класів техніки
-    const totalPrices = {
-        'stug': {
-            'lt': 477, 'mt': 452, 'ht': 452, 'td': 477, 'spg': 578
-        },
-        't28': {
-            'lt': 603, 'mt': 578, 'ht': 578, 'td': 603, 'spg': 703
-        },
-        't55a': {
-            'lt': 854, 'mt': 829, 'ht': 829, 'td': 854, 'spg': 954
-        },
-        'obj260': {
-            'lt': 1206, 'mt': 1181, 'ht': 1181, 'td': 1206, 'spg': 1306
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            selectedMissions.push(parseInt(checkbox.dataset.missionIndex, 10));
         }
-    };
+    });
     
     // Рахуємо вартість вибраних завдань
     let totalPrice = 0;
     
     // Якщо є вибрані завдання, сумуємо їх вартість
     if (selectedMissions.length > 0) {
-        for (const missionIndex of selectedMissions) {
-            // Перевіряємо, чи це останнє завдання (15-те) і чи є активний чекбокс для виконання з відзнакою
+        selectedMissions.forEach(missionIndex => {
+            // Перевіряємо, чи це останнє завдання (15-те) і чи є активний чекбокс для відзнаки
             if (missionIndex === 14) {
                 const excellentCheckbox = document.getElementById('mission-excellent');
                 if (excellentCheckbox && excellentCheckbox.checked) {
@@ -441,53 +434,64 @@ function updateOBZPrice() {
                 // Для всіх інших завдань - звичайна ціна
                 totalPrice += priceTable[selectedCampaign][selectedTech][missionIndex][0];
             }
-        }
-    } else {
-        // Якщо немає вибраних завдань, показуємо повну вартість класу техніки
-        totalPrice = totalPrices[selectedCampaign][selectedTech]; 
+        });
     }
     
     // Застосовуємо множники для додаткових опцій
-    if (priorityCheckbox && priorityCheckbox.checked) {
-        totalPrice *= 1.25; // +25% за пріоритетне виконання
+    let finalTotalPrice = totalPrice;
+    
+    if (priorityCheckbox?.checked) {
+        finalTotalPrice *= 1.25; // +25% за пріоритетне виконання
     }
     
-    if (nightCheckbox && nightCheckbox.checked) {
-        totalPrice *= 1.4; // +40% за нічне виконання
+    if (nightCheckbox?.checked) {
+        finalTotalPrice *= 1.4; // +40% за нічне виконання
     }
     
     // Оновлюємо відображення ціни для вибраних завдань
     const taskPrice = document.getElementById('task-price');
     if (taskPrice) {
-        taskPrice.innerHTML = `${Math.round(totalPrice)}<span class="currency">₴</span>`;
+        taskPrice.innerHTML = `${selectedMissions.length > 0 ? Math.round(finalTotalPrice) : 0}<span class="currency">₴</span>`;
     }
     
-    // Оновлюємо ціни для кампаній
+    // Оновлюємо назву техніки
+    const techNames = {
+        'lt': 'ЛТ', 'mt': 'СТ', 'ht': 'ВТ', 'td': 'ПТ-САУ', 'spg': 'САУ'
+    };
+    
+    document.querySelectorAll('.tech-name').forEach(element => {
+        element.textContent = techNames[selectedTech];
+    });
+    
+    // Вартість повного набору класу техніки
+    let fullTechPrice = cachedTotalPrices[selectedCampaign][selectedTech];
+    let finalFullTechPrice = fullTechPrice;
+    
     // Ціна за всю поточну кампанію
-    let campaignPrice = campaignPrices[selectedCampaign].full;
-    
-    // Застосовуємо множники для додаткових опцій до ціни за кампанію
-    if (priorityCheckbox && priorityCheckbox.checked) {
-        campaignPrice *= 1.25;
-    }
-    
-    if (nightCheckbox && nightCheckbox.checked) {
-        campaignPrice *= 1.4;
-    }
+    let campaignPrice = cachedCampaignPrices[selectedCampaign].full;
     
     // Ціна за всі кампанії
-    let allCampaignsPrice = campaignPrices[selectedCampaign].all;
+    let allCampaignsPrice = cachedCampaignPrices[selectedCampaign].all;
     
-    // Застосовуємо множники для додаткових опцій до ціни за всі кампанії
-    if (priorityCheckbox && priorityCheckbox.checked) {
+    // Застосовуємо множники для додаткових опцій
+    if (priorityCheckbox?.checked) {
+        finalFullTechPrice *= 1.25;
+        campaignPrice *= 1.25;
         allCampaignsPrice *= 1.25;
     }
     
-    if (nightCheckbox && nightCheckbox.checked) {
+    if (nightCheckbox?.checked) {
+        finalFullTechPrice *= 1.4;
+        campaignPrice *= 1.4;
         allCampaignsPrice *= 1.4;
     }
     
     // Оновлюємо ціни в відповідних елементах
+    const fullTechPriceElement = document.getElementById('full-tech-price');
+    if (fullTechPriceElement) {
+        fullTechPriceElement.innerHTML = `${Math.round(finalFullTechPrice)}<span class="currency">₴</span>`;
+    }
+    
     const campaignPriceElement = document.getElementById('campaign-price');
     if (campaignPriceElement) {
         campaignPriceElement.innerHTML = `${Math.round(campaignPrice)}<span class="currency">₴</span>`;
@@ -504,6 +508,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Перевіряємо, чи існує секція ОБЗ на сторінці
     if (document.getElementById('obz')) {
         initOBZSection();
+    } else {
+        console.error("Секція OBZ не знайдена на сторінці!");
     }
 });
-	
