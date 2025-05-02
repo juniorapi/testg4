@@ -4,47 +4,19 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Ініціалізація реєстрації таба
-    registerOnslaughtTab();
-});
-
-/**
- * Реєстрація ініціалізатора для таба Натиск
- */
-function registerOnslaughtTab() {
-    // Створюємо глобальний масив для ініціалізаторів, якщо він не існує
-    if (typeof window.servicesInitializers === 'undefined') {
-        window.servicesInitializers = [];
-    }
-    
-    // Додаємо ініціалізатор для таба "onslaught"
-    window.servicesInitializers.push({
-        tabId: 'onslaught',
-        initializer: initOnslaughtSection
-    });
-    
-    // Перевіряємо, чи активний зараз таб "onslaught"
-    const onslaughtTab = document.querySelector('.service-tab[data-tab="onslaught"]');
-    const isOnslaughtActive = onslaughtTab && onslaughtTab.classList.contains('active');
-    
-    // Якщо таб "onslaught" зараз активний, ініціалізуємо його
-    if (isOnslaughtActive) {
+    // Перевіряємо, чи існує секція "Натиск" на сторінці
+    if (document.getElementById('onslaught')) {
         initOnslaughtSection();
+    } else {
+        console.log("Секція Натиск не знайдена на сторінці.");
     }
-}
+});
 
 /**
  * Ініціалізація секції "Натиск"
  */
 function initOnslaughtSection() {
     console.log("Ініціалізація секції Натиск");
-    const onslaughtSection = document.getElementById('onslaught');
-    
-    if (!onslaughtSection) {
-        console.log("Секція Натиск не знайдена на сторінці.");
-        return;
-    }
-    
     initRankSelector();
     initCheckboxOptions();
     updateOnslaughtPrice();
@@ -54,12 +26,7 @@ function initOnslaughtSection() {
  * Ініціалізація селектора рангів
  */
 function initRankSelector() {
-    const rankOptions = document.querySelectorAll('#onslaught .difficulty-option[data-rank]');
-    
-    if (rankOptions.length === 0) {
-        console.log("Селектор рангів не знайдений");
-        return;
-    }
+    const rankOptions = document.querySelectorAll('.difficulty-option[data-rank]');
     
     rankOptions.forEach(option => {
         option.addEventListener('click', function() {
@@ -79,12 +46,10 @@ function initRankSelector() {
  * Ініціалізація чекбоксів для додаткових опцій
  */
 function initCheckboxOptions() {
-    const checkboxes = document.querySelectorAll('#onslaught #weekly-missions, #onslaught #priority-execution, #onslaught #silver-farming');
+    const checkboxes = document.querySelectorAll('#weekly-missions, #priority-execution, #silver-farming');
     
     checkboxes.forEach(checkbox => {
-        if (checkbox) {
-            checkbox.addEventListener('change', updateOnslaughtPrice);
-        }
+        checkbox.addEventListener('change', updateOnslaughtPrice);
     });
 }
 
@@ -93,14 +58,7 @@ function initCheckboxOptions() {
  */
 function updateOnslaughtPrice() {
     // Отримуємо поточні налаштування
-    const selectedRankEl = document.querySelector('#onslaught .difficulty-option[data-rank].selected');
-    
-    if (!selectedRankEl) {
-        console.log("Не знайдено вибраний ранг");
-        return;
-    }
-    
-    const selectedRank = selectedRankEl.getAttribute('data-rank');
+    const selectedRank = document.querySelector('.difficulty-option[data-rank].selected').getAttribute('data-rank');
     const weeklyMissionsCheckbox = document.getElementById('weekly-missions');
     const priorityExecutionCheckbox = document.getElementById('priority-execution');
     const silverFarmingCheckbox = document.getElementById('silver-farming');
@@ -144,7 +102,17 @@ function updateOnslaughtPrice() {
     const resultPrice = document.querySelector('#onslaught-calculator .result-price');
     if (resultPrice) {
         resultPrice.innerHTML = `${Math.round(finalPrice)}<span class="currency">₴</span>`;
-    } else {
-        console.log("Елемент для відображення ціни не знайдено");
     }
 }
+
+/**
+ * Додавання обробника події для секції в головному файлі
+ */
+if (typeof window.servicesInitializers === 'undefined') {
+    window.servicesInitializers = [];
+}
+
+window.servicesInitializers.push({
+    tabId: 'onslaught',
+    initializer: initOnslaughtSection
+});

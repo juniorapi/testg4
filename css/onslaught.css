@@ -121,39 +121,67 @@
     color: var(--text-secondary);
 }
 
-/* Адаптивність для малих екранів */
-@media (max-width: 768px) {
-    #onslaught-calculator .difficulty-selector {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: var(--space-sm);
-    }
-    
-    .rewards-showcase {
-        grid-template-columns: 1fr 1fr;
-    }
+/* Критичні стилі для калькулятора Натиску - вирішують проблему ширини */
+#onslaught-calculator {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: var(--space-2xl);
+    max-width: 900px;  /* Обмежує ширину, як в інших калькуляторах */
+    margin-left: auto;  /* Центрує блок */
+    margin-right: auto; /* Центрує блок */
 }
 
-@media (max-width: 576px) {
-    #onslaught-calculator .difficulty-selector {
-        grid-template-columns: 1fr;
-    }
-    
-    .rewards-showcase {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Специфічні стилі для оновленого калькулятора */
 #onslaught-calculator .calculator-title {
     border-bottom: 1px solid rgba(227, 41, 39, 0.3);
     padding-bottom: var(--space-md);
     margin-bottom: var(--space-lg);
+    text-align: center;
 }
 
+/* Перевизначення сітки для відповідності іншим калькуляторам */
+#onslaught-calculator .calculator-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-xl);
+    width: 100%;
+}
+
+#onslaught-calculator .calculator-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+#onslaught-calculator .selector-card {
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all var(--transition-normal);
+    margin-bottom: var(--space-md);
+}
+
+#onslaught-calculator .selector-card:hover {
+    background: rgba(26, 26, 26, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Стилі для блока результату, щоб зробити його схожим на інші калькулятори */
 #onslaught-calculator .calculator-result {
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    height: fit-content;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #onslaught-calculator .calculator-result::before {
@@ -166,6 +194,30 @@
     background: url('../img/onslaught-bg.jpg') center/cover no-repeat;
     opacity: 0.1;
     z-index: -1;
+}
+
+#onslaught-calculator .result-title {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-sm);
+}
+
+#onslaught-calculator .result-price {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: var(--space-md);
+    font-family: 'Exo 2', sans-serif;
+}
+
+#onslaught-calculator .result-price .currency {
+    font-size: 18px;
+    vertical-align: super;
+}
+
+/* Кнопка в калькуляторі - уніфікована зі стилями інших калькуляторів */
+#onslaught-calculator .btn-primary {
+    margin-top: var(--space-sm);
 }
 
 /* Стиль для опису сезонних винагород */
@@ -228,4 +280,49 @@
     color: var(--text-secondary);
     font-size: 14px;
     line-height: 1.6;
+}
+
+/* Адаптивність для малих екранів */
+@media (max-width: 992px) {
+    #onslaught-calculator .calculator-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    #onslaught-calculator .calculator-result {
+        margin-top: var(--space-lg);
+    }
+}
+
+@media (max-width: 768px) {
+    #onslaught-calculator .difficulty-selector {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-sm);
+    }
+    
+    .rewards-showcase {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    #onslaught-calculator {
+        padding: var(--space-md);
+    }
+    
+    #onslaught-calculator .calculator-title {
+        font-size: 20px;
+    }
+    
+    #onslaught-calculator .result-price {
+        font-size: 28px;
+    }
+    
+    #onslaught-calculator .difficulty-selector {
+        grid-template-columns: 1fr;
+    }
+    
+    .rewards-showcase {
+        grid-template-columns: 1fr;
+    }
 }

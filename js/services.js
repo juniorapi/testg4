@@ -8,11 +8,21 @@ document.addEventListener('DOMContentLoaded', function() {
     initFAQAccordion();
     initRangeSlider();
     initTankSelector();
-    initDifficultySelector(); // Додана ініціалізація селектора складності
+    initDifficultySelector();
     initCheckboxes();
     initPricingCalculator();
+    
+    // Явно ініціалізуємо секцію Натиск, якщо функція доступна
+    if (typeof initOnslaughtSection === 'function') {
+        initOnslaughtSection();
+    }
+    
+    // Або перевіряємо хеш і ініціалізуємо відповідну секцію
+    const hash = window.location.hash.substring(1);
+    if (hash === 'onslaught' && typeof initOnslaughtSection === 'function') {
+        setTimeout(initOnslaughtSection, 200); // Невелика затримка
+    }
 });
-
 /**
  * Ініціалізація вкладок послуг
  */
@@ -381,4 +391,24 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
         }
     });
+});
+
+// Додати до кінця services.js
+window.addEventListener('load', function() {
+    // Перевіряємо, чи URL містить #onslaught
+    if (window.location.hash === '#onslaught') {
+        console.log("Виявлено #onslaught після повного завантаження сторінки");
+        
+        // Перевіряємо, чи існує функція ініціалізації
+        if (typeof initOnslaughtSection === 'function') {
+            console.log("Викликаємо initOnslaughtSection після повного завантаження");
+            
+            // Активуємо вкладку і ініціалізуємо секцію
+            const onslaughtTab = document.querySelector('.service-tab[data-tab="onslaught"]');
+            if (onslaughtTab) {
+                onslaughtTab.click();
+                setTimeout(initOnslaughtSection, 300);
+            }
+        }
+    }
 });
