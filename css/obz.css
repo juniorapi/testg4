@@ -1,0 +1,161 @@
+/* Стилі для нового інтерфейсу вибору завдань ОБЗ */
+
+/* Контейнер завдань */
+.missions-container {
+    background: rgba(26, 26, 26, 0.3);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Кнопки вибору груп завдань */
+.missions-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+}
+
+.missions-buttons .btn {
+    padding: var(--space-sm) var(--space-md);
+    transition: all var(--transition-normal);
+}
+
+.missions-buttons .btn:hover {
+    background: rgba(227, 41, 39, 0.1);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+/* Список завдань */
+.missions-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--space-sm);
+    max-height: 420px;
+    overflow-y: auto;
+    padding-right: var(--space-sm);
+    margin-bottom: var(--space-md);
+}
+
+/* Елемент завдання */
+.mission-item {
+    display: flex;
+    align-items: center;
+    padding: var(--space-sm);
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+}
+
+.mission-item:hover {
+    background: rgba(26, 26, 26, 0.8);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.mission-item.selected {
+    background: rgba(227, 41, 39, 0.1);
+    border-color: var(--primary);
+}
+
+/* Чекбокс завдання */
+.mission-checkbox {
+    width: 18px;
+    height: 18px;
+    margin-right: var(--space-sm);
+    cursor: pointer;
+}
+
+/* Номер завдання */
+.mission-number {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-right: var(--space-sm);
+    min-width: 20px;
+    text-align: center;
+}
+
+/* Ціна завдання */
+.mission-price {
+    margin-left: auto;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Чекбокс для відзнаки */
+.excellent-label {
+    display: flex;
+    align-items: center;
+    margin-left: var(--space-md);
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.excellent-checkbox {
+    width: 16px;
+    height: 16px;
+    margin-right: var(--space-xs);
+    cursor: pointer;
+}
+
+/* Результати розрахунку */
+.calculator-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+.calculator-result {
+    text-align: center;
+}
+
+.result-title {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-sm);
+}
+
+.result-price {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: var(--space-md);
+    font-family: 'Exo 2', sans-serif;
+}
+
+.result-price .currency {
+    font-size: 18px;
+    vertical-align: super;
+}
+
+/* Адаптивність для малих екранів */
+@media (max-width: 768px) {
+    .missions-list {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        max-height: 500px;
+    }
+    
+    .calculator-results {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .missions-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .missions-buttons {
+        grid-template-columns: 1fr;
+    }
+    
+    .excellent-label {
+        font-size: 12px;
+    }
+}
