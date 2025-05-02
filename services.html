@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/services.css">
 	<link rel="stylesheet" href="css/obz.css">
+	<link rel="stylesheet" href="css/onslaught.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,10 +82,8 @@
                 <div class="services-tabs">
                     <div class="service-tab active" data-tab="boost">Буст акаунтів</div>
 					<div class="service-tab" data-tab="obz">Виконання ОБЗ</div>
-                    <div class="service-tab" data-tab="training">Тренування</div>
-                    <div class="service-tab" data-tab="tournaments">Участь у турнірах</div>
-                    <div class="service-tab" data-tab="clanwars">Кланові війни</div>
-                    <div class="service-tab" data-tab="lessons">Індивідуальні уроки</div>
+					<div class="service-tab" data-tab="onslaught">Режим Натиск</div>
+
                 </div>
             </div>
         </section>
@@ -1060,51 +1059,436 @@
             <a href="#obz-calculator" class="btn btn-outline btn-lg">Розрахувати вартість</a>
         </div>
     </div>
-                <!-- Тренування -->
-                <div class="service-content" id="training">
-                    <div class="section-header">
-                        <h2 class="section-title">Тренування <span>гравців</span></h2>
-                        <p class="section-subtitle">Професійні тренування та навчання від досвідчених гравців альянсу G_UA</p>
+<!-- Натиск (Onslaught) -->
+<div class="service-content" id="onslaught">
+    <div class="section-header">
+        <h2 class="section-title">Буст режиму <span>Натиск</span></h2>
+        <p class="section-subtitle">Професійне підвищення рейтингу та отримання винагород у змагальному режимі "Натиск" від досвідчених гравців альянсу G_UA</p>
+    </div>
+    
+    <div class="highlighted-block">
+        <h3>Що таке режим Натиск (Onslaught) в World of Tanks?</h3>
+        <p>Натиск (Onslaught) — це змагальний режим у World of Tanks, що пропонує інтенсивні бої формату 7 на 7 виключно на техніці X рівня. Цей режим має рейтингову систему, спеціальні навички та унікальні тактичні можливості. Беріть участь у боях, заробляйте рейтингові очки для просування через шість рангів та отримуйте прогресивні нагороди, включаючи унікальні стилі, відзнаки та спеціальні танки за сезони.</p>
+        <p>Режим виділяється серед інших більш прогнозованим діапазоном пошкодження (±12% замість стандартних ±25% в Випадкових боях), удосконаленими картами та командним підходом. За допомогою наших професіоналів, ви можете швидко досягти вищих рангів та отримати всі цінні нагороди сезону!</p>
+    </div>
+    
+    <div class="boost-options">
+        <div class="boost-card">
+            <div class="boost-header">
+                <h3 class="boost-title">Срібний ранг</h3>
+                <span class="boost-type">Базовий пакет</span>
+                <div class="boost-price">від 800<span class="currency">₴</span></div>
+            </div>
+            <div class="boost-content">
+                <div class="boost-features">
+                    <div class="boost-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Досягнення Срібного рангу</span>
                     </div>
-                    
-                    <!-- Вміст для секції тренувань -->
-                    <div class="highlighted-block">
-                        <h3>Підвищіть свої навички з професійними тренерами!</h3>
-                        <p>Наші тренування розроблені для гравців різного рівня підготовки. Під керівництвом кращих гравців альянсу ви зможете значно покращити свою ефективність у боях та зрозуміти тонкощі механік гри.</p>
+                    <div class="boost-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Виконання щотижневих завдань</span>
                     </div>
-                    
-                    <!-- Інший вміст для тренувань -->
+                    <div class="boost-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Отримання до 2 Кольорів Натиску</span>
+                    </div>
+                    <div class="boost-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Базова 2D стиль сезону</span>
+                    </div>
+                </div>
+                <div class="boost-actions">
+                    <a href="#onslaught-calculator" class="btn btn-primary">Розрахувати</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="boost-card">
+            <div class="boost-header">
+                <h3 class="boost-title">Золотий ранг</h3>
+                <span class="boost-type">Стандартний пакет</span>
+                <div class="boost-price">від 1500<span class="currency">₴</span></div>
+            </div>
+            <div class="boost-content">
+                <div class="boost-features">
+                    <div class="boost-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Досягнення Золотого рангу</span>
+                    </div>
+                    <div class="boost-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Виконання всіх щотижневих завдань</span>
+                    </div>
+                    <div class="boost-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Отримання до 4 Кольорів Натиску</span>
+                    </div>
+                    <div class="boost-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Покращений 2D стиль сезону</span>
+                    </div>
+                </div>
+                <div class="boost-actions">
+                    <a href="#onslaught-calculator" class="btn btn-primary">Розрахувати</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="boost-card">
+            <div class="boost-header">
+                <h3 class="boost-title">Чемпіон/Легенда</h3>
+                <span class="boost-type">Преміум пакет</span>
+                <div class="boost-price">від 3000<span class="currency">₴</span></div>
+            </div>
+            <div class="boost-content">
+                <div class="boost-features">
+                    <div class="boost-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Досягнення рангу Чемпіон/Легенда</span>
+                    </div>
+                    <div class="boost-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Всі завдання сезону</span>
+                    </div>
+                    <div class="boost-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Максимальна кількість Кольорів Натиску (до 6)</span>
+                    </div>
+                    <div class="boost-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Ексклюзивний стиль та значки</span>
+                    </div>
+                </div>
+                <div class="boost-actions">
+                    <a href="#onslaught-calculator" class="btn btn-primary">Розрахувати</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="service-description">
+        <h3>Як працює рейтингова система режиму Натиск?</h3>
+        <p>Рейтингова система в режимі Натиск складається з 6 рангів та 22 дивізій. Ви заробляєте Рейтингові Очки для просування через дивізії та ранги. Ці очки нараховуються за перемоги в боях і втрачаються за поразки, нічиї, залишення бою до його завершення або бездіяльність у ранзі.</p>
+        
+        <p>Основні ранги поділені на п'ять дивізій: E, D, C, B та A. Дивізії розділені з інтервалом у 100 Рейтингових Очок. Ранги Чемпіон та Легенда мають лише по одній дивізії, тому підбір здійснюється на основі зароблених Рейтингових Очок.</p>
+        
+        <p>Наші професіонали допоможуть вам швидко отримати необхідну кількість очок для досягнення бажаного рангу та виконати всі необхідні завдання сезону для максимальних винагород.</p>
+    </div>
+    
+    <div class="highlighted-block">
+        <h3>Винагороди за річний цикл Натиску</h3>
+        <p>Кожен сезон має унікальний візуальний стиль, який задає тон для елементів налаштування та винагород. Крім того, правила події, механіки геймплею та доступні карти можуть змінюватися між сезонами.</p>
+        <p>Кожен рік пропонує дві лінії винагород: унікальні налаштування за просування в рангу та купу ігрових винагород за щотижневі місії. Просуваючись через ранги, ви отримаєте спеціальний прогресивний 2D стиль для режиму Натиск, а також додаткові копії стилю, гравіювання та фони для жетонів, значки та смужки.</p>
+        <p>Зібравши дев'ять або більше Кольорів Натиску (спеціальна валюта режиму) протягом сезонів, ви отримаєте винятковий танк (наприклад, Stinger), разом з іншими цінними винагородами.</p>
+    </div>
+    
+    <div class="boost-calculator" id="onslaught-calculator">
+        <h3 class="calculator-title">Калькулятор вартості бусту в режимі Натиск</h3>
+        
+        <div class="calculator-grid">
+            <div class="calculator-options">
+                <div class="options-title">Виберіть опції:</div>
+                
+                <div class="selector-card">
+                    <h3 class="selector-title">Цільовий ранг</h3>
+                    <div class="difficulty-selector">
+                        <div class="difficulty-option selected" data-rank="silver">
+                            <div class="difficulty-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="difficulty-name">Срібло</div>
+                        </div>
+                        <div class="difficulty-option" data-rank="gold">
+                            <div class="difficulty-icon">
+                                <i class="fas fa-medal"></i><i class="fas fa-medal"></i>
+                            </div>
+                            <div class="difficulty-name">Золото</div>
+                        </div>
+                        <div class="difficulty-option" data-rank="champion">
+                            <div class="difficulty-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="difficulty-name">Чемпіон</div>
+                        </div>
+                        <div class="difficulty-option" data-rank="legend">
+                            <div class="difficulty-icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <div class="difficulty-name">Легенда</div>
+                        </div>
+                    </div>
                 </div>
                 
-                <!-- Участь у турнірах -->
-                <div class="service-content" id="tournaments">
-                    <div class="section-header">
-                        <h2 class="section-title">Участь у <span>турнірах</span></h2>
-                        <p class="section-subtitle">Професійна підготовка та участь у турнірах різного рівня з командою альянсу G_UA</p>
+                <div class="selector-card">
+                    <h3 class="selector-title">Додаткові опції</h3>
+                    <div class="checkbox-options">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="weekly-missions" class="checkbox-input">
+                            <label for="weekly-missions" class="custom-checkbox"></label>
+                            <label for="weekly-missions" class="checkbox-label">Виконання щотижневих місій (+20% до вартості)</label>
+                        </div>
+                        
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="priority-execution" class="checkbox-input">
+                            <label for="priority-execution" class="custom-checkbox"></label>
+                            <label for="priority-execution" class="checkbox-label">Першочергове виконання (+30% до вартості)</label>
+                        </div>
+                        
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="silver-farming" class="checkbox-input">
+                            <label for="silver-farming" class="custom-checkbox"></label>
+                            <label for="silver-farming" class="checkbox-label">Фарм срібла (5M кредитів, +500₴)</label>
+                        </div>
                     </div>
-                    
-                    <!-- Вміст для секції турнірів -->
                 </div>
-                
-                <!-- Кланові війни -->
-                <div class="service-content" id="clanwars">
-                    <div class="section-header">
-                        <h2 class="section-title">Кланові <span>війни</span></h2>
-                        <p class="section-subtitle">Участь у кланових війнах на Глобальній карті World of Tanks з альянсом G_UA</p>
+            </div>
+            
+            <div class="calculator-result">
+                <div class="result-title">Загальна вартість</div>
+                <div class="result-price">800<span class="currency">₴</span></div>
+                <a href="contact.html" class="btn btn-primary btn-lg">Замовити буст</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="service-features">
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <h3 class="feature-title">Гарантований результат</h3>
+            <p class="feature-text">Наші професійні гравці гарантують досягнення обраного рангу у встановлений термін та виконання всіх замовлених завдань.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-user-shield"></i>
+            </div>
+            <h3 class="feature-title">Безпека акаунту</h3>
+            <p class="feature-text">Ми забезпечуємо повну безпеку вашого акаунту. Всі наші бустери використовують VPN та дотримуються всіх заходів безпеки.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-star"></i>
+            </div>
+            <h3 class="feature-title">Топові гравці</h3>
+            <p class="feature-text">Наші бустери мають WN8 рейтинг 3500+ та величезний досвід участі в режимі Натиск на найвищих рангах.</p>
+        </div>
+    </div>
+    
+    <div class="faq-section">
+        <h3 class="faq-title">Часті запитання про буст в режимі Натиск</h3>
+        
+        <div class="faq-list">
+            <div class="faq-item active">
+                <div class="faq-question">
+                    <span>Які вимоги до акаунту для замовлення бусту в режимі Натиск?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Для замовлення бусту в режимі Натиск ваш акаунт повинен відповідати наступним вимогам:</p>
+                    <ul>
+                        <li>Мати хоча б один танк X рівня (крім артилерії, яка не допускається в режим)</li>
+                        <li>Мати достатню кількість срібла для обслуговування танків (приблизно 4-5 мільйонів для рангу Чемпіон)</li>
+                        <li>Бажано мати кілька топових танків різних класів для гнучкості в боях</li>
+                    </ul>
+                    <p>Якщо у вас недостатньо срібла, ви можете замовити додаткову послугу фарму кредитів.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Скільки часу займає досягнення рангу Чемпіон/Легенда?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Час досягнення вищих рангів залежить від багатьох факторів: вашого поточного рангу, кількості доступних танків X рівня, загальної конкуренції в режимі та поточного сезону. У середньому:</p>
+                    <ul>
+                        <li>Досягнення Срібного рангу: 2-4 дні</li>
+                        <li>Досягнення Золотого рангу: 4-7 днів</li>
+                        <li>Досягнення рангу Чемпіон: 7-14 днів</li>
+                        <li>Досягнення рангу Легенда: 14-21 день</li>
+                    </ul>
+                    <p>Конкретний термін буде вказаний після детального аналізу вашого акаунту та обговорення деталей замовлення.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Чи зможу я грати на акаунті під час бусту?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Ми не рекомендуємо грати на акаунті під час активного бусту в режимі Натиск, оскільки це може призвести до втрати рейтингових очок та збільшення часу виконання замовлення. Проте ви можете узгодити з нашим менеджером конкретний графік, коли бустер буде працювати з вашим акаунтом. Ми завжди намагаємося підлаштуватися під ваш розклад для максимальної зручності.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Чи безпечно передавати дані акаунту для бусту?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Ми забезпечуємо максимальну безпеку ваших даних. Всі наші бустери — перевірені гравці альянсу G_UA з бездоганною репутацією. Ми використовуємо VPN для захисту вашого акаунту від підозрілої активності та ніколи не зберігаємо ваші дані після завершення замовлення. Рекомендуємо змінити пароль після виконання робіт. При бажанні ви можете замовити додаткову послугу стріму, щоб спостерігати за процесом бусту в режимі реального часу.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Що включає послуга "Виконання щотижневих місій"?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Послуга "Виконання щотижневих місій" включає проходження всіх п'яти послідовних щотижневих місій режиму Натиск. Ці місії виконуються послідовно і не втрачають прогрес до кінця поточного сезону. Після виконання всіх місій ви отримаєте жетон, який можна обміняти на будь-який елемент покращеного обладнання в якості нагороди. Ця послуга особливо корисна для гравців, які хочуть отримати максимум винагород за сезон.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="testimonials">
+        <h3 class="testimonials-title">Відгуки клієнтів про буст в режимі Натиск</h3>
+        
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <div class="testimonial-content">
+                    Замовляв буст до рангу Золото в режимі Натиск. Бустер виконав роботу за 5 днів, хоча обговорювали строк у 7 днів. Додатково виконав щотижневі місії та заробив трохи срібла. Дуже задоволений результатом!
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="img/avatar4.jpg" alt="Андрій Л.">
                     </div>
-                    
-                    <!-- Вміст для секції кланових війн -->
-                </div>
-                
-                <!-- Індивідуальні уроки -->
-                <div class="service-content" id="lessons">
-                    <div class="section-header">
-                        <h2 class="section-title">Індивідуальні <span>уроки</span></h2>
-                        <p class="section-subtitle">Персональні заняття з кращими гравцями альянсу G_UA для швидкого підвищення ваших навичок</p>
+                    <div class="author-info">
+                        <div class="author-name">Андрій Л.</div>
+                        <div class="author-role">Клієнт</div>
                     </div>
-                    
-                    <!-- Вміст для секції індивідуальних уроків -->
                 </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <div class="testimonial-content">
+                    Спочатку сумнівався, але результат перевершив очікування. Замовив буст до Чемпіона з нульового рангу, і хлопці впоралися за два тижні. Постійно були на зв'язку, надсилали звіти. Рекомендую!
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="img/avatar5.jpg" alt="Олексій К.">
+                    </div>
+                    <div class="author-info">
+                        <div class="author-name">Олексій К.</div>
+                        <div class="author-role">Клієнт</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <div class="testimonial-content">
+                    Замовляв буст до рангу Легенда в останній сезон Натиску. Завдяки цьому отримав максимальну кількість Кольорів Натиску та розблокував преміум танк. Приємно, що бустер грав у зручний для мене час і не заважав моїй звичайній грі.
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="img/avatar6.jpg" alt="Віталій С.">
+                    </div>
+                    <div class="author-info">
+                        <div class="author-name">Віталій С.</div>
+                        <div class="author-role">Клієнт</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="service-cta">
+        <h3 class="cta-title">Готові почати свій шлях у режимі Натиск?</h3>
+        <p class="cta-text">Замовте буст прямо зараз і отримайте професійну допомогу від досвідчених гравців Альянсу G_UA! Не пропустіть шанс отримати всі цінні винагороди поточного сезону.</p>
+        <div class="cta-actions">
+            <a href="contact.html" class="btn btn-primary btn-lg">Замовити буст</a>
+            <a href="#onslaught-calculator" class="btn btn-outline btn-lg">Розрахувати вартість</a>
+        </div>
+    </div>
+    
+    <div class="related-services">
+        <h3 class="related-title">Інші послуги, що можуть вас зацікавити</h3>
+        
+        <div class="related-grid">
+            <div class="related-card">
+                <div class="related-header">
+                    <h3 class="related-title-card">Буст WN8 Статистики</h3>
+                </div>
+                <div class="related-features">
+                    <div class="related-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Підвищення рейтингу WN8</span>
+                    </div>
+                    <div class="related-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Покращення особистих показників</span>
+                    </div>
+                    <div class="related-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Індивідуальний підхід</span>
+                    </div>
+                </div>
+                <div class="related-footer">
+                    <div class="related-price">Від 350<span>₴</span></div>
+                    <a href="#" class="btn btn-sm">Детальніше</a>
+                </div>
+            </div>
+            
+            <div class="related-card">
+                <div class="related-header">
+                    <h3 class="related-title-card">Виконання ОБЗ</h3>
+                </div>
+                <div class="related-features">
+                    <div class="related-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Виконання особистих завдань</span>
+                    </div>
+                    <div class="related-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Отримання преміум танків</span>
+                    </div>
+                    <div class="related-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Індивідуальний підхід</span>
+                    </div>
+                </div>
+                <div class="related-footer">
+                    <div class="related-price">Від 25<span>₴</span></div>
+                    <a href="#obz" class="btn btn-sm">Детальніше</a>
+                </div>
+            </div>
+            
+            <div class="related-card">
+                <div class="related-header">
+                    <h3 class="related-title-card">Буст відзнак на гарматі</h3>
+                </div>
+                <div class="related-features">
+                    <div class="related-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Отримання 1-3 відзнак</span>
+                    </div>
+                    <div class="related-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Індивідуальний підхід</span>
+                    </div>
+                    <div class="related-feature">
+                        <i class="fas fa-check"></i>
+                        <span>Робота топ-гравців</span>
+                    </div>
+                </div>
+                <div class="related-footer">
+                    <div class="related-price">Від 500<span>₴</span></div>
+                    <a href="#boost" class="btn btn-sm">Детальніше</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
             </div>
         </section>
 
@@ -1144,16 +1528,14 @@
                             </ul>
                         </div>
                         
-                        <div class="footer-services">
-                            <h3 class="footer-heading">Сервіси</h3>
-                            <ul class="footer-links">
-                                <li><a href="services.html#boost">Буст акаунтів</a></li>
-                                <li><a href="services.html#training">Тренування</a></li>
-                                <li><a href="services.html#tournaments">Участь у турнірах</a></li>
-                                <li><a href="services.html#clanwars">Кланові війни</a></li>
-                                <li><a href="services.html#lessons">Індивідуальні уроки</a></li>
-                            </ul>
-                        </div>
+                <div class="footer-services">
+                    <h3 class="footer-heading">Сервіси</h3>
+                    <ul class="footer-links">
+                        <li><a href="services.html#boost">Буст акаунтів</a></li>
+                        <li><a href="services.html#obz">Виконання ОБЗ</a></li>
+                        <li><a href="services.html#onslaught">Режим Натиск</a></li>
+                    </ul>
+                </div>
                         
                         <div class="footer-contact">
                             <h3 class="footer-heading">Зв'язатися з нами</h3>
@@ -1210,5 +1592,6 @@
     <script src="js/main.js"></script>
     <script src="js/services.js"></script>
 	<script src="js/obz.js"></script>
+	<script src="js/onslaught.js"></script>
 </body>
 </html>

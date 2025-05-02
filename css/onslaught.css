@@ -1,0 +1,231 @@
+/* Стилі для нової секції "Натиск" (Onslaught) для сайту G_UA Alliance */
+
+/* Загальні стилі для секції */
+.onslaught-section {
+    background: rgba(26, 26, 26, 0.3);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Стилі для значків рангів */
+.rank-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: var(--radius-full);
+    margin-right: var(--space-xs);
+}
+
+.rank-badge.silver {
+    background: linear-gradient(135deg, #C0C0C0, #E8E8E8);
+    color: #333;
+}
+
+.rank-badge.gold {
+    background: linear-gradient(135deg, #FFD700, #FFC800);
+    color: #333;
+}
+
+.rank-badge.champion {
+    background: linear-gradient(135deg, #B9722D, #FFAE42);
+    color: #fff;
+}
+
+.rank-badge.legend {
+    background: linear-gradient(135deg, #4B0082, #8A2BE2);
+    color: #fff;
+}
+
+/* Спеціальні стилі для селектора рангів */
+#onslaught-calculator .difficulty-selector {
+    margin-bottom: var(--space-lg);
+}
+
+#onslaught-calculator .difficulty-option {
+    position: relative;
+    overflow: hidden;
+}
+
+#onslaught-calculator .difficulty-option:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: all 0.6s;
+}
+
+#onslaught-calculator .difficulty-option:hover:before {
+    left: 100%;
+}
+
+#onslaught-calculator .difficulty-option.selected {
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(227, 41, 39, 0.3);
+}
+
+/* Анімація для значків досягнень */
+@keyframes pulse-rank {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+#onslaught-calculator .difficulty-option.selected .difficulty-icon {
+    animation: pulse-rank 1.5s infinite;
+}
+
+/* Стилі для відображення винагород */
+.rewards-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+.reward-item {
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all var(--transition-normal);
+}
+
+.reward-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.reward-icon {
+    font-size: 24px;
+    color: var(--primary);
+    margin-bottom: var(--space-sm);
+}
+
+.reward-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xs);
+}
+
+.reward-description {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* Адаптивність для малих екранів */
+@media (max-width: 768px) {
+    #onslaught-calculator .difficulty-selector {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-sm);
+    }
+    
+    .rewards-showcase {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    #onslaught-calculator .difficulty-selector {
+        grid-template-columns: 1fr;
+    }
+    
+    .rewards-showcase {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Специфічні стилі для оновленого калькулятора */
+#onslaught-calculator .calculator-title {
+    border-bottom: 1px solid rgba(227, 41, 39, 0.3);
+    padding-bottom: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+#onslaught-calculator .calculator-result {
+    position: relative;
+    overflow: hidden;
+}
+
+#onslaught-calculator .calculator-result::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../img/onslaught-bg.jpg') center/cover no-repeat;
+    opacity: 0.1;
+    z-index: -1;
+}
+
+/* Стиль для опису сезонних винагород */
+.season-rewards {
+    margin-top: var(--space-xl);
+}
+
+.season-rewards-title {
+    font-size: 20px;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.season-rewards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+}
+
+.season-reward-card {
+    background: rgba(26, 26, 26, 0.3);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all var(--transition-normal);
+}
+
+.season-reward-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: var(--glow-primary), var(--shadow-lg);
+}
+
+.season-reward-header {
+    padding: var(--space-md);
+    background: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+}
+
+.season-reward-title {
+    font-size: 18px;
+    margin-bottom: var(--space-xs);
+    color: var(--text-primary);
+}
+
+.season-reward-content {
+    padding: var(--space-md);
+}
+
+.season-reward-image {
+    width: 100%;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: var(--space-md);
+}
+
+.season-reward-description {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+}
