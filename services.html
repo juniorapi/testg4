@@ -91,8 +91,6 @@
 
         <section class="services-section">
             <div class="container">
-<!-- Замініть цей HTML код в секції #obz у вашому файлі services.html -->
-
 <div class="service-content" id="obz">
     <div class="section-header">
         <h2 class="section-title">Виконання <span>ОБЗ</span></h2>
@@ -205,7 +203,7 @@
         <p>Особисті бойові завдання (ОБЗ) - це спеціальні місії в грі World of Tanks, які підвищують інтерес до гри і дають можливість отримати ексклюзивні нагороди. За виконання ОБЗ гравці отримують різноманітні бонуси: кредити, преміум-акаунт, предмети екіпажу, а також унікальні преміум танки.</p>
         
         <h3>Які кампанії ОБЗ доступні в грі?</h3>
-        <p>На даний момент в грі представлено чотири основні кампанії ОБЗ: для отримання StuG IV, T28 Concept HTC, Т-55А та Об'єкта 260, а також кампанія Excalibur. Кожна кампанія містить по 15 завдань для кожного класу техніки (ЛТ, СТ, ТТ, ПТ-САУ та САУ), всього 75 завдань у кожній кампанії.</p>
+        <p>На даний момент в грі представлено чотири основні кампанії ОБЗ: для отримання StuG IV, T28 Concept HTC, Т-55А та Об'єкта 260, а також кампанія Excalibur. Кожна кампанія містить по 15 завдань для кожного класу техніки (ЛТ, СТ, ВТ, ПТ-САУ та САУ), всього 75 завдань у кожній кампанії.</p>
         
         <h3>Чим відрізняється виконання з відзнакою?</h3>
         <p>Для кожного завдання в ОБЗ є дві умови виконання: звичайна та з відзнакою. Виконання з відзнакою вимагає досягнення більш високих показників і дає додаткові нагороди. Крім того, виконавши певну кількість завдань з відзнакою, ви можете отримати можливість пропустити інші завдання для отримання танка.</p>
@@ -218,83 +216,81 @@
             <p>Для розрахунку вартості виконання ОБЗ виберіть потрібні параметри нижче:</p>
         </div>
         
-        <div class="boost-selector-grid">
-            <div class="selector-card">
-                <h3 class="selector-title">Виберіть кампанію</h3>
-                <div class="selector-content">
-                    <p>Оберіть кампанію ОБЗ, яку ви хочете виконати</p>
-                </div>
-                
-                <div class="difficulty-selector">
-                    <div class="difficulty-option selected" data-difficulty="stug">
-                        <div class="difficulty-icon">
+        <!-- Новий контейнер для вибору завдань -->
+        <div id="missions-container" class="missions-container">
+            <!-- JavaScript динамічно заповнить цей контейнер -->
+        </div>
+        
+        <!-- Нові горизонтальні селектори -->
+        <div class="horizontal-selectors">
+            <div class="horizontal-selector">
+                <div class="selector-label">Виберіть кампанію:</div>
+                <div class="horizontal-options">
+                    <div class="option-item selected" data-difficulty="stug">
+                        <div class="option-icon">
                             <i class="fas fa-star"></i>
                         </div>
-                        <div class="difficulty-name">StuG IV</div>
+                        <div class="option-name">StuG IV</div>
                     </div>
-                    <div class="difficulty-option" data-difficulty="t28">
-                        <div class="difficulty-icon">
+                    <div class="option-item" data-difficulty="t28">
+                        <div class="option-icon">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
-                        <div class="difficulty-name">T28 HTC</div>
+                        <div class="option-name">T28 HTC</div>
                     </div>
-                    <div class="difficulty-option" data-difficulty="t55a">
-                        <div class="difficulty-icon">
+                    <div class="option-item" data-difficulty="t55a">
+                        <div class="option-icon">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
-                        <div class="difficulty-name">T-55A</div>
+                        <div class="option-name">T-55A</div>
                     </div>
-                    <div class="difficulty-option" data-difficulty="obj260">
-                        <div class="difficulty-icon">
+                    <div class="option-item" data-difficulty="obj260">
+                        <div class="option-icon">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
-                        <div class="difficulty-name">Об'єкт 260</div>
-                    </div>
-                </div>
-                
-                <h3 class="options-title">Виберіть тип техніки</h3>
-                <div class="difficulty-selector">
-                    <div class="difficulty-option selected" data-tech="lt">
-                        <div class="difficulty-icon">
-                            <i class="fas fa-fighter-jet"></i>
-                        </div>
-                        <div class="difficulty-name">ЛТ</div>
-                    </div>
-                    <div class="difficulty-option" data-tech="mt">
-                        <div class="difficulty-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <div class="difficulty-name">СТ</div>
-                    </div>
-                    <div class="difficulty-option" data-tech="ht">
-                        <div class="difficulty-icon">
-                            <i class="fas fa-shield-alt"></i><i class="fas fa-shield-alt"></i>
-                        </div>
-                        <div class="difficulty-name">ТТ</div>
-                    </div>
-                    <div class="difficulty-option" data-tech="td">
-                        <div class="difficulty-icon">
-                            <i class="fas fa-crosshairs"></i>
-                        </div>
-                        <div class="difficulty-name">ПТ-САУ</div>
-                    </div>
-                    <div class="difficulty-option" data-tech="spg">
-                        <div class="difficulty-icon">
-                            <i class="fas fa-bomb"></i>
-                        </div>
-                        <div class="difficulty-name">САУ</div>
+                        <div class="option-name">Об'єкт 260</div>
                     </div>
                 </div>
             </div>
             
-            <div class="selector-card">
-                <h3 class="selector-title">Оберіть завдання</h3>
-                <!-- Новий контейнер для інтерактивного вибору завдань -->
-                <div id="missions-container" class="missions-container">
-                    <!-- JavaScript динамічно заповнить цей контейнер -->
+            <div class="horizontal-selector">
+                <div class="selector-label">Виберіть тип техніки:</div>
+                <div class="horizontal-options">
+                    <div class="option-item selected" data-tech="lt">
+                        <div class="option-icon">
+                            <i class="fas fa-fighter-jet"></i>
+                        </div>
+                        <div class="option-name">ЛТ</div>
+                    </div>
+                    <div class="option-item" data-tech="mt">
+                        <div class="option-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="option-name">СТ</div>
+                    </div>
+                    <div class="option-item" data-tech="ht">
+                        <div class="option-icon">
+                            <i class="fas fa-shield-alt"></i><i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="option-name">ВТ</div>
+                    </div>
+                    <div class="option-item" data-tech="td">
+                        <div class="option-icon">
+                            <i class="fas fa-crosshairs"></i>
+                        </div>
+                        <div class="option-name">ПТ-САУ</div>
+                    </div>
+                    <div class="option-item" data-tech="spg">
+                        <div class="option-icon">
+                            <i class="fas fa-bomb"></i>
+                        </div>
+                        <div class="option-name">САУ</div>
+                    </div>
                 </div>
+            </div>
                 
-                <h3 class="options-title">Додаткові опції</h3>
+            <div class="horizontal-selector">
+                <div class="selector-label">Додаткові опції:</div>
                 <div class="checkbox-options">
                     <div class="checkbox-option">
                         <input type="checkbox" id="obz-priority" class="checkbox-input">
@@ -312,22 +308,27 @@
         </div>
         
         <div class="calculator-result" style="margin-top: 20px;">
-            <div class="calculator-results">
-                <div class="calculator-result">
-                    <div class="result-title">Вартість вибраних завдань</div>
-                    <div id="task-price" class="result-price">477<span class="currency">₴</span></div>
-                </div>
-                
-                <div class="calculator-result">
-                    <div class="result-title">Ціна за всю кампанію <span class="campaign-name">StuG IV</span></div>
-                    <div id="campaign-price" class="result-price">1508<span class="currency">₴</span></div>
-                </div>
-                
-                <div class="calculator-result">
-                    <div class="result-title">Ціна за всі 4 кампанії</div>
-                    <div id="all-campaigns-price" class="result-price">14073<span class="currency">₴</span></div>
-                </div>
-            </div>
+<div class="calculator-results">
+    <div class="calculator-result">
+        <div class="result-title">Вартість вибраних завдань</div>
+        <div id="task-price" class="result-price">0<span class="currency">₴</span></div>
+    </div>
+    
+    <div class="calculator-result">
+        <div class="result-title">Вартість повного набору <span class="tech-name">ЛТ</span></div>
+        <div id="full-tech-price" class="result-price">477<span class="currency">₴</span></div>
+    </div>
+    
+    <div class="calculator-result">
+        <div class="result-title">Ціна за всю кампанію <span class="campaign-name">StuG IV</span></div>
+        <div id="campaign-price" class="result-price">1508<span class="currency">₴</span></div>
+    </div>
+    
+    <div class="calculator-result">
+        <div class="result-title">Ціна за всі 4 кампанії</div>
+        <div id="all-campaigns-price" class="result-price">14073<span class="currency">₴</span></div>
+    </div>
+</div>
             
             <a href="contact.html" class="btn btn-primary btn-lg">Замовити виконання ОБЗ</a>
         </div>
@@ -388,8 +389,68 @@
         </div>
     </div>
     
-    <!-- Інші секції (FAQ, відгуки, CTA) залишаються без змін -->
-</div>
+    <div class="faq-section">
+        <h3 class="faq-title">Часті запитання про виконання ОБЗ</h3>
+        
+        <div class="faq-list">
+            <div class="faq-item active">
+                <div class="faq-question">
+                    <span>Як працює процес виконання завдань?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Процес виконання ОБЗ працює так:</p>
+                    <ol>
+                        <li>Ви вибираєте необхідні завдання та оформлюєте замовлення;</li>
+                        <li>Наші менеджери зв'яжуться з вами для уточнення деталей;</li>
+                        <li>Ви надаєте доступ до акаунту в обумовлений час;</li>
+                        <li>Наш виконавець починає працювати над завданнями;</li>
+                        <li>Ви отримуєте регулярні звіти про прогрес;</li>
+                        <li>Після завершення ми повідомляємо вас і ви змінюєте пароль акаунту.</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Скільки часу займає виконання ОБЗ?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Час виконання залежить від кількості завдань, їх складності та кампанії. Окремі завдання можуть бути виконані за 1-2 дні, набір з 15 завдань класу техніки займає 3-7 днів, а повна кампанія може зайняти від 10 до 30 днів залежно від кампанії та ваших побажань.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Чи безпечно передавати доступ до акаунту?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Безпека вашого акаунту - наш пріоритет. Ми працюємо тільки з перевіреними гравцями Альянсу G_UA, які мають бездоганну репутацію. Ми ніколи не зберігаємо ваші дані після завершення замовлення і рекомендуємо змінити пароль після виконання завдань. Також ви можете додатково замовити послугу стріму процесу виконання.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Що буде, якщо завдання неможливо виконати?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>У рідкісних випадках, коли завдання неможливо виконати через особливості акаунту або інші обставини, ми повідомимо вас про це і запропонуємо альтернативу: повернення коштів, виконання іншого завдання або знижку на інші послуги. Ми гарантуємо чесне вирішення будь-яких проблем.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="service-cta">
+        <h3 class="cta-title">Готові замовити виконання ОБЗ?</h3>
+        <p class="cta-text">Отримайте омріяний танк без зайвих зусиль! Наші професіонали беруть на себе всю важку роботу.</p>
+        <div class="cta-actions">
+            <a href="contact.html" class="btn btn-primary btn-lg">Замовити виконання ОБЗ</a>
+            <a href="#obz-calculator" class="btn btn-outline btn-lg">Розрахувати вартість</a>
+        </div>
+    </div>
 
                 <!-- Буст акаунтів -->
                 <div class="service-content active" id="boost">
