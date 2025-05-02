@@ -325,4 +325,52 @@
     .rewards-showcase {
         grid-template-columns: 1fr;
     }
+}/* Виправлення для секції "Натиск" - додаємо правильний стиль контейнера */
+
+/* Обгортка всього вмісту секції з відповідною шириною */
+#onslaught .section-content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+}
+
+/* Переконуємося, що калькулятор має правильну ширину */
+#onslaught-calculator {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: var(--space-2xl);
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+/* Всі блоки в секції Натиск також повинні мати обмеження ширини */
+#onslaught .highlighted-block,
+#onslaught .boost-options,
+#onslaught .service-description,
+#onslaught .service-features,
+#onslaught .faq-section,
+#onslaught .testimonials,
+#onslaught .service-cta,
+#onslaught .related-services {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Виправлення для заголовків секції у Натиску */
+#onslaught .section-header {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Переконайтесь, що колонки в таблиці калькулятора мають правильну ширину */
+@media (min-width: 993px) {
+    #onslaught-calculator .calculator-grid {
+        grid-template-columns: 2fr 1fr !important;
+    }
 }
