@@ -29,12 +29,12 @@
     transform: translateY(-2px);
 }
 
-/* Список завдань */
+/* Список завдань - зменшено висоту */
 .missions-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: var(--space-sm);
-    max-height: 420px;
+    max-height: 300px; /* Зменшено з 420px до 300px */
     overflow-y: auto;
     padding-right: var(--space-sm);
     margin-bottom: var(--space-md);
@@ -50,6 +50,7 @@
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: all var(--transition-normal);
     cursor: pointer;
+	
 }
 
 .mission-item:hover {
@@ -134,15 +135,80 @@
     vertical-align: super;
 }
 
+/* Новий горизонтальний селектор кампаній */
+.horizontal-selectors {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+
+.horizontal-selector {
+    background: rgba(26, 26, 26, 0.3);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.selector-label {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-sm);
+    font-weight: 500;
+}
+
+.horizontal-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+}
+
+.option-item {
+    background: rgba(26, 26, 26, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.option-item:hover {
+    background: rgba(26, 26, 26, 0.8);
+    transform: translateY(-2px);
+}
+
+.option-item.selected {
+    background: rgba(227, 41, 39, 0.1);
+    border-color: var(--primary);
+}
+
+.option-icon {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.option-name {
+    font-weight: 500;
+}
+
 /* Адаптивність для малих екранів */
 @media (max-width: 768px) {
     .missions-list {
         grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        max-height: 500px;
+        max-height: 350px;
     }
     
     .calculator-results {
         grid-template-columns: 1fr;
+    }
+    
+    .horizontal-options {
+        flex-direction: column;
     }
 }
 
