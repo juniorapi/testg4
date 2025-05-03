@@ -2,7 +2,7 @@
 
 /* Секція героя */
 .services-hero {
-    padding: 160px 0 100px;
+    padding: 100px 0 60px;
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../img/services-bg.jpg');
     background-size: cover;
     background-position: center;
@@ -68,7 +68,7 @@
 }
 
 .services-section {
-    padding: var(--space-3xl) 0;
+    padding: 0 0 var(--space-md);
 }
 
 .service-content {

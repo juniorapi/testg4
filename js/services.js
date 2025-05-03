@@ -1,5 +1,5 @@
 /**
- * JavaScript для сторінки послуг G_UA Alliance з підтримкою вибору складності танка
+ * JavaScript для сторінки послуг G_UA Alliance з виправленим переключенням вкладок
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -12,17 +12,46 @@ document.addEventListener('DOMContentLoaded', function() {
     initCheckboxes();
     initPricingCalculator();
     
-    // Явно ініціалізуємо секцію Натиск, якщо функція доступна
-    if (typeof initOnslaughtSection === 'function') {
-        initOnslaughtSection();
-    }
-    
-    // Або перевіряємо хеш і ініціалізуємо відповідну секцію
-    const hash = window.location.hash.substring(1);
-    if (hash === 'onslaught' && typeof initOnslaughtSection === 'function') {
-        setTimeout(initOnslaughtSection, 200); // Невелика затримка
-    }
+    // Перевіряємо хеш в URL при завантаженні сторінки
+    checkHashAndActivateTab();
 });
+
+/**
+ * Перевірка хешу в URL та активація відповідної вкладки
+ */
+function checkHashAndActivateTab() {
+    // Отримуємо хеш з URL (наприклад, #obz, #boost, #onslaught)
+    const hash = window.location.hash.substring(1);
+    
+    // Якщо хеш існує і є відповідна вкладка
+    if (hash) {
+        const targetTab = document.querySelector(`.service-tab[data-tab="${hash}"]`);
+        if (targetTab) {
+            // Імітуємо клік на відповідній вкладці
+            targetTab.click();
+            
+            // Плавно прокручуємо до потрібного місця після короткої затримки,
+            // щоб контент встиг відобразитися
+            setTimeout(function() {
+                const targetElement = document.getElementById(hash);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100, // Враховуємо висоту шапки
+                        behavior: 'smooth'
+                    });
+                }
+            }, 200);
+            
+            // Ініціалізуємо специфічні секції, якщо потрібно
+            if (hash === 'onslaught' && typeof initOnslaughtSection === 'function') {
+                setTimeout(initOnslaughtSection, 300);
+            } else if (hash === 'obz' && typeof initOBZSection === 'function') {
+                setTimeout(initOBZSection, 300);
+            }
+        }
+    }
+}
+
 /**
  * Ініціалізація вкладок послуг
  */
@@ -49,20 +78,17 @@ function initTabs() {
             // Показуємо цільовий контент
             document.getElementById(targetId).classList.add('active');
             
-            // Оновлюємо URL з хеш-параметром
-            window.location.hash = targetId;
+            // Оновлюємо URL з хеш-параметром без перезавантаження сторінки
+            history.pushState(null, null, `#${targetId}`);
+            
+            // Ініціалізуємо специфічні секції, якщо потрібно
+            if (targetId === 'onslaught' && typeof initOnslaughtSection === 'function') {
+                setTimeout(initOnslaughtSection, 300);
+            } else if (targetId === 'obz' && typeof initOBZSection === 'function') {
+                setTimeout(initOBZSection, 300);
+            }
         });
     });
-    
-    // Перевіряємо хеш-параметр при завантаженні сторінки
-    const hash = window.location.hash.substring(1);
-    if (hash && document.getElementById(hash)) {
-        const activeTab = document.querySelector(`.service-tab[data-tab="${hash}"]`);
-        if (activeTab) {
-            // Імітуємо клік по вкладці, якщо вона існує
-            activeTab.click();
-        }
-    }
 }
 
 /**
@@ -380,6 +406,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             return; // Пропускаємо, якщо просто "#"
         }
         
+        // Перевіряємо, чи це посилання на вкладку послуг
+        if (targetId === '#boost' || targetId === '#obz' || targetId === '#onslaught') {
+            const targetTab = document.querySelector(`.service-tab[data-tab="${targetId.substring(1)}"]`);
+            if (targetTab) {
+                e.preventDefault();
+                targetTab.click(); // Активуємо відповідну вкладку
+                return;
+            }
+        }
+        
+        // Звичайне прокручування до якоря
         const targetElement = document.querySelector(targetId);
         
         if (targetElement) {
@@ -393,22 +430,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Додати до кінця services.js
-window.addEventListener('load', function() {
-    // Перевіряємо, чи URL містить #onslaught
-    if (window.location.hash === '#onslaught') {
-        console.log("Виявлено #onslaught після повного завантаження сторінки");
-        
-        // Перевіряємо, чи існує функція ініціалізації
-        if (typeof initOnslaughtSection === 'function') {
-            console.log("Викликаємо initOnslaughtSection після повного завантаження");
-            
-            // Активуємо вкладку і ініціалізуємо секцію
-            const onslaughtTab = document.querySelector('.service-tab[data-tab="onslaught"]');
-            if (onslaughtTab) {
-                onslaughtTab.click();
-                setTimeout(initOnslaughtSection, 300);
-            }
-        }
-    }
+// Функція для коректного поводження з навігацією браузера (кнопки назад/вперед)
+window.addEventListener('popstate', function() {
+    checkHashAndActivateTab();
 });
