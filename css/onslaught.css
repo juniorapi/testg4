@@ -121,16 +121,15 @@
     color: var(--text-secondary);
 }
 
-/* Критичні стилі для калькулятора Натиску - вирішують проблему ширини */
 #onslaught-calculator {
     background: rgba(0, 0, 0, 0.3);
     border-radius: var(--radius-lg);
     padding: var(--space-xl);
     border: 1px solid rgba(255, 255, 255, 0.05);
     margin-bottom: var(--space-2xl);
-    max-width: 900px;  /* Обмежує ширину, як в інших калькуляторах */
-    margin-left: auto;  /* Центрує блок */
-    margin-right: auto; /* Центрує блок */
+    max-width: 900px;  
+    margin-left: auto; 
+    margin-right: auto;
 }
 
 #onslaught-calculator .calculator-title {
@@ -140,7 +139,6 @@
     text-align: center;
 }
 
-/* Перевизначення сітки для відповідності іншим калькуляторам */
 #onslaught-calculator .calculator-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -168,13 +166,12 @@
     border-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Стилі для блока результату, щоб зробити його схожим на інші калькулятори */
+
 #onslaught-calculator .calculator-result {
-    background: rgba(26, 26, 26, 0.5);
+    background-color: #1A1A1A80;
     border-radius: var(--radius-md);
-    padding: var(--space-lg);
+    padding: 24px;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.05);
     height: fit-content;
     position: relative;
     overflow: hidden;
@@ -182,6 +179,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 267px;
+    height: 222px;
+    box-sizing: border-box;
+    margin-top: 170px;
 }
 
 #onslaught-calculator .calculator-result::before {
