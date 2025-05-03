@@ -202,12 +202,20 @@ function updateCampaignName() {
 }
 
 // Ініціалізація інтерфейсу вибору завдань
+// Ініціалізація інтерфейсу вибору завдань
 function initOBZMissionsInterface() {
     const missionsContainer = document.getElementById('missions-container');
     
     if (!missionsContainer) {
         console.error("Помилка: Контейнер для завдань не знайдено!");
         return;
+    }
+    
+    // Перевіряємо, чи вже існують кнопки
+    const existingButtons = missionsContainer.querySelector('.missions-buttons');
+    if (existingButtons) {
+        // Якщо кнопки вже існують, видаляємо їх перед створенням нових
+        existingButtons.remove();
     }
     
     // Створюємо кнопки для швидкого вибору завдань
