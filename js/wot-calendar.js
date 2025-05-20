@@ -21,7 +21,7 @@ const wotEvents = [
         imageUrl: 'img/events/frontline.jpg',
         startDate: new Date('2025-04-29T12:00:00'),
         endDate: new Date('2025-05-05T03:00:00'),
-        url: 'https://worldoftanks.eu/uk/news/general-news/frontline-spring/'
+        url: 'https://worldoftanks.eu/uk/news/general-news/battle-pass-season-16-vault/'
     },
     {
         id: 'onslaught',
@@ -30,7 +30,7 @@ const wotEvents = [
         imageUrl: 'img/events/onslaught.jpg',
         startDate: new Date('2025-04-15T10:00:00'),
         endDate: new Date('2025-05-25T10:00:00'),
-        url: 'https://worldoftanks.eu/uk/news/general-news/onslaught-jade-manticore/'
+        url: 'https://worldoftanks.eu/uk/news/general-news/onslaught-season-of-the-manticore-3/'
     },
     {
         id: 'amd-tokens',
@@ -39,7 +39,7 @@ const wotEvents = [
         imageUrl: 'img/events/amd-tokens.jpg',
         startDate: new Date('2025-04-10T10:00:00'),
         endDate: new Date('2025-05-30T10:00:00'),
-        url: 'https://worldoftanks.eu/uk/news/specials/amd-tokens/'
+        url: 'https://worldoftanks.eu/uk/news/live-streams/token-store-april-2025/'
     },
     {
         id: 'battle-pass',
