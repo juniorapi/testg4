@@ -28,8 +28,8 @@ const wotEvents = [
         title: 'Натиск. Сезон Нефритової Мантикори',
         type: 'orange',
         imageUrl: 'img/events/onslaught.jpg',
-        startDate: new Date('2025-04-15T10:00:00'),
-        endDate: new Date('2025-05-25T10:00:00'),
+        startDate: new Date('2025-04-16T16:30:00'),
+        endDate: new Date('2025-05-26T04:00:00'),
         url: 'https://worldoftanks.eu/uk/news/general-news/onslaught-season-of-the-manticore-3/'
     },
     {
