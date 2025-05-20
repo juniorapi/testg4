@@ -15,13 +15,13 @@ const wotEvents = [
         url: 'https://worldoftanks.eu/uk/news/specials/obj780-lion-return/'
     },
     {
-        id: 'frontline',
-        title: 'Весняний запуск Лінії фронту!',
+        id: 'global-map',
+        title: '22-й сезон на Глобальній мапі',
         type: 'green',
-        imageUrl: 'img/events/frontline.jpg',
-        startDate: new Date('2025-04-29T12:00:00'),
-        endDate: new Date('2025-05-05T03:00:00'),
-        url: 'https://worldoftanks.eu/uk/news/general-news/battle-pass-season-16-vault/'
+        imageUrl: 'img/events/global_map.jpg',
+        startDate: new Date('2025-05-19T11:00:00'),
+        endDate: new Date('2025-05-06T11:00:00'),
+        url: 'https://worldoftanks.eu/uk/news/general-news/global-map-season-22-announcement/'
     },
     {
         id: 'onslaught',
