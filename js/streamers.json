@@ -1,17 +1,6 @@
 {
   "streamers": [
-    { 
-      "id": "mrexclusivel", 
-      "twitchId": "mrexclusivel",
-      "displayName": "MrExclusivel",
-      "avatarUrl": "img/exclusivel.png",
-      "description": "Стример і професійний гравець G4_UA.",
-      "clan": "G4_UA",
-      "youtube": "none",
-      "youtubeType": "user",
-      "telegram": "none"
-    },
-    { 
+   { 
       "id": "lazerok07", 
       "twitchId": "lazerok07",
       "displayName": "lazerok07",
@@ -54,17 +43,6 @@
       "youtube": "UCMP24qFvIZ3te2oCGdIBIYg",
       "youtubeType": "channel",
       "telegram": "ghosts_ua_official"
-    },
-    { 
-      "id": "lara_lapki_cat", 
-      "twitchId": "lara_lapki_cat",
-      "displayName": "Lara_LAPKI_CAT",
-      "avatarUrl": "img/lara_lapki_cat.png",
-      "description": "Експерт з артилерії. Член G0_UA.",
-      "clan": "G4_UA",
-      "youtube": "LAPKICAT",
-      "youtubeType": "user",
-      "telegram": "Lapki_cat_mr"
     },
     { 
       "id": "firestormyo", 
